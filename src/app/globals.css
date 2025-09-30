@@ -1,19 +1,74 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
-	--brandColor: #50b4be;
-	--brandColor-hover: #36b3a0;
-	--subColor: #f3f4f6;
-	--subColor-hover: #e5e7eb;
-	--onboarding-big1: 32px;
-	--onboarding-big2: 20px;
-	--onboarding-sm1: 16px;
-	--big1: 24px;
-	--big1: 18px;
-	--sm1: 14px;
-	--sm1: 12px;
+  --brandColor: #50b4be;
+  --brandColor-hover: #36b3a0;
+  --subColor: #f3f4f6;
+  --subColor-hover: #e5e7eb;
+  --onboarding-big1: 32px;
+  --onboarding-big2: 20px;
+  --onboarding-sm1: 16px;
+  --big1: 24px;
+  --big1: 18px;
+  --sm1: 14px;
+  --sm1: 12px;
 }
 
 body {
-	padding: 0 1rem;
+  padding: 0 1rem;
+}
+.btn_onboarding {
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-weight: 600;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  background-color: var(--brandColor);
+  color: #000000;
+  font-size: 24px;
+  transition: 0.2s ease-in-out;
+}
+.btn_onboarding:hover {
+  background-color: var(--brandColor-hover);
+}
+.btn_onboarding.btn_disabled {
+  background-color: var(--brandColor-hover);
+}
+.btn_broad {
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  background-color: var(--brandColor);
+  color: var(--subColor);
+  font-size: 16px;
+  transition: 0.2s ease-in-out;
+}
+.btn_broad:hover {
+  background-color: var(--brandColor-hover);
+}
+.btn_broad.btn_disabled {
+  background-color: var(--brandColor-hover);
+}
+.btn_sub {
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  background-color: var(--subColor);
+  color: var(--brandColor);
+  font-size: 16px;
+  transition: 0.2s ease-in-out;
+}
+.btn_sub:hover {
+  background-color: var(--subColor-hover);
+}
+
+.btn_sub.btn_disabled {
+  background-color: var(--subColor-hover);
 }
