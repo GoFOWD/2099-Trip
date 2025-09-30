@@ -1,1 +1,19 @@
 @import 'tailwindcss';
+
+:root {
+	--brandColor: #50b4be;
+	--brandColor-hover: #36b3a0;
+	--subColor: #f3f4f6;
+	--subColor-hover: #e5e7eb;
+	--onboarding-big1: 32px;
+	--onboarding-big2: 20px;
+	--onboarding-sm1: 16px;
+	--big1: 24px;
+	--big1: 18px;
+	--sm1: 14px;
+	--sm1: 12px;
+}
+
+body {
+	padding: 0 1rem;
+}
