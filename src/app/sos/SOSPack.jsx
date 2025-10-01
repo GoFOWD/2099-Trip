@@ -1,11 +1,15 @@
-// src/features/SOSPack.jsx
+"use client";
+
 import { useEffect, useMemo, useState } from "react";
 import { loadPack } from "./utils/loadPack";
 
-// ====== 옵션 ======
-const DEBUG = true; // true면 console에 진단 로그 출력
+/* ========================
+   상수 / 유틸 (컴포넌트 밖)
+======================== */
+const DEBUG = true;
+const BASE = "/data/packs";
+const CONTINENT_ORDER = ["Asia", "Europe", "America", "Oceania", "Africa"];
 
-// ====== 대륙 라벨 ======
 const CONTINENT_LABEL = {
   Asia: "아시아",
   Europe: "유럽",
@@ -14,7 +18,6 @@ const CONTINENT_LABEL = {
   Africa: "아프리카",
 };
 
-// ====== 문구 탭 라벨 ======
 const PHRASE_LABEL = {
   sos: "SOS",
   hotel: "호텔",
@@ -27,12 +30,21 @@ const PHRASE_LABEL = {
   embassy: "대사관",
 };
 
-const BASE = "/data/packs";
-const CONTINENT_ORDER = ["Asia", "Europe", "America", "Oceania", "Africa"];
+const LANG_OPTIONS = [
+  { code: "en", label: "영어" },
+  { code: "ja", label: "일본어" },
+  { code: "zh-CN", label: "중국어 간체" },
+  { code: "zh-TW", label: "중국어 번체" },
+  { code: "fr", label: "프랑스어" },
+  { code: "de", label: "독일어" },
+  { code: "es", label: "스페인어" },
+  { code: "it", label: "이탈리아어" },
+  { code: "vi", label: "베트남어" },
+  { code: "th", label: "태국어" },
+  { code: "id", label: "인도네시아어" },
+];
 
-// ====== 유틸 ======
 const _norm = (s) => (s ?? "").toString().replace(/\uFEFF/g, "").trim().toLowerCase();
-
 const _toKey = (raw) => {
   const v = _norm(raw);
   if (v === "asia" || v === "아시아") return "Asia";
@@ -55,8 +67,6 @@ const _toKey = (raw) => {
   ) return "Oceania";
   return null;
 };
-
-// AU/NZ 강제 오세아니아 보정
 function _forceOceaniaByNameOrCode(c) {
   const code = String(c?.code || c?.country_code || "").toUpperCase().trim();
   const name = `${_norm(c?.name)} ${_norm(c?.ko)}`;
@@ -64,8 +74,6 @@ function _forceOceaniaByNameOrCode(c) {
   if (code === "NZ" || name.includes("new zealand") || name.includes("뉴질랜드")) return "Oceania";
   return null;
 }
-
-// 코드/필드로 대륙 판별 (AU/NZ 우선)
 function getContinentKey(c) {
   const code = String(c?.code || c?.country_code || "").toUpperCase().trim();
   if (code === "AU" || code === "NZ") return "Oceania";
@@ -77,90 +85,56 @@ function getContinentKey(c) {
     null
   );
 }
-
 function prettyCity(id) {
   const end = (id || "").split("-").pop();
   const map = {
-    // US
     NYC:"New York City", LA:"Los Angeles", SF:"San Francisco", MIA:"Miami", LV:"Las Vegas",
-    // AU / NZ
     SYD:"Sydney", MEL:"Melbourne", BNE:"Brisbane", PER:"Perth",
     AKL:"Auckland", WLG:"Wellington", CHC:"Christchurch",
-    // JP
     TYO:"Tokyo", OSA:"Osaka", FUK:"Fukuoka", CTS:"Sapporo",
-    // KR
     SEL:"Seoul", PUS:"Busan", JEJ:"Jeju",
-    // TH
     BKK:"Bangkok", CNX:"Chiang Mai", HKT:"Phuket", PAT:"Pattaya",
-    // VN
     HAN:"Hanoi", SGN:"Ho Chi Minh City", DAD:"Da Nang",
-    // SG
     SIN:"Singapore",
-    // MY
     KUL:"Kuala Lumpur", PEN:"Penang", BKI:"Kota Kinabalu",
-    // PH
     MNL:"Manila", CEB:"Cebu", BOR:"Boracay",
-    // ID
     JKT:"Jakarta", DPS:"Bali (Denpasar)", SUB:"Surabaya", YOG:"Yogyakarta",
-    // TW
     TPE:"Taipei", TXG:"Taichung", TNN:"Tainan", KHH:"Kaohsiung", HUN:"Hualien",
-    // HK
     HKG:"Hong Kong",
-    // GB
     LON:"London", EDI:"Edinburgh", MAN:"Manchester",
-    // FR
     PAR:"Paris", NCE:"Nice", LYS:"Lyon",
-    // DE
-    BER:"Berlin", MUC:"Munich", FRA:"Frankfurt",
-    // ES
-    BCN:"Barcelona", MAD:"Madrid", SVQ:"Seville",
-    // IT
-    ROM:"Rome", MIL:"Milan", VCE:"Venice",
-    // NL
+    BER:"Berlin", MUC:"Munich", FRA:"Frankfurt", HAM:"Hamburg", CGN:"Cologne",
+    BCN:"Barcelona", MAD:"Madrid", SVQ:"Seville", VLC:"Valencia", BIO:"Bilbao",
+    ROM:"Rome", MIL:"Milan", VCE:"Venice", FLR:"Florence", NAP:"Naples",
     AMS:"Amsterdam", RTM:"Rotterdam",
-    // TR
     IST:"Istanbul", ANK:"Ankara", IZM:"Izmir",
-
     BJS:"Beijing", SHA:"Shanghai", CAN:"Guangzhou", SZX:"Shenzhen",
-    CTU:"Chengdu", XIY:"Xi'an", HGH:"Hangzhou", NKG:"Nanjing",
-    WUH:"Wuhan", CKG:"Chongqing",
+    CTU:"Chengdu", XIY:"Xi'an", HGH:"Hangzhou", NKG:"Nanjing", WUH:"Wuhan", CKG:"Chongqing",
     UBN:"Ulaanbaatar", ERD:"Erdenet", DRK:"Darkhan", COQ:"Choibalsan", HVD:"Khovd", ULG:"Ölgii",
-    // 방글라데시
     DHA:"Dhaka", CTG:"Chattogram", SYL:"Sylhet", KHU:"Khulna", RJH:"Rajshahi",
-    // 인도
-    DEL:"Delhi", BOM:"Mumbai", BLR:"Bengaluru", MAA:"Chennai", CCU:"Kolkata",
-    HYD:"Hyderabad", PNQ:"Pune", AMD:"Ahmedabad", JAI:"Jaipur", COK:"Kochi", GOI:"Goa",
-    // 캄보디아
+    DEL:"Delhi", BOM:"Mumbai", BLR:"Bengaluru", MAA:"Chennai", CCU:"Kolkata", HYD:"Hyderabad", PNQ:"Pune", AMD:"Ahmedabad", JAI:"Jaipur", COK:"Kochi", GOI:"Goa",
     PNH:"Phnom Penh", REP:"Siem Reap", KOS:"Sihanoukville", BBM:"Battambang",
-    // DE 확장
-    HAM:"Hamburg", CGN:"Cologne",
-    // GB 확장
-    LIV:"Liverpool", BHX:"Birmingham",
-    // FR 확장
-    MRS:"Marseille", TLS:"Toulouse",
-    // ES 확장
-    VLC:"Valencia", BIO:"Bilbao",
-    // IT 확장
-    FLR:"Florence", NAP:"Naples",
-    // RU
     MOW:"Moscow", LED:"Saint Petersburg", KZN:"Kazan", OVB:"Novosibirsk", AER:"Sochi",
-    // Canada
     TOR:"Toronto", VAN:"Vancouver", MTL:"Montreal", CAL:"Calgary", OTT:"Ottawa",
-    // Argentina
     BUE:"Buenos Aires", COR:"Córdoba", ROS:"Rosario", MDZ:"Mendoza", BRC:"Bariloche",
-    // Brazil
     SAO:"São Paulo", RIO:"Rio de Janeiro", BSB:"Brasília", SSA:"Salvador", FOR:"Fortaleza",
-    // Mexico
     MEX:"Mexico City", CUN:"Cancún", GDL:"Guadalajara", MTY:"Monterrey", OAX:"Oaxaca",
-    // Morocco
     CAS:"Casablanca", RBA:"Rabat", RAK:"Marrakech",
-    // Egypt
     CAI:"Cairo", ALY:"Alexandria", SSH:"Sharm El Sheikh",
   };
   return map[end] || (id || "").replaceAll("-", " ");
 }
+const labelMap = {
+  police:"경찰", ambulance:"구급", fire:"소방",
+  all_services:"통합(112)", all_services_mobile:"통합(모바일)",
+  poison_control:"독극물", mental_health_crisis:"정신건강",
+  tourist_police:"관광경찰", coast_guard:"해안경비",
+  gendarmerie:"헌병", gas:"가스"
+};
 
-// ====== 컴포넌트 ======
+/* ========================
+      컴포넌트 본문
+======================== */
 export default function SOSPack({ onClose }) {
   // 상태
   const [countries, setCountries] = useState([]);
@@ -172,13 +146,35 @@ export default function SOSPack({ onClose }) {
   const [country, setCountry] = useState("");
   const [cities, setCities] = useState([]);
   const [cityId, setCityId] = useState("");
-  const [q, setQ] = useState(""); // 전역 검색어
-  const [tab, setTab] = useState("sos"); // 문구 탭
+  const [q, setQ] = useState("");
+  const [tab, setTab] = useState("sos");
   const [data, setData] = useState(null);
+
+  // 번역기 상태
+  const [tText, setTText] = useState("");
+  const [tTo, setTTo] = useState("en");
 
   const currentId = useMemo(() => cityId || country, [country, cityId]);
 
-  // 0) fallback 도시 맵 로드 (한 번만)
+  // 번역기 열기
+  function openTranslate(service) {
+    const q = encodeURIComponent(tText.trim());
+    if (!q) return alert("번역할 문장을 입력해 주세요.");
+    const to = tTo;
+    let url = "";
+    switch (service) {
+      case "google":
+        url = `https://translate.google.com/?sl=auto&tl=${to}&text=${q}&op=translate`; break;
+      case "papago":
+        url = `https://papago.naver.com/?sk=auto&tk=${to}&st=${q}`; break;
+      case "deepl":
+        url = `https://www.deepl.com/translator#auto/${to}/${q}`; break;
+      default: return;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  // fallback 도시맵
   useEffect(() => {
     const url = `${BASE}/cities/fallback.json`;
     fetch(url, { cache: "no-store" })
@@ -187,15 +183,13 @@ export default function SOSPack({ onClose }) {
       .catch(() => setFallbackMap({}));
   }, []);
 
-  // 1) 메인 인덱스 로드(+정규화/보정/하드세이프 주입)
+  // 국가 인덱스
   useEffect(() => {
     const url = `${BASE}/index.json`;
     fetch(url, { cache: "no-store" })
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status} at ${url}`); return r.json(); })
       .then(j => {
         const raw = Array.isArray(j?.countries) ? j.countries : [];
-
-        // 정규화
         const norm = raw.map(c => {
           const code = String(c?.code ?? c?.country_code ?? "").replace(/\uFEFF/g, "").trim().toUpperCase();
           const name = String(c?.name ?? "").replace(/\uFEFF/g, "").trim();
@@ -203,37 +197,20 @@ export default function SOSPack({ onClose }) {
           const region = String(c?.region ?? c?.continent ?? c?.regionName ?? "").replace(/\uFEFF/g, "").trim();
           return { ...c, code, name, ko, region };
         });
-
-        // AU/NZ 없으면 하드세이프 주입
-        const hasAU = norm.some(x => x.code === "AU");
-        const hasNZ = norm.some(x => x.code === "NZ");
-        if (!hasAU) norm.push({ code:"AU", name:"Australia", ko:"호주", region:"Oceania" });
-        if (!hasNZ) norm.push({ code:"NZ", name:"New Zealand", ko:"뉴질랜드", region:"Oceania" });
-
-        // 최후 보정
+        if (!norm.some(x => x.code === "AU")) norm.push({ code:"AU", name:"Australia", ko:"호주", region:"Oceania" });
+        if (!norm.some(x => x.code === "NZ")) norm.push({ code:"NZ", name:"New Zealand", ko:"뉴질랜드", region:"Oceania" });
         const fixed = norm.map(c => {
           const v = (c.name + " " + c.ko + " " + c.region).toLowerCase();
           if (c.code === "AU" || v.includes("australia") || v.includes("호주")) return { ...c, region: "Oceania" };
           if (c.code === "NZ" || v.includes("new zealand") || v.includes("뉴질랜드")) return { ...c, region: "Oceania" };
           return c;
         });
-
         setCountries(fixed);
-
-        if (DEBUG) {
-          const AU = fixed.find(x => x.code === "AU");
-          const NZ = fixed.find(x => x.code === "NZ");
-          console.table({
-            total: fixed.length,
-            has_AU_in_final: !!AU, AU_region: AU?.region || null,
-            has_NZ_in_final: !!NZ, NZ_region: NZ?.region || null,
-          });
-        }
       })
       .catch(e => setErr(String(e)));
   }, []);
 
-  // 2) 나라 선택 시 도시 인덱스 로드(파일 우선 + fallback 병합)
+  // 도시 인덱스
   useEffect(() => {
     setCityId("");
     if (!country) { setCities([]); return; }
@@ -246,43 +223,40 @@ export default function SOSPack({ onClose }) {
         const fbList = Array.isArray(fallbackMap[code]) ? fallbackMap[code] : [];
         const merged = fileList.length ? fileList : fbList;
         setCities(merged);
-        if (DEBUG) console.log("[SOS] cities for", code, "=> file:", fileList, "fallback:", fbList);
       })
       .catch(() => {
         const fbList = Array.isArray(fallbackMap[code]) ? fallbackMap[code] : [];
         setCities(fbList);
-        if (DEBUG) console.log("[SOS] cities from fallback only for", code, "=>", fbList);
       });
   }, [country, fallbackMap]);
 
-  // 3) 상세(SOS) 데이터 로드
+  // 상세 로드
   useEffect(() => {
     if (step !== "view" || !currentId) return;
     setErr(""); setData(null);
     loadPack(currentId)
-      .then((d) => { setData(d); if (DEBUG) console.log("[SOS] loaded pack", currentId, d); })
+      .then(setData)
       .catch(e => setErr(`load ${currentId}: ${String(e)}`));
   }, [step, currentId]);
 
-  // data 로드되면 유효한 첫 탭 선택
+  // 탭 기본값
   useEffect(() => {
     const keys = Object.keys(data?.phrases || {});
-    if (keys.length) setTab(prev => keys.includes(prev) ? prev : keys[0]);
+    if (keys.length) setTab((prev) => keys.includes(prev) ? prev : keys[0]);
   }, [data]);
 
-  // 선택된 대륙의 나라들 (AU/NZ 비상구 포함)
+  // 대륙 필터 & 검색
   const continentCountries = useMemo(() => {
-    const arr = countries.filter(c => getContinentKey(c) === continent);
-    arr.sort((a,b)=>(a.ko||a.name).localeCompare(b.ko||b.name,"ko"));
+    const arr = countries.filter(c => getContinentKey(c) === continent)
+      .sort((a,b)=>(a.ko||a.name).localeCompare(b.ko||b.name,"ko"));
     if (continent === "Oceania" && arr.length === 0) {
-      const fallback = countries.filter(c => ["AU","NZ"].includes(String(c?.code||"").toUpperCase()));
-      fallback.sort((a,b)=>(a.ko||a.name).localeCompare(b.ko||b.name,"ko"));
-      return fallback;
+      const fb = countries.filter(c => ["AU","NZ"].includes(String(c?.code||"").toUpperCase()))
+        .sort((a,b)=>(a.ko||a.name).localeCompare(b.ko||b.name,"ko"));
+      return fb;
     }
     return arr;
   }, [countries, continent]);
 
-  // 전역 검색: q 있으면 전체, 없으면 선택 대륙만
   const filteredCountries = useMemo(() => {
     const s = _norm(q);
     const base = s ? countries : continentCountries;
@@ -291,14 +265,11 @@ export default function SOSPack({ onClose }) {
       (c.name || "").toLowerCase().includes(s) ||
       (c.ko   || "").toLowerCase().includes(s) ||
       (String(c.code || c.country_code || "")).toLowerCase().includes(s)
-    );
-    out.sort((a,b)=>(a.ko||a.name).localeCompare(b.ko||b.name,"ko"));
+    ).sort((a,b)=>(a.ko||a.name).localeCompare(b.ko||b.name,"ko"));
     return out;
   }, [countries, continentCountries, q]);
 
-  // 닫기(리셋)
   function handleClose() {
-    if (DEBUG) console.log("[SOS] handleClose fired");
     setStep("continent");
     setContinent("");
     setCountry("");
@@ -308,10 +279,10 @@ export default function SOSPack({ onClose }) {
     setData(null);
     setErr("");
     window.scrollTo(0, 0);
-    // 필요시 모달 닫기까지 하려면 아래 주석 해제
     // if (onClose) onClose();
   }
 
+  /* ============= 렌더 ============= */
   return (
     <div className="sos-wrap">
       <style>{sosStyles}</style>
@@ -326,7 +297,6 @@ export default function SOSPack({ onClose }) {
       {/* STEP 1: 대륙 */}
       {step === "continent" && (
         <section className="sos-stage">
-          {/* <h2 className="sos-h2">대륙 선택</h2> */}
           <div className="continent-grid">
             {CONTINENT_ORDER.map(r => (
               <button
@@ -352,7 +322,6 @@ export default function SOSPack({ onClose }) {
             <button className="sos-btn" onClick={handleClose}>닫기 ✕</button>
           </div>
 
-          {/* 검색창 */}
           <div style={{margin:"8px 0 4px"}}>
             <input
               value={q}
@@ -391,22 +360,20 @@ export default function SOSPack({ onClose }) {
           </div>
 
           {cities.length > 0 ? (
-            <>
-              <div className="city-grid">
-                <button className={`chip ${!cityId ? "on" : ""}`} onClick={() => { setCityId(""); setStep("view"); }}>
-                  국가 정보 보기
+            <div className="city-grid">
+              <button className={`chip ${!cityId ? "on" : ""}`} onClick={() => { setCityId(""); setStep("view"); }}>
+                국가 정보 보기
+              </button>
+              {cities.map(id => (
+                <button
+                  key={id}
+                  className={`chip ${cityId === id ? "on" : ""}`}
+                  onClick={() => { setCityId(id); setStep("view"); }}
+                >
+                  {prettyCity(id)}
                 </button>
-                {cities.map(id => (
-                  <button
-                    key={id}
-                    className={`chip ${cityId === id ? "on" : ""}`}
-                    onClick={() => { setCityId(id); setStep("view"); }}
-                  >
-                    {prettyCity(id)}
-                  </button>
-                ))}
-              </div>
-            </>
+              ))}
+            </div>
           ) : (
             <div className="sos-empty">
               도시 목록이 없습니다. 국가 기본으로 진행합니다.
@@ -464,7 +431,7 @@ export default function SOSPack({ onClose }) {
                 )}
               </section>
 
-              {/* === 문구 탭 === */}
+              {/* 문구 탭 */}
               <section className="sos-card wide">
                 <div className="sos-tabs">
                   {Object.keys(data?.phrases || {}).map(k => (
@@ -494,6 +461,40 @@ export default function SOSPack({ onClose }) {
                   )}
                 </div>
               </section>
+
+              {/* 번역기 바로가기 */}
+              <section className="sos-card">
+                <h3>번역기 바로가기</h3>
+                <div style={{display:"grid", gap:8}}>
+                  <textarea
+                    value={tText}
+                    onChange={(e)=>setTText(e.target.value)}
+                    placeholder="번역할 문장을 여기에 입력하거나 붙여넣으세요."
+                    style={{
+                      width:"100%", minHeight:90, border:"1px solid #8BE3D4",
+                      borderRadius:10, padding:"10px 12px", background:"#fff", color:"#063B3B"
+                    }}
+                  />
+                  <div style={{display:"flex", gap:8, alignItems:"center", flexWrap:"wrap"}}>
+                    <label style={{fontSize:13, color:"#0B5E5E"}}>목표 언어</label>
+                    <select
+                      value={tTo}
+                      onChange={(e)=>setTTo(e.target.value)}
+                      className="sos-input"
+                      style={{maxWidth:200}}
+                    >
+                      {LANG_OPTIONS.map(o => <option key={o.code} value={o.code}>{o.label}</option>)}
+                    </select>
+                    <div style={{flex:1}} />
+                    <button className="sos-btn" onClick={()=>openTranslate("google")}>Google 번역</button>
+                    <button className="sos-btn" onClick={()=>openTranslate("papago")}>Papago</button>
+                    <button className="sos-btn" onClick={()=>openTranslate("deepl")}>DeepL</button>
+                  </div>
+                  <div style={{fontSize:12, color:"#0B5E5E"}}>
+                    팁: 위 문구 카드를 누르면 자동 입력하도록도 확장 가능해요.
+                  </div>
+                </div>
+              </section>
             </div>
           )}
         </section>
@@ -502,15 +503,9 @@ export default function SOSPack({ onClose }) {
   );
 }
 
-const labelMap = {
-  police:"경찰", ambulance:"구급", fire:"소방",
-  all_services:"통합(112)", all_services_mobile:"통합(모바일)",
-  poison_control:"독극물", mental_health_crisis:"정신건강",
-  tourist_police:"관광경찰", coast_guard:"해안경비",
-  gendarmerie:"헌병", gas:"가스"
-};
-
-/* ====== 스타일 ====== */
+/* ========================
+            CSS
+======================== */
 export const sosStyles = `
 :root { --mint:#50B4BE; --mint-hover:#3ba6b1; --bg:#E9FFFA; --ink:#063B3B; }
 
@@ -518,13 +513,11 @@ export const sosStyles = `
 .sos-top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 20px; position:sticky; top:0; background:var(--bg); z-index:10; border-bottom:1px solid #8BE3D4; }
 .sos-title { font-size:18px; font-weight:800; margin:0; letter-spacing:-.2px; }
 
-/* 버튼 공통 */
 .sos-btn { background:#fff; color:var(--ink); border:1px solid #8BE3D4; border-radius:10px; padding:8px 12px; cursor:pointer; transition: background .15s, border-color .15s, transform .05s, box-shadow .15s; }
 .sos-btn:hover { background:#D9FBF3; border-color:#6EDAC8; transform:translateY(-1px); }
 .sos-btn:active { transform:translateY(0); }
 .sos-btn.mint { background:var(--mint); color:#08252a; border-color:transparent; font-weight:800; }
 
-/* 스테이지 */
 .sos-stage { padding:16px 20px; display:grid; gap:14px; }
 .sos-bar { display:flex; align-items:center; justify-content:space-between; gap:8px; }
 .sos-bar-left{ display:flex; align-items:center; gap:8px; }
@@ -533,13 +526,11 @@ export const sosStyles = `
 
 .sos-input { width:100%; max-width:460px; padding:10px 12px; border-radius:10px; border:1px solid #8BE3D4; background:#fff; color:#063B3B; }
 
-/* 그리드 */
 .continent-grid { display:grid; gap:12px; grid-template-columns: repeat(2, 1fr); }
 @media (max-width:520px){ .continent-grid{ grid-template-columns: repeat(2, 1fr);} }
 .country-grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); }
 .city-grid { display:flex; flex-wrap:wrap; gap:8px; }
 
-/* 타일 */
 .tile { text-align:left; background:#fff; border:1px solid #8BE3D4; border-radius:12px; padding:12px; cursor:pointer; transition: border-color .15s, transform .05s, box-shadow .15s, background .15s; color:#063B3B; }
 .tile:hover { border-color:#6EDAC8; background:#D9FBF3; transform: translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.06); }
 .tile.on { border-color:#6EDAC8; background:#D9FBF3; }
@@ -547,11 +538,9 @@ export const sosStyles = `
 .tile-main { font-weight:800; letter-spacing:-.2px; }
 .tile-sub { color:#0B5E5E; font-size:12px; margin-top:2px; }
 
-/* 칩 */
 .chip{ background:#fff; color:#063B3B; border:1px solid #8BE3D4; padding:6px 10px; border-radius:999px; transition: background .15s, border-color .15s; }
 .chip.on,.chip:hover{ background:#D9FBF3; border-color:#6EDAC8; }
 
-/* 카드 */
 .sos-grid { display:grid; gap:12px; grid-template-columns: repeat(12, 1fr); }
 .sos-card { grid-column: span 6; background:#fff; border:1px solid #8BE3D4; border-radius:16px; padding:16px; }
 .sos-card.wide { grid-column: span 12; }
@@ -567,37 +556,16 @@ export const sosStyles = `
 
 @media (max-width:900px){ .sos-card{ grid-column: span 12; } }
 
-/* === Phrase 가독성 개선 (카드/구분선/번호) === */
-.phrase-list{
-  display: grid;
-  gap: 12px;
-  counter-reset: ph;
-}
-.phrase{
-  position: relative;
-  background: #fff;
-  border: 1px solid #8BE3D4;
-  border-radius: 12px;
-  padding: 12px 12px 12px 40px;
-}
+.phrase-list{ display: grid; gap: 12px; counter-reset: ph; }
+.phrase{ position: relative; background: #fff; border: 1px solid #8BE3D4; border-radius: 12px; padding: 12px 12px 12px 40px; }
 .phrase::before{
-  counter-increment: ph;
-  content: counter(ph);
-  position: absolute;
-  left: 12px; top: 12px;
-  width: 20px; height: 20px;
-  display: grid; place-items: center;
-  font-size: 12px; font-weight: 800;
-  color: #063B3B;
-  background: #E9FFFA;
-  border: 1px solid #8BE3D4;
-  border-radius: 999px;
+  counter-increment: ph; content: counter(ph); position: absolute; left: 12px; top: 12px;
+  width: 20px; height: 20px; display: grid; place-items: center; font-size: 12px; font-weight: 800;
+  color: #063B3B; background: #E9FFFA; border: 1px solid #8BE3D4; border-radius: 999px;
 }
 .phrase .ko{ font-weight: 800; margin-bottom: 2px; }
 .phrase .local{ color:#063B3B; }
 .phrase .roma{ color:#0B5E5E; font-size: 13px; }
 .phrase .en{ color:#0B5E5E; font-size: 13px; }
-.phrase .ko + .local,
-.phrase .local + .roma,
-.phrase .roma + .en{ margin-top: 2px; }
+.phrase .ko + .local, .phrase .local + .roma, .phrase .roma + .en{ margin-top: 2px; }
 `;
