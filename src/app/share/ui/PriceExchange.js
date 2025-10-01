@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 
 /**
  * 가격과 함께 환율 변환된 원화를 표시하는 공용 컴포넌트
- * 해외 숙소, 상품 등의 가격을 한국 원화로 자동 변환하여 표시
+ * 해외 숙소, 상품 등의 가격을 한국 원화로 변환하여 표시
+ * - 숫자 + 통화코드: 자동 환율 변환
+ * - 프랑스어 텍스트: 자동 파싱 후 환율 변환 (autoParse=true 시)
  */
 export default function PriceWithExchange({
-  amount,                    // 가격 (숫자)
-  currency,                   // 통화 코드 (USD, JPY, EUR 등)
+  amount,                    // 가격 (숫자 또는 프랑스어 텍스트)
+  currency,                   // 통화 코드 (USD, JPY, EUR 등) 또는 'auto' (자동 감지)
   exchangeRates,             // 환율 데이터
   displayMode = 'both',      // 표시 모드: 'both', 'original', 'converted'
   showFlag = true,           // 국기 표시 여부
@@ -16,10 +18,12 @@ export default function PriceWithExchange({
   originalStyle = 'text-lg font-semibold text-gray-800',
   convertedStyle = 'text-sm text-gray-500',
   className = '',
-  onConvert = null           // 변환 완료 시 콜백
+  onConvert = null,          // 변환 완료 시 콜백
+  autoParse = true           // 프랑스어 텍스트 자동 파싱 여부 (기본값: true)
 }) {
   const [convertedAmount, setConvertedAmount] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [parsedData, setParsedData] = useState(null);
 
   // 통화별 정보 매핑 (환율변환기와 동일한 50개국)
   const currencyInfo = {
@@ -74,27 +78,89 @@ export default function PriceWithExchange({
     KRW: { flag: '🇰🇷', name: '한국 원', symbol: '₩' }
   };
 
-  // 환율 변환 계산
+  // 다국어 가격 자동 파싱 함수
+  const parsePriceText = (text) => {
+    if (!text || typeof text !== 'string') return null;
+
+    // 다국어 텍스트에서 숫자와 통화 추출
+    const match = text.match(/(\d+(?:[,\s]\d+)*(?:[.,]\d+)?)\s*(euros?|dollars?|livres?|francs?|yens?)/i);
+    
+    if (match) {
+      const amount = parseFloat(match[1].replace(/[,\s]/g, ''));
+      const currencyText = match[2].toLowerCase();
+      
+      let currency = 'EUR'; // 기본값
+      if (currencyText.includes('dollar')) currency = 'USD';
+      else if (currencyText.includes('livre')) currency = 'GBP';
+      else if (currencyText.includes('franc')) currency = 'CHF';
+      else if (currencyText.includes('yen')) currency = 'JPY';
+      
+      return { amount, currency };
+    }
+    
+    return null;
+  };
+
+  // 자동 파싱 및 환율 변환 계산
   useEffect(() => {
-    if (!amount || !currency || !exchangeRates?.rates) {
+    if (!amount || !exchangeRates?.rates) {
       setConvertedAmount(null);
+      setParsedData(null);
       return;
     }
 
     setIsLoading(true);
     
     try {
-      const rate = exchangeRates.rates[currency];
+      let finalAmount = amount;
+      let finalCurrency = currency;
+
+      // 자동 파싱 (다국어 텍스트인 경우)
+      if (autoParse && typeof amount === 'string') {
+        const parsed = parsePriceText(amount);
+        if (parsed) {
+          finalAmount = parsed.amount;
+          finalCurrency = parsed.currency;
+          setParsedData(parsed);
+        } else {
+          console.warn('가격 텍스트 파싱 실패:', amount);
+          setConvertedAmount(null);
+          setParsedData(null);
+          return;
+        }
+      }
+
+      // 숫자가 아닌 경우 처리
+      if (typeof finalAmount !== 'number') {
+        finalAmount = parseFloat(finalAmount);
+        if (isNaN(finalAmount)) {
+          setConvertedAmount(null);
+          setParsedData(null);
+          return;
+        }
+      }
+
+      // 통화가 'auto'인 경우 EUR로 기본 설정
+      if (finalCurrency === 'auto') {
+        finalCurrency = 'EUR';
+      }
+
+      const rate = exchangeRates.rates[finalCurrency];
       if (rate && rate > 0) {
-        const converted = (amount * rate).toFixed(0);
+        const converted = (finalAmount * rate).toFixed(0);
         setConvertedAmount(converted);
         
         // 콜백 함수 호출
         if (onConvert) {
           onConvert({
-            original: { amount, currency, symbol: currencyInfo[currency]?.symbol },
+            original: { 
+              amount: finalAmount, 
+              currency: finalCurrency, 
+              symbol: currencyInfo[finalCurrency]?.symbol 
+            },
             converted: { amount: converted, currency: 'KRW', symbol: '₩' },
-            rate: rate
+            rate: rate,
+            parsed: parsedData
           });
         }
       } else {
@@ -103,22 +169,37 @@ export default function PriceWithExchange({
     } catch (error) {
       console.error('환율 변환 오류:', error);
       setConvertedAmount(null);
+      setParsedData(null);
     } finally {
       setIsLoading(false);
     }
-  }, [amount, currency, exchangeRates, onConvert]);
+  }, [amount, currency, exchangeRates, onConvert, autoParse]);
 
   // 통화 정보 가져오기
-  const currentCurrency = currencyInfo[currency] || { 
-    flag: '🌍', 
-    name: currency, 
-    symbol: currency 
+  const getCurrentCurrency = () => {
+    const actualCurrency = parsedData?.currency || currency;
+    return currencyInfo[actualCurrency] || { 
+      flag: '🌍', 
+      name: actualCurrency, 
+      symbol: actualCurrency 
+    };
   };
+  
+  const currentCurrency = getCurrentCurrency();
 
   // 원래 가격 포맷팅
   const formatOriginalPrice = () => {
     if (!amount) return '';
-    return `${currentCurrency.symbol}${amount.toLocaleString()}`;
+    
+    // 자동 파싱된 경우 파싱된 금액 사용
+    const displayAmount = parsedData?.amount || amount;
+    
+    // 숫자가 아닌 경우 그대로 표시 (프랑스어 텍스트)
+    if (typeof displayAmount !== 'number') {
+      return amount;
+    }
+    
+    return `${currentCurrency.symbol}${displayAmount.toLocaleString()}`;
   };
 
   // 변환된 가격 포맷팅
@@ -210,5 +291,25 @@ export const PriceWithExchangePresets = {
     separator: ' → ',
     originalStyle: 'text-sm font-medium',
     convertedStyle: 'text-xs text-gray-500'
+  },
+  
+  // 비행기 예약용
+  flight: {
+    displayMode: 'both',
+    showFlag: true,
+    separator: ' → ',
+    originalStyle: 'text-lg font-semibold text-green-600',
+    convertedStyle: 'text-sm text-gray-500'
+  },
+  
+  // 다국어 자동 파싱용 (팀원이 가장 많이 사용할 프리셋)
+  auto: {
+    displayMode: 'both',
+    showFlag: true,
+    separator: ' → ',
+    originalStyle: 'text-lg font-semibold text-blue-600',
+    convertedStyle: 'text-sm text-gray-500',
+    autoParse: true,
+    currency: 'auto'
   }
 };
