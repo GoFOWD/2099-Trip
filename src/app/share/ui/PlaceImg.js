@@ -2,6 +2,13 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+/**
+사진 불러오는 컴포넌트 입니다.
+@param {string} searchValue{string} - 장소, 호텔 이름
+@param {number} width - 너비
+@param {number} height - 높이
+@returns {JSX.Element} 사진 
+*/
 export default function PlaceImg({ searchValue, width, height }) {
 	const [imageUrl, setImageUrl] = useState(null); // 이미지 URL 상태
 
@@ -15,7 +22,7 @@ export default function PlaceImg({ searchValue, width, height }) {
 						setImageUrl(data.url);
 					}
 				})
-				.catch(err => console.error("Failed to fetch image:", err));
+				.catch(err => console.error('Failed to fetch image:', err));
 		}
 	}, [searchValue]); // searchValue가 변경될 때마다 다시 호출
 
