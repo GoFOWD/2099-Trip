@@ -1,0 +1,133 @@
+{
+  "country_code": "FR",
+  "country_name": "France",
+  "region": "Europe",
+  "calling_code": "+33",
+  "languages": [
+    "fr"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "17"
+    },
+    "ambulance": {
+      "number": "15"
+    },
+    "fire": {
+      "number": "18"
+    }
+  },
+  "embassy_kr": {
+    "name": "주프랑스대한민국대사관",
+    "address": "41-43 Rue Saint-Dominique, 75007 Paris, France",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+33-1-47-53-01-01"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Aidez-moi, s'il vous plaît !",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Appelez la police, s'il vous plaît.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Emmenez-moi à l'hôpital, s'il vous plaît.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Où est l'arrêt de bus ?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Où est la station de métro ?",
+        "roma": "",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Où puis-je acheter un billet ?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Emmenez-moi à cette adresse, s'il vous plaît.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Mettez le compteur, s'il vous plaît.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Arrêtez-vous ici, s'il vous plaît.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "J'ai une réservation. Je voudrais m'enregistrer.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "J'arriverai tard ce soir.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Veuillez garder mes bagages, s'il vous plaît.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Je suis allergique aux arachides.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Je suis allergique aux fruits de mer.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "S'il vous plaît, ne mettez pas de noix dans le plat.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

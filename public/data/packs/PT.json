@@ -1,0 +1,136 @@
+{
+  "country_code": "PT",
+  "country_name": "Portugal",
+  "region": "Europe",
+  "calling_code": "+351",
+  "languages": [
+    "pt",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주포르투갈대한민국대사관",
+    "address": "Av. da Liberdade 245, 6º, 1250-143 Lisboa, Portugal",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+351-213-810-910"
+      }
+    ],
+    "fax": "+351-213-867-478",
+    "email": "emb-pt@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Ajude-me, por favor!",
+        "roma": "A-zhú-deh meh, por fah-vor!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Chame a polícia, por favor.",
+        "roma": "Shah-meh ah po-lee-sia, por fah-vor.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Leve-me ao hospital, por favor.",
+        "roma": "Leh-veh meh ao osh-pee-tal, por fah-vor.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Onde fica a paragem de autocarro?",
+        "roma": "On-deh fee-kah ah pah-rah-zhem deh ow-to-kah-hoo?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Onde fica a estação de metro/comboio?",
+        "roma": "On-deh fee-kah ah es-tah-são deh meh-tro/com-boy-oh?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Onde posso comprar bilhetes?",
+        "roma": "On-deh poh-soh kom-prar bee-lyeh-tesh?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Leve-me a este endereço, por favor.",
+        "roma": "Leh-veh meh ah es-teh en-deh-reh-soo, por fah-vor.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Use o taxímetro, por favor.",
+        "roma": "Oo-zeh oo tahk-see-me-tro, por fah-vor.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Pare aqui, por favor.",
+        "roma": "Pah-reh ah-kee, por fah-vor.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Tenho uma reserva. Gostaria de fazer o check-in.",
+        "roma": "Ten-yo oo-mah re-zer-vah. Gosh-ta-ree-ah deh fah-zer oo shek-een.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Vou chegar tarde hoje à noite.",
+        "roma": "Vo shay-gar tar-deh oh-zhe ah noy-teh.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Por favor, guarde a minha bagagem.",
+        "roma": "Por fah-vor, guar-deh ah mee-nya bah-gah-zhem.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Sou alérgico a amendoins.",
+        "roma": "Soo ah-ler-zhico ah ah-men-doyns.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Sou alérgico a marisco.",
+        "roma": "Soo ah-ler-zhico ah mah-ree-sco.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Por favor, não adicione frutos secos.",
+        "roma": "Por fah-vor, now ah-dee-see-o-neh froo-toosh seh-coosh.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

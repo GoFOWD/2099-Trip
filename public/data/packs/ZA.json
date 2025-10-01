@@ -1,0 +1,141 @@
+{
+  "country_code": "ZA",
+  "country_name": "South Africa",
+  "region": "Africa",
+  "calling_code": "+27",
+  "languages": [
+    "en",
+    "af",
+    "zu",
+    "xh"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "10111"
+    },
+    "ambulance": {
+      "number": "10177"
+    },
+    "fire": {
+      "number": "10177"
+    },
+    "all_services_mobile": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주남아프리카공화국대한민국대사관",
+    "address": "1133 Stanza Bopape St, Hatfield, Pretoria 0083, South Africa",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+27-12-460-2508"
+      }
+    ],
+    "fax": "+27-12-346-8841",
+    "email": "rsa@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Please help me!",
+        "roma": "Pleez help mee!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Please call the police.",
+        "roma": "Pleez call the puh-leece.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Please take me to a hospital.",
+        "roma": "Pleez tayk mee too uh hospital.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Where is the bus stop?",
+        "roma": "Wair iz thuh bus stap?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Where is the train/metro station?",
+        "roma": "Wair iz thuh trayn / meh-tro stay-shun?",
+        "en": "Where is the train/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Where can I buy a ticket?",
+        "roma": "Wair kan ai bai uh tik-it?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Please take me to this address.",
+        "roma": "Pleez tayk mee too this uh-dress.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Please use the meter.",
+        "roma": "Pleez yooz thuh mee-ter.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Please stop here.",
+        "roma": "Pleez stap heer.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "I have a reservation. I'd like to check in.",
+        "roma": "Ai hav uh rez-er-vay-shun. Aid laik too chek in.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "I'll arrive late tonight.",
+        "roma": "Ail uh-raiv layt tuh-nait.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Please keep my luggage.",
+        "roma": "Pleez keep mai luh-gij.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "I have a peanut allergy.",
+        "roma": "Ai hav uh pee-nut a-ler-jee.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "I have a seafood allergy.",
+        "roma": "Ai hav uh see-food a-ler-jee.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Please don't add nuts.",
+        "roma": "Pleez dont ad nuts.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

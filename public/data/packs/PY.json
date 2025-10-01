@@ -1,0 +1,145 @@
+{
+  "country_code": "PY",
+  "country_name": "Paraguay",
+  "region": "Latin America",
+  "calling_code": "+595",
+  "languages": [
+    "es",
+    "gn",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "911"
+    },
+    "ambulance": {
+      "number": "141"
+    },
+    "fire": {
+      "number": "132"
+    }
+  },
+  "embassy_kr": {
+    "name": "주파라과이대한민국대사관",
+    "address": "Avda. República Argentina 678 e/ Pacheco, Asunción, Paraguay",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+595-21-605-401"
+      },
+      {
+        "label": "대표2",
+        "number": "+595-21-605-419"
+      },
+      {
+        "label": "대표3",
+        "number": "+595-21-605-606"
+      }
+    ],
+    "fax": "+595-21-601-376",
+    "email": "paraguay@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "¡Por favor, ayúdeme!",
+        "roma": "Por fa-VOR, a-YÚ-de-me",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Llame a la policía, por favor.",
+        "roma": "YA-me a la po-li-SÍ-a, por fa-VOR",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Lléveme al hospital, por favor.",
+        "roma": "YE-ve-me al hos-pi-TAL, por fa-VOR",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "¿Dónde está la parada de bus?",
+        "roma": "DON-de es-TÁ la pa-RA-da de bus",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "¿Dónde está la estación de tren/metro?",
+        "roma": "DON-de es-TÁ la es-ta-SIÓN de tren/ME-tro",
+        "en": "Where is the train/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "¿Dónde puedo comprar boletos?",
+        "roma": "DON-de PUE-do com-PRAR bo-LE-tos",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Lléveme a esta dirección, por favor.",
+        "roma": "YE-ve-me a ES-ta di-rec-SIÓN, por fa-VOR",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Use el taxímetro, por favor.",
+        "roma": "U-se el ta-XÍ-me-tro, por fa-VOR",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Pare aquí, por favor.",
+        "roma": "PA-re a-KÍ, por fa-VOR",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Tengo una reserva. Quisiera hacer el check-in.",
+        "roma": "TEN-go U-na re-SER-va. Ki-SYE-ra a-SER el chek-Ín",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Llegaré tarde esta noche.",
+        "roma": "Ye-ga-RÉ TAR-de ES-ta NO-che",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Por favor, guarde mi equipaje.",
+        "roma": "Por fa-VOR, GUAR-de mi e-ki-PA-je",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Soy alérgico(a) al maní.",
+        "roma": "Soy a-LÉR-gi-co al ma-NÍ",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Soy alérgico(a) a los mariscos.",
+        "roma": "Soy a-LÉR-gi-co a los ma-RIS-cos",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Por favor, no agregue nueces.",
+        "roma": "Por fa-VOR, no a-GRE-gue NUe-ses",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

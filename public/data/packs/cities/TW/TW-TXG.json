@@ -1,0 +1,21 @@
+{
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "all_services": { "number": "119" },
+    "police": { "number": "110" }
+  },
+  "phrases": {
+    "sos": [
+      { "ko": "도와주세요!", "local": "救命！", "roma": "Jiùmìng!", "en": "Help!" }
+    ],
+    "hotel": [
+      { "ko": "예약했습니다.", "local": "我有預約。", "roma": "Wǒ yǒu yùyuē.", "en": "I have a reservation." }
+    ],
+    "taxi": [
+      { "ko": "펑지아 야시장으로 가주세요.", "local": "請去逢甲夜市。", "roma": "Qǐng qù Féngjiǎ yèshì.", "en": "Please go to Fengjia Night Market." }
+    ],
+    "allergy": [
+      { "ko": "해산물 알레르기가 있어요.", "local": "我對海鮮過敏。", "roma": "Wǒ duì hǎixiān guòmǐn.", "en": "I'm allergic to seafood." }
+    ]
+  }
+}

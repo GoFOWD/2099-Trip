@@ -1,0 +1,137 @@
+{
+  "country_code": "MX",
+  "country_name": "Mexico",
+  "region": "Latin America",
+  "calling_code": "+52",
+  "languages": [
+    "es"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "911"
+    },
+    "ambulance": {
+      "number": "911"
+    },
+    "fire": {
+      "number": "911"
+    }
+  },
+  "embassy_kr": {
+    "name": "주멕시코대한민국대사관",
+    "address": "Lope de Armendáriz 110, Col. Lomas Virreyes, Miguel Hidalgo, 11000 Ciudad de México, Mexico",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+52-55-5202-9866"
+      },
+      {
+        "label": "긴급",
+        "number": "+52-55-8581-2810"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "¡Ayúdeme, por favor!",
+        "roma": "Ayudeme, por favor!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Llame a la policía, por favor.",
+        "roma": "Llame a la policia, por favor.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Por favor, lléveme al hospital.",
+        "roma": "Por favor, lleveme al hospital.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "¿Dónde está la parada de autobús?",
+        "roma": "Donde esta la parada de autobus?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "¿Dónde está la estación del metro?",
+        "roma": "Donde esta la estacion del metro?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "¿Dónde puedo comprar un boleto?",
+        "roma": "Donde puedo comprar un boleto?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Por favor, lléveme a esta dirección.",
+        "roma": "Por favor, lleveme a esta direccion.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Por favor, use el taxímetro.",
+        "roma": "Por favor, use el taximetro.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Por favor, pare aquí.",
+        "roma": "Por favor, pare aqui.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Tengo una reservación. Quisiera hacer el check-in.",
+        "roma": "Tengo una reservacion. Quisiera hacer el check-in.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Hoy llegaré tarde.",
+        "roma": "Hoy llegare tarde.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Por favor, guarde mi equipaje.",
+        "roma": "Por favor, guarde mi equipaje.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Soy alérgico/a al cacahuate.",
+        "roma": "Soy alergico/a al cacahuate.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Soy alérgico/a a los mariscos.",
+        "roma": "Soy alergico/a a los mariscos.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Por favor, no ponga nueces en la comida.",
+        "roma": "Por favor, no ponga nueces en la comida.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

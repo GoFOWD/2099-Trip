@@ -1,0 +1,142 @@
+{
+  "country_code": "LA",
+  "country_name": "Laos",
+  "region": "Asia",
+  "calling_code": "+856",
+  "languages": [
+    "lo"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "1191"
+    },
+    "ambulance": {
+      "number": "1195"
+    },
+    "fire": {
+      "number": "1190"
+    }
+  },
+  "embassy_kr": {
+    "name": "주라오스대한민국대사관",
+    "address": "Lao-Thai Friendship Rd, Watnak Village, Sisattanak District, Vientiane, Lao PDR, P.O. Box 7567",
+    "phones": [
+      {
+        "label": "정무·경제",
+        "number": "+856-21-352-031~3"
+      },
+      {
+        "label": "영사(VISA)",
+        "number": "+856-21-255-770~1"
+      },
+      {
+        "label": "긴급",
+        "number": "+856-20-5839-0080"
+      }
+    ],
+    "email": "laos@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "ກະລຸນາຊ່ວຍຂ້ອຍ!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "ກະລຸນາໂທຫາຕໍາຫຼວດ.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "ກະລຸນາພາຂ້ອຍໄປໂຮງໝໍ.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "ປ້າຍລົດເມຢູ່ໃສ?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "ສະຖານີລົດໄຟຢູ່ໃສ?",
+        "roma": "",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "ຂ້ອຍຊື້ປີ້ໄດ້ຢູ່ໃສ?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "ກະລຸນາພາຂ້ອຍໄປທີ່ຢູ່ນີ້.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "ກະລຸນາໃຊ້ມີເຕີ.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "ກະລຸນາຈອດຢູ່ນີ້.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "ຂ້ອຍຈອງໄວ້ແລ້ວ. ຂໍເຊັກອິນ.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "ຄ່ຳນີ້ຂ້ອຍຈະມາຊ້າ.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "ກະລຸນາເກັບຮັກສາສຳພາລະຂອງຂ້ອຍ.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "ຂ້ອຍແພ້ຖົ່ວດິນ.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "ຂ້ອຍແພ້ອາຫານທະເລ.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "ກະລຸນາຢ່າເພີ່ມຖົ່ວໃນອາຫານ.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

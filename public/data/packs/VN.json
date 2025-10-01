@@ -1,0 +1,143 @@
+{
+  "country_code": "VN",
+  "country_name": "Vietnam",
+  "region": "Asia",
+  "calling_code": "+84",
+  "languages": [
+    "vi",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "113"
+    },
+    "ambulance": {
+      "number": "115"
+    },
+    "fire": {
+      "number": "114"
+    },
+    "all_services": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주베트남대한민국대사관",
+    "address": "SQ4 Diplomatic Complex, Do Nhuan St, Xuan Tao, Bac Tu Liem, Hanoi, Vietnam",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+84-24-3831-5111"
+      },
+      {
+        "label": "영사(민원)",
+        "number": "+84-24-3771-0404"
+      }
+    ],
+    "fax": "+84-24-3831-5117",
+    "email": "korembviet@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Làm ơn giúp tôi!",
+        "roma": "Lam un zúp tôi!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Làm ơn gọi cảnh sát.",
+        "roma": "Lam un gỏi cảnh sát.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Làm ơn đưa tôi đến bệnh viện.",
+        "roma": "Lam un đua tôi đến bệnh việ̣n.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Trạm xe buýt ở đâu?",
+        "roma": "Chạm se bút ở đâu?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Ga tàu điện/ga tàu ở đâu?",
+        "roma": "Ga tàu điên / ga tàu ở đâu?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Mua vé ở đâu?",
+        "roma": "Mua vé ở đâu?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Làm ơn đưa tôi đến địa chỉ này.",
+        "roma": "Lam un đua tôi đến địa chỉ này.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Làm ơn bật đồng hồ tính tiền.",
+        "roma": "Lam un bật đồng hồ tính tiền.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Dừng ở đây, làm ơn.",
+        "roma": "Dừng ở đây, lam un.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Tôi có đặt phòng. Tôi muốn nhận phòng.",
+        "roma": "Tôi có đặt phòng. Tôi muốn nhận phòng.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Tối nay tôi sẽ đến muộn.",
+        "roma": "Tối nay tôi sẻ đến muộn.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Làm ơn giữ hành lý cho tôi.",
+        "roma": "Lam un dữu hành lý cho tôi.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Tôi bị dị ứng với đậu phộng.",
+        "roma": "Tôi bỊ dị ứng vỚi đậu phộng.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Tôi bị dị ứng hải sản.",
+        "roma": "Tôi bỊ dị ứng hải sản.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Làm ơn đừng cho các loại hạt.",
+        "roma": "Lam un đừng cho các loại hạt.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

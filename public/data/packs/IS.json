@@ -1,0 +1,137 @@
+{
+  "country_code": "IS",
+  "country_name": "Iceland",
+  "region": "Europe",
+  "calling_code": "+354",
+  "languages": [
+    "is"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주레이캬비크 대한민국 명예총영사관 (겸임대사관: 주노르웨이 대한민국대사관)",
+    "address": "Efstaleiti 12, 103 Reykjavík, Iceland",
+    "phones": [
+      {
+        "label": "명예총영사관(레이캬비크)",
+        "number": "+354-551-9147"
+      },
+      {
+        "label": "겸임 대사관(오슬로, 대표)",
+        "number": "+47-22-54-70-90"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Vinsamlegast hjálpið mér!",
+        "roma": "Vinsamlegast hjelpidh mer!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Hringið í lögregluna, vinsamlegast.",
+        "roma": "Hringidh i logregluna, vinsamlegast.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Vinsamlegast farið með mig á sjúkrahús.",
+        "roma": "Vinsamlegast faridh meth mig a sjukrahus.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Hvar er strætóstopp?",
+        "roma": "Hvar er straetostopp?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Hvar er neðanjarðarlestarstöðin?",
+        "roma": "Hvar er nedanjarðar-lestarstödhin?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Hvar get ég keypt miða?",
+        "roma": "Hvar get eg keypt mida?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Vinsamlegast keyrið mig á þetta heimilisfang.",
+        "roma": "Vinsamlegast keyridh mig a thetta heimilisfang.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Vinsamlegast notið gjaldmæli.",
+        "roma": "Vinsamlegast notidh gjaldmaeli.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Vinsamlegast stoppið hér.",
+        "roma": "Vinsamlegast stoppidh her.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Ég er með pöntun. Mig langar að innrita mig.",
+        "roma": "Eg er meth pöntun. Mig langar ad innrita mig.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Ég kem seint í kvöld.",
+        "roma": "Eg kem seint i kvöld.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Vinsamlegast geymið farangurinn minn.",
+        "roma": "Vinsamlegast geymidh farangurinn minn.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Ég er með ofnæmi fyrir jarðhnetum.",
+        "roma": "Eg er meth ofnaemi fyrir jardhnetum.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Ég er með ofnæmi fyrir sjávarfangi.",
+        "roma": "Eg er meth ofnaemi fyrir sjavarfangi.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Vinsamlegast bætið ekki hnetum í matinn.",
+        "roma": "Vinsamlegast baetidh ekki hnetum i matinn.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

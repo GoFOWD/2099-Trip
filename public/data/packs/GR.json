@@ -1,0 +1,141 @@
+{
+  "country_code": "GR",
+  "country_name": "Greece",
+  "region": "Europe",
+  "calling_code": "+30",
+  "languages": [
+    "el"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "100"
+    },
+    "ambulance": {
+      "number": "166"
+    },
+    "fire": {
+      "number": "199"
+    }
+  },
+  "embassy_kr": {
+    "name": "주그리스대한민국대사관",
+    "address": "19F, Athens Tower A Building, 2–4 Messogion Ave., 115 27 Athens, Greece",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+30-210-698-4080"
+      },
+      {
+        "label": "대표2",
+        "number": "+30-210-698-4082"
+      },
+      {
+        "label": "긴급",
+        "number": "+30-694-611-7098"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Βοήθεια!",
+        "roma": "Voítheia!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Παρακαλώ καλέστε την αστυνομία.",
+        "roma": "Parakaló kaléste tin astynomía.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Παρακαλώ πηγαίνετέ με στο νοσοκομείο.",
+        "roma": "Parakaló pigiéneté me sto nosokomío.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Πού είναι η στάση λεωφορείου;",
+        "roma": "Poú eínai i stási leoforeíou?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Πού είναι ο σταθμός του μετρό;",
+        "roma": "Poú eínai o stathmós tou metró?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Από πού μπορώ να αγοράσω εισιτήριο;",
+        "roma": "Apó poú boró na agoráso eisitério?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Παρακαλώ πηγαίνετέ με σε αυτή τη διεύθυνση.",
+        "roma": "Parakaló pigiéneté me se aftí ti diéfthynsi.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Παρακαλώ χρησιμοποιήστε το ταξίμετρο.",
+        "roma": "Parakaló chrisimopíiste to taxímetro.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Σταματήστε εδώ, παρακαλώ.",
+        "roma": "Stamatíste edó, parakaló.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Έχω κράτηση. Θα ήθελα να κάνω check-in.",
+        "roma": "Écho krátisi. Tha íthela na káno check-in.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Θα φτάσω αργά απόψε.",
+        "roma": "Tha ftáso argá apópse.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Παρακαλώ κρατήστε τις αποσκευές μου.",
+        "roma": "Parakaló kratíste tis aposkevés mou.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Έχω αλλεργία στα φιστίκια.",
+        "roma": "Écho allergía sta fistíkia.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Έχω αλλεργία στα θαλασσινά.",
+        "roma": "Écho allergía sta thalassiná.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Παρακαλώ μην βάλετε ξηρούς καρπούς στο φαγητό.",
+        "roma": "Parakaló min válete xiroús karpoús sto fagitó.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

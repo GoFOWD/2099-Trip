@@ -1,0 +1,142 @@
+{
+  "country_code": "TR",
+  "country_name": "Türkiye",
+  "region": "Europe",
+  "calling_code": "+90",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "155"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "110"
+    },
+    "gendarmerie": {
+      "number": "156"
+    },
+    "coast_guard": {
+      "number": "158"
+    }
+  },
+  "embassy_kr": {
+    "name": "주튀르키예대한민국대사관",
+    "address": "Kırlangıç Sokak No: 39, Gaziosmanpaşa, 06700 Çankaya, Ankara, Türkiye",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+90-312-468-4821"
+      }
+    ],
+    "fax": "+90-312-468-6131",
+    "email": "turkey@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Lütfen yardım edin!",
+        "roma": "Lüt-fen yar-dım e-din!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Lütfen polisi çağırın.",
+        "roma": "Lüt-fen po-li-si ça-ğır-ın.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Lütfen beni hastaneye götürün.",
+        "roma": "Lüt-fen be-ni has-ta-ne-ye gö-tü-rün.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Otobüs durağı nerede?",
+        "roma": "O-to-büs du-ra-ğı ne-re-de?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Metro/Tren istasyonu nerede?",
+        "roma": "Met-ro / Tren is-ta-syo-nu ne-re-de?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Bileti nereden alabilirim?",
+        "roma": "Bi-le-ti ne-re-den a-la-bi-li-rim?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Lütfen beni bu adrese götürün.",
+        "roma": "Lüt-fen be-ni bu a-dre-se gö-tü-rün.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Lütfen taksimetreyi açın.",
+        "roma": "Lüt-fen tak-si-me-tre-yi a-chın.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Lütfen burada durun.",
+        "roma": "Lüt-fen bu-ra-da du-run.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Rezervasyonum var. Check-in yapmak istiyorum.",
+        "roma": "Re-zer-va-syo-num var. Chek-in yap-mak is-ti-yo-rum.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Bu akşam geç geleceğim.",
+        "roma": "Bu ak-şam geç ge-le-je-ğim.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Lütfen bagajımı saklayın.",
+        "roma": "Lüt-fen ba-ga-jı-mı sak-la-yın.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Fıstığa alerjim var.",
+        "roma": "Fıs-tığ-a a-ler-jim var.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Deniz ürünlerine alerjim var.",
+        "roma": "De-niz ü-rün-le-ri-ne a-ler-jim var.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Lütfen yemeye kuruyemiş koymayın.",
+        "roma": "Lüt-fen ye-me-ye ku-ru-ye-miş koy-ma-yın.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

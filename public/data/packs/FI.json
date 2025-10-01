@@ -1,0 +1,138 @@
+{
+  "country_code": "FI",
+  "country_name": "Finland",
+  "region": "Europe",
+  "calling_code": "+358",
+  "languages": [
+    "fi",
+    "sv"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주핀란드대한민국대사관",
+    "address": "Pohjoinen Makasiinikatu 4, 3rd Floor, 00130 Helsinki, Finland",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+358-9-2515-000"
+      },
+      {
+        "label": "긴급",
+        "number": "+358-40-903-1021"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Apua!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Soittakaa poliisille, kiitos.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Viekää minut sairaalaan, kiitos.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Missä on bussipysäkki?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Missä on metroasema?",
+        "roma": "",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Mistä voin ostaa lipun?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Viekää minut tähän osoitteeseen, kiitos.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Käyttäkää taksamittaria, kiitos.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Pysäyttäkää tähän, kiitos.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Minulla on varaus. Haluaisin kirjautua sisään.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Saavun myöhään tänä iltana.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Säilyttäkää matkatavarani, kiitos.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Minulla on pähkinäallergia.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Minulla on äyriäisallergia.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Älkää lisätkö pähkinöitä ruokaan, kiitos.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

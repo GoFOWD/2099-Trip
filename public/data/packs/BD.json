@@ -1,0 +1,131 @@
+{
+  "country_code": "BD",
+  "country_name": "Bangladesh",
+  "region": "Asia",
+  "calling_code": "+880",
+  "languages": [],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "999"
+    },
+    "ambulance": {
+      "number": "017-1409-0000(구급차)"
+    },
+    "fire": {
+      "number": "199"
+    }
+  },
+  "embassy_kr": {
+    "name": "주방글라데시대한민국대사관",
+    "address": "4 Madani Avenue, Baridhara, Dhaka-1212 Bangladesh",
+    "phones": [
+      {
+        "label": "+880-2-5881-2088~90(9:00-17:00)",
+        "number": "+880-17-5563-9618"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "সাহায্য করুন!",
+        "roma": "Sāhāyya karuna!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "দয়া করে পুলিশকে ফোন করুন।",
+        "roma": "Daẏā karē puliśakē phōna karuna.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "দয়া করে আমাকে হাসপাতালে নিয়ে যান।",
+        "roma": "Daẏā karē āmākē hāsapātālē niẏē yāna.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "বাস স্টপ কোথায়?",
+        "roma": "Bāsa sṭapa kōthāẏa?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "মেট্রো স্টেশন কোথায়?",
+        "roma": "Mēṭrō sṭēśana kōthāẏa?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "আমি কোথায় টিকিট কিনতে পারি?",
+        "roma": "Āmi kōthāẏa ṭikiṭa kinatē pāri?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "দয়া করে এই ঠিকানায় যান।",
+        "roma": "Daẏā karē ē'i ṭhikānāẏa yāna.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "দয়া করে মিটার ব্যবহার করুন।",
+        "roma": "Daẏā karē miṭāra byabahāra karuna.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "দয়া করে এখানে থামুন।",
+        "roma": "Daẏā karē ēkhānē thāmuna.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "আমার রিজার্ভেশন আছে। দয়া করে চেক ইন করুন।",
+        "roma": "Āmāra rijārbhēśana āchē. Daẏā karē cēka ina karuna.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "আমি আজ দেরিতে পৌঁছাবো।",
+        "roma": "Āmi āja dēritē paum̐chābō.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "দয়া করে আমার লাগেজ রেখে যান।",
+        "roma": "Daẏā karē āmāra lāgēja rēkhē yāna.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "আমার চিনাবাদামে অ্যালার্জি আছে।",
+        "roma": "Āmāra cinābādāmē ayālārji āchē.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "আমার সামুদ্রিক খাবারে অ্যালার্জি আছে।",
+        "roma": "Āmāra sāmudrika khābārē ayālārji āchē.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "দয়া করে খাবারে বাদাম রাখবেন না।",
+        "roma": "Daẏā karē khābārē bādāma rākhabēna nā.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

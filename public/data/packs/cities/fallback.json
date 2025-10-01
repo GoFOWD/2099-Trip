@@ -1,0 +1,24 @@
+{
+  "US": ["US-NY-NYC", "US-CA-LA", "US-CA-SF", "US-FL-MIA", "US-NV-LV"],
+  "AU": ["AU-NSW-SYD", "AU-VIC-MEL", "AU-QLD-BNE", "AU-WA-PER"],
+  "NZ": ["NZ-AKL", "NZ-WLG", "NZ-CHC"],
+
+  "JP": ["JP-TYO", "JP-OSA", "JP-FUK", "JP-CTS"],
+  "KR": ["KR-SEL", "KR-PUS", "KR-JEJ"],
+  "TH": ["TH-BKK", "TH-CNX", "TH-HKT", "TH-PAT"],
+  "VN": ["VN-HAN", "VN-SGN", "VN-DAD"],
+  "SG": ["SG-SIN"],
+  "MY": ["MY-KUL", "MY-PEN", "MY-BKI"],
+  "PH": ["PH-MNL", "PH-CEB", "PH-BOR"],
+  "ID": ["ID-JKT", "ID-DPS", "ID-SUB", "ID-YOG"],
+  "TW": ["TW-TPE", "TW-TXG", "TW-TNN", "TW-KHH", "TW-HUN"],
+  "HK": ["HK-HKG"],
+
+  "GB": ["GB-LON", "GB-EDI", "GB-MAN"],
+  "FR": ["FR-PAR", "FR-NCE", "FR-LYS"],
+  "DE": ["DE-BER", "DE-MUC", "DE-FRA"],
+  "ES": ["ES-BCN", "ES-MAD", "ES-SVQ"],
+  "IT": ["IT-ROM", "IT-MIL", "IT-VCE"],
+  "NL": ["NL-AMS", "NL-RTM"],
+  "TR": ["TR-IST", "TR-ANK", "TR-IZM"]
+}

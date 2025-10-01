@@ -1,0 +1,22 @@
+{
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": { "number": "110" },
+    "fire": { "number": "119" },
+    "ambulance": { "number": "119" }
+  },
+  "phrases": {
+    "sos": [
+      { "ko": "도와주세요!", "local": "救命！", "roma": "Jiùmìng!", "en": "Help!" }
+    ],
+    "hotel": [
+      { "ko": "체크인하고 싶어요.", "local": "我要辦理入住。", "roma": "Wǒ yào bànlǐ rùzhù.", "en": "I'd like to check in." }
+    ],
+    "taxi": [
+      { "ko": "타이베이 메인역까지 가주세요.", "local": "請到台北車站。", "roma": "Qǐng dào Táiběi chēzhàn.", "en": "Please go to Taipei Main Station." }
+    ],
+    "allergy": [
+      { "ko": "땅콩 알레르기가 있어요. 빼주세요.", "local": "我對花生過敏，請不要放。", "roma": "Wǒ duì huāshēng guòmǐn, qǐng búyào fàng.", "en": "I'm allergic to peanuts. Please omit." }
+    ]
+  }
+}

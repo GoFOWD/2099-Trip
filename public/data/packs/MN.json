@@ -1,0 +1,134 @@
+{
+  "country_code": "MN",
+  "country_name": "Mongolia",
+  "region": "Asia",
+  "calling_code": "+976",
+  "languages": [
+    "mn"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "102"
+    },
+    "ambulance": {
+      "number": "103"
+    },
+    "fire": {
+      "number": "101"
+    }
+  },
+  "embassy_kr": {
+    "name": "주몽골대한민국대사관",
+    "address": "Mahatma Gandhi Street 39, Khan-Uul District 15, Ulaanbaatar 17011, Mongolia (C.P.O Box 1039)",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+976-7007-1020"
+      }
+    ],
+    "email": "kormg@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Туслаач!",
+        "roma": "Tuslaach!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Цагдааг дуудна уу.",
+        "roma": "Tsagdaag duudna uu.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Намайг эмнэлэгт хүргэж өгнө үү.",
+        "roma": "Namaig emnelegt khürgej ögnö uu.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Автобусны буудал хаана байна?",
+        "roma": "Avtobusny buudal khaana baina?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Галт тэрэг / метроны буудал хаана байна?",
+        "roma": "Galt tereg / metrony buudal khaana baina?",
+        "en": "Where is the train/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Тасалбар хаанаас авч болох вэ?",
+        "roma": "Tasalbar khaanaas avch bolokh ve?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Энэ хаяг руу хүргээд өгнө үү.",
+        "roma": "Ene khayag ruu khürgeed ögnö uu.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Тоолуураар яваарай.",
+        "roma": "Tooluuraar yav-aarai.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Энд зогсооно уу.",
+        "roma": "End zogsoono uu.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Захиалга хийсэн. Чек-ин хийлгэмээр байна.",
+        "roma": "Zakhialga khiisen. Chek-in khiilgemeer baina.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Өнөө орой оройтож ирнэ.",
+        "roma": "Önöö oroi oroitaj irne.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Ачаа тээшийг минь хадгалж өгнө үү.",
+        "roma": "Achaa teeshig min khadgalj ögnö uu.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Самарт харшилтай.",
+        "roma": "Samart kharshiltai.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Далайн гаралтай хүнсэнд харшилтай.",
+        "roma": "Dalain garaltai khünsand kharshiltai.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Хоолонд самар бүү нэмээрэй.",
+        "roma": "Khoolond samar büü nem-eerei.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

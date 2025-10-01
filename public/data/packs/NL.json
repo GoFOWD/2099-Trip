@@ -1,0 +1,139 @@
+{
+  "country_code": "NL",
+  "country_name": "Netherlands",
+  "region": "Europe",
+  "calling_code": "+31",
+  "languages": [
+    "nl",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주네덜란드대한민국대사관",
+    "address": "Verlengde Tolweg 8, 2517 JV, The Hague, Netherlands",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+31-70-740-0200"
+      },
+      {
+        "label": "긴급",
+        "number": "+31-64-264-8412"
+      }
+    ],
+    "email": "koreanembassynl@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Help alstublieft!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Bel alstublieft de politie.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Brengt u mij alstublieft naar het ziekenhuis.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Waar is de bushalte?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Waar is het metrostation?",
+        "roma": "",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Waar kan ik een kaartje kopen?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Brengt u me alstublieft naar dit adres.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Kunt u alstublieft de meter gebruiken?",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Stop hier alstublieft.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Ik heb een reservering. Ik wil graag inchecken.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Ik kom vanavond laat aan.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Kunt u alstublieft mijn bagage bewaren?",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Ik heb een pinda-allergie.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Ik heb een allergie voor zeevruchten.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Voeg alstublieft geen noten toe aan het eten.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

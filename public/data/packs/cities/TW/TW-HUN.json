@@ -1,0 +1,21 @@
+{
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "all_services": { "number": "119" },
+    "police": { "number": "110" }
+  },
+  "phrases": {
+    "sos": [
+      { "ko": "다쳤어요. 병원이 필요해요.", "local": "我受傷了，需要醫院。", "roma": "Wǒ shòushāng le, xūyào yīyuàn.", "en": "I'm injured, I need a hospital." }
+    ],
+    "hotel": [
+      { "ko": "해변 근처 숙소 찾고 있어요.", "local": "我想找海邊附近的住宿。", "roma": "Wǒ xiǎng zhǎo hǎibiān fùjìn de zhùsù.", "en": "I'm looking for accommodation near the beach." }
+    ],
+    "taxi": [
+      { "ko": "타이루거 협곡으로 가주세요.", "local": "請去太魯閣。", "roma": "Qǐng qù Tàilǔgé.", "en": "Please go to Taroko Gorge." }
+    ],
+    "allergy": [
+      { "ko": "계란 못 먹어요.", "local": "我不能吃雞蛋。", "roma": "Wǒ bù néng chī jīdàn.", "en": "I can't eat eggs." }
+    ]
+  }
+}

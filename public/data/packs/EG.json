@@ -1,0 +1,137 @@
+{
+  "country_code": "EG",
+  "country_name": "Egypt",
+  "region": "Africa",
+  "calling_code": "+20",
+  "languages": [
+    "ar"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "122"
+    },
+    "ambulance": {
+      "number": "123"
+    },
+    "fire": {
+      "number": "180"
+    }
+  },
+  "embassy_kr": {
+    "name": "주이집트대한민국대사관",
+    "address": "3 Boulos Hanna Street, Dokki, Cairo 12611, Egypt",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+20-2-3761-1234~7"
+      },
+      {
+        "label": "긴급",
+        "number": "+20-12-8333-3236"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "من فضلك ساعدني!",
+        "roma": "min fadlik saedni!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "من فضلك اتصل بالشرطة.",
+        "roma": "min fadlik ittasel bil-shurta.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "من فضلك خذني إلى المستشفى.",
+        "roma": "min fadlik khudni ila al-mustashfa.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "أين موقف الحافلات؟",
+        "roma": "ayna mawqif al-hafilat?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "أين محطة المترو؟",
+        "roma": "ayna mahatat al-metro?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "أين يمكنني شراء تذكرة؟",
+        "roma": "ayna yumkinuni shira' tadhkira?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "من فضلك خذني إلى هذا العنوان.",
+        "roma": "min fadlik khudni ila hatha al-unwan.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "من فضلك استخدم العداد.",
+        "roma": "min fadlik istaqdim al-addad.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "من فضلك قف هنا.",
+        "roma": "min fadlik qif huna.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "لدي حجز. أود تسجيل الوصول.",
+        "roma": "ladayya hajz. awaddu tasjil al-wusul.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "سأصل متأخرًا الليلة.",
+        "roma": "sa'aslu muta'akhkhan allayla.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "من فضلك احفظ أمتعتي.",
+        "roma": "min fadlik ihfaz amti'ati.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "لدي حساسية من الفول السوداني.",
+        "roma": "ladayya hasasiyya min al-ful al-sudani.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "لدي حساسية من المأكولات البحرية.",
+        "roma": "ladayya hasasiyya min al-ma'kulat al-bahriyya.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "من فضلك لا تضف مكسرات إلى الطعام.",
+        "roma": "min fadlik la tudif mukassarat ila al-ta'am.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "country_code": "IN",
+  "country_name": "India",
+  "region": "Asia",
+  "calling_code": "+91",
+  "languages": [
+    "hi",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "100"
+    },
+    "ambulance": {
+      "number": "102"
+    },
+    "fire": {
+      "number": "101"
+    }
+  },
+  "embassy_kr": {
+    "name": "주인도대한민국대사관",
+    "address": "9, Chandragupta Marg, Chanakyapuri Extension, New Delhi 110021, India",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+91-11-4200-7000"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "कृपया मेरी मदद कीजिए!",
+        "roma": "Kr̥payā merī madad kījiye!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "कृपया पुलिस को बुलाइए.",
+        "roma": "Kr̥payā pulis ko bulāiye.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "कृपया मुझे अस्पताल ले चलिए.",
+        "roma": "Kr̥payā mujhe aspatāl le chaliye.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "बस स्टॉप कहाँ है?",
+        "roma": "Bas sṭop kahā̃ hai?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "मेट्रो स्टेशन कहाँ है?",
+        "roma": "Meṭro sṭeśan kahā̃ hai?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "टिकट कहाँ से मिल सकता है?",
+        "roma": "Ṭikaṭ kahā̃ se mil saktā hai?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "कृपया मुझे इस पते पर ले चलिए.",
+        "roma": "Kr̥payā mujhe is pate par le chaliye.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "कृपया मीटर से चलिए.",
+        "roma": "Kr̥payā mīṭar se chaliye.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "कृपया यहाँ रोकिए.",
+        "roma": "Kr̥payā yahā̃ rokīye.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "मेरी बुकिंग है. कृपया चेक-इन कर दीजिए.",
+        "roma": "Merī buking hai. Kr̥payā cek-in kar dījiye.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "मैं आज देर से पहुँचूँगा/पहुँचूँगी.",
+        "roma": "Main āj der se pahũcū̃gā/pahũcū̃gī.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "कृपया मेरा सामान रख लीजिए.",
+        "roma": "Kr̥payā merā sāmān rakh lijiye.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "मुझे मूँगफली से एलर्जी है.",
+        "roma": "Mujhe mū̃gphalī se elarjī hai.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "मुझे सीफ़ूड से एलर्जी है.",
+        "roma": "Mujhe sīfūḍ se elarjī hai.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "कृपया खाने में मेवे न डालें.",
+        "roma": "Kr̥payā khāne mẽ meve na ḍālẽ.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

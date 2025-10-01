@@ -1,0 +1,454 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-09-29",
+  "countries": [
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "ko": "아르헨티나",
+      "region": "Latin America",
+      "file": "packs/AR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "ko": "방글라데시",
+      "region": "Asia",
+      "file": "packs/BD.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "ko": "벨기에",
+      "region": "Europe",
+      "file": "packs/BE.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "BO",
+      "name": "Bolivia",
+      "ko": "볼리비아",
+      "region": "Latin America",
+      "file": "packs/BO.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "ko": "브라질",
+      "region": "Latin America",
+      "file": "packs/BR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "ko": "불가리아",
+      "region": "Europe",
+      "file": "packs/BG.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "KH",
+      "name": "Cambodia",
+      "ko": "캄보디아",
+      "region": "Asia",
+      "file": "packs/KH.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "ko": "캐나다",
+      "region": "North America",
+      "file": "packs/CA.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "CL",
+      "name": "Chile",
+      "ko": "칠레",
+      "region": "Latin America",
+      "file": "packs/CL.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "ko": "중국",
+      "region": "Asia",
+      "file": "packs/CN.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "ko": "크로아티아",
+      "region": "Europe",
+      "file": "packs/HR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "ko": "덴마크",
+      "region": "Europe",
+      "file": "packs/DK.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "ko": "이집트",
+      "region": "Africa",
+      "file": "packs/EG.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "ko": "핀란드",
+      "region": "Europe",
+      "file": "packs/FI.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "ko": "프랑스",
+      "region": "Europe",
+      "file": "packs/FR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "ko": "독일",
+      "region": "Europe",
+      "file": "packs/DE.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "GR",
+      "name": "Greece",
+      "ko": "그리스",
+      "region": "Europe",
+      "file": "packs/GR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "ko": "홍콩",
+      "region": "Asia",
+      "file": "packs/HK.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "IS",
+      "name": "Iceland",
+      "ko": "아이슬란드",
+      "region": "Europe",
+      "file": "packs/IS.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "ko": "인도",
+      "region": "Asia",
+      "file": "packs/IN.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "ko": "인도네시아",
+      "region": "Asia",
+      "file": "packs/ID.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "ko": "이탈리아",
+      "region": "Europe",
+      "file": "packs/IT.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "ko": "일본",
+      "region": "Asia",
+      "file": "packs/JP.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "KZ",
+      "name": "Kazakhstan",
+      "ko": "카자흐스탄",
+      "region": "Asia",
+      "file": "packs/KZ.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "KE",
+      "name": "Kenya",
+      "ko": "케냐",
+      "region": "Africa",
+      "file": "packs/KE.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "LA",
+      "name": "Laos",
+      "ko": "라오스",
+      "region": "Asia",
+      "file": "packs/LA.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "MY",
+      "name": "Malaysia",
+      "ko": "말레이시아",
+      "region": "Asia",
+      "file": "packs/MY.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "ML",
+      "name": "Mali",
+      "ko": "말리",
+      "region": "Africa",
+      "file": "packs/ML.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "ko": "멕시코",
+      "region": "Latin America",
+      "file": "packs/MX.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "MN",
+      "name": "Mongolia",
+      "ko": "몽골",
+      "region": "Asia",
+      "file": "packs/MN.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "MA",
+      "name": "Morocco",
+      "ko": "모로코",
+      "region": "Africa",
+      "file": "packs/MA.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "MM",
+      "name": "Myanmar",
+      "ko": "미얀마",
+      "region": "Asia",
+      "file": "packs/MM.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "ko": "네덜란드",
+      "region": "Europe",
+      "file": "packs/NL.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "ko": "나이지리아",
+      "region": "Africa",
+      "file": "packs/NG.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "NO",
+      "name": "Norway",
+      "ko": "노르웨이",
+      "region": "Europe",
+      "file": "packs/NO.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "PY",
+      "name": "Paraguay",
+      "ko": "파라과이",
+      "region": "Latin America",
+      "file": "packs/PY.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "PH",
+      "name": "Philippines",
+      "ko": "필리핀",
+      "region": "Asia",
+      "file": "packs/PH.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "ko": "폴란드",
+      "region": "Europe",
+      "file": "packs/PL.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "ko": "포르투갈",
+      "region": "Europe",
+      "file": "packs/PT.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "ko": "루마니아",
+      "region": "Europe",
+      "file": "packs/RO.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "RU",
+      "name": "Russia",
+      "ko": "러시아",
+      "region": "Europe",
+      "file": "packs/RU.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "ko": "싱가포르",
+      "region": "Asia",
+      "file": "packs/SG.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "ko": "남아프리카공화국",
+      "region": "Africa",
+      "file": "packs/ZA.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "ko": "스페인",
+      "region": "Europe",
+      "file": "packs/ES.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "SR",
+      "name": "Suriname",
+      "ko": "수리남",
+      "region": "Latin America",
+      "file": "packs/SR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "ko": "스웨덴",
+      "region": "Europe",
+      "file": "packs/SE.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "CH",
+      "name": "Switzerland",
+      "ko": "스위스",
+      "region": "Europe",
+      "file": "packs/CH.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "TW",
+      "name": "Taiwan",
+      "ko": "대만",
+      "region": "Asia",
+      "file": "packs/TW.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "TH",
+      "name": "Thailand",
+      "ko": "태국",
+      "region": "Asia",
+      "file": "packs/TH.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "ko": "터키",
+      "region": "Europe",
+      "file": "packs/TR.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "UA",
+      "name": "Ukraine",
+      "ko": "우크라이나",
+      "region": "Europe",
+      "file": "packs/UA.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "ko": "영국",
+      "region": "Europe",
+      "file": "packs/GB.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "ko": "미국",
+      "region": "North America",
+      "file": "packs/US.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "UY",
+      "name": "Uruguay",
+      "ko": "우루과이",
+      "region": "Latin America",
+      "file": "packs/UY.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "UZ",
+      "name": "Uzbekistan",
+      "ko": "우즈베키스탄",
+      "region": "Asia",
+      "file": "packs/UZ.json",
+      "last_verified": "2025-09-29"
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "ko": "베트남",
+      "region": "Asia",
+      "file": "packs/VN.json",
+      "last_verified": "2025-09-29"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "all_services": { "number": "119" },
+    "police": { "number": "110" }
+  },
+  "phrases": {
+    "sos": [
+      { "ko": "도와주세요!", "local": "救命！", "roma": "Jiùmìng!", "en": "Help!" }
+    ],
+    "hotel": [
+      { "ko": "늦게 체크인해도 되나요?", "local": "可以晚點入住嗎？", "roma": "Kěyǐ wǎndiǎn rùzhù ma?", "en": "Is late check-in okay?" }
+    ],
+    "taxi": [
+      { "ko": "치간러우(도시명물) 맛집으로 가주세요.", "local": "請帶我去知名的赤崁樓附近餐廳。", "roma": "Qǐng dài wǒ qù Chìkànlóu fùjìn cāntīng.", "en": "Please take me to a popular eatery near Chihkan Tower." }
+    ],
+    "allergy": [
+      { "ko": "우유/유제품은 못 먹어요.", "local": "我不能吃乳製品。", "roma": "Wǒ bù néng chī rǔzhìpǐn.", "en": "I can't consume dairy." }
+    ]
+  }
+}

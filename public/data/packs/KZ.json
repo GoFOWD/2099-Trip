@@ -1,0 +1,142 @@
+{
+  "country_code": "KZ",
+  "country_name": "Kazakhstan",
+  "region": "Asia",
+  "calling_code": "+7",
+  "languages": [
+    "kk",
+    "ru"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "102"
+    },
+    "ambulance": {
+      "number": "103"
+    },
+    "fire": {
+      "number": "101"
+    }
+  },
+  "embassy_kr": {
+    "name": "주카자흐스탄대한민국대사관",
+    "address": "Obaghan St 5, Astana 020000, Kazakhstan",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+7-7172-572-100"
+      },
+      {
+        "label": "대표2",
+        "number": "+7-7172-572-200"
+      },
+      {
+        "label": "긴급",
+        "number": "+7-705-757-9922"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Пожалуйста, помогите!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Пожалуйста, вызовите полицию.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Пожалуйста, отвезите меня в больницу.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Где автобусная остановка?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Где станция метро?",
+        "roma": "",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Где я могу купить билет?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Пожалуйста, отвезите меня по этому адресу.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Пожалуйста, включите счётчик.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Пожалуйста, остановитесь здесь.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "У меня бронь. Я бы хотел(а) заселиться.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Я приеду поздно сегодня вечером.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Пожалуйста, сохраните мой багаж.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "У меня аллергия на арахис.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "У меня аллергия на морепродукты.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Пожалуйста, не добавляйте орехи в еду.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

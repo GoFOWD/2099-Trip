@@ -1,0 +1,5 @@
+{ "id":"US-CA-SF","type":"city","parent":"US","slug":"san-francisco","aliases":["SF","San Francisco"],
+  "city_meta":{"state":"California","airports":["SFO","OAK","SJC"],"transit_cards":["Clipper Card"]},
+  "phrases":{"travel":[
+    {"ko":"클리퍼 카드는 어디서 사요?","local":"Where can I buy a Clipper Card?","roma":"Wair kan ai bai a klip-per kard?","en":"Where can I buy a Clipper Card?"}
+  ]}}

@@ -1,0 +1,134 @@
+{
+  "country_code": "CA",
+  "country_name": "Canada",
+  "region": "North America",
+  "calling_code": "+1",
+  "languages": [
+    "en",
+    "fr"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "911"
+    },
+    "ambulance": {
+      "number": "911"
+    },
+    "fire": {
+      "number": "911"
+    }
+  },
+  "embassy_kr": {
+    "name": "주캐나다대한민국대사관",
+    "address": "150 Boteler Street, Ottawa, ON K1N 5A6, Canada",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+1-613-244-5010"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Please help!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Please call the police.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Please take me to a hospital.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Where is the bus stop?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Where is the subway/metro station?",
+        "roma": "",
+        "en": "Where is the subway/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Where can I buy a ticket?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Please take me to this address.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Please use the meter.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Please stop here.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "I have a reservation. I'd like to check in.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "I'll arrive late tonight.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Please keep my luggage.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "I have a peanut allergy.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "I have a seafood allergy.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Please don't add nuts.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

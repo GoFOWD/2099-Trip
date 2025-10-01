@@ -1,0 +1,133 @@
+{
+  "country_code": "ID",
+  "country_name": "Indonesia",
+  "region": "Asia",
+  "calling_code": "+62",
+  "languages": [
+    "id"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "110"
+    },
+    "ambulance": {
+      "number": "118"
+    },
+    "fire": {
+      "number": "113"
+    }
+  },
+  "embassy_kr": {
+    "name": "주인도네시아대한민국대사관",
+    "address": "Jl. Jendral Gatot Subroto Kav. 57, Jakarta 12950, Indonesia",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+62-21-2967-2555"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Tolong, bantu saya!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Tolong panggil polisi.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Tolong antar saya ke rumah sakit.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Halte bus di mana?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Stasiun metro di mana?",
+        "roma": "",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Di mana saya bisa membeli tiket?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Tolong antar saya ke alamat ini.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Tolong gunakan argo.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Tolong berhenti di sini.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Saya sudah reservasi. Tolong proses check-in.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Saya akan datang terlambat malam ini.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Tolong titipkan bagasi saya.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Saya alergi kacang tanah.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Saya alergi makanan laut.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Tolong jangan tambahkan kacang pada makanan.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

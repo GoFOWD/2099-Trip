@@ -1,0 +1,7 @@
+{ "id":"US-NY-NYC","type":"city","parent":"US","slug":"new-york-city","aliases":["NYC","New York"],
+  "city_meta":{"state":"New York","airports":["JFK","LGA","EWR"],"subway":true},
+  "phrases":{"travel":[
+    {"ko":"지하철역은 어디예요?","local":"Where is the subway station?","roma":"Wair iz thuh sub-way stay-shun?","en":"Where is the subway station?"},
+    {"ko":"메트로카드는 어디서 사요?","local":"Where can I buy a MetroCard?","roma":"Wair kan ai bai a Metro-kard?","en":"Where can I buy a MetroCard?"}
+  ],
+  "taxi":[{"ko":"옐로캡 불러주세요.","local":"Please call a yellow cab.","roma":"Pleez call a yel-lo kab.","en":"Please call a yellow cab."}]}}
