@@ -1,6 +1,6 @@
 // src/features/SOSPack.jsx
 import { useEffect, useMemo, useState } from "react";
-import { loadPack } from "../utils/loadPack";
+import { loadPack } from "./utils/loadPack";
 
 // ====== 옵션 ======
 const DEBUG = true; // true면 console에 진단 로그 출력
