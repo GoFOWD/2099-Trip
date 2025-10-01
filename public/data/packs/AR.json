@@ -1,0 +1,131 @@
+{
+  "country_code": "AR",
+  "country_name": "Argentina",
+  "region": "Latin America",
+  "calling_code": "+54",
+  "languages": [],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "911"
+    },
+    "ambulance": {
+      "number": "107"
+    },
+    "fire": {
+      "number": "100"
+    }
+  },
+  "embassy_kr": {
+    "name": "주아르헨티나대한민국대사관",
+    "address": "Av. del Libertador 2395, 1425 Cdad. Autónoma de Buenos Aires,",
+    "phones": [
+      {
+        "label": "(54-11) 4802-8865 / 8062",
+        "number": "(54-911) 4141-1450 (24시간 운영)"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "¡Ayúdeme!",
+        "roma": "Ayudeme!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Por favor llame a la policía",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Por favor, vaya al hospital.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "¿Dónde está la parada de autobús?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "¿Dónde está la estación de metro?",
+        "roma": "",
+        "en": "Where is the subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Where can I buy tickets?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "TBD_VERIFY",
+        "roma": "Por favor vaya a esta dirección.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Por favor, usen el taxímetro.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Por favor, pare aquí.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Tengo una reserva. Por favor, regístrense.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Llegaré tarde hoy.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Por favor, dejen mi equipaje.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Tengo alergia al cacahuete.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Tengo alergia al marisco.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Por favor, no pongan frutos secos en la comida.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

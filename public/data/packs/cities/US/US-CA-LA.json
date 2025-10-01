@@ -1,0 +1,5 @@
+{ "id":"US-CA-LA","type":"city","parent":"US","slug":"los-angeles","aliases":["LA","Los Angeles"],
+  "city_meta":{"state":"California","airports":["LAX","BUR","LGB","ONT","SNA"],"transit_cards":["TAP card"]},
+  "phrases":{"travel":[
+    {"ko":"TAP 카드는 어디서 사요?","local":"Where can I buy a TAP card?","roma":"Wair kan ai bai a TAP kard?","en":"Where can I buy a TAP card?"}
+  ]}}

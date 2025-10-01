@@ -1,0 +1,140 @@
+{
+  "country_code": "UZ",
+  "country_name": "Uzbekistan",
+  "region": "Asia",
+  "calling_code": "+998",
+  "languages": [
+    "uz",
+    "ru",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "102"
+    },
+    "ambulance": {
+      "number": "103"
+    },
+    "fire": {
+      "number": "101"
+    },
+    "all_services": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주우즈베키스탄대한민국대사관",
+    "address": "Afrosiyob ko'chasi 7, 100029, Tashkent, Uzbekistan",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+998-71-252-3151~3"
+      }
+    ],
+    "fax": "+998-71-140-0248",
+    "email": "uzkoremb@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Iltimos, yordam bering!",
+        "roma": "Il-ti-mos, yo-rdam be-ring!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Iltimos, militsiyani chaqiring.",
+        "roma": "Il-ti-mos, mi-li-tsi-ya-ni cha-qi-ring.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Iltimos, meni shifoxonaga olib boring.",
+        "roma": "Il-ti-mos, me-ni shi-fo-xo-na-ga o-lib bo-ring.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Avtobus bekati qayerda?",
+        "roma": "Av-to-bus be-ka-ti qa-yer-da?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Metro/poezd vokzali qayerda?",
+        "roma": "Met-ro / po-ezd vok-za-li qa-yer-da?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Chipta qayerdan sotib olsam bo'ladi?",
+        "roma": "Chip-ta qa-yer-dan so-tib ol-sam bo-la-di?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Iltimos, meni shu manzilga olib boring.",
+        "roma": "Il-ti-mos, me-ni shu man-zil-ga o-lib bo-ring.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Iltimos, taksometrdan foydalaning.",
+        "roma": "Il-ti-mos, tak-so-me-trdan foy-da-la-ning.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Iltimos, shu yerda to'xtating.",
+        "roma": "Il-ti-mos, shu yer-da to'x-ta-ting.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Menda bron bor. Iltimos, chek-in qilmoqchiman.",
+        "roma": "Men-da bron bor. Il-ti-mos, chek-in qil-moq-chi-man.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Bugun kech kelaman.",
+        "roma": "Bu-gun kech ke-la-man.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Iltimos, bagajimni saqlab turing.",
+        "roma": "Il-ti-mos, ba-ga-jim-ni saq-lab tu-ring.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Menda yeryong'oqka allergiya bor.",
+        "roma": "Men-da yer-yong'oq-ka al-ler-gi-ya bor.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Menda dengiz mahsulotlariga allergiya bor.",
+        "roma": "Men-da den-giz mah-su-lot-la-ri-ga al-ler-gi-ya bor.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Iltimos, yong'oq solmang.",
+        "roma": "Il-ti-mos, yong'oq sol-mang.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

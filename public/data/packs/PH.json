@@ -1,0 +1,136 @@
+{
+  "country_code": "PH",
+  "country_name": "Philippines",
+  "region": "Asia",
+  "calling_code": "+63",
+  "languages": [
+    "tl",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "911"
+    },
+    "ambulance": {
+      "number": "911"
+    },
+    "fire": {
+      "number": "911"
+    }
+  },
+  "embassy_kr": {
+    "name": "주필리핀대한민국대사관",
+    "address": "122 Upper McKinley Road, McKinley Town Center, Fort Bonifacio, Taguig City 1634, Philippines",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+63-2-8856-9210"
+      }
+    ],
+    "fax": "+63-2-8856-9008",
+    "email": "ph04@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Pakitulungan ninyo ako!",
+        "roma": "Paki-tulúngan ninyo ako!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Pakitawagan ang pulis.",
+        "roma": "Paki-tawágan ang pulís.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Pakihatid po ako sa ospital.",
+        "roma": "Paki-hatíd po ako sa ospitál.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Saan ang hintuan ng bus?",
+        "roma": "Saán ang hintúan ng bus?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Saan ang istasyon ng tren/metro?",
+        "roma": "Saán ang istasyón ng tren/metro?",
+        "en": "Where is the train/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Saan ako makakabili ng tiket?",
+        "roma": "Saán ako makaka-bilí ng tíket?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Pakihatid ako sa address na ito.",
+        "roma": "Paki-hatíd ako sa ádres na itó.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Pakigamit po ng metro.",
+        "roma": "Paki-gamít po ng métro.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Pahinto po dito.",
+        "roma": "Pa-hintô po díto.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "May reserbasyon ako. Pakipa-check-in po.",
+        "roma": "May reserbasyón ako. Paki-pa-check-in po.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Darating ako nang gabi ngayon.",
+        "roma": "Daratíng ako nang gabí ngayón.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Paki-ingatan po ang bagahe ko.",
+        "roma": "Paki-ingátan po ang bagáhe ko.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "May allergy ako sa mani.",
+        "roma": "May álerhi ako sa maní.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "May allergy ako sa pagkaing-dagat.",
+        "roma": "May álerhi ako sa pagkaíng-dágat.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Huwag po maglagay ng mani o nuts sa pagkain.",
+        "roma": "Huwág po mag-lagáy ng maní o náts sa pag-káin.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

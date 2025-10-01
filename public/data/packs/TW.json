@@ -1,0 +1,136 @@
+{
+  "country_code": "TW",
+  "country_name": "Taiwan",
+  "region": "Asia",
+  "calling_code": "+886",
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "110"
+    },
+    "ambulance": {
+      "number": "119"
+    },
+    "fire": {
+      "number": "119"
+    }
+  },
+  "embassy_kr": {
+    "name": "주타이베이 대한민국 대표부 (Korean Mission in Taipei)",
+    "address": "Suite 1506, 15F, No. 333, Sec. 1, Keelung Rd., Taipei City 11012, Taiwan",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+886-2-2758-8320~5"
+      }
+    ],
+    "fax": "+886-2-2757-7006",
+    "email": "taipei@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "請幫助我！",
+        "roma": "Qǐng bāngzhù wǒ!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "請叫警察。",
+        "roma": "Qǐng jiào jǐngchá.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "請送我去醫院。",
+        "roma": "Qǐng sòng wǒ qù yīyuàn.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "公車站在哪裡？",
+        "roma": "Gōngchē zhàn zài nǎlǐ?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "捷運／火車站在哪裡？",
+        "roma": "Jiéyùn / huǒchē zhàn zài nǎlǐ?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "在哪裡可以買票？",
+        "roma": "Zài nǎlǐ kěyǐ mǎipiào?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "請帶我到這個地址。",
+        "roma": "Qǐng dài wǒ dào zhège dìzhǐ.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "請使用計程車計價器。",
+        "roma": "Qǐng shǐyòng jìchéngchē jìjiàqì.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "請在這裡停車。",
+        "roma": "Qǐng zài zhèlǐ tíngchē.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "我有預訂。我要辦理入住。",
+        "roma": "Wǒ yǒu yùdìng. Wǒ yào bànlǐ rùzhù.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "我今天晚上會晚到。",
+        "roma": "Wǒ jīntiān wǎnshàng huì wǎndào.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "請幫我保管行李。",
+        "roma": "Qǐng bāng wǒ bǎoguǎn xínglǐ.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "我對花生過敏。",
+        "roma": "Wǒ duì huāshēng guòmǐn.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "我對海鮮過敏。",
+        "roma": "Wǒ duì hǎixiān guòmǐn.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "請不要加堅果。",
+        "roma": "Qǐng búyào jiā jiānguǒ.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

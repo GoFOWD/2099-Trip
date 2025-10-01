@@ -1,0 +1,133 @@
+{
+  "country_code": "KH",
+  "country_name": "Cambodia",
+  "region": "Asia",
+  "calling_code": "+855",
+  "languages": [
+    "km"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "117"
+    },
+    "ambulance": {
+      "number": "119"
+    },
+    "fire": {
+      "number": "118"
+    }
+  },
+  "embassy_kr": {
+    "name": "주캄보디아대한민국대사관",
+    "address": "Phum No.14 (Koh Pich), Sangkat Tonle Bassac, Khan Chamkarmon, Phnom Penh, Cambodia",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+855-23-211-900~3"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "ជួយ​ខ្ញុំ​ផង!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "សូម​ហៅ​ប៉ូលិស​មក។",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "សូម​នាំ​ខ្ញុំ​ទៅ​មន្ទីរ​ពេទ្យ។",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "ស្ថានីយ៍ឡានក្រុង​នៅ​ឯណា?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "ស្ថានីយ៍​រថភ្លើង​នៅ​ឯណា?",
+        "roma": "",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "ខ្ញុំ​អាច​ទិញ​សំបុត្រ​បាន​នៅឯណា?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "សូម​នាំ​ខ្ញុំ​ទៅ​អាសយដ្ឋាន​នេះ។",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "សូម​ប្រើ​ម៉ែត្រ។",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "សូម​បញ្ឈប់​នៅ​ទីនេះ។",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "ខ្ញុំ​មាន​ការកក់។ សូម​ឲ្យ​ខ្ញុំ​ចុះឈ្មោះ​ចូល។",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "ថ្ងៃ​នេះ​ខ្ញុំ​នឹង​មក​យឺត។",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "សូម​រក្សាទុក​ឥវ៉ាន់​របស់​ខ្ញុំ។",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "ខ្ញុំ​មាន​អាលែស៊ី​ចំពោះ​សណ្តែកដី។",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "ខ្ញុំ​មាន​អាលែស៊ី​ចំពោះ​ម្ហូប​សមុទ្រ។",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "សូម​កុំ​បន្ថែម​គ្រាប់​ណាត់​ចូល​ក្នុង​ម្ហូប។",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

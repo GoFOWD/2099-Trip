@@ -1,0 +1,137 @@
+{
+  "country_code": "BG",
+  "country_name": "Bulgaria",
+  "region": "Europe",
+  "calling_code": "+359",
+  "languages": [
+    "bg"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주불가리아대한민국대사관",
+    "address": "Interpred – World Trade Center Sofia, Bl. A, 7th Floor, 36 Dragan Tsankov Blvd., 1040 Sofia, Bulgaria",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+359-2-971-2181"
+      },
+      {
+        "label": "대표2",
+        "number": "+359-2-971-2536"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Помогнете!",
+        "roma": "Pomognete!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Повикайте полиция, моля.",
+        "roma": "Povikaite politsiya, molya.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Моля, заведете ме в болница.",
+        "roma": "Molya, zavedete me v bolnitsa.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Къде е автобусната спирка?",
+        "roma": "Kade e avtobusnata spirka?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Къде е метростанцията?",
+        "roma": "Kade e metrostantsiyata?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Откъде мога да купя билет?",
+        "roma": "Otkade moga da kupya bilet?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Моля, закарайте ме на този адрес.",
+        "roma": "Molya, zakarayte me na tozi adres.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Моля, карайте по таксиметър.",
+        "roma": "Molya, karayte po taksimetur.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Моля, спрете тук.",
+        "roma": "Molya, sprete tuk.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Имам резервация. Бих искал да се чекирам.",
+        "roma": "Imam rezervatsiya. Bikh iskal da se chekiram.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Ще пристигна късно тази вечер.",
+        "roma": "Shte pristigna kasno tazi vecher.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Моля, пазете багажа ми.",
+        "roma": "Molya, pazete bagazha mi.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Имам алергия към фъстъци.",
+        "roma": "Imam alergiya kam fastatsi.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Имам алергия към морски дарове.",
+        "roma": "Imam alergiya kam morski darove.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Моля, не добавяйте ядки в храната.",
+        "roma": "Molya, ne dobavyayte yadki v hranata.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

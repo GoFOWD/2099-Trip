@@ -1,0 +1,21 @@
+{
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "all_services": { "number": "119" },
+    "police": { "number": "110" }
+  },
+  "phrases": {
+    "sos": [
+      { "ko": "긴급 상황이에요.", "local": "有緊急情況。", "roma": "Yǒu jǐnjí qíngkuàng.", "en": "It's an emergency." }
+    ],
+    "hotel": [
+      { "ko": "짐 보관 가능할까요?", "local": "可以寄放行李嗎？", "roma": "Kěyǐ jìfàng xínglǐ ma?", "en": "Can you store my luggage?" }
+    ],
+    "taxi": [
+      { "ko": "미려도 역으로 가주세요.", "local": "請到美麗島站。", "roma": "Qǐng dào Měilìdǎo zhàn.", "en": "Please go to Formosa Boulevard Station." }
+    ],
+    "allergy": [
+      { "ko": "글루텐은 피해주세요.", "local": "請避免含麩質的食物。", "roma": "Qǐng bìmiǎn hán fūzhì de shíwù.", "en": "Please avoid gluten." }
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "country_code": "RO",
+  "country_name": "Romania",
+  "region": "Europe",
+  "calling_code": "+40",
+  "languages": [
+    "ro",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주루마니아대한민국대사관",
+    "address": "Str. Sf. Stefan nr. 1-3, Et. 2, Sector 2, 023996 Bucharest, Romania",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+40-21-211-4026"
+      }
+    ],
+    "fax": "+40-21-211-4090",
+    "email": "romania@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Vă rog, ajutați-mă!",
+        "roma": "Vă rog, a-zhu-TAHTS-mă!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Vă rog, chemați poliția.",
+        "roma": "Vă rog, khe-MAHTS po-LEE-tsia.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Vă rog, duceți-mă la spital.",
+        "roma": "Vă rog, DOO-chehts-mă la spi-TAL.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Unde este stația de autobuz?",
+        "roma": "OON-deh YES-teh STA-tsia deh ow-to-BOOZ?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Unde este stația de metrou/tren?",
+        "roma": "OON-deh YES-teh STA-tsia deh meh-TROU/TREN?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "De unde pot cumpăra bilete?",
+        "roma": "Deh OON-deh pot koom-pă-RA bee-LE-teh?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Vă rog, duceți-mă la această adresă.",
+        "roma": "Vă rog, DOO-chehts-mă la a-CHAS-tă a-DRE-să.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Vă rog, folosiți taximetrul.",
+        "roma": "Vă rog, fo-lo-SITS tak-si-ME-trul.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Vă rog, opriți aici.",
+        "roma": "Vă rog, o-PREETS ai-ITCH.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Am o rezervare. Aș dori să fac check-in.",
+        "roma": "Am o re-zer-VAH-reh. Ash do-REE să fak chek-IN.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Voi ajunge târziu în seara asta.",
+        "roma": "Voy a-JOON-jeh tăr-ZIU în SEH-ra AS-ta.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Vă rog, păstrați bagajul meu.",
+        "roma": "Vă rog, păs-TRATS ba-GA-zhul meu.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Sunt alergic la arahide.",
+        "roma": "Soont a-LER-jik la a-ra-HEE-deh.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Sunt alergic la fructe de mare.",
+        "roma": "Soont a-LER-jik la FROOK-teh deh MA-reh.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Vă rog, nu adăugați nuci.",
+        "roma": "Vă rog, noo a-DĂ-oo-gahts NOOCH.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

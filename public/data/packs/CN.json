@@ -1,0 +1,133 @@
+{
+  "country_code": "CN",
+  "country_name": "China",
+  "region": "Asia",
+  "calling_code": "+86",
+  "languages": [
+    "zh"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "110"
+    },
+    "ambulance": {
+      "number": "120"
+    },
+    "fire": {
+      "number": "119"
+    }
+  },
+  "embassy_kr": {
+    "name": "주중국대한민국대사관",
+    "address": "No. 20 Dongfangdonglu, Chaoyang District, Beijing 100600, China",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+86-10-8531-0700"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "请帮帮我！",
+        "roma": "Qǐng bāngbang wǒ!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "请报警！",
+        "roma": "Qǐng bàojǐng!",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "请带我去医院。",
+        "roma": "Qǐng dài wǒ qù yīyuàn.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "公交车站在哪儿？",
+        "roma": "Gōngjiāo chēzhàn zài nǎr?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "地铁站在哪儿？",
+        "roma": "Dìtiě zhàn zài nǎr?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "在哪儿可以买票？",
+        "roma": "Zài nǎr kěyǐ mǎi piào?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "请带我去这个地址。",
+        "roma": "Qǐng dài wǒ qù zhège dìzhǐ.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "请打表。",
+        "roma": "Qǐng dǎ biǎo.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "请在这里停车。",
+        "roma": "Qǐng zài zhèlǐ tíngchē.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "我有预订。我要办理入住。",
+        "roma": "Wǒ yǒu yùdìng. Wǒ yào bànlǐ rùzhù.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "我今天晚点到。",
+        "roma": "Wǒ jīntiān wǎndiǎn dào.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "请帮我寄存行李。",
+        "roma": "Qǐng bāng wǒ jìcún xínglǐ.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "我对花生过敏。",
+        "roma": "Wǒ duì huāshēng guòmǐn.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "我对海鲜过敏。",
+        "roma": "Wǒ duì hǎixiān guòmǐn.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "请不要在食物里放坚果。",
+        "roma": "Qǐng búyào zài shíwù lǐ fàng jiānguǒ.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

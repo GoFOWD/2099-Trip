@@ -1,0 +1,147 @@
+{
+  "country_code": "RU",
+  "country_name": "Russia",
+  "region": "Europe/Asia",
+  "calling_code": "+7",
+  "languages": [
+    "ru",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "102"
+    },
+    "ambulance": {
+      "number": "103"
+    },
+    "fire": {
+      "number": "101"
+    },
+    "all_services_mobile": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주러시아대한민국대사관",
+    "address": "Ulitsa Plyushchikha 56, Bldg.1, Moscow 119121, Russia",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+7-495-783-2727"
+      },
+      {
+        "label": "사증민원",
+        "number": "+7-495-783-2787"
+      },
+      {
+        "label": "영사민원",
+        "number": "+7-495-783-2794"
+      }
+    ],
+    "fax": "+7-495-783-2777",
+    "email": "embru@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Пожалуйста, помогите!",
+        "roma": "Pozhá-luysta, pomo-GÍ-te!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Пожалуйста, вызовите полицию.",
+        "roma": "Pozhá-luysta, vy-ZÓ-vee-tye pa-LÍ-tsiyu.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Пожалуйста, отвезите меня в больницу.",
+        "roma": "Pozhá-luysta, at-ve-ZÍ-tye me-NYÁ v bal'-NÍ-tsu.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Где находится автобусная остановка?",
+        "roma": "Gdye na-HÓ-di-tsa av-TÓ-bus-na-ya as-ta-NÓV-ka?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Где находится станция метро/железнодорожный вокзал?",
+        "roma": "Gdye na-HÓ-di-tsa STÁN-tsi-ya me-TRÓ / zhe-lez-na-da-ROZH-niy vak-ZÁL?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Где можно купить билет?",
+        "roma": "Gdye MÓ-zhna ku-PÍT' bee-LYÉT?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Отвезите меня по этому адресу, пожалуйста.",
+        "roma": "At-ve-ZÍ-tye me-NYÁ pa É-ta-mu Á-dre-su, pozhá-luysta.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Пожалуйста, включите счётчик.",
+        "roma": "Pozhá-luysta, vklyu-CHÍ-tye SHCHÓT-chik.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Остановите здесь, пожалуйста.",
+        "roma": "As-ta-na-VÍ-tye zdyes', pozhá-luysta.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "У меня есть бронирование. Я бы хотел(а) заселиться.",
+        "roma": "U minYÁ yest' bra-ni-ra-VÁ-ni-ye. YA by kha-TYÉL(a) za-se-LÍ-tsa.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Я приеду поздно сегодня вечером.",
+        "roma": "Ya pri-YÉ-du PÓZ-dna se-VÓD-nya VÉ-che-rom.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Пожалуйста, примите мой багаж на хранение.",
+        "roma": "Pozhá-luysta, pri-MÍ-tye moy ba-GÁZH na khra-NÉ-ni-ye.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "У меня аллергия на арахис.",
+        "roma": "U minYÁ a-ler-GÍ-ya na a-RÁ-khis.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "У меня аллергия на морепродукты.",
+        "roma": "U minYÁ a-ler-GÍ-ya na ma-re-pro-DÚK-ty.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Пожалуйста, не добавляйте орехи.",
+        "roma": "Pozhá-luysta, ne da-bav-LYÁY-tye a-RÉ-khi.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

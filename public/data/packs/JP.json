@@ -1,0 +1,138 @@
+{
+  "country_code": "JP",
+  "country_name": "Japan",
+  "region": "Asia",
+  "calling_code": "+81",
+  "languages": [
+    "ja"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "110"
+    },
+    "ambulance": {
+      "number": "119"
+    },
+    "fire": {
+      "number": "119"
+    }
+  },
+  "embassy_kr": {
+    "name": "주일본대한민국대사관",
+    "address": "1-2-5 Minami-Azabu, Minato-ku, Tokyo 106-0047 (Embassy) / Consular: 1-7-32 Minami-Azabu, Minato-ku, Tokyo",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+81-3-3452-7611"
+      },
+      {
+        "label": "대표2",
+        "number": "+81-3-3452-7619"
+      }
+    ],
+    "fax": "+81-3-3452-7420"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "助けてください！",
+        "roma": "Tasukete kudasai!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "警察を呼んでください。",
+        "roma": "Keisatsu o yonde kudasai.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "病院へ連れて行ってください。",
+        "roma": "Byōin e tsurete itte kudasai.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "バス停はどこですか？",
+        "roma": "Basutei wa doko desu ka?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "地下鉄の駅はどこですか？",
+        "roma": "Chikatetsu no eki wa doko desu ka?",
+        "en": "Where is the subway/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "切符はどこで買えますか？",
+        "roma": "Kippu wa doko de kaemasu ka?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "この住所までお願いします。",
+        "roma": "Kono jūsho made onegai shimasu.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "メーターでお願いします。",
+        "roma": "Mētā de onegai shimasu.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "ここで止めてください。",
+        "roma": "Koko de tomete kudasai.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "予約しています。チェックインをお願いします。",
+        "roma": "Yoyaku shiteimasu. Chekkuin o onegai shimasu.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "今夜は遅く到着します。",
+        "roma": "Kon'ya wa osoku tōchaku shimasu.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "荷物を預かってください。",
+        "roma": "Nimotsu o azukatte kudasai.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "ピーナッツアレルギーがあります。",
+        "roma": "Pīnattsu arerugī ga arimasu.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "甲殻類アレルギーがあります。",
+        "roma": "Kōkakurui arerugī ga arimasu.",
+        "en": "I have a shellfish allergy."
+      },
+      {
+        "ko": "음식에 견과류 넣지 말아 주세요.",
+        "local": "ナッツを入れないでください。",
+        "roma": "Nattsu o irenaide kudasai.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

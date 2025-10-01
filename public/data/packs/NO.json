@@ -1,0 +1,133 @@
+{
+  "country_code": "NO",
+  "country_name": "Norway",
+  "region": "Europe",
+  "calling_code": "+47",
+  "languages": [
+    "no"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "113"
+    },
+    "fire": {
+      "number": "110"
+    }
+  },
+  "embassy_kr": {
+    "name": "주노르웨이대한민국대사관",
+    "address": "Inkognitogata 3, 0244 Oslo, Norway",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+47-22-54-70-90"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Vær så snill, hjelp meg!",
+        "roma": "",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Vennligst ring politiet.",
+        "roma": "",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Vennligst ta meg til sykehuset.",
+        "roma": "",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Hvor er bussholdeplassen?",
+        "roma": "",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Hvor er T-banestasjonen?",
+        "roma": "",
+        "en": "Where is the metro/Subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Hvor kan jeg kjøpe billett?",
+        "roma": "",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Vennligst kjør meg til denne adressen.",
+        "roma": "",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Vennligst bruk taksameteret.",
+        "roma": "",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Vennligst stopp her.",
+        "roma": "",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Jeg har en reservasjon. Jeg vil gjerne sjekke inn.",
+        "roma": "",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Jeg kommer sent i kveld.",
+        "roma": "",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Vennligst oppbevar bagasjen min.",
+        "roma": "",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Jeg er allergisk mot peanøtter.",
+        "roma": "",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Jeg er allergisk mot sjømat.",
+        "roma": "",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Vennligst ikke tilsett nøtter.",
+        "roma": "",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "country_code": "HR",
+  "country_name": "Croatia",
+  "region": "Europe",
+  "calling_code": "+385",
+  "languages": [
+    "hr"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "192"
+    },
+    "ambulance": {
+      "number": "194"
+    },
+    "fire": {
+      "number": "193"
+    }
+  },
+  "embassy_kr": {
+    "name": "주크로아티아대한민국대사관",
+    "address": "Ksaverska cesta 111 A-B, 10000 Zagreb, Croatia",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+385-1-4821-282"
+      },
+      {
+        "label": "긴급",
+        "number": "+385-91-2200-325"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Molim, pomozite!",
+        "roma": "Molim, pomozite!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Molim, nazovite policiju.",
+        "roma": "Molim, nazovite policiju.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Molim, odvezite me u bolnicu.",
+        "roma": "Molim, odvezite me u bolnicu.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Gdje je autobusno stajalište?",
+        "roma": "Gdje je autobusno stajaliste?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "Gdje je stanica metroa?",
+        "roma": "Gdje je stanica metroa?",
+        "en": "Where is the metro/subway station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Gdje mogu kupiti kartu?",
+        "roma": "Gdje mogu kupiti kartu?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Molim, odvezite me na ovu adresu.",
+        "roma": "Molim, odvezite me na ovu adresu.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Molim, vozite po taksimetru.",
+        "roma": "Molim, vozite po taksimetru.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Molim, zaustavite se ovdje.",
+        "roma": "Molim, zaustavite se ovdje.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Imam rezervaciju. Molim prijavu.",
+        "roma": "Imam rezervaciju. Molim prijavu.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Stižem kasno večeras.",
+        "roma": "Stizem kasno veceras.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Molim, čuvajte moju prtljagu.",
+        "roma": "Molim, cuvajte moju prtljagu.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Imam alergiju na kikiriki.",
+        "roma": "Imam alergiju na kikiriki.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Imam alergiju na plodove mora.",
+        "roma": "Imam alergiju na plodove mora.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Molim, ne dodajte orašaste plodove u jelo.",
+        "roma": "Molim, ne dodajte orasaste plodove u jelo.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "country_code": "MA",
+  "country_name": "Morocco",
+  "region": "Africa",
+  "calling_code": "+212",
+  "languages": [
+    "ar",
+    "fr"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "190"
+    },
+    "ambulance": {
+      "number": "150"
+    },
+    "fire": {
+      "number": "15"
+    }
+  },
+  "embassy_kr": {
+    "name": "주모로코대한민국대사관",
+    "address": "41, Avenue Mehdi Ben Barka, Souissi, Rabat, Morocco",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+212-537-75-1767"
+      },
+      {
+        "label": "대표2",
+        "number": "+212-537-75-6791"
+      },
+      {
+        "label": "대표3",
+        "number": "+212-537-75-1966"
+      }
+    ],
+    "email": "morocco@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "من فضلك ساعدني!",
+        "roma": "min faḍlik sāʻidnī!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "من فضلك اتصل بالشرطة.",
+        "roma": "min faḍlik ittaṣil bil-shurṭa.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "من فضلك خذني إلى المستشفى.",
+        "roma": "min faḍlik khudnī ilā al-mustashfā.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "أين موقف الحافلات؟",
+        "roma": "ayna mawqif al-ḥāfilāt?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "أين محطة القطار/المترو؟",
+        "roma": "ayna maḥaṭṭat al-qiṭār / al-mitrū?",
+        "en": "Where is the train/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "أين يمكنني شراء تذكرة؟",
+        "roma": "ayna yumkinunī shirā’ tadhkira?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "من فضلك خذني إلى هذا العنوان.",
+        "roma": "min faḍlik khudnī ilā hādhā al-ʿunwān.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "من فضلك استعمل العداد.",
+        "roma": "min faḍlik ista‘mil al-ʿaddād.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "من فضلك قِف هنا.",
+        "roma": "min faḍlik qif hunā.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "لديّ حجز. أود تسجيل الوصول.",
+        "roma": "ladayya ḥajz. awaddu tasjīl al-wuṣūl.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "سأصل متأخرًا الليلة.",
+        "roma": "sa’aṣilu muta’akhkharan al-layla.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "من فضلك احفظ أمتعتي.",
+        "roma": "min faḍlik iḥfaẓ amtiʿatī.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "لديّ حساسية من الفول السوداني.",
+        "roma": "ladayya ḥassāsiyya min al-fūl al-sūdānī.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "لديّ حساسية من المأكولات البحرية.",
+        "roma": "ladayya ḥassāsiyya min al-ma’kūlāt al-baḥriyya.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "من فضلك لا تضف مكسرات إلى الطعام.",
+        "roma": "min faḍlik lā tuḍif mukassarāt ilā al-ṭaʿām.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

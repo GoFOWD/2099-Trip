@@ -1,0 +1,134 @@
+{
+  "country_code": "HK",
+  "country_name": "Hong Kong",
+  "region": "Asia",
+  "calling_code": "+852",
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "999"
+    },
+    "ambulance": {
+      "number": "999"
+    },
+    "fire": {
+      "number": "999"
+    }
+  },
+  "embassy_kr": {
+    "name": "주홍콩대한민국총영사관",
+    "address": "5/F, Far East Finance Centre, 16 Harcourt Road, Admiralty, Hong Kong",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+852-2529-4141"
+      }
+    ]
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "救命呀！",
+        "roma": "gau3 meng6 aa3!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "請幫我報警。",
+        "roma": "cing2 bong1 ngo5 bou3 ging2.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "請帶我去醫院。",
+        "roma": "cing2 daai3 ngo5 heoi3 ji1 jyun2.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "巴士站喺邊度？",
+        "roma": "baa1 si2 zaam6 hai2 bin1 dou6?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철 역은 어디예요?",
+        "local": "地鐵站喺邊度？",
+        "roma": "dei6 tit3 zaam6 hai2 bin1 dou6?",
+        "en": "Where is the metro/MTR station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "喺邊度買飛？",
+        "roma": "hai2 bin1 dou6 maai5 fei1?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "請帶我去呢個地址。",
+        "roma": "cing2 daai3 ngo5 heoi3 ni1 go3 dei6 zi2.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "請打錶。",
+        "roma": "cing2 daa2 biu1.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "請喺呢度停。",
+        "roma": "cing2 hai2 ni1 dou6 ting4.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "我有預訂，想辦理入住。",
+        "roma": "ngo5 jau5 jyu6 deng6, soeng2 baan6 lei5 jap6 zyu6.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "我今晚會遲到。",
+        "roma": "ngo5 gam1 maan5 wui5 ci4 dou3.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "可唔可以幫我寄存行李？",
+        "roma": "ho2 m4 ho2 ji5 bong1 ngo5 gei3 cyun4 hang4 lei5?",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "我對花生過敏。",
+        "roma": "ngo5 deoi3 faa1 sang1 gwo3 man5.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "我對海鮮過敏。",
+        "roma": "ngo5 deoi3 hoi2 sin1 gwo3 man5.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "唔好喺食物入面加堅果。",
+        "roma": "m4 hou2 hai2 sik6 mat6 jap6 min6 gaa1 gin1 gwo2.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

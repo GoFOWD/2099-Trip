@@ -1,0 +1,5 @@
+{ "id":"US-FL-MIA","type":"city","parent":"US","slug":"miami","aliases":["Miami","MIA"],
+  "city_meta":{"state":"Florida","airports":["MIA","FLL"],"language_hint":["Spanish widely spoken"]},
+  "phrases":{"sos":[
+    {"ko":"스페인어 가능하신가요?","local":"¿Habla español?","roma":"Ah-bla es-pan-yol?","en":"Do you speak Spanish?"}
+  ]}}

@@ -1,0 +1,140 @@
+{
+  "country_code": "SR",
+  "country_name": "Suriname",
+  "region": "Latin America",
+  "calling_code": "+597",
+  "languages": [
+    "nl",
+    "srn",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "115"
+    },
+    "ambulance": {
+      "number": "113"
+    },
+    "fire": {
+      "number": "110"
+    },
+    "all_services_mobile": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주베네수엘라대한민국대사관(수리남 겸임)",
+    "address": "Torre La Castellana, Piso 5, Av. Principal de La Castellana, Caracas 1060, Venezuela",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+58-212-952-3815"
+      }
+    ],
+    "fax": "+58-212-952-3608",
+    "email": "venez@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Help mij alstublieft!",
+        "roma": "Help may alstoo-bleeft!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Bel de politie alstublieft.",
+        "roma": "Bel deh po-lee-tsie alstoo-bleeft.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Breng mij naar het ziekenhuis, alstublieft.",
+        "roma": "Breng may naar het ZAY-ken-hows, alstoo-bleeft.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Waar is de bushalte?",
+        "roma": "Var is deh BUS-hal-teh?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Waar is het treinstation?",
+        "roma": "Var is het TRAYN-sta-sion?",
+        "en": "Where is the train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Waar kan ik een kaartje kopen?",
+        "roma": "Var kan ik un KART-yeh koh-pen?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Breng mij naar dit adres, alstublieft.",
+        "roma": "Breng may naar dit a-DRES, alstoo-bleeft.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Gebruik de taximeter, alstublieft.",
+        "roma": "Heh-broyk deh TAK-see-may-ter, alstoo-bleeft.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Stop hier, alstublieft.",
+        "roma": "Stop heer, alstoo-bleeft.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Ik heb een reservering. Ik wil inchecken.",
+        "roma": "Ik hep un re-zehr-VA-ring. Ik vil IN-che-ken.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Ik kom vanavond laat aan.",
+        "roma": "Ik kom va-NA-vond laat aan.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Kunt u mijn bagage bewaren, alstublieft?",
+        "roma": "Koont oo mine ba-GA-zheh beh-VA-ren, alstoo-bleeft?",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Ik ben allergisch voor pinda’s.",
+        "roma": "Ik ben a-LER-ghis vor PIN-dahs.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Ik ben allergisch voor zeevruchten.",
+        "roma": "Ik ben a-LER-ghis vor ZAY-vroo-khten.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Voeg geen noten toe, alstublieft.",
+        "roma": "Foohkh gheyn NO-ten too, alstoo-bleeft.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

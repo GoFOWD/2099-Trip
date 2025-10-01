@@ -1,0 +1,5 @@
+{ "id":"US-NV-LV","type":"city","parent":"US","slug":"las-vegas","aliases":["Vegas","Las Vegas"],
+  "city_meta":{"state":"Nevada","airports":["LAS"],"special":"The Strip"},
+  "phrases":{"travel":[
+    {"ko":"카지노까지 어떻게 가요?","local":"How can I get to the casino?","roma":"Hau kan ai get to the casino?","en":"How can I get to the casino?"}
+  ]}}

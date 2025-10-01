@@ -1,0 +1,136 @@
+{
+  "country_code": "PL",
+  "country_name": "Poland",
+  "region": "Europe",
+  "calling_code": "+48",
+  "languages": [
+    "pl",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "112"
+    },
+    "ambulance": {
+      "number": "112"
+    },
+    "fire": {
+      "number": "112"
+    }
+  },
+  "embassy_kr": {
+    "name": "주폴란드대한민국대사관",
+    "address": "ul. Rejtana 15, 02-516 Warsaw, Poland",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+48-22-559-2900"
+      }
+    ],
+    "fax": "+48-22-559-2901",
+    "email": "poland@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "Proszę, pomóż mi!",
+        "roma": "Prosheh, pomoozh mee!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "Proszę, wezwij policję.",
+        "roma": "Prosheh, vezvee politsyeh.",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "Proszę, zawieźć mnie do szpitala.",
+        "roma": "Prosheh, zavyezhch mnyeh do shpitala.",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "Gdzie jest przystanek autobusowy?",
+        "roma": "Gzhye yest psheestanek autobusovy?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "Gdzie jest stacja metra/pociągu?",
+        "roma": "Gzhye yest stat-sya metra/potsyongu?",
+        "en": "Where is the metro/train station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "Gdzie mogę kupić bilet?",
+        "roma": "Gzhye mogeh koopich beel-et?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "Proszę, zawieźć mnie pod ten adres.",
+        "roma": "Prosheh, zavyezhch mnyeh pod ten adres.",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "Proszę włączyć taksometr.",
+        "roma": "Prosheh vwonchich taksometer.",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "Proszę, zatrzymać się tutaj.",
+        "roma": "Prosheh, zatrzimach shyeh tootai.",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "Mam rezerwację. Proszę o zameldowanie.",
+        "roma": "Mam rezervatsyeh. Prosheh o zameldovanie.",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "Przyjadę późno dziś wieczorem.",
+        "roma": "Psheeyadeh poozhno deesh vyechorem.",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "Proszę przechować mój bagaż.",
+        "roma": "Prosheh pshehkovach mooy bagazh.",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "Mam alergię na orzeszki ziemne.",
+        "roma": "Mam alerghyeh na orzeshki zhyemneh.",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "Mam alergię na owoce morza.",
+        "roma": "Mam alerghyeh na ovotse morza.",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "Proszę nie dodawać orzechów.",
+        "roma": "Prosheh nye dodavach orzhehoov.",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}

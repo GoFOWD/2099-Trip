@@ -1,0 +1,139 @@
+{
+  "country_code": "TH",
+  "country_name": "Thailand",
+  "region": "Asia",
+  "calling_code": "+66",
+  "languages": [
+    "th",
+    "en"
+  ],
+  "last_verified": "2025-09-30",
+  "emergency": {
+    "police": {
+      "number": "191"
+    },
+    "ambulance": {
+      "number": "1669"
+    },
+    "fire": {
+      "number": "199"
+    },
+    "tourist_police": {
+      "number": "1155"
+    }
+  },
+  "embassy_kr": {
+    "name": "주태국대한민국대사관",
+    "address": "23 Thiam-Ruammit Road, Ratchadapisek, Huai Khwang, Bangkok 10310, Thailand",
+    "phones": [
+      {
+        "label": "대표",
+        "number": "+66-2-247-7537~9"
+      }
+    ],
+    "fax": "+66-2-247-7535",
+    "email": "koembth@mofa.go.kr"
+  },
+  "phrases": {
+    "sos": [
+      {
+        "ko": "도와주세요!",
+        "local": "ช่วยด้วย!",
+        "roma": "Chuai duai!",
+        "en": "Please help!"
+      },
+      {
+        "ko": "경찰을 불러주세요.",
+        "local": "กรุณาเรียกตำรวจให้ด้วย",
+        "roma": "Karunaa riak tamruat hai duai",
+        "en": "Please call the police."
+      },
+      {
+        "ko": "병원으로 가주세요.",
+        "local": "กรุณาพาไปโรงพยาบาล",
+        "roma": "Karunaa phaa pai rongphayabaan",
+        "en": "Please take me to a hospital."
+      }
+    ],
+    "travel": [
+      {
+        "ko": "버스 정류장은 어디예요?",
+        "local": "ป้ายรถเมล์อยู่ที่ไหน?",
+        "roma": "Paai rotmee yuu thi nai?",
+        "en": "Where is the bus stop?"
+      },
+      {
+        "ko": "지하철/기차 역은 어디예요?",
+        "local": "สถานีรถไฟ/รถไฟฟ้าอยู่ที่ไหน?",
+        "roma": "Sathaanii rotfai/rotfaifaa yuu thi nai?",
+        "en": "Where is the train/metro station?"
+      },
+      {
+        "ko": "표는 어디서 사요?",
+        "local": "ซื้อตั๋วได้ที่ไหน?",
+        "roma": "Sue tua dai thi nai?",
+        "en": "Where can I buy a ticket?"
+      }
+    ],
+    "taxi": [
+      {
+        "ko": "이 주소로 가주세요.",
+        "local": "กรุณาไปที่อยู่ตามนี้",
+        "roma": "Karunaa pai thi-yuu taam nii",
+        "en": "Please take me to this address."
+      },
+      {
+        "ko": "미터기로 가주세요.",
+        "local": "กรุณาเปิดมิเตอร์",
+        "roma": "Karunaa poed meter",
+        "en": "Please use the meter."
+      },
+      {
+        "ko": "여기서 세워 주세요.",
+        "local": "กรุณาจอดตรงนี้",
+        "roma": "Karunaa jot trong nii",
+        "en": "Please stop here."
+      }
+    ],
+    "hotel": [
+      {
+        "ko": "예약했습니다. 체크인 부탁해요.",
+        "local": "ฉัน/ผมจองไว้ ขอเช็กอิน",
+        "roma": "Chan/Pom jong wai, kho chek-in",
+        "en": "I have a reservation. I'd like to check in."
+      },
+      {
+        "ko": "오늘 늦게 도착합니다.",
+        "local": "คืนนี้ฉัน/ผมจะมาถึงดึก",
+        "roma": "Khuen nii chan/pom cha maa thueng deuk",
+        "en": "I'll arrive late tonight."
+      },
+      {
+        "ko": "짐을 맡아 주세요.",
+        "local": "กรุณาฝากกระเป๋าไว้ให้ด้วย",
+        "roma": "Karunaa faak krapao wai hai duai",
+        "en": "Please keep my luggage."
+      }
+    ],
+    "allergy": [
+      {
+        "ko": "땅콩 알레르기가 있어요.",
+        "local": "ฉัน/ผมแพ้ถั่วลิสง",
+        "roma": "Chan/Pom phae thua lison",
+        "en": "I have a peanut allergy."
+      },
+      {
+        "ko": "해산물 알레르기가 있어요.",
+        "local": "ฉัน/ผมแพ้อาหารทะเล",
+        "roma": "Chan/Pom phae aahan thale",
+        "en": "I have a seafood allergy."
+      },
+      {
+        "ko": "견과류 넣지 말아 주세요.",
+        "local": "กรุณาอย่าใส่ถั่ว",
+        "roma": "Karunaa ya sai thua",
+        "en": "Please don't add nuts."
+      }
+    ]
+  }
+}
