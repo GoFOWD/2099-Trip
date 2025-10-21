@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 
 /**
 사진 불러오는 컴포넌트 입니다.
-@param {string} searchValue{string} - 장소, 호텔 이름
-@param {number} width - 너비
-@param {number} height - 높이
-@returns {JSX.Element} 사진 
+@param {Object} props - 컴포넌트 props
+@param {string} props.searchValue - 장소, 호텔 이름
+@param {number} props.width - 너비
+@param {number} props.height - 높이
+@returns {JSX.Element} 사진 컴포넌트
 */
 export default function PlaceImg({ searchValue, width, height }) {
 	const [imageUrl, setImageUrl] = useState(null); // 이미지 URL 상태
@@ -26,7 +27,7 @@ export default function PlaceImg({ searchValue, width, height }) {
 		}
 	}, [searchValue]); // searchValue가 변경될 때마다 다시 호출
 
-	// URL이 아직 없으면 로딩 상태 또는 플레이스홀더를 표시
+	// URL이 아직 없으면 로딩 상태
 	if (!imageUrl) {
 		return <div>Loading image...</div>;
 	}

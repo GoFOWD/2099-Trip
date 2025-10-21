@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getPhotosUrl } from '@/app/share/lib/getPhotosUrl';
+import { getPhotosUrl } from '@/share/lib/getPhotosUrl';
 
 export async function GET(req) {
 	const { searchParams } = new URL(req.url);
