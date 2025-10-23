@@ -8,6 +8,50 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+model schedule{
+  id Int @id @default(autoincrement())
+  startDate DateTime
+  endDate DateTime
+  Budget budget[]
+  AirTicket airTicket[]
+  Hotel hotel[]
+  Country country[]
+  Tour tour[]
+  userId Int
+  User userId @relation(fields: [userId], references: [Id])
+}
+
+
+enum TripType{
+  ONE_WAY
+  ROUND_TRIP
+}
+
+model airTicket	 {
+  id Int @id @default(autoincrement())
+  price Int
+  airline String
+  tripType TripType
+  segments flightSegment[]
+  scheduleId Int
+  countryId Int
+  Schedule schedule	@relation(fields: [scheduleId], references: [id])
+  Country country	 @relation(fields: [countryId], references: [id])
+}
+
+model flightSegment{
+  id Int @id @default(autoincrement())
+  departurePort String
+  arrivalPort String
+  departureCountry String
+  arrivalCountry String
+  departureDate DateTime
+  arrivalDate DateTime
+  flightNumber String
+  airTicketId Int
+  airTicket airTicket @relation(fields: [airTicketId], references: [id])
+  }
+  
 model User {
   id        String       @id @default(cuid())
   email     String       @unique
