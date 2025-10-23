@@ -8,17 +8,17 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model schedule {
+model Schedule {
   id        Int         @id @default(autoincrement())
   startDate DateTime
   endDate   DateTime
   budgets   Budget[]
   AirTicket airTicket[]
-  Hotel     hotel[]
-  Country   country[]
-  Tour      tour[]
-  userId    Int
-  User      userId      @relation(fields: [userId], references: [Id])
+  Hotel     Hotel[]
+  Country   Country[]
+  Tour      Tour[]
+  userId    String
+  User      User      @relation(fields: [userId], references: [Id])
 }
 
 enum TripType {
@@ -34,8 +34,8 @@ model airTicket {
   segments   flightSegment[]
   scheduleId Int
   countryId  Int
-  Schedule   schedule        @relation(fields: [scheduleId], references: [id])
-  Country    country         @relation(fields: [countryId], references: [id])
+  Schedule   Schedule        @relation(fields: [scheduleId], references: [id])
+  Country    Country         @relation(fields: [countryId], references: [id])
 }
 
 model flightSegment {
@@ -75,12 +75,6 @@ model Tour {
   countryId String
   country   Country @relation(fields: [countryId], references: [id])
 }
-
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 model Diary {
   id        String   @id @default(cuid())
