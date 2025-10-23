@@ -50,4 +50,29 @@ model flightSegment{
   flightNumber String
   airTicketId Int
   airTicket airTicket @relation(fields: [airTicketId], references: [id])
+  }
+  
+model User {
+  id        String       @id @default(cuid())
+  email     String       @unique
+  password  String
+  name      String?
+  haveReservedAirLine Boolean @default(false)
+  haveReservedionHotel Boolean @default(false)
+  haveReservedTour Boolean @default(false)
+  schedules Schedule[]
+  diaries   Diary[]
+}
+
+model Tour {
+  id             String       @id @default(cuid())
+  reservedAt     DateTime
+  location       String
+  rating         Float?
+  price          String
+
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  countryId      String
+  country        Country      @relation(fields: [countryId], references: [id])
 }
