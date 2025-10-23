@@ -12,7 +12,7 @@ model schedule {
   id        Int         @id @default(autoincrement())
   startDate DateTime
   endDate   DateTime
-  Budget    budget[]
+  budgets   Budget[]
   AirTicket airTicket[]
   Hotel     hotel[]
   Country   country[]
@@ -114,4 +114,17 @@ model Amenity {
   id          String  @id @default(cuid())
   Amenityname String
   hotels      Hotel[]
+}
+
+model Budget {
+  id Int @id @default(autoincrement())
+  airTicketPlan Int
+  hotelPlan Int
+  actualHotelSpending Int
+  totalBudget Int
+  actualAirTicketSpending Int
+  actualTourSpending Int
+  otherSpending Int
+  scheduleId Int
+  schedule Schedule @relation(fields: [scheduleId], references: [id])
 }
