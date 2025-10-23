@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Schedule {
-  id        Int         @id @default(autoincrement())
+  id        String         @id @default(cuid())
   startDate DateTime
   endDate   DateTime
   budgets   Budget[]
@@ -18,7 +18,7 @@ model Schedule {
   Country   Country[]
   Tour      Tour[]
   userId    String
-  User      User      @relation(fields: [userId], references: [Id])
+  User      User      @relation(fields: [userId], references: [id])
 }
 
 enum TripType {
@@ -26,20 +26,20 @@ enum TripType {
   ROUND_TRIP
 }
 
-model airTicket {
-  id         Int             @id @default(autoincrement())
+model AirTicket {
+  id         String             @id @default(cuid())
   price      Int
   airline    String
   tripType   TripType
   segments   flightSegment[]
-  scheduleId Int
-  countryId  Int
+  scheduleId String
+  countryId  String
   Schedule   Schedule        @relation(fields: [scheduleId], references: [id])
   Country    Country         @relation(fields: [countryId], references: [id])
 }
 
 model flightSegment {
-  id               Int       @id @default(autoincrement())
+  id               String       @id @default(cuid())
   departurePort    String
   arrivalPort      String
   departureCountry String
@@ -47,8 +47,8 @@ model flightSegment {
   departureDate    DateTime
   arrivalDate      DateTime
   flightNumber     String
-  airTicketId      Int
-  airTicket        airTicket @relation(fields: [airTicketId], references: [id])
+  airTicketId      String
+  airTicket        AirTicket @relation(fields: [airTicketId], references: [id])
 }
 
 model User {
@@ -111,14 +111,14 @@ model Amenity {
 }
 
 model Budget {
-  id Int @id @default(autoincrement())
-  airTicketPlan Int
-  hotelPlan Int
-  actualHotelSpending Int
-  totalBudget Int
+  id                      String @id @default(cuid())
+  airTicketPlan           Int
+  hotelPlan               Int
+  actualHotelSpending     Int
+  totalBudget             Int
   actualAirTicketSpending Int
-  actualTourSpending Int
-  otherSpending Int
-  scheduleId Int
-  schedule Schedule @relation(fields: [scheduleId], references: [id])
+  actualTourSpending      Int
+  otherSpending           Int
+  scheduleId              String
+  schedule                Schedule @relation(fields: [scheduleId], references: [id])
 }
