@@ -8,71 +8,110 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model schedule{
-  id Int @id @default(autoincrement())
+model schedule {
+  id        Int         @id @default(autoincrement())
   startDate DateTime
-  endDate DateTime
-  Budget budget[]
+  endDate   DateTime
+  Budget    budget[]
   AirTicket airTicket[]
-  Hotel hotel[]
-  Country country[]
-  Tour tour[]
-  userId Int
-  User userId @relation(fields: [userId], references: [Id])
+  Hotel     hotel[]
+  Country   country[]
+  Tour      tour[]
+  userId    Int
+  User      userId      @relation(fields: [userId], references: [Id])
 }
 
-
-enum TripType{
+enum TripType {
   ONE_WAY
   ROUND_TRIP
 }
 
-model airTicket	 {
-  id Int @id @default(autoincrement())
-  price Int
-  airline String
-  tripType TripType
-  segments flightSegment[]
+model airTicket {
+  id         Int             @id @default(autoincrement())
+  price      Int
+  airline    String
+  tripType   TripType
+  segments   flightSegment[]
   scheduleId Int
-  countryId Int
-  Schedule schedule	@relation(fields: [scheduleId], references: [id])
-  Country country	 @relation(fields: [countryId], references: [id])
+  countryId  Int
+  Schedule   schedule        @relation(fields: [scheduleId], references: [id])
+  Country    country         @relation(fields: [countryId], references: [id])
 }
 
-model flightSegment{
-  id Int @id @default(autoincrement())
-  departurePort String
-  arrivalPort String
+model flightSegment {
+  id               Int       @id @default(autoincrement())
+  departurePort    String
+  arrivalPort      String
   departureCountry String
-  arrivalCountry String
-  departureDate DateTime
-  arrivalDate DateTime
-  flightNumber String
-  airTicketId Int
-  airTicket airTicket @relation(fields: [airTicketId], references: [id])
-  }
-  
+  arrivalCountry   String
+  departureDate    DateTime
+  arrivalDate      DateTime
+  flightNumber     String
+  airTicketId      Int
+  airTicket        airTicket @relation(fields: [airTicketId], references: [id])
+}
+
 model User {
-  id        String       @id @default(cuid())
-  email     String       @unique
-  password  String
-  name      String?
-  haveReservedAirLine Boolean @default(false)
-  haveReservedionHotel Boolean @default(false)
-  haveReservedTour Boolean @default(false)
-  schedules Schedule[]
-  diaries   Diary[]
+  id                   String     @id @default(cuid())
+  email                String     @unique
+  password             String
+  name                 String?
+  haveReservedAirLine  Boolean    @default(false)
+  haveReservedionHotel Boolean    @default(false)
+  haveReservedTour     Boolean    @default(false)
+  schedules            Schedule[]
+  diaries              Diary[]
 }
 
 model Tour {
-  id             String       @id @default(cuid())
-  reservedAt     DateTime
-  location       String
-  rating         Float?
-  price          String
+  id         String   @id @default(cuid())
+  reservedAt DateTime
+  location   String
+  rating     Float?
+  price      String
 
-  userId         String
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  countryId      String
-  country        Country      @relation(fields: [countryId], references: [id])
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  countryId String
+  country   Country @relation(fields: [countryId], references: [id])
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+model Diary {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  date      String
+  pic       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+}
+
+model Hotel {
+  id        String    @id @default(cuid())
+  name      String
+  price     Float?
+  rating    Float?
+  checkIn   String?
+  checkOut  String?
+  location  String
+  countryId String?
+  scheduled String?
+  amenities Amenity[]
+
+  schedules  Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId String
+}
+
+model Amenity {
+  id          String  @id @default(cuid())
+  Amenityname String
+  hotels      Hotel[]
 }
