@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum TripType {
+  ONE_WAY
+  ROUND_TRIP
+}
+
+/* =========================
+   User
+========================= */
+model User {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  password  String
+  name      String?
+
+  haveReservedAirLine Boolean @default(false)
+  haveReservedHotel   Boolean @default(false) // 오타 수정됨
+  haveReservedTour    Boolean @default(false)
+
+  schedules Schedule[]
+  // diaries   Diary[]       // Diary 모델 아직 없으면 주석 유지
+  tours     Tour[]
+  countries Country[]      // Country.userId 로 1:N
+}
+
+/* =========================
+   Schedule
+========================= */
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  startDate DateTime
+  endDate   DateTime
+
+  // Budget, Hotel 모델이 아직 없으면 주석 유지
+  // Budget   Budget[]
+  // Hotel    Hotel[]
+
+  AirTicket AirTicket[]  // 대문자 모델명
+  // Country  Country[]   // 필요하면 중간 테이블로 설계 (지금은 주석)
+  Tour      Tour[]
+
+  // User.id = String 이므로 FK도 String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+/* =========================
+   AirTicket & FlightSegment
+========================= */
+model AirTicket {
+  id         Int      @id @default(autoincrement())
+  price      Int
+  airline    String
+  tripType   TripType
+  segments   FlightSegment[]
+
+  scheduleId Int
+  schedule   Schedule @relation(fields: [scheduleId], references: [id])
+
+  // Country.id = String 이므로 FK도 String
+  countryId  String?
+  country    Country? @relation(fields: [countryId], references: [id])
+}
+
+model FlightSegment {
+  id               Int      @id @default(autoincrement())
+  departurePort    String
+  arrivalPort      String
+  departureCountry String
+  arrivalCountry   String
+  departureDate    DateTime
+  arrivalDate      DateTime
+  flightNumber     String
+
+  airTicketId Int
+  airTicket   AirTicket @relation(fields: [airTicketId], references: [id])
+}
+
+/* =========================
+   Tour
+========================= */
+model Tour {
+  id         String   @id @default(cuid())
+  reservedAt DateTime
+  location   String
+  rating     Float?
+  price      String
+
+  userId   String
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  countryId String
+  country   Country @relation(fields: [countryId], references: [id])
+}
+
+/* =========================================================
+   Country / Language / CountryLanguage / Caution  (새로 추가)
+========================================================= */
+model Country {
+  id               String   @id @default(cuid())
+  countryCode      String   @unique
+  name             String
+  embassyLocation  String?
+  emergencyNumber  String?
+
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  cautions   Caution[]
+  languages  CountryLanguage[]
+  tours      Tour[]
+  airTickets AirTicket[]
+}
+
+model Language {
+  id        Int     @id @default(autoincrement())
+  code      String  @unique
+  name      String
+  countries CountryLanguage[]
+}
+
+model CountryLanguage {
+  countryId  String
+  languageId Int
+
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
+
+  isOfficial Boolean  @default(false)
+  notes      String?
+
+  @@id([countryId, languageId])
+  @@index([languageId])
+}
+
+model Caution {
+  id         Int      @id @default(autoincrement())
+  countryId  String
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  title      String
+  content    String
+  createdAt  DateTime @default(now())
+
+  @@index([countryId])
+}
+
+/* =========================
+   (참고) 나중에 만들 거면 아래 주석 해제하고 모델 정의 추가
+========================= */
+// model Budget { ... }
+// model Hotel  { ... }
+// model Diary  { ... }
