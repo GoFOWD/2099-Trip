@@ -3,76 +3,142 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-}
-
-model schedule{
-  id Int @id @default(autoincrement())
-  startDate DateTime
-  endDate DateTime
-  Budget budget[]
-  AirTicket airTicket[]
-  Hotel hotel[]
-  Country country[]
-  Tour tour[]
-  userId Int
-  User userId @relation(fields: [userId], references: [Id])
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 
-enum TripType{
+enum TripType {
   ONE_WAY
   ROUND_TRIP
 }
 
-model airTicket	 {
-  id Int @id @default(autoincrement())
-  price Int
-  airline String
-  tripType TripType
-  segments flightSegment[]
-  scheduleId Int
-  countryId Int
-  Schedule schedule	@relation(fields: [scheduleId], references: [id])
-  Country country	 @relation(fields: [countryId], references: [id])
-}
-
-model flightSegment{
-  id Int @id @default(autoincrement())
-  departurePort String
-  arrivalPort String
-  departureCountry String
-  arrivalCountry String
-  departureDate DateTime
-  arrivalDate DateTime
-  flightNumber String
-  airTicketId Int
-  airTicket airTicket @relation(fields: [airTicketId], references: [id])
-  }
-  
 model User {
-  id        String       @id @default(cuid())
-  email     String       @unique
+  id        String  @id @default(cuid())
+  email     String  @unique
   password  String
   name      String?
+
   haveReservedAirLine Boolean @default(false)
-  haveReservedionHotel Boolean @default(false)
-  haveReservedTour Boolean @default(false)
+  haveReservedHotel   Boolean @default(false)
+  haveReservedTour    Boolean @default(false)
+
   schedules Schedule[]
-  diaries   Diary[]
+  // diaries   Diary[]       // Diary 모델 없으면 주석 유지
+  tours     Tour[]
+  countries Country[]
+}
+
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  startDate DateTime
+  endDate   DateTime
+
+  // Budget / Hotel 모델이 없으면 주석 유지
+  // Budget   Budget[]
+  // Hotel    Hotel[]
+
+  AirTicket AirTicket[]
+  // Country  Country[]  // 필요시 중간 테이블로 설계
+  Tour      Tour[]
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model AirTicket {
+  id         Int      @id @default(autoincrement())
+  price      Int
+  airline    String
+  tripType   TripType
+  segments   FlightSegment[]
+
+  scheduleId Int
+  schedule   Schedule @relation(fields: [scheduleId], references: [id])
+
+  countryId  String?
+  country    Country? @relation(fields: [countryId], references: [id])
+}
+
+model FlightSegment {
+  id               Int      @id @default(autoincrement())
+  departurePort    String
+  arrivalPort      String
+  departureCountry String
+  arrivalCountry   String
+  departureDate    DateTime
+  arrivalDate      DateTime
+  flightNumber     String
+
+  airTicketId Int
+  airTicket   AirTicket @relation(fields: [airTicketId], references: [id])
 }
 
 model Tour {
-  id             String       @id @default(cuid())
-  reservedAt     DateTime
-  location       String
-  rating         Float?
-  price          String
+  id         String   @id @default(cuid())
+  reservedAt DateTime
+  location   String
+  rating     Float?
+  price      String
 
-  userId         String
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  countryId      String
-  country        Country      @relation(fields: [countryId], references: [id])
+  userId   String
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  countryId String
+  country   Country @relation(fields: [countryId], references: [id])
+  // ▼ 추가 (Schedule과 연결)
+  scheduleId Int?
+  schedule   Schedule? @relation(fields: [scheduleId], references: [id])
 }
+
+/* === Country 도메인 4종 === */
+model Country {
+  id               String   @id @default(cuid())
+  countryCode      String   @unique
+  name             String
+  nameKo           String?     // ← 추가: 한국어표시
+  embassyLocation  String?
+  emergencyNumber  String?
+
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  cautions   Caution[]
+  languages  CountryLanguage[]
+  tours      Tour[]
+  airTickets AirTicket[]
+}
+
+model Language {
+  id        Int     @id @default(autoincrement())
+  code      String  @unique
+  name      String
+  countries CountryLanguage[]
+}
+
+model CountryLanguage {
+  countryId  String
+  languageId Int
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  isOfficial Boolean  @default(false)
+  notes      String?
+  @@id([countryId, languageId])
+  @@index([languageId])
+}
+
+model Caution {
+  id         Int      @id @default(autoincrement())
+  countryId  String
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  title      String
+  content    String
+  createdAt  DateTime @default(now())
+  @@index([countryId])
+}
+
+/* 나중에 만들면 주석 해제
+model Budget { ... }
+model Hotel  { ... }
+model Diary  { ... }
+*/
