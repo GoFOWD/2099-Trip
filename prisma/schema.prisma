@@ -13,7 +13,7 @@ model Schedule {
   startDate DateTime
   endDate   DateTime
   budgets   Budget[]
-  AirTicket airTicket[]
+  AirTicket AirTicket[]
   Hotel     Hotel[]
   Country   Country[]
   Tour      Tour[]
@@ -61,6 +61,7 @@ model User {
   haveReservedTour     Boolean    @default(false)
   schedules            Schedule[]
   diaries              Diary[]
+  countries            Country[]
 }
 
 model Tour {
@@ -70,36 +71,80 @@ model Tour {
   rating     Float?
   price      String
 
-  userId   String
-  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  scheduleId    String
+  schedule      Schedule    @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   countryId String
   country   Country @relation(fields: [countryId], references: [id])
-  // ▼ 추가 (Schedule과 연결)
-  scheduleId Int?
-  schedule   Schedule? @relation(fields: [scheduleId], references: [id])
 }
 
-/* === Country 도메인 4종 === */
+model Diary {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  date      String
+  pic       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+}
+
+model Hotel {
+  id        String    @id @default(cuid())
+  name      String
+  price     Float?
+  rating    Float?
+  checkIn   String?
+  checkOut  String?
+  location  String
+  countryId String?
+  scheduled String?
+  amenities Amenity[]
+
+  schedules  Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId String
+}
+
+model Amenity {
+  id          String  @id @default(cuid())
+  Amenityname String
+  hotels      Hotel[]
+}
+
+model Budget {
+  id String @id @default(cuid())
+  airTicketPlan Int
+  hotelPlan Int
+  actualHotelSpending Int
+  totalBudget Int
+  actualAirTicketSpending Int
+  actualTourSpending Int
+  otherSpending Int
+  scheduleId String
+  schedule Schedule @relation(fields: [scheduleId], references: [id])
+}
+
+
 model Country {
   id               String   @id @default(cuid())
   countryCode      String   @unique
   name             String
-  nameKo           String?     // ← 추가: 한국어표시
+  nameKo           String?     
   embassyLocation  String?
   emergencyNumber  String?
 
   userId  String
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id])
 
   cautions   Caution[]
   languages  CountryLanguage[]
   tours      Tour[]
   airTickets AirTicket[]
+  schedule   Schedule[]
 }
 
 model Language {
-  id        Int     @id @default(autoincrement())
+  id        String     @id @default(cuid())
   code      String  @unique
   name      String
   countries CountryLanguage[]
@@ -107,7 +152,7 @@ model Language {
 
 model CountryLanguage {
   countryId  String
-  languageId Int
+  languageId String
   country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
   language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
   isOfficial Boolean  @default(false)
@@ -117,17 +162,10 @@ model CountryLanguage {
 }
 
 model Caution {
-  id         Int      @id @default(autoincrement())
+  id         String      @id @default(cuid())
   countryId  String
   country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
   title      String
   content    String
-  createdAt  DateTime @default(now())
   @@index([countryId])
 }
-
-/* 나중에 만들면 주석 해제
-model Budget { ... }
-model Hotel  { ... }
-model Diary  { ... }
-*/
