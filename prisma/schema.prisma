@@ -3,65 +3,43 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
+model Schedule {
+  id        String         @id @default(cuid())
+  startDate DateTime
+  endDate   DateTime
+  budgets   Budget[]
+  AirTicket airTicket[]
+  Hotel     Hotel[]
+  Country   Country[]
+  Tour      Tour[]
+  userId    String
+  User      User      @relation(fields: [userId], references: [id])
+}
 
 enum TripType {
   ONE_WAY
   ROUND_TRIP
 }
 
-model User {
-  id        String  @id @default(cuid())
-  email     String  @unique
-  password  String
-  name      String?
-
-  haveReservedAirLine Boolean @default(false)
-  haveReservedHotel   Boolean @default(false)
-  haveReservedTour    Boolean @default(false)
-
-  schedules Schedule[]
-  // diaries   Diary[]       // Diary 모델 없으면 주석 유지
-  tours     Tour[]
-  countries Country[]
-}
-
-model Schedule {
-  id        Int      @id @default(autoincrement())
-  startDate DateTime
-  endDate   DateTime
-
-  // Budget / Hotel 모델이 없으면 주석 유지
-  // Budget   Budget[]
-  // Hotel    Hotel[]
-
-  AirTicket AirTicket[]
-  // Country  Country[]  // 필요시 중간 테이블로 설계
-  Tour      Tour[]
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-}
-
 model AirTicket {
-  id         Int      @id @default(autoincrement())
+  id         String             @id @default(cuid())
   price      Int
   airline    String
   tripType   TripType
-  segments   FlightSegment[]
-
-  scheduleId Int
-  schedule   Schedule @relation(fields: [scheduleId], references: [id])
-
-  countryId  String?
-  country    Country? @relation(fields: [countryId], references: [id])
+  segments   flightSegment[]
+  scheduleId String
+  countryId  String
+  Schedule   Schedule        @relation(fields: [scheduleId], references: [id])
+  Country    Country         @relation(fields: [countryId], references: [id])
 }
 
-model FlightSegment {
-  id               Int      @id @default(autoincrement())
+model flightSegment {
+  id               String       @id @default(cuid())
   departurePort    String
   arrivalPort      String
   departureCountry String
@@ -69,9 +47,20 @@ model FlightSegment {
   departureDate    DateTime
   arrivalDate      DateTime
   flightNumber     String
+  airTicketId      String
+  airTicket        AirTicket @relation(fields: [airTicketId], references: [id])
+}
 
-  airTicketId Int
-  airTicket   AirTicket @relation(fields: [airTicketId], references: [id])
+model User {
+  id                   String     @id @default(cuid())
+  email                String     @unique
+  password             String
+  name                 String?
+  haveReservedAirLine  Boolean    @default(false)
+  haveReservedionHotel Boolean    @default(false)
+  haveReservedTour     Boolean    @default(false)
+  schedules            Schedule[]
+  diaries              Diary[]
 }
 
 model Tour {
