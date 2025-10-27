@@ -1,0 +1,192 @@
+/* Tailwind (v4) */
+@import "tailwindcss";
+
+/* 전역 토큰(색 제외) — 원하면 유지/수정 */
+:root{
+  --radius-lg:14px;
+  --shadow-md:0 6px 18px rgba(0,0,0,0.08);
+  --spacing:12px;
+}
+
+/* === /sos 전용 테마 (스코프: .sospack) === */
+@layer components {
+  /* 민트 계열 확정 */
+  .sospack{
+    --color-secondary:#5EC1CB;          /* 팀 민트 */
+    --color-secondary-weak:#E7F6F8;     /* 아주 연한 민트 */
+    --color-secondary-strong:#3AAEB9;   /* 약간 진한 민트(테두리/호버) */
+    --color-secondary-ring:#2B8F99;     /* 포커스/드래그 링 */
+  }
+
+  /* 1) 공통 버튼(.sos-btn) = 민트 배경 + 흰 글자 */
+  .sospack .sos-btn{
+    background: var(--color-secondary) !important;
+    color: #fff !important;
+    border: 1px solid var(--color-secondary-strong) !important;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: background .15s, border-color .15s, box-shadow .15s, transform .05s;
+  }
+  .sospack .sos-btn:hover{
+    background: color-mix(in oklab, var(--color-secondary) 92%, white) !important;
+    border-color: var(--color-secondary-strong) !important;
+  }
+  .sospack .sos-btn:active{
+    transform: translateY(0); /* 눌림감 */
+    background: color-mix(in oklab, var(--color-secondary) 85%, black) !important;
+  }
+  .sospack .sos-btn:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-secondary-ring) 35%, transparent);
+  }
+
+  /* 2) 타일/칩도 민트 배경 + 흰 글자 */
+  .sospack .tile,
+  .sospack .chip{
+    background: var(--color-secondary) !important;
+    color: #fff !important;
+    border: 1px solid var(--color-secondary-strong) !important;
+    border-radius: 12px; /* chip은 둥글둥글 보이도록 유지됨 */
+    box-shadow: 0 4px 14px rgba(0,0,0,.04);
+    transition: background .15s, border-color .15s, box-shadow .15s, transform .05s, color .15s;
+  }
+  /* hover = 살짝 밝게, 선택(.on) = 링/더 진한 테두리 */
+  .sospack .tile:hover,
+  .sospack .chip:hover{
+    background: color-mix(in oklab, var(--color-secondary) 92%, white) !important;
+  }
+  .sospack .tile.on,
+  .sospack .chip.on{
+    border-color: var(--color-secondary-ring) !important;            /* 선택 느낌: 진한 테두리 */
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-secondary-ring) 25%, transparent);
+  }
+  .sospack .tile:active,
+  .sospack .chip:active{
+    transform: translateY(0); /* 눌림감 */
+    background: color-mix(in oklab, var(--color-secondary) 85%, black) !important;
+  }
+  .sospack .tile:focus-visible,
+  .sospack .chip:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-secondary-ring) 35%, transparent);
+  }
+
+  /* 3) 탭에서 '활성' 칩만 코랄 유지하려면 이 규칙을 아래에 둡니다(원치 않으면 삭제) */
+  .sospack .sos-tabs .chip.on{
+    background: linear-gradient(180deg, var(--color-primary-weak), #fff 80%) !important;
+    color: var(--color-text) !important;
+    border-color: color-mix(in oklab, var(--color-primary) 45%, transparent) !important;
+    box-shadow: none;
+  }
+}
+@layer components {
+  /* ===== Team Mint: #50B4BE 고정 ===== */
+  .sospack{
+    --mint:#50B4BE;          /* 기본 */
+    --mint-border:#429EAA;   /* 테두리(살짝 진한) */
+    --mint-hover:#5AC0C9;    /* 호버(조금 밝게) */
+    --mint-active:#3EA0AA;   /* 눌림(조금 진하게) */
+    --mint-weak:#E7F6F8;     /* 연한 배경 */
+  }
+
+  /* 공통 버튼(처음으로/이전/전화하기 등) */
+  .sospack .sos-btn,
+  .sospack .btn-primary{
+    background:var(--mint) !important;
+    color:#FFFFFF !important;
+    border:1px solid var(--mint-border) !important;
+    border-radius:12px;
+    box-shadow:none !important;
+    filter:none !important;
+    transition:background .15s, border-color .15s, box-shadow .15s;
+  }
+  .sospack .sos-btn:hover,
+  .sospack .btn-primary:hover{
+    background:var(--mint-hover) !important;
+  }
+  .sospack .sos-btn:active,
+  .sospack .btn-primary:active{
+    background:var(--mint-active) !important;
+  }
+  .sospack .sos-btn:focus-visible,
+  .sospack .btn-primary:focus-visible{
+    outline:none;
+    box-shadow:0 0 0 3px color-mix(in oklab, var(--mint-border) 30%, transparent);
+  }
+
+  /* 대륙/국가/도시 칩/타일도 같은 민트 + 흰 글자 */
+  .sospack .tile,
+  .sospack .chip{
+    background:var(--mint) !important;
+    color:#FFFFFF !important;
+    border:1px solid var(--mint-border) !important;
+    border-radius:12px;
+    box-shadow:none !important;
+    filter:none !important;
+  }
+  .sospack .tile:hover,
+  .sospack .chip:hover{ background:var(--mint-hover) !important; }
+  .sospack .tile.on,
+  .sospack .chip.on{
+    border-color:var(--mint-border) !important;
+    box-shadow:0 0 0 3px color-mix(in oklab, var(--mint-border) 28%, transparent);
+  }
+
+  /* (옵션) 탭 활성 칩을 코랄로 유지하려면 이 규칙을 남겨둠 */
+  .sospack .sos-tabs .chip.on{
+    background: linear-gradient(180deg, var(--color-primary-weak), #fff 80%) !important;
+    color: var(--color-text) !important;
+    border-color: color-mix(in oklab, var(--color-primary) 45%, transparent) !important;
+    box-shadow:none;
+  }
+}
+@layer components {
+  /* 팀 민트 토큰(이미 있으면 생략 가능) */
+  .sospack{
+    --mint:#50B4BE;
+    --mint-border:#429EAA;
+    --mint-weak:#E7F6F8;
+  }
+
+  /* 도시 선택 칩: 흰 버튼 + 텍스트 민트 */
+  .sospack .city-grid .chip{
+    background:#FFFFFF !important;
+    color:var(--mint) !important;
+    border:1.5px solid color-mix(in oklab, var(--mint) 45%, transparent) !important;
+    border-radius:999px;
+    font-weight:600;                          /* 기본 굵기 */
+    transition:background .15s,border-color .15s,box-shadow .15s,font-weight .1s;
+  }
+  .sospack .city-grid .chip:hover{
+    background:var(--mint-weak) !important;   /* 살짝 채움 */
+  }
+  /* 선택 상태(.on): 약간 굵게 + 진한 테두리 + 링 */
+  .sospack .city-grid .chip.on{
+    background:var(--mint-weak) !important;
+    color:var(--mint) !important;
+    border-color:var(--mint-border) !important;
+    font-weight:750;                          /* ‘약간’ 더 굵게 */
+    box-shadow:0 0 0 3px color-mix(in oklab, var(--mint-border) 26%, transparent);
+  }
+}
+/* === 도시 칩 전용: 흰 배경 + 팀 민트 글자, 선택시 살짝 굵게 === */
+.sospack .city-grid .chip{
+  background:#FFFFFF !important;
+  color:#50B4BE !important;                /* 팀 민트 */
+  border:1.5px solid #429EAA !important;   /* 민트보다 살짝 진한 테두리 */
+  border-radius:999px;
+  font-weight:600 !important;              /* 기본 */
+  box-shadow:none !important;
+}
+.sospack .city-grid .chip:hover,
+.sospack .city-grid .chip:focus-visible{
+  background:#E7F6F8 !important;           /* 연한 민트 */
+  outline:none !important;
+}
+.sospack .city-grid .chip.on{
+  background:#E7F6F8 !important;           /* 선택 상태 */
+  color:#50B4BE !important;
+  border-color:#3EA0AA !important;
+  font-weight:750 !important;              /* 약간 굵게 */
+  box-shadow:0 0 0 3px rgba(66,158,170,.25) !important; /* 선택 링 */
+}
