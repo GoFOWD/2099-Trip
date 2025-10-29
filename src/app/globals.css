@@ -446,3 +446,21 @@ body { padding: 0 1rem; }
 .help-list{ display:grid; gap:12px; padding:12px 12px 0; }
 
 /* ‘알아두세요’ 패널은 이전에 추가한 규칙 재사용 */
+:root {
+  --page-max: 700px;
+}
+
+/* ★ 최대 가로폭 700px + 가운데 정렬 + 기본 여백 */
+.page-wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 12px;
+}
+
+/* ★ 배경 겹침 방지: body에 깔린 배경이미지/그라데이션 끄기 */
+body:has(.page-wrap) {
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  background-color: #F7FAFC; /* 옅은 회청 톤 */
+}
