@@ -1,25 +1,36 @@
 // src/utils/loadPack.js
 export async function loadPack(id) {
+  const withTimeout = (p, ms = 8000) =>
+    new Promise((res, rej) => {
+      const t = setTimeout(() => rej(new Error(`timeout ${ms}ms`)), ms);
+      p.then(v => { clearTimeout(t); res(v); })
+       .catch(e => { clearTimeout(t); rej(e); });
+    });
+
   const fetchJson = async (url) => {
     try {
-      const r = await fetch(url, { cache: "no-store" });
-      if (!r.ok) return null;         // 404면 null
-      return await r.json();          // JSON 파싱 실패시 catch로 내려감
-    } catch {
+      const r = await withTimeout(fetch(url, { cache: "no-store" }), 8000);
+      if (!r.ok) { console.warn("[loadPack] not ok", url, r.status); return null; }
+      return await r.json();
+    } catch (e) {
+      console.error("[loadPack] fetch fail", url, e);
       return null;
     }
   };
 
-  // 1) 요청한 id 그대로 시도 (도시 혹은 국가)
-  let data = await fetchJson(`/data/packs/${id}.json`);
+  const tryId = String(id || "").trim();
+  if (!tryId) throw new Error("empty id");
+
+  // 1) 도시/국가 id 그대로
+  let data = await fetchJson(`/data/packs/${tryId}.json`);
   if (data) return data;
 
-  // 2) 도시형식(JP-TYO 등)이면 앞 2글자 국가코드로 폴백
-  const cc = String(id).slice(0, 2).toUpperCase();
-  if (cc && cc !== id) {
+  // 2) 도시형식이면 앞 2글자(대문자) 국가 폴백
+  const cc = tryId.slice(0, 2).toUpperCase();
+  if (cc && cc !== tryId) {
     data = await fetchJson(`/data/packs/${cc}.json`);
     if (data) return data;
   }
 
-  throw new Error(`pack not found for ${id}`);
+  throw new Error(`pack not found for ${tryId}`);
 }
