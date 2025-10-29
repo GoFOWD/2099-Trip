@@ -10,11 +10,11 @@ const SortOptions = ({ onChange }) => {
   };
 
   return (
-    <section className="bg-white rounded-xl shadow-sm p-[2px] flex flex-wrap items-center gap-1 justify-between">
-      <div className="flex items-center gap-1 text-sm">
+    <section className="bg-white rounded-xl shadow-sm p-3 flex flex-wrap items-center gap-2 justify-between">
+      <div className="flex items-center gap-2 text-sm">
         <button
           onClick={() => handleSelect("recommended")}
-          className={`px-1 py-[3px] rounded-md border ${
+          className={`px-3 py-1 rounded-md border ${
             sort === "recommended"
               ? "border-[#63A3AD] text-[#63A3AD]"
               : "border-slate-300 text-slate-600"
@@ -24,7 +24,7 @@ const SortOptions = ({ onChange }) => {
         </button>
         <button
           onClick={() => handleSelect("direct")}
-          className={`px-1 py-[3px] rounded-md border ${
+          className={`px-3 py-1 rounded-md border ${
             sort === "direct"
               ? "border-[#63A3AD] text-[#63A3AD]"
               : "border-slate-300 text-slate-600"
@@ -34,7 +34,7 @@ const SortOptions = ({ onChange }) => {
         </button>
         <button
           onClick={() => handleSelect("lowest")}
-          className={`px-1 py-[3px] rounded-md border ${
+          className={`px-3 py-1 rounded-md border ${
             sort === "lowest"
               ? "border-[#63A3AD] text-[#63A3AD]"
               : "border-slate-300 text-slate-600"
@@ -47,7 +47,7 @@ const SortOptions = ({ onChange }) => {
       <select
         value={sort}
         onChange={(e) => handleSelect(e.target.value)}
-        className="text-sm border rounded-md px-1 py-[3px] text-slate-600 focus:outline-none focus:border-[#63A3AD]"
+        className="text-sm border rounded-md px-2 py-1 text-slate-600 focus:outline-none focus:border-[#63A3AD]"
       >
         <option value="recommended">추천 정렬</option>
         <option value="shortest">최단 소요 시간</option>

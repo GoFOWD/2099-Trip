@@ -26,7 +26,7 @@ export default function FlightCard({ flight, onDetail }) {
       </div>
 
       <div className="text-right">
-        <div className="text-xl font-bold text-[var(--brandColor)]">
+        <div className="text-l font-bold text-[var(--brandColor)]">
           {flight.price}원
         </div>
         <button

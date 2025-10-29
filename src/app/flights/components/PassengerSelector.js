@@ -39,11 +39,11 @@ export default function PassengerSelector({ onChange }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="p-1 w-full border rounded-lg flex justify-between items-center bg-white hover:border-[#63A3AD] transition"
+        className="w-full border rounded-lg p-3 flex justify-between items-center bg-white hover:border-[#63A3AD] transition"
       >
         <span className="text-sm text-slate-700">{label}</span>
         <svg
-          className={`w-2 h-2 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -59,7 +59,7 @@ export default function PassengerSelector({ onChange }) {
 
       {/* 드롭다운 내용 */}
       {open && (
-        <div className="absolute z-10 w-full bg-white rounded-xl shadow-lg border p-1 space-y-3">
+        <div className="absolute z-10 mt-2 w-full bg-white rounded-xl shadow-lg border p-4 space-y-3">
           {[
             { key: "adult", label: "성인", sub: "만 12세 이상" },
             { key: "child", label: "어린이", sub: "만 2~11세" },
@@ -72,19 +72,19 @@ export default function PassengerSelector({ onChange }) {
                 </div>
                 <div className="text-xs text-slate-400">{sub}</div>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => update(key, -1)}
-                  className="w-2 h-2 border rounded-full text-slate-600 hover:text-[#63A3AD]"
+                  className="w-7 h-7 border rounded-full text-slate-600 hover:text-[#63A3AD]"
                 >
                   −
                 </button>
-                <span className="w-3 text-center text-sm">
+                <span className="w-4 text-center text-sm">
                   {passengers[key]}
                 </span>
                 <button
                   onClick={() => update(key, 1)}
-                  className="w-2 h-2 border rounded-full text-slate-600 hover:text-[#63A3AD]"
+                  className="w-7 h-7 border rounded-full text-slate-600 hover:text-[#63A3AD]"
                 >
                   ＋
                 </button>
