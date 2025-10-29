@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import Header from "@/feature/common/Header";
 import FooterNav from "@/feature/common/FooterNav";
 
@@ -11,26 +13,44 @@ import PaymentButton from "./components/PaymentButton";
 import PassengerModal from "./modals/PassengerModal";
 import BookingDetailModal from "./modals/BookingDetailModal";
 
-const PaymentPage = () => {
+export default function PaymentPage() {
+  const params = useSearchParams();
+  const flightId = params.get("flightId");
+  const seatType = params.get("seat");
+  const price = params.get("price");
+
   const [agreeAll, setAgreeAll] = useState(false);
   const [showPassenger, setShowPassenger] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
 
-  const dummyBooking = {
-    flight: {
+  // 실제라면 flightId를 이용해 API 요청 (예: /api/flights/[id])
+  const [flight, setFlight] = useState(null);
+
+  useEffect(() => {
+    // 🔹 임시 더미 데이터
+    setFlight({
+      id: flightId,
       airline: "대한항공",
       flightNo: "KE123",
       departAirport: "ICN",
       arriveAirport: "NRT",
       departTime: "2025-10-01 08:30",
       arriveTime: "2025-10-01 10:45",
-    },
+      seatType,
+      price: parseInt(price, 10),
+    });
+  }, [flightId, seatType, price]);
+
+  const dummyBooking = {
+    flight,
     passengers: [
       { name: "홍길동", birth: "1990-05-12", gender: "M" },
       { name: "김민지", birth: "1992-07-03", gender: "F" },
     ],
-    total: 900000,
+    total: flight ? flight.price * 2 : 0,
   };
+
+  if (!flight) return null;
 
   return (
     <div className="sospack min-h-screen">
@@ -41,7 +61,7 @@ const PaymentPage = () => {
       </Header>
 
       <main className="max-w-3xl mx-auto p-4 space-y-6 pb-24">
-        <PaymentSummary />
+        <PaymentSummary flight={flight} />
         <PassengerForm />
         <BaggageInsurance />
         <TermsAgreement onChange={setAgreeAll} />
@@ -70,6 +90,4 @@ const PaymentPage = () => {
       )}
     </div>
   );
-};
-
-export default PaymentPage;
+}

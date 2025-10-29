@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const PassengerModal = ({ onClose, passengers = [] }) => {
+export default function PassengerModal({ onClose, passengers = [] }) {
   const [list, setList] = useState(
     passengers.length
       ? passengers
@@ -9,19 +9,20 @@ const PassengerModal = ({ onClose, passengers = [] }) => {
   );
 
   const update = (id, field, value) => {
-    const updated = list.map((p) =>
-      p.id === id ? { ...p, [field]: value } : p
+    setList((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, [field]: value } : p))
     );
-    setList(updated);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
       <div className="absolute inset-0" onClick={onClose} />
       <div
-        className="relative bg-white rounded-[var(--radius-lg)] w-full max-w-lg mx-4 p-6 z-10"
+        className="relative bg-white rounded-[var(--radius-lg)] w-full max-w-lg mx-4 p-6 z-10
+                   max-h-[calc(100svh-40px)] overflow-y-auto"
         style={{ boxShadow: "var(--shadow-md)" }}
       >
+        {/* 헤더 */}
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h2 className="text-lg font-semibold text-[var(--brandColor)]">
             탑승객 정보 입력
@@ -34,6 +35,7 @@ const PassengerModal = ({ onClose, passengers = [] }) => {
           </button>
         </div>
 
+        {/* 폼 영역 */}
         <div className="space-y-4">
           {list.map((p) => (
             <div key={p.id} className="space-y-2">
@@ -65,6 +67,7 @@ const PassengerModal = ({ onClose, passengers = [] }) => {
           ))}
         </div>
 
+        {/* 버튼 */}
         <div className="border-t mt-4 pt-4 flex justify-end">
           <button onClick={onClose} className="btn_broad">
             저장
@@ -73,6 +76,4 @@ const PassengerModal = ({ onClose, passengers = [] }) => {
       </div>
     </div>
   );
-};
-
-export default PassengerModal;
+}

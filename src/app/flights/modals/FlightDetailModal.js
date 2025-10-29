@@ -1,28 +1,21 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const FlightDetailModal = ({ flight, onClose }) => {
+export default function FlightDetailModal({ flight, onClose }) {
   const router = useRouter();
-  const [selectedSeat, setSelectedSeat] = useState("economy");
+  const [selectedSeat, setSelectedSeat] = useState(null);
 
-  const seatOptions = [
-    {
-      key: "economy",
-      name: "일반석",
-      carryOn: "1개 / 7kg",
-      baggage: "15kg",
-      price: flight.price,
-    },
-    {
-      key: "premium",
-      name: "프리미엄석",
-      carryOn: "2개 / 10kg",
-      baggage: "25kg",
-      price: flight.price + 80000,
-    },
-  ];
+  const handlePayment = () => {
+    if (!selectedSeat) return alert("좌석을 선택해주세요.");
+
+    // 쿼리 기반 URL로 이동
+    router.push(
+      `/flights/payment?flightId=${flight.id}&seat=${encodeURIComponent(
+        selectedSeat.type
+      )}&price=${selectedSeat.price}`
+    );
+  };
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
@@ -33,7 +26,7 @@ const FlightDetailModal = ({ flight, onClose }) => {
       >
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h2 className="text-lg font-semibold text-[var(--brandColor)]">
-            항공권 세부사항
+            항공편 세부 정보
           </h2>
           <button
             onClick={onClose}
@@ -43,74 +36,54 @@ const FlightDetailModal = ({ flight, onClose }) => {
           </button>
         </div>
 
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center overflow-hidden">
-            <Image
-              src={flight.airlineLogo || "/default-airline.png"}
-              alt={flight.airline}
-              width={48}
-              height={48}
-              className="object-contain"
-            />
+        {/* 항공편 기본 정보 */}
+        <section className="mb-4">
+          <h3 className="font-semibold mb-1 text-sm text-slate-700">
+            {flight.airline} {flight.flightNo}
+          </h3>
+          <div className="text-sm">
+            {flight.departAirport} → {flight.arriveAirport}
           </div>
-          <div>
-            <div className="font-semibold text-slate-700 text-sm">
-              {flight.airline} {flight.flightNo}
-            </div>
-            <div className="text-xs text-slate-500">
-              {flight.departAirport} → {flight.arriveAirport}
-            </div>
+          <div className="text-xs text-slate-500 mt-1">
+            {flight.departTime} 출발 / {flight.arriveTime} 도착
           </div>
-        </div>
+        </section>
 
-        {/* 좌석 옵션 */}
-        <div className="space-y-3 mb-4">
-          {seatOptions.map((opt) => (
-            <label
-              key={opt.key}
-              className={`block border rounded-xl p-4 cursor-pointer ${
-                selectedSeat === opt.key
-                  ? "border-[var(--brandColor)] bg-[var(--subColor)]"
-                  : "border-slate-200"
-              }`}
-            >
-              <div className="flex justify-between items-center">
-                <span className="font-medium">{opt.name}</span>
-                <input
-                  type="radio"
-                  checked={selectedSeat === opt.key}
-                  onChange={() => setSelectedSeat(opt.key)}
-                />
-              </div>
-              <ul className="text-xs text-slate-600 mt-2 space-y-1">
-                <li>휴대 수하물: {opt.carryOn}</li>
-                <li>위탁 수하물: {opt.baggage}</li>
-              </ul>
-              <div className="text-right text-sm font-bold mt-2">
-                {opt.price.toLocaleString()}원
-              </div>
-            </label>
-          ))}
-        </div>
+        {/* 좌석 선택 */}
+        <section className="mb-4">
+          <h3 className="font-semibold mb-2 text-sm text-slate-700">
+            좌석 선택
+          </h3>
+          <div className="grid grid-cols-1 gap-2">
+            {flight.seats?.map((seat, idx) => (
+              <button
+                key={idx}
+                onClick={() => setSelectedSeat(seat)}
+                className={`p-3 rounded-lg border text-left ${
+                  selectedSeat?.type === seat.type
+                    ? "border-[var(--brandColor)] bg-[var(--subColor)]"
+                    : "border-slate-200"
+                }`}
+              >
+                <div className="font-semibold text-sm">{seat.type}</div>
+                <div className="text-xs text-slate-500">
+                  {seat.price.toLocaleString()}원
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
 
-        {/* 하단 결제 버튼 */}
-        <div className="border-t pt-4 flex justify-between items-center">
-          <span className="text-sm">
-            선택한 좌석:{" "}
-            <strong className="text-[var(--brandColor)]">
-              {seatOptions.find((s) => s.key === selectedSeat).name}
-            </strong>
-          </span>
-          <button
-            onClick={() => router.push("/flights/payment")}
-            className="btn_broad"
-          >
+        {/* 결제 진행 */}
+        <div className="border-t pt-4 flex justify-end gap-2">
+          <button onClick={onClose} className="btn_sub">
+            닫기
+          </button>
+          <button onClick={handlePayment} className="btn_broad">
             결제하기
           </button>
         </div>
       </div>
     </div>
   );
-};
-
-export default FlightDetailModal;
+}

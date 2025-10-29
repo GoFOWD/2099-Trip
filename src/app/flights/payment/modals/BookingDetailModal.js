@@ -1,15 +1,21 @@
 "use client";
 
-const BookingDetailModal = ({ onClose, booking }) => {
+export default function BookingDetailModal({ onClose, booking }) {
+  if (!booking) return null;
   const { flight, passengers, total } = booking;
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+      {/* 배경 클릭 시 닫기 */}
       <div className="absolute inset-0" onClick={onClose} />
+
+      {/* 모달 본체 */}
       <div
-        className="relative bg-white rounded-[var(--radius-lg)] w-full max-w-lg mx-4 p-6 z-10"
+        className="relative bg-white rounded-[var(--radius-lg)] w-full max-w-lg mx-4 p-6 z-10
+                   max-h-[calc(100svh-40px)] overflow-y-auto"
         style={{ boxShadow: "var(--shadow-md)" }}
       >
+        {/* 헤더 */}
         <div className="flex justify-between items-center border-b pb-2 mb-4">
           <h2 className="text-lg font-semibold text-[var(--brandColor)]">
             예약 상세 정보
@@ -64,6 +70,7 @@ const BookingDetailModal = ({ onClose, booking }) => {
           </div>
         </section>
 
+        {/* 버튼 영역 */}
         <div className="border-t mt-4 pt-4 flex justify-end gap-3">
           <button onClick={onClose} className="btn_sub">
             닫기
@@ -73,6 +80,4 @@ const BookingDetailModal = ({ onClose, booking }) => {
       </div>
     </div>
   );
-};
-
-export default BookingDetailModal;
+}

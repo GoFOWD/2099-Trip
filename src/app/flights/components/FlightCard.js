@@ -1,22 +1,16 @@
-"use client"; // 👈 클라이언트 컴포넌트로 지정
+"use client";
 
 export default function FlightCard({ flight, onDetail }) {
   const logoSrc = flight.airlineLogo || "/default-airline.png";
 
   return (
-    <article className="py-1 my-1 bg-white rounded-2xl shadow-sm flex items-center justify-between">
-      <div className="flex items-center gap-1">
-        <div className="m-1 w-3 h-3 bg-slate-100 rounded-full flex items-center justify-center overflow-hidden">
-          {/* 일반 <img> 태그 사용 */}
+    <article className="bg-white p-4 rounded-2xl shadow-sm flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center overflow-hidden">
           <img
             src={logoSrc}
-            alt={flight.airline || "기본 항공사 로고"}
-            width={40}
-            height={40}
-            className="object-contain"
-            onError={(e) => {
-              e.target.src = "/default-airline.png";
-            }} // fallback 안전장치
+            alt={flight.airline}
+            className="w-full h-full object-contain"
           />
         </div>
 
@@ -32,11 +26,13 @@ export default function FlightCard({ flight, onDetail }) {
       </div>
 
       <div className="text-right">
-        <div className="text-l font-bold mx-2">{flight.price}원</div>
+        <div className="text-xl font-bold text-[var(--brandColor)]">
+          {flight.price}원
+        </div>
         <button
           onClick={() => onDetail(flight)}
-          className="mt-1 mr-2 text-sm px-1 py-[5px] rounded-md text-white"
-          style={{ background: "#63A3AD" }}
+          className="mt-2 text-sm px-3 py-1 rounded-md text-white"
+          style={{ background: "var(--brandColor)" }}
         >
           세부사항
         </button>

@@ -1,19 +1,21 @@
-const TravelCard = ({ destination, startDate, endDate, budget }) => {
+export default function TravelCard({
+  destination,
+  startDate,
+  endDate,
+  budget,
+}) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-2 flex items-center justify-between">
-      <div>
-        <div className="text-sm text-slate-500">{destination}</div>
-        <div className="text-sm text-slate-700">
-          {startDate} → {endDate}
-        </div>
-        <div className="text-sm text-slate-600 mt-1">
-          항공료 예산 1인:{" "}
-          <span className="font-semibold text-slate-800">{budget}</span>
-        </div>
+    <div className="bg-white rounded-xl shadow p-4">
+      <h2 className="font-semibold text-[var(--brandColor)] text-base mb-2">
+        ✈ 여행 요약
+      </h2>
+      <div className="text-sm space-y-1">
+        <p>목적지: {destination}</p>
+        <p>
+          일정: {startDate} ~ {endDate}
+        </p>
+        <p>예산: {budget}</p>
       </div>
-      <div className="text-sm text-slate-400">1명 기준</div>
     </div>
   );
-};
-
-export default TravelCard;
+}

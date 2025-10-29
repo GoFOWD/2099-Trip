@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const PassengerForm = () => {
+export default function PassengerForm() {
   const [list, setList] = useState([
     { id: 1, name: "", birth: "", gender: "" },
   ]);
@@ -46,6 +46,4 @@ const PassengerForm = () => {
       ))}
     </section>
   );
-};
-
-export default PassengerForm;
+}
