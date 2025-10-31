@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-const FooterNav = () => {
+export default function FooterNav() {
   const router = useRouter();
   const items = [
     { label: "홈", path: "/" },
@@ -13,15 +13,22 @@ const FooterNav = () => {
   ];
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-white border-t">
-      <div className="max-w-3xl mx-auto flex justify-between text-sm text-slate-600">
-        {["홈", "여행계획", "여행중", "여행기록", "마이"].map((label) => (
-          <button key={label} className="flex-1 py-1 hover:text-[#63A3AD]">
-            {label}
-          </button>
-        ))}
-      </div>
+    <footer
+      className="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3"
+      style={{
+        borderColor: "var(--subColor-hover)",
+        boxShadow: "0 -2px 6px rgba(0,0,0,0.08)",
+      }}
+    >
+      {items.map((item) => (
+        <button
+          key={item.path}
+          onClick={() => router.push(item.path)}
+          className="text-sm font-medium text-slate-700 hover:text-[var(--brandColor)] transition"
+        >
+          {item.label}
+        </button>
+      ))}
     </footer>
   );
-};
-export default FooterNav;
+}

@@ -1,17 +1,16 @@
-const PaymentSummary = () => {
+"use client";
+
+export default function PaymentSummary() {
   return (
-    <section className="card space-y-2">
-      <h2 className="text-sm font-semibold text-slate-700">항공권 요약</h2>
-      <p className="text-sm">대한항공 KE123</p>
-      <p className="text-sm">ICN 인천 → NRT 도쿄</p>
-      <p className="text-sm text-slate-500">성인 2명 기준</p>
-      <hr />
-      <div className="flex justify-between font-semibold">
-        <span>총 금액</span>
-        <span className="text-[var(--brandColor)]">900,000원</span>
+    <section className="card space-y-1">
+      <h2 className="font-semibold text-[var(--brandColor)] text-sm">
+        항공편 요약
+      </h2>
+      <div className="text-xs text-slate-600 leading-relaxed">
+        ✈️ 대한항공 KE123
+        <br /> 인천(ICN) → 도쿄(NRT)
+        <br /> 2025-10-01 08:30 출발 / 10:45 도착
       </div>
     </section>
   );
-};
-
-export default PaymentSummary;
+}

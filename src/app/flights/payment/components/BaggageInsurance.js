@@ -1,18 +1,19 @@
-const BaggageInsurance = () => {
+"use client";
+
+export default function BaggageInsurance() {
   return (
     <section className="card space-y-2">
-      <h2 className="text-sm font-semibold text-slate-700">
-        위탁 수하물 및 보험
+      <h2 className="font-semibold text-[var(--brandColor)] text-sm">
+        수하물 / 보험 옵션
       </h2>
-      <p className="text-sm text-slate-600">
-        비행시간 동안 고객님의 수하물을 안전하게 보호해 드립니다.
-      </p>
-      <label className="flex items-center gap-2 text-sm mt-2">
+      <label className="flex justify-between text-sm">
+        <span>추가 수하물 (20kg)</span>
         <input type="checkbox" />
-        <span>수하물 보험 추가 (+10,000원)</span>
+      </label>
+      <label className="flex justify-between text-sm">
+        <span>여행자 보험</span>
+        <input type="checkbox" />
       </label>
     </section>
   );
-};
-
-export default BaggageInsurance;
+}

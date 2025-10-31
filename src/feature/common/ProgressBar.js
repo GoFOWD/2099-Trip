@@ -1,6 +1,6 @@
 "use client";
 
-const ProgressBar = ({ step = 1, total = 10 }) => {
+export default function ProgressBar({ step = 1, total = 10 }) {
   const percent = (step / total) * 100;
 
   return (
@@ -19,6 +19,4 @@ const ProgressBar = ({ step = 1, total = 10 }) => {
       </div>
     </div>
   );
-};
-
-export default ProgressBar;
+}

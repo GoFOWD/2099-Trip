@@ -1,90 +1,61 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 export default function PassengerSelector({ onChange }) {
-  const [open, setOpen] = useState(false);
-  const [passengers, setPassengers] = useState({
-    adult: 1,
-    child: 0,
-    infant: 0,
-  });
-  const ref = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
 
-  // 총 인원수 계산
-  const total = passengers.adult + passengers.child + passengers.infant;
-  const label =
-    passengers.child === 0 && passengers.infant === 0
-      ? `성인 ${passengers.adult}명`
-      : `성인 ${passengers.adult}, 어린이 ${passengers.child}, 유아 ${passengers.infant}`;
+  const total = adults + children + infants;
 
-  // 드롭다운 외부 클릭 시 닫기
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const update = (type, delta) => {
-    const newVal = Math.max(0, passengers[type] + delta);
-    const next = { ...passengers, [type]: newVal };
-    setPassengers(next);
-    onChange(next);
+  const handleChange = (type, delta) => {
+    if (type === "adults") setAdults(Math.max(0, adults + delta));
+    if (type === "children") setChildren(Math.max(0, children + delta));
+    if (type === "infants") setInfants(Math.max(0, infants + delta));
+    onChange({ adults, children, infants });
   };
 
   return (
-    <div className="relative w-full" ref={ref}>
-      {/* 표시용 버튼 */}
+    <div className="relative">
+      {/* 버튼: 요약 정보 + 드롭 아이콘 */}
       <button
         type="button"
-        onClick={() => setOpen(!open)}
-        className="p-1 w-full border rounded-lg flex justify-between items-center bg-white hover:border-[#63A3AD] transition"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full border rounded-[var(--radius-lg)] p-1 flex justify-between items-center text-sm"
       >
-        <span className="text-sm text-slate-700">{label}</span>
-        <svg
-          className={`w-2 h-2 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        <span>탑승객 {total}명</span>
+        <span className="text-slate-500 text-xs ml-2">
+          {isOpen ? "▲" : "▼"}
+        </span>
       </button>
 
-      {/* 드롭다운 내용 */}
-      {open && (
-        <div className="absolute z-10 w-full bg-white rounded-xl shadow-lg border p-1 space-y-3">
+      {/* 드롭다운 영역 */}
+      {isOpen && (
+        <div
+          className="absolute z-10 bg-white border rounded-[var(--radius-lg)] shadow-md mt-1 p-3 w-full"
+          style={{ boxShadow: "var(--shadow-md)" }}
+        >
           {[
-            { key: "adult", label: "성인", sub: "만 12세 이상" },
-            { key: "child", label: "어린이", sub: "만 2~11세" },
-            { key: "infant", label: "유아", sub: "만 2세 미만" },
-          ].map(({ key, label, sub }) => (
-            <div key={key} className="flex items-center justify-between">
-              <div>
-                <div className="font-medium text-sm text-slate-800">
-                  {label}
-                </div>
-                <div className="text-xs text-slate-400">{sub}</div>
-              </div>
-              <div className="flex items-center">
+            { label: "성인", type: "adults", count: adults },
+            { label: "소아", type: "children", count: children },
+            { label: "유아", type: "infants", count: infants },
+          ].map(({ label, type, count }) => (
+            <div key={type} className="flex justify-between items-center py-1">
+              <span className="text-sm">{label}</span>
+              <div className="flex items-center gap-2">
                 <button
-                  onClick={() => update(key, -1)}
-                  className="w-2 h-2 border rounded-full text-slate-600 hover:text-[#63A3AD]"
+                  type="button"
+                  onClick={() => handleChange(type, -1)}
+                  className="w-6 h-6 flex items-center justify-center border rounded-full text-slate-600 hover:bg-slate-100"
                 >
                   −
                 </button>
-                <span className="w-3 text-center text-sm">
-                  {passengers[key]}
-                </span>
+                <span className="w-5 text-center">{count}</span>
                 <button
-                  onClick={() => update(key, 1)}
-                  className="w-2 h-2 border rounded-full text-slate-600 hover:text-[#63A3AD]"
+                  type="button"
+                  onClick={() => handleChange(type, +1)}
+                  className="w-6 h-6 flex items-center justify-center border rounded-full text-slate-600 hover:bg-slate-100"
                 >
                   ＋
                 </button>

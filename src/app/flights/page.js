@@ -1,25 +1,22 @@
+// src/app/flights/page.js
 "use client";
 import { useState } from "react";
-
-// ✅ 공용 컴포넌트
 import Header from "@/feature/common/Header";
 import ProgressBar from "@/feature/common/ProgressBar";
-import FooterNav from "@/feature/common/FooterNav";
-
-// ✅ flights 전용 컴포넌트
 import TravelCard from "./components/TravelCard";
 import SearchForm from "./components/SearchForm";
 import SortOptions from "./components/SortOptions";
 import FlightCard from "./components/FlightCard";
 import FlightDetailModal from "./modals/FlightDetailModal";
+import FooterNav from "@/feature/common/FooterNav";
 import { sampleResults } from "./components/utils/sampleResults";
 
 export default function FlightsPage() {
   const [results] = useState(sampleResults());
-  const [selected, setSelected] = useState(null);
+  const [selectedFlight, setSelectedFlight] = useState(null);
 
   return (
-    <div className="min-h-screen bg-[var(--subColor)] text-slate-900 pb-20">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] pb-20">
       <Header>
         <ProgressBar step={6} total={10} />
         <TravelCard
@@ -30,19 +27,24 @@ export default function FlightsPage() {
         />
       </Header>
 
-      <main className="max-w-3xl mx-auto p-4 space-y-4">
+      <main className="max-w-3xl mx-auto p-1 space-y-2">
         <SearchForm onSearch={(data) => console.log("search", data)} />
-        <SortOptions onChange={(type) => console.log("정렬:", type)} />
-        {results.map((r) => (
-          <FlightCard key={r.id} flight={r} onDetail={setSelected} />
+        <SortOptions onChange={(sortType) => console.log("정렬:", sortType)} />
+        {results.map((flight) => (
+          <FlightCard
+            key={flight.id}
+            flight={flight}
+            onDetail={setSelectedFlight}
+          />
         ))}
       </main>
 
       <FooterNav />
-      {selected && (
+
+      {selectedFlight && (
         <FlightDetailModal
-          flight={selected}
-          onClose={() => setSelected(null)}
+          flight={selectedFlight}
+          onClose={() => setSelectedFlight(null)}
         />
       )}
     </div>
