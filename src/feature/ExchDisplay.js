@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import SimpleChart from './ExchChart';
 import CurrencyConverter from './ExchConver';
 
 export default function ExchDisplay() {
@@ -70,13 +69,6 @@ export default function ExchDisplay() {
                   </div>
                 </div>
               </div>
-              
-              {/* 그래프 */}
-              <SimpleChart 
-                currency={currency.code} 
-                rate={rate}
-                historicalData={exchangeData?.historical || []}
-              />
             </div>
           );
         })}
