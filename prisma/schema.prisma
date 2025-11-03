@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Schedule {
-  id        String         @id @default(cuid())
+  id        String      @id @default(cuid())
   startDate DateTime
   endDate   DateTime
   budgets   Budget[]
@@ -18,7 +18,7 @@ model Schedule {
   Country   Country[]
   Tour      Tour[]
   userId    String
-  User      User      @relation(fields: [userId], references: [id])
+  User      User        @relation(fields: [userId], references: [id])
 }
 
 enum TripType {
@@ -27,7 +27,7 @@ enum TripType {
 }
 
 model AirTicket {
-  id         String             @id @default(cuid())
+  id         String          @id @default(cuid())
   price      Int
   airline    String
   tripType   TripType
@@ -39,7 +39,7 @@ model AirTicket {
 }
 
 model flightSegment {
-  id               String       @id @default(cuid())
+  id               String    @id @default(cuid())
   departurePort    String
   arrivalPort      String
   departureCountry String
@@ -71,10 +71,10 @@ model Tour {
   rating     Float?
   price      String
 
-  scheduleId    String
-  schedule      Schedule    @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
-  countryId String
-  country   Country @relation(fields: [countryId], references: [id])
+  scheduleId String
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  countryId  String
+  country    Country  @relation(fields: [countryId], references: [id])
 }
 
 model Diary {
@@ -112,29 +112,28 @@ model Amenity {
 }
 
 model Budget {
-  id String @id @default(cuid())
-  airTicketPlan Int
-  hotelPlan Int
-  actualHotelSpending Int
-  totalBudget Int
+  id                      String   @id @default(cuid())
+  airTicketPlan           Int
+  hotelPlan               Int
+  actualHotelSpending     Int
+  totalBudget             Int
   actualAirTicketSpending Int
-  actualTourSpending Int
-  otherSpending Int
-  scheduleId String
-  schedule Schedule @relation(fields: [scheduleId], references: [id])
+  actualTourSpending      Int
+  otherSpending           Int
+  scheduleId              String
+  schedule                Schedule @relation(fields: [scheduleId], references: [id])
 }
 
-
 model Country {
-  id               String   @id @default(cuid())
-  countryCode      String   @unique
-  name             String
-  nameKo           String?     
-  embassyLocation  String?
-  emergencyNumber  String?
+  id              String  @id @default(cuid())
+  countryCode     String  @unique
+  name            String
+  nameKo          String?
+  embassyLocation String?
+  emergencyNumber String?
 
-  userId  String
-  user    User     @relation(fields: [userId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
   cautions   Caution[]
   languages  CountryLanguage[]
@@ -144,8 +143,8 @@ model Country {
 }
 
 model Language {
-  id        String     @id @default(cuid())
-  code      String  @unique
+  id        String            @id @default(cuid())
+  code      String            @unique
   name      String
   countries CountryLanguage[]
 }
@@ -157,15 +156,17 @@ model CountryLanguage {
   language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
   isOfficial Boolean  @default(false)
   notes      String?
+
   @@id([countryId, languageId])
   @@index([languageId])
 }
 
 model Caution {
-  id         String      @id @default(cuid())
-  countryId  String
-  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
-  title      String
-  content    String
+  id        String  @id @default(cuid())
+  countryId String
+  country   Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  title     String
+  content   String
+
   @@index([countryId])
 }

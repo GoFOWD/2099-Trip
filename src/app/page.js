@@ -1,6 +1,3 @@
-"use client";
-import ExchDisplay from '../feature/ExchDisplay';
-
 export default function Home() {
-  return <ExchDisplay />;
+	return '홈페이지';
 }
