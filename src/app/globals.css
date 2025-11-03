@@ -19,9 +19,9 @@
 }
 
 /* ===== 기존 전역 스타일 유지 ===== */
-body {
+/* body {
 	padding: 0 1rem;
-}
+} */
 
 .btn_onboarding {
 	border: none;
