@@ -1,6 +1,6 @@
-import "./globals.css";
-import Providers from "./providers";
-import FooterNav from "@/share/ui/FooterNav";
+import './globals.css';
+import Providers from '../share/lib/providers';
+import FooterVisiable from '@/share/ui/FooterVisiable';
 
 export const metadata = {
   title: "2099-Trip",
