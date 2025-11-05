@@ -137,7 +137,7 @@ export default function signupPage() {
 					/>
 				</div>
 				<form
-					className='mb-4 p-[17px] border-1 rounded-[12px] border-[#F3F4F6] drop-shadow bg-white'
+					className='mb-4 p-[17px] border rounded-xl border-[#F3F4F6] drop-shadow bg-white'
 					onSubmit={handleSubmit}>
 					<div className='mb-4 flex flex-col'>
 						<label htmlFor='email' className='mb-2 text-sm'>
@@ -150,7 +150,7 @@ export default function signupPage() {
 							value={emailInput}
 							placeholder='이메일을 입력하세요'
 							onChange={e => setEmailInput(e.target.value)}
-							className='text-sm not-odd:h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-[12px] focus:outline-2 focus:outline-[var(--brandColor)]'
+							className='text-sm not-odd:h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-xl focus:outline-2 focus:outline-(--brandColor)'
 						/>
 						{emailError ? (
 							<p className='text-sm text-red-500 mt-2'>
@@ -169,7 +169,7 @@ export default function signupPage() {
 							value={nameInput}
 							placeholder='이름을 입력하세요'
 							onChange={e => setNameInput(e.target.value)}
-							className='text-sm h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-[12px] focus:outline-2 focus:outline-[var(--brandColor)]'
+							className='text-sm h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-xl focus:outline-2 focus:outline-(--brandColor)'
 						/>
 					</div>
 					<div className='mb-4 flex flex-col'>
@@ -183,7 +183,7 @@ export default function signupPage() {
 							value={passwordInput}
 							placeholder='비밀번호를 입력하세요'
 							onChange={e => setPasswordInput(e.target.value)}
-							className='text-sm h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-[12px] focus:outline-2 focus:outline-[var(--brandColor)]'
+							className='text-sm h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-xl focus:outline-2 focus:outline-(--brandColor)'
 						/>
 						{passwordError
 							? passwordError.map(error => (
@@ -206,7 +206,7 @@ export default function signupPage() {
 							value={passwordCheck}
 							placeholder='비밀번호를 한번 더 입력하세요'
 							onChange={e => setPasswordCheck(e.target.value)}
-							className='text-sm h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-[12px] focus:outline-2 focus:outline-[var(--brandColor)]'
+							className='text-sm h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-xl focus:outline-2 focus:outline-(--brandColor)'
 						/>
 						{passwordCheckError ? (
 							<p className='text-sm text-red-500 mt-2'>
@@ -219,9 +219,9 @@ export default function signupPage() {
 							type='submit'
 							disabled={btnDisable}
 							className={clsx({
-								'px-4 py-3 w-full h-[48px] text-center bg-[var(--brandColor)] rounded-[12px] text-white cursor-pointer':
+								'px-4 py-3 w-full h-12 text-center bg-(--brandColor) rounded-xl text-white cursor-pointer':
 									btnDisable === false,
-								'px-4 py-3 w-full h-[48px] text-center bg-[var(--brandColor)] rounded-[12px] text-gray-300 opacity-50':
+								'px-4 py-3 w-full h-12 text-center bg-(--brandColor) rounded-xl text-gray-300 opacity-50':
 									btnDisable === true
 							})}>
 							회원가입
@@ -235,7 +235,7 @@ export default function signupPage() {
 							이미 계정이 있으신가요?{' '}
 							<Link
 								href='/login'
-								className='ml-2 text-[var(--brandColor)]'>
+								className='ml-2 text-(--brandColor)'>
 								로그인
 							</Link>
 						</p>
