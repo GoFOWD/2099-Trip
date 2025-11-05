@@ -19,7 +19,7 @@ const authOption = {
 						return null;
 					}
 
-					const isPasswordValid = validatePassword(
+					const isPasswordValid = await validatePassword(
 						credentials.password,
 						user.password
 					);

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { signupSchema } from '@/share/lib/signupSchema';
 import { v4 as uuid } from 'uuid';
+import LoadingSpin from '@/share/ui/LoadinSpin';
 
 export default function signupPage() {
 	const [emailInput, setEmailInput] = useState('');
@@ -94,8 +95,6 @@ export default function signupPage() {
 				})
 			});
 
-			console.log('회원가입 post 요청 완료');
-
 			const data = await result.json();
 
 			if (!result.ok) {
@@ -138,7 +137,8 @@ export default function signupPage() {
 				</div>
 				<form
 					className='mb-4 p-[17px] border rounded-xl border-[#F3F4F6] drop-shadow bg-white'
-					onSubmit={handleSubmit}>
+					onSubmit={handleSubmit}
+					noValidate>
 					<div className='mb-4 flex flex-col'>
 						<label htmlFor='email' className='mb-2 text-sm'>
 							이메일
@@ -219,12 +219,12 @@ export default function signupPage() {
 							type='submit'
 							disabled={btnDisable}
 							className={clsx({
-								'px-4 py-3 w-full h-12 text-center bg-(--brandColor) rounded-xl text-white cursor-pointer':
+								'px-4 py-3 w-full h-12 flex justify-center bg-(--brandColor) rounded-xl text-white cursor-pointer':
 									btnDisable === false,
 								'px-4 py-3 w-full h-12 text-center bg-(--brandColor) rounded-xl text-gray-300 opacity-50':
 									btnDisable === true
 							})}>
-							회원가입
+							{isLoading ? <LoadingSpin size={40} /> : '회원가입'}
 						</button>
 						{fetchError ? (
 							<p className='text-sm text-red-500 mt-2'>

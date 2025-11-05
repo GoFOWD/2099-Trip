@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+import LoadingSpin from '@/share/ui/LoadinSpin';
 
 export default function loginPage() {
 	const [emailInput, setEmailInput] = useState('');
 	const [passwordInput, setPasswordInput] = useState('');
 	const [loginError, setLoginError] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 
 	const router = useRouter();
 
@@ -19,12 +21,15 @@ export default function loginPage() {
 				setLoginError('이메일과 비밀번호를 입력해주세요');
 				return;
 			}
+			setIsLoading(true);
 
 			const result = await signIn('credentials', {
 				email: emailInput,
 				password: passwordInput,
 				redirect: false
 			});
+
+			setIsLoading(false);
 
 			if (!result.ok) {
 				setLoginError('이메일 또는 비밀번호가 일치하지 않습니다');
@@ -54,7 +59,8 @@ export default function loginPage() {
 			<div className='px-4 flex items-center'>
 				<form
 					className='flex-1 mb-4 p-[17px] border rounded-xl border-[#F3F4F6] drop-shadow bg-white'
-					onSubmit={handleSubmit}>
+					onSubmit={handleSubmit}
+					noValidate>
 					<div className='mb-4 flex flex-col'>
 						<label htmlFor='email' className='mb-2 text-sm'>
 							이메일
@@ -93,8 +99,8 @@ export default function loginPage() {
 						) : null}
 						<button
 							type='submit'
-							className='px-4 py-3 w-full h-12 text-center bg-(--brandColor) rounded-xl text-white cursor-pointer'>
-							로그인
+							className='px-4 py-3 w-full h-12 flex justify-center items-center bg-(--brandColor) rounded-xl text-white cursor-pointer'>
+							{isLoading ? <LoadingSpin size={40} /> : '로그인'}
 						</button>
 					</div>
 				</form>
