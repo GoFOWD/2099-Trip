@@ -3,38 +3,29 @@ import KakaoProvider from 'next-auth/providers/kakao';
 import { validatePassword } from '@/share/lib/bcrypt';
 import Credentials from 'next-auth/providers/credentials';
 import { NextResponse } from 'next/server';
+import prisma from '@/share/lib/prisma';
 
 const authOption = {
 	providers: [
 		Credentials({
-			credential: {},
-			async authorize(credential) {
+			credentials: {},
+			async authorize(credentials) {
 				try {
-					if (!credential.email || credential.password) {
-						throw new Error(
-							'이메일과 비밀번호는 필수 입력값 입니다'
-						);
-					}
-
 					const user = await prisma.user.findUnique({
-						where: { email: credential.email }
+						where: { email: credentials.email }
 					});
 
 					if (!user) {
-						throw new Error(
-							'이메일 또는 비밀번호가 일치하지 않습니다'
-						);
+						return null;
 					}
 
 					const isPasswordValid = validatePassword(
-						credential.password,
+						credentials.password,
 						user.password
 					);
 
 					if (!isPasswordValid) {
-						throw new Error(
-							'이메일 또는 비밀번호가 일치하지 않습니다'
-						);
+						return null;
 					}
 
 					return {
@@ -44,12 +35,8 @@ const authOption = {
 					};
 				} catch (error) {
 					console.error(error);
-					return NextResponse.json(
-						{
-							message:
-								'로그인에 실패했습니다 잠시 후 다시 시도해 주세요'
-						},
-						{ state: 500 }
+					throw new Error(
+						'오류가 발생했습니다 잠시 후 다시 시도해 주세요'
 					);
 				}
 			}
