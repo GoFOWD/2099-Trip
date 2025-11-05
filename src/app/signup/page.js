@@ -143,11 +143,6 @@ export default function signupPage() {
 						<label htmlFor='email' className='mb-2 text-sm'>
 							이메일
 						</label>
-						{emailError ? (
-							<p className='text-sm text-red-500 mt-2'>
-								{emailError}
-							</p>
-						) : null}
 						<input
 							type='email'
 							id='email'
@@ -157,6 +152,11 @@ export default function signupPage() {
 							onChange={e => setEmailInput(e.target.value)}
 							className='text-sm not-odd:h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-[12px] focus:outline-2 focus:outline-[var(--brandColor)]'
 						/>
+						{emailError ? (
+							<p className='text-sm text-red-500 mt-2'>
+								{emailError}
+							</p>
+						) : null}
 					</div>
 					<div className='mb-4 flex flex-col'>
 						<label htmlFor='name' className='mb-2 text-sm'>
