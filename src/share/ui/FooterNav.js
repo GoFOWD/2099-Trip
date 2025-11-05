@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 const FooterNav = () => {
 	const pathname = usePathname();
 	return (
-		<nav className='h-[65px] fixed bottom-0 w-full max-w-[700px] border-t border-[#6B7280]'>
+		<nav className='h-[65px] fixed bottom-0 w-full max-w-[700px] border-t border-[#E5E7EB] bg-white'>
 			<div className='flex h-full items-center'>
 				<Link
 					href='/'
