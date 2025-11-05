@@ -1,0 +1,34 @@
+{
+  "contacts": {
+    "embassy": {
+      "name": "주일본 대한민국 대사관",
+      "address": "도쿄도 미나토구 아자부다이 1-2-5",
+      "phone": "+81-3-XXXX-XXXX",
+      "lat": 35.6586,
+      "lng": 139.74,
+      "map": "https://maps.google.com/?q=Embassy+of+the+Republic+of+Korea+Tokyo"
+    },
+    "police": {
+      "name": "아사쿠사 경찰서",
+      "address": "도쿄 타이토구 5-1",
+      "phone": "110",
+      "lat": 35.716,
+      "lng": 139.7967,
+      "map": "https://maps.google.com/?q=Asakusa+Police+Station"
+    },
+    "hospital": {
+      "name": "도쿄 대학 병원",
+      "address": "도쿄 분쿄구 7-3-1",
+      "phone": "+81-3-XXXX-YYYY",
+      "lat": 35.7133,
+      "lng": 139.7627,
+      "map": "https://maps.google.com/?q=The+University+of+Tokyo+Hospital"
+    }
+  },
+  "phrases": [
+    { "kr": "도와주세요!", "jp": "助けてください！" },
+    { "kr": "경찰을 불러주세요.", "jp": "警察を呼んでください。" },
+    { "kr": "병원으로 가고 싶어요.", "jp": "病院へ行きたいです。" },
+    { "kr": "한국 대사관은 어디인가요?", "jp": "韓国大使館はどこですか？" }
+  ]
+}
