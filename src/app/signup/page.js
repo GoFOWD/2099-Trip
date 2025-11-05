@@ -93,10 +93,13 @@ export default function signupPage() {
 					name: nameInput
 				})
 			});
+
 			console.log('회원가입 post 요청 완료');
 
+			const data = await result.json();
+
 			if (!result.ok) {
-				setFetchError(result.error);
+				setFetchError(data.error ?? data.errors ?? '알 수 없는 오류');
 				return;
 			}
 
@@ -104,7 +107,7 @@ export default function signupPage() {
 			setIsLoading(false);
 			router.push('/login');
 		} catch (error) {
-			console.error(error);
+			setFetchError('네트워크 오류가 발생했습니다. 연결을 확인해주세요.');
 		}
 	};
 
@@ -140,6 +143,11 @@ export default function signupPage() {
 						<label htmlFor='email' className='mb-2 text-sm'>
 							이메일
 						</label>
+						{emailError ? (
+							<p className='text-sm text-red-500 mt-2'>
+								{emailError}
+							</p>
+						) : null}
 						<input
 							type='email'
 							id='email'
@@ -149,11 +157,6 @@ export default function signupPage() {
 							onChange={e => setEmailInput(e.target.value)}
 							className='text-sm not-odd:h-[46px] px-[17px] py-[13px] border border-[#D1D5DB] rounded-[12px] focus:outline-2 focus:outline-[var(--brandColor)]'
 						/>
-						{emailError ? (
-							<p className='text-sm text-red-500 mt-2'>
-								{emailError}
-							</p>
-						) : null}
 					</div>
 					<div className='mb-4 flex flex-col'>
 						<label htmlFor='name' className='mb-2 text-sm'>
