@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
@@ -21,6 +21,8 @@ export default function signupPage() {
 
 	const emailSchema = signupSchema.pick({ email: true });
 	const passwordSchema = signupSchema.pick({ password: true });
+
+	const router = useRouter();
 
 	useEffect(() => {
 		if (emailInput.length === 0) {
@@ -100,7 +102,7 @@ export default function signupPage() {
 
 			setFetchError('');
 			setIsLoading(false);
-			redirect('/');
+			router.push('/login');
 		} catch (error) {
 			console.error(error);
 		}

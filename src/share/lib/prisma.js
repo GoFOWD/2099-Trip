@@ -5,7 +5,7 @@ const globalForPrisma = globalThis;
 export const prisma =
 	globalForPrisma.prisma ||
 	new PrismaClient({
-		log: ['query', 'info', 'warn', 'error'] // 필요하면 조정
+		log: ['query', 'info', 'warn', 'error']
 	});
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
