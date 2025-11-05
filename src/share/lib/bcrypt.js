@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 
-export async function hashPasswordt(password) {
+export async function hashPassword(password) {
 	const hashedPassword = await bcrypt.hash(password, 10);
 	return hashedPassword;
 }
@@ -10,4 +10,4 @@ export async function validatePassword(password, hashed) {
 	return isValidate;
 }
 
-export { hashPasswordt, validatePassword };
+export { hashPassword, validatePassword };

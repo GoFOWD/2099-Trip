@@ -11,15 +11,19 @@ const authOption = {
 			async authorize(credential) {
 				try {
 					if (!credential.email || credential.password) {
-						return null;
+						throw new Error(
+							'이메일과 비밀번호는 필수 입력값 입니다'
+						);
 					}
 
 					const user = await prisma.user.findUnique({
-						where: { email: credentials.email }
+						where: { email: credential.email }
 					});
 
 					if (!user) {
-						return null;
+						throw new Error(
+							'이메일 또는 비밀번호가 일치하지 않습니다'
+						);
 					}
 
 					const isPasswordValid = validatePassword(
@@ -28,7 +32,9 @@ const authOption = {
 					);
 
 					if (!isPasswordValid) {
-						return null;
+						throw new Error(
+							'이메일 또는 비밀번호가 일치하지 않습니다'
+						);
 					}
 
 					return {
