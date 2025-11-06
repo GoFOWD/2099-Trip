@@ -48,9 +48,7 @@ export default function FlightCard({ flight, onDetail }) {
 
         {/* 항공편 정보 */}
         <div>
-          <div className="font-semibold text-sm">
-            {flight.airline} {flight.flightNo}
-          </div>
+          <div className="font-semibold text-sm">{flight.airline}</div>
           <div className="text-xs text-slate-500 leading-tight">
             {flight.departAirport}
             <br />→<br />
