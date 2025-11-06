@@ -5,7 +5,7 @@ import FooterNav from './FooterNav';
 
 export default function FooterVisiable() {
 	const pathname = usePathname();
-	const hideFooter = ['/login', '/signup'].includes(pathname);
+	const hideFooter = ['/login', '/signup', '/onboarding'].includes(pathname);
 
 	if (hideFooter) return null;
 	return <FooterNav />;
