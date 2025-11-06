@@ -12,6 +12,7 @@ model Schedule {
   id        String      @id @default(cuid())
   startDate DateTime
   endDate   DateTime
+  companion Int?
   budgets   Budget[]
   AirTicket AirTicket[]
   Hotel     Hotel[]
