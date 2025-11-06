@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import LoadingSpin from '@/share/ui/LoadinSpin';
+import Link from 'next/link';
 
 export default function loginPage() {
 	const [emailInput, setEmailInput] = useState('');
@@ -102,6 +103,14 @@ export default function loginPage() {
 							className='px-4 py-3 w-full h-12 flex justify-center items-center bg-(--brandColor) rounded-xl text-white cursor-pointer'>
 							{isLoading ? <LoadingSpin size={40} /> : '로그인'}
 						</button>
+						<p className='text-sm flex justify-center mt-4'>
+							아직 계정이 없으신가요?{' '}
+							<Link
+								href='/signup'
+								className='ml-2 text-(--brandColor)'>
+								회원가입
+							</Link>
+						</p>
 					</div>
 				</form>
 			</div>
