@@ -133,14 +133,16 @@ model Country {
   embassyLocation String?
   emergencyNumber String?
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
   cautions   Caution[]
   languages  CountryLanguage[]
   tours      Tour[]
   airTickets AirTicket[]
   schedule   Schedule[]
+  User       User?             @relation(fields: [userId], references: [id])
+  userId     String?
+
+  @@index([name])
+  @@index([nameKo])
 }
 
 model Language {
