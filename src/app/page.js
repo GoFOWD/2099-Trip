@@ -1,12 +1,13 @@
 import { getServerSession } from 'next-auth';
-import Onboarding from './onboarding/page';
+import { redirect } from 'next/navigation';
+
 import HomePage from './home/page';
 
 export default async function Home() {
 	const session = await getServerSession();
 
 	if (!session) {
-		return <Onboarding />;
+		redirect('/onboarding');
 	}
 
 	return <HomePage />;
