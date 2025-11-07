@@ -12,7 +12,7 @@ const FooterNav = () => {
 				<Link
 					href='/'
 					className='flex-1 h-full flex flex-col justify-center items-center'>
-					<div className='h-[20px]'>
+					<div className='h-5'>
 						<img
 							src={clsx({
 								'/navIcon/home.svg': pathname !== '/',
@@ -23,8 +23,7 @@ const FooterNav = () => {
 					</div>
 					<span
 						className={clsx({
-							'text-xs text-[var(--brandColor)]':
-								pathname === '/',
+							'text-xs text-(--brandColor)': pathname === '/',
 							'text-xs': pathname !== '/'
 						})}>
 						홈
@@ -33,7 +32,7 @@ const FooterNav = () => {
 				<Link
 					href='/planning'
 					className='flex-1 h-full flex flex-col justify-center items-center'>
-					<div className='h-[20px]'>
+					<div className='h-5'>
 						<img
 							src={clsx({
 								'/navIcon/plan.svg': pathname !== '/planning',
@@ -45,17 +44,17 @@ const FooterNav = () => {
 					</div>
 					<span
 						className={clsx({
-							'text-xs text-[var(--brandColor)]':
+							'text-xs text-(--brandColor)':
 								pathname === '/planning',
 							'text-xs': pathname !== '/planning'
 						})}>
-						여행계획
+						내 일정
 					</span>
 				</Link>
 				<Link
 					href='/traveling'
 					className='flex-1 h-full flex flex-col justify-center items-center'>
-					<div className='h-[20px]'>
+					<div className='h-5'>
 						<img
 							src={clsx({
 								'/navIcon/trip.svg': pathname !== '/traveling',
@@ -67,7 +66,7 @@ const FooterNav = () => {
 					</div>
 					<span
 						className={clsx({
-							'text-xs text-[var(--brandColor)]':
+							'text-xs text-(--brandColor)':
 								pathname === '/traveling',
 							'text-xs': pathname !== '/traveling'
 						})}>
@@ -77,7 +76,7 @@ const FooterNav = () => {
 				<Link
 					href='/diary'
 					className='flex-1 h-full flex flex-col justify-center items-center'>
-					<div className='h-[20px]'>
+					<div className='h-5'>
 						<img
 							src={clsx({
 								'/navIcon/camera.svg': pathname !== '/diary',
@@ -89,7 +88,7 @@ const FooterNav = () => {
 					</div>
 					<span
 						className={clsx({
-							'text-xs text-[var(--brandColor)]':
+							'text-xs text-(--brandColor)':
 								pathname === '/diary',
 							'text-xs': pathname !== '/diary'
 						})}>
@@ -99,7 +98,7 @@ const FooterNav = () => {
 				<Link
 					href='/mypage'
 					className='flex-1 h-full flex flex-col justify-center items-center'>
-					<div className='h-[20px]'>
+					<div className='h-5'>
 						<img
 							src={clsx({
 								'/navIcon/myPage.svg': pathname !== '/mypage',
@@ -111,7 +110,7 @@ const FooterNav = () => {
 					</div>
 					<span
 						className={clsx({
-							'text-xs text-[var(--brandColor)]':
+							'text-xs text-(--brandColor)':
 								pathname === '/mypage',
 							'text-xs': pathname !== '/mypage'
 						})}>
