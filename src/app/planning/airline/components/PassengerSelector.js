@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function PassengerSelector({ onChange }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +14,14 @@ export default function PassengerSelector({ onChange }) {
   const update = (key, delta) => {
     setPassengers((prev) => {
       const value = Math.max(0, prev[key] + delta);
-      const next = { ...prev, [key]: value };
-      onChange?.(next);
-      return next;
+      return { ...prev, [key]: value };
     });
   };
+
+  // ✅ passengers 값이 변경된 후에만 부모에게 전달 (안전)
+  useEffect(() => {
+    onChange?.(passengers);
+  }, [passengers, onChange]);
 
   return (
     <div className="relative">
@@ -44,6 +47,7 @@ export default function PassengerSelector({ onChange }) {
                 : type === "children"
                 ? "소아"
                 : "유아";
+
             return (
               <div
                 key={i}
