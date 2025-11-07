@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function MakeSchedule() {
 	return (
 		<Link
-			href='/planning/schedule'
+			href='/planning'
 			className='w-full h-[150px] bg-linear-to-r from-[#50B4BE] to-[#4AAD94] flex flex-col justify-center items-center rounded-xl'>
 			<Image
 				src='/homeIcon/makeSchedule.svg'
