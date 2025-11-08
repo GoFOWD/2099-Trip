@@ -1,10 +1,11 @@
 import prisma from '@/share/lib/prisma';
 import { getServerSession } from 'next-auth';
+import { authOption } from '../api/auth/[...nextauth]/route';
 
 import LogoutBtn from './components/LogoutBtn';
 
 export default async function myPage() {
-	const session = await getServerSession();
+	const session = await getServerSession(authOption);
 
 	const user = await prisma.user.findUnique({
 		where: { email: session.user.email }

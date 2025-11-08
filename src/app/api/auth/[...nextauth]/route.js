@@ -5,7 +5,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { NextResponse } from 'next/server';
 import prisma from '@/share/lib/prisma';
 
-const authOption = {
+export const authOption = {
 	providers: [
 		Credentials({
 			credentials: {},

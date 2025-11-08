@@ -1,4 +1,3 @@
-import CountryCard from './components/countryCard';
 import SelectCountry from './components/selectCountry';
 
 export default async function planningPage({ searchParams }) {

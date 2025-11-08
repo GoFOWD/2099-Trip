@@ -2,9 +2,10 @@ import QuickIcon from './components/quickBtn';
 import MakeSchedule from './components/makeScedule';
 import prisma from '@/share/lib/prisma';
 import { getServerSession } from 'next-auth';
+import { authOption } from '../api/auth/[...nextauth]/route';
 
 export default async function homePage() {
-	const userSession = await getServerSession();
+	const userSession = await getServerSession(authOption);
 
 	const userSchedules = await prisma.user.findUnique({
 		where: { email: userSession.user.email },
@@ -21,7 +22,7 @@ export default async function homePage() {
 
 	return (
 		<div>
-			<dov className='flex flex-col bg-white'>
+			<div className='flex flex-col bg-white'>
 				<div className=' flex items-center h-[65px] border-b border-[#F3F4F6] px-4 mb-4'>
 					<span className='text-lg font-semibold'>트래블 가이드</span>
 				</div>
@@ -48,7 +49,7 @@ export default async function homePage() {
 						SOS
 					</QuickIcon>
 				</div>
-			</dov>
+			</div>
 			<div className='px-4 mt-4'>
 				<h1 className='font-bold text-xl mb-4'>
 					어디로 떠나고 싶으신가요? ✈️

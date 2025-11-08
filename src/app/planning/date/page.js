@@ -2,9 +2,10 @@ import prisma from '@/share/lib/prisma';
 import DateUI from './components/dateUi';
 
 export default async function Page({ searchParams }) {
-	const codes = Array.isArray(searchParams.countries)
-		? searchParams.countries
-		: [searchParams.countries];
+	const countriesParams = (await searchParams).countries;
+	const codes = Array.isArray(countriesParams)
+		? countriesParams
+		: [countriesParams];
 
 	const countries = await prisma.country.findMany({
 		where: { countryCode: { in: codes } },
@@ -16,5 +17,9 @@ export default async function Page({ searchParams }) {
 		.map(code => countries.find(c => c.countryCode === code))
 		.filter(Boolean);
 
-	return <DateUI selectedCountries={ordered} />;
+	return (
+		<div className='px-4 h-screen'>
+			<DateUI selectedCountries={ordered} />
+		</div>
+	);
 }
