@@ -40,7 +40,7 @@ export default async function homePage() {
 						숙소
 					</QuickIcon>
 					<QuickIcon
-						href='/'
+						href='/exch'
 						src='/homeIcon/exch.svg'
 						alt='환율 정보'>
 						환율
