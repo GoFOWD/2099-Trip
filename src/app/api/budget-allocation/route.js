@@ -7,19 +7,24 @@ export async function GET() {
 	try {
 		// 서버에서 세션 확인
 		const session = await getServerSession(authOption);
-		
-		if (!session || !session.user || !session.user.id) {
+
+		if (!session || !session.user || !session.user.email) {
 			return NextResponse.json(
 				{ error: '인증이 필요합니다' },
 				{ status: 401 }
 			);
 		}
 
-		const userId = session.user.id;
+		const userEmail = session.user.email;
+
+		// 사용자정보 가져오기
+		const user = await prisma.user.findUnique({
+			where: { email: userEmail }
+		});
 
 		// 사용자의 최근 Schedule 가져오기 (최신순)
 		const latestSchedule = await prisma.schedule.findFirst({
-			where: { userId },
+			where: { userId: user.id },
 			orderBy: { startDate: 'desc' },
 			include: {
 				budgets: true
@@ -36,15 +41,19 @@ export async function GET() {
 		// 여행일수 계산 (일 단위)
 		const startDate = new Date(latestSchedule.startDate);
 		const endDate = new Date(latestSchedule.endDate);
-		const travelDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+		const travelDays =
+			Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
 		// Budget 정보 가져오기 (없으면 null)
-		const budget = latestSchedule.budgets.length > 0 
-			? latestSchedule.budgets[0] 
-			: null;
+		const budget =
+			latestSchedule.budgets.length > 0
+				? latestSchedule.budgets[0]
+				: null;
 
 		// 총 예산 (Budget에서 가져오거나, 없으면 기본값)
-		const totalBudget = budget ? Math.floor(budget.totalBudget / 10000) : 200; // 만원 단위
+		const totalBudget = budget
+			? Math.floor(budget.totalBudget / 10000)
+			: 200; // 만원 단위
 
 		// 최소값은 고정값으로 설정 (클라이언트에서도 고정값 사용)
 		const minAirfare = 1; // 만원 단위
@@ -58,11 +67,13 @@ export async function GET() {
 			totalBudget,
 			minAirfare,
 			minAccommodation,
-			budget: budget ? {
-				airTicketPlan: Math.floor(budget.airTicketPlan / 10000),
-				hotelPlan: Math.floor(budget.hotelPlan / 10000),
-				otherSpending: Math.floor(budget.otherSpending / 10000)
-			} : null
+			budget: budget
+				? {
+						airTicketPlan: Math.floor(budget.airTicketPlan / 10000),
+						hotelPlan: Math.floor(budget.hotelPlan / 10000),
+						otherSpending: Math.floor(budget.otherSpending / 10000)
+				  }
+				: null
 		});
 	} catch (error) {
 		console.error('예산 배분 데이터 조회 오류:', error);
@@ -77,20 +88,25 @@ export async function POST(req) {
 	try {
 		// 서버에서 세션 확인
 		const session = await getServerSession(authOption);
-		
-		if (!session || !session.user || !session.user.id) {
+
+		if (!session || !session.user || !session.user.email) {
 			return NextResponse.json(
 				{ error: '인증이 필요합니다' },
 				{ status: 401 }
 			);
 		}
 
-		const userId = session.user.id;
+		const userEmail = session.user.email;
+
+		// 사용자 정보 가져오기
+		const user = await prisma.user.findUnique({
+			where: { email: userEmail }
+		});
 		const { airTicketPlan, hotelPlan, otherSpending } = await req.json(); // 만원 단위
 
 		// 사용자의 최근 Schedule 가져오기 (최신순)
 		const latestSchedule = await prisma.schedule.findFirst({
-			where: { userId },
+			where: { userId: user.id },
 			orderBy: { startDate: 'desc' }
 		});
 
@@ -128,8 +144,8 @@ export async function POST(req) {
 			const existingBudgetForTotal = await prisma.budget.findFirst({
 				where: { scheduleId: latestSchedule.id }
 			});
-			const totalBudget = existingBudgetForTotal 
-				? existingBudgetForTotal.totalBudget 
+			const totalBudget = existingBudgetForTotal
+				? existingBudgetForTotal.totalBudget
 				: 2000000; // 기본값 200만원
 
 			budget = await prisma.budget.create({
@@ -163,4 +179,3 @@ export async function POST(req) {
 		);
 	}
 }
-
