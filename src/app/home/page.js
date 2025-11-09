@@ -45,7 +45,10 @@ export default async function homePage() {
 						alt='환율 정보'>
 						환율
 					</QuickIcon>
-					<QuickIcon href='/' src='/homeIcon/sos.svg' alt='긴급 정보'>
+					<QuickIcon
+						href='/sos'
+						src='/homeIcon/sos.svg'
+						alt='긴급 정보'>
 						SOS
 					</QuickIcon>
 				</div>
