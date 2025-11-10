@@ -7,15 +7,19 @@ export async function POST(req) {
 	try {
 		// 서버에서 세션 확인
 		const session = await getServerSession(authOption);
-		
-		if (!session || !session.user || !session.user.id) {
+
+		if (!session || !session.user || !session.user.email) {
 			return NextResponse.json(
 				{ error: '인증이 필요합니다' },
 				{ status: 401 }
 			);
 		}
 
-		const userId = session.user.id;
+		const user = await prisma.user.findUnique({
+			where: { email: session.user.email }
+		});
+
+		const userId = user.id;
 		const { totalBudget } = await req.json(); // 원 단위
 
 		if (!totalBudget || totalBudget <= 0) {
@@ -83,4 +87,3 @@ export async function POST(req) {
 		);
 	}
 }
-
