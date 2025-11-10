@@ -1,0 +1,105 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
+export default function Schedule({ startDay, endDay, country }) {
+	const waapiRef = useRef(null);
+
+	useEffect(() => {
+		const waapiElement = waapiRef.current;
+
+		if (!waapiElement) return;
+
+		const waapiAnimation = waapiElement.animate(
+			[{ backgroundColor: '#50B4BE' }, { backgroundColor: '#4AAD94' }],
+			{
+				duration: 2000,
+				iterations: Infinity,
+				direction: 'alternate',
+				easing: 'linear'
+			}
+		);
+
+		return () => {
+			waapiAnimation.cancel();
+		};
+	}, []);
+
+	const today = new Date();
+	const dDayms = startDay - today;
+	const dDay = Math.ceil(dDayms / (1000 * 60 * 60 * 24));
+
+	// 한국 시간 보정 (UTC → KST)
+	const startKoreaDate = new Date(startDay.getTime() + 9 * 60 * 60 * 1000);
+	const endKoreaDate = new Date(endDay.getTime() + 9 * 60 * 60 * 1000);
+
+	const startMonth = String(startKoreaDate.getMonth() + 1).padStart(2, '0');
+	const endMonth = String(endKoreaDate.getMonth() + 1).padStart(2, '0');
+
+	const Sday = String(startKoreaDate.getDate()).padStart(2, '0');
+	const Eday = String(endKoreaDate.getDate()).padStart(2, '0');
+
+	// 요일 배열 (일~토)
+	const week = ['일', '월', '화', '수', '목', '금', '토'];
+	const SdayOfWeek = week[startKoreaDate.getDay()];
+	const EdayOfWeek = week[endKoreaDate.getDay()];
+
+	const startDayFormatted = `${startMonth}.${Sday}(${SdayOfWeek})`;
+	const endDayFormatted = `${endMonth}.${Eday}(${EdayOfWeek})`;
+
+	return (
+		<>
+			<div className='container mb-2'>
+				<div className='swatch-container'>
+					<div className='swatch waapi' ref={waapiRef}>
+						<div className='px-4 py-3'>
+							<p className='text-white text-sm font-semibold mb-1'>
+								{country} 여행
+							</p>
+							<p className='text-white text-sm'>
+								D-{dDay}{' '}
+								<span className='text-gray-300'>|</span>{' '}
+								{startDayFormatted} - {endDayFormatted}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<Stylesheet />
+		</>
+	);
+}
+
+// 애니메이션 스타일
+function Stylesheet() {
+	return (
+		<style>
+			{`
+                .container {
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    gap: 30px;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .swatch-container {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 16px;
+                }
+
+                .swatch {
+                    width: 100%;
+                    height: 70px;
+                    border-radius: 12px;
+                    background-color: #4AAD94;
+                }
+
+            `}
+		</style>
+	);
+}

@@ -5,7 +5,7 @@ import { authOption } from '../auth/[...nextauth]/route';
 export async function POST(req) {
 	try {
 		const body = await req.json();
-		const { countryCode, startDay, endDay } = body;
+		const { countryCode, nameKo, startDay, endDay } = body;
 		const session = await getServerSession(authOption);
 		const userEmail = session.user.email;
 
@@ -21,6 +21,7 @@ export async function POST(req) {
 					create: [
 						{
 							countryCode,
+							nameKo,
 							startDate: new Date(startDay),
 							endDate: new Date(endDay)
 						}

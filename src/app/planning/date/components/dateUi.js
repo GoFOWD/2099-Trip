@@ -74,6 +74,7 @@ export default function DateUi({ selectedCountries }) {
 											{
 												countryCode:
 													country.countryCode,
+												nameKo: country.nameKo,
 												startDay: e.target.value
 											}
 										];
@@ -112,6 +113,7 @@ export default function DateUi({ selectedCountries }) {
 											{
 												countryCode:
 													country.countryCode,
+												nameKo: country.nameKo,
 												endDay: e.target.value
 											}
 										];
@@ -162,6 +164,7 @@ export default function DateUi({ selectedCountries }) {
 					onClick={() =>
 						addSchedule({
 							countryCode: date[0].countryCode,
+							nameKo: date[0].nameKo,
 							startDay: date[0].startDay,
 							endDay: date[0].endDay
 						})

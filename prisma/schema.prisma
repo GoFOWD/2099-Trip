@@ -25,6 +25,7 @@ model Schedule {
 model VisitCountry {
   id          String   @id @default(cuid())
   countryCode String
+  nameKo      String?
   startDate   DateTime
   endDate     DateTime
 
