@@ -4,6 +4,7 @@ import prisma from '@/share/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { authOption } from '../api/auth/[...nextauth]/route';
 import Schedule from './components/schedule';
+import Link from 'next/link';
 
 export default async function homePage() {
 	const userSession = await getServerSession(authOption);
@@ -25,7 +26,8 @@ export default async function homePage() {
 		console.log(`스케줄이 ${userSchedules?.length}개 있습니다`);
 	}
 
-	console.log(userSchedules);
+	// console.log(userSchedules);
+	console.log(userSchedules[0].startDate);
 
 	return (
 		<div>
@@ -68,15 +70,17 @@ export default async function homePage() {
 					<MakeSchedule />
 				</div>
 				<div className='mb-4'>
-					<h2 className='font-semibold text-lg'>내 일정</h2>
+					<h2 className='font-semibold text-lg mb-2'>내 일정</h2>
 					{userSchedules.map(schedule => (
-						<div className='mb-2' key={schedule.id}>
+						<Link
+							key={schedule.id}
+							href={`/planning/schedule/${schedule.id}`}>
 							<Schedule
-								startDay={schedule.startDay}
-								endDay={schedule.endDay}
-								country={schedule.visitCountry.nameKo}
+								startDay={schedule.startDate}
+								endDay={schedule.endDate}
+								country={schedule.visitCountry[0].nameKo}
 							/>
-						</div>
+						</Link>
 					))}
 				</div>
 				<div className='mb-4'>
