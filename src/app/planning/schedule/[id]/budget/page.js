@@ -47,7 +47,7 @@ export default function TotalBudgetPage() {
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ totalBudget: budget })
+				body: JSON.stringify({ totalBudget: budget, scheduleId })
 			});
 
 			if (!response.ok) {

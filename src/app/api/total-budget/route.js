@@ -20,7 +20,7 @@ export async function POST(req) {
 		});
 
 		const userId = user.id;
-		const { totalBudget } = await req.json(); // 원 단위
+		const { totalBudget, scheduleId } = await req.json(); // 원 단위
 
 		if (!totalBudget || totalBudget <= 0) {
 			return NextResponse.json(
@@ -30,21 +30,21 @@ export async function POST(req) {
 		}
 
 		// 사용자의 최근 Schedule 가져오기 (최신순)
-		const latestSchedule = await prisma.schedule.findFirst({
-			where: { userId },
-			orderBy: { startDate: 'desc' }
-		});
+		// const latestSchedule = await prisma.schedule.findFirst({
+		// 	where: { userId },
+		// 	orderBy: { startDate: 'desc' }
+		// });
 
-		if (!latestSchedule) {
-			return NextResponse.json(
-				{ error: '여행 일정을 찾을 수 없습니다' },
-				{ status: 404 }
-			);
-		}
+		// if (!latestSchedule) {
+		// 	return NextResponse.json(
+		// 		{ error: '여행 일정을 찾을 수 없습니다' },
+		// 		{ status: 404 }
+		// 	);
+		// }
 
 		// Budget이 이미 있으면 업데이트, 없으면 생성
 		const existingBudget = await prisma.budget.findFirst({
-			where: { scheduleId: latestSchedule.id }
+			where: { scheduleId: scheduleId }
 		});
 
 		let budget;
@@ -67,7 +67,7 @@ export async function POST(req) {
 					actualHotelSpending: 0,
 					actualTourSpending: 0,
 					otherSpending: 0,
-					scheduleId: latestSchedule.id
+					scheduleId
 				}
 			});
 		}

@@ -42,7 +42,7 @@ export default async function schedulePage({ params }) {
 					<CountryInfo visitCountry={visitCountry} />
 				</div>
 				<div className='mb-4'>
-					<h2 className='text-xl font-bold mb-2'>예산 등록</h2>
+					<h2 className='text-xl font-bold mb-2'>예산</h2>
 					{budget.length === 0 ? (
 						<MakeBudget scheduleId={scheduleId} />
 					) : (
@@ -56,7 +56,7 @@ export default async function schedulePage({ params }) {
 					<div className='mb-4'>
 						{airTicket.length === 0 ? (
 							<GoReservation
-								title='항공권 예약'
+								title='항공권'
 								href={`/planning/schedule/${id}/airline`}
 							/>
 						) : (
@@ -66,7 +66,7 @@ export default async function schedulePage({ params }) {
 					<div className='mb-4'>
 						{hotel.length === 0 ? (
 							<GoReservation
-								title='숙소 예약'
+								title='숙소'
 								href={`/planning/schedule/${id}/hotels`}
 							/>
 						) : (
@@ -76,13 +76,18 @@ export default async function schedulePage({ params }) {
 					<div className='mb-4'>
 						{tour.length === 0 ? (
 							<GoReservation
-								title='관광지 예약'
+								title='관광지'
 								href={`/planning/schedule/${id}/tours`}
 							/>
 						) : (
 							<CheckTour tour={tour} />
 						)}
 					</div>
+				</div>
+				<div className='mb-4'>
+					<h2 className='text-xl font-bold mb-2'>
+						준비물 체크 리스트
+					</h2>
 				</div>
 			</div>
 		</div>
