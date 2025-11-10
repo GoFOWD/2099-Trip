@@ -70,7 +70,7 @@ export default function Schedule({ startDay, endDay, country }) {
 	);
 }
 
-// 애니메이션 스타일
+// 애니메이션 스타일 라이브러리 (frame-motion) 사용
 function Stylesheet() {
 	return (
 		<style>
