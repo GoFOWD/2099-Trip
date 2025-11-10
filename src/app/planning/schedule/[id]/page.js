@@ -29,6 +29,9 @@ export default async function schedulePage({ params }) {
 	const hotel = schedule.Hotel;
 	const tour = schedule.Tour;
 
+	console.log('schedule :', schedule);
+	console.log('budget :', budget);
+
 	return (
 		<div>
 			<div className='mb-4'>
@@ -46,36 +49,41 @@ export default async function schedulePage({ params }) {
 						<CheckBudget budget={budget} />
 					)}
 				</div>
-				{/* <div className='mb-4'>
-					{airTicket.length === 0 ? (
-						<GoReservation
-							title='항공권 예약'
-							href={`/planning/schedule/${id}/airline`}
-						/>
-					) : (
-						<CheckAirTicket />
-					)}
-				</div>
 				<div className='mb-4'>
-					{hotel.length === 0 ? (
-						<GoReservation
-							title='숙소 예약'
-							href={`/planning/schedule/${id}/hotels`}
-						/>
-					) : (
-						<CheckHotel airTicket={airTicket} />
-					)}
+					<h2 className='text-xl font-bold mb-2'>
+						여행 준비 진행 상황
+					</h2>
+					<div className='mb-4'>
+						{airTicket.length === 0 ? (
+							<GoReservation
+								title='항공권 예약'
+								href={`/planning/schedule/${id}/airline`}
+							/>
+						) : (
+							<CheckAirTicket />
+						)}
+					</div>
+					<div className='mb-4'>
+						{hotel.length === 0 ? (
+							<GoReservation
+								title='숙소 예약'
+								href={`/planning/schedule/${id}/hotels`}
+							/>
+						) : (
+							<CheckHotel airTicket={airTicket} />
+						)}
+					</div>
+					<div className='mb-4'>
+						{tour.length === 0 ? (
+							<GoReservation
+								title='관광지 예약'
+								href={`/planning/schedule/${id}/tours`}
+							/>
+						) : (
+							<CheckTour tour={tour} />
+						)}
+					</div>
 				</div>
-				<div className='mb-4'>
-					{tour.length === 0 ? (
-						<GoReservation
-							title='관광지 예약'
-							href={`/planning/schedule/${id}/tours`}
-						/>
-					) : (
-						<CheckTour tour={tour} />
-					)}
-				</div> */}
 			</div>
 		</div>
 	);

@@ -12,5 +12,17 @@ export function MakeBudget({ scheduleId }) {
 }
 
 export function CheckBudget({ budget }) {
-	return '예산 등록 완료';
+	const totalBudget = budget[0].totalBudget;
+	const airTicketBudget = budget[0].airTicketPlan;
+	const hotelBudget = budget[0].hotelPlan;
+	const otherBudget = budget[0].otherSpending;
+
+	return (
+		<div>
+			<p>총 예산 : {totalBudget}</p>
+			<p>항공권 예산 : {airTicketBudget}</p>
+			<p>숙소 예산 : {hotelBudget}</p>
+			<p>기타(관광, 식비) 예산 : {otherBudget}</p>
+		</div>
+	);
 }
