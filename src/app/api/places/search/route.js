@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
 	try {
-		const { latitude, longitude, category, radius = 5000 } = await req.json();
+		const { query, latitude, longitude } = await req.json();
 
-		if (!latitude || !longitude) {
+		if (!query || query.trim().length === 0) {
 			return NextResponse.json(
-				{ error: '위도와 경도가 필요합니다' },
+				{ error: '검색어가 필요합니다' },
 				{ status: 400 }
 			);
 		}
@@ -19,36 +19,23 @@ export async function POST(req) {
 			);
 		}
 
-		// 카테고리 매핑
-		const categoryMap = {
-			관광지: 'tourist_attraction',
-			맛집: 'restaurant',
-			쇼핑: 'shopping_mall',
-			축제: 'festival'
-		};
-
-		const type = category && category !== '전체' ? categoryMap[category] : null;
-
-		// Google Places API - Nearby Search
-		const url = 'https://places.googleapis.com/v1/places:searchNearby';
+		// Google Places API - Text Search
+		const url = 'https://places.googleapis.com/v1/places:searchText';
 		const body = {
-			includedTypes: type ? [type] : [
-				'tourist_attraction',
-				'restaurant',
-				'shopping_mall',
-				'store'
-			],
-			locationRestriction: {
-				circle: {
-					center: {
-						latitude,
-						longitude
-					},
-					radius: radius // 미터 단위
+			textQuery: query,
+			languageCode: 'ko',
+			...(latitude && longitude && {
+				locationBias: {
+					circle: {
+						center: {
+							latitude,
+							longitude
+						},
+						radius: 50000 // 50km 반경
+					}
 				}
-			},
-			maxResultCount: 20,
-			languageCode: 'ko' // 한국어로 결과 반환
+			}),
+			maxResultCount: 20
 		};
 
 		const response = await fetch(url, {
@@ -58,16 +45,16 @@ export async function POST(req) {
 				'X-Goog-Api-Key': GOOGLE_API_KEY,
 				'X-Goog-FieldMask':
 					'places.id,places.displayName,places.rating,places.userRatingCount,places.photos,places.location,places.formattedAddress,places.types',
-				'Accept-Language': 'ko' // 한국어 우선
+				'Accept-Language': 'ko'
 			},
 			body: JSON.stringify(body)
 		});
 
 		if (!response.ok) {
 			const errorData = await response.text();
-			console.error('Google Places API 오류:', errorData);
+			console.error('Google Places API 검색 오류:', errorData);
 			return NextResponse.json(
-				{ error: '주변 장소 검색에 실패했습니다' },
+				{ error: '장소 검색에 실패했습니다' },
 				{ status: response.status }
 			);
 		}
@@ -83,16 +70,24 @@ export async function POST(req) {
 				category = '쇼핑';
 			else if (place.types?.includes('tourist_attraction')) category = '관광지';
 
-			// 거리 계산 (하버사인 공식)
-			const distance = calculateDistance(
-				latitude,
-				longitude,
-				place.location.latitude,
-				place.location.longitude
-			);
+			// 거리 계산 (위치가 제공된 경우)
+			let distance = null;
+			if (latitude && longitude && place.location) {
+				const R = 6371; // 지구 반지름 (km)
+				const dLat = ((place.location.latitude - latitude) * Math.PI) / 180;
+				const dLon = ((place.location.longitude - longitude) * Math.PI) / 180;
+				const a =
+					Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+					Math.cos((latitude * Math.PI) / 180) *
+						Math.cos((place.location.latitude * Math.PI) / 180) *
+						Math.sin(dLon / 2) *
+						Math.sin(dLon / 2);
+				const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+				distance = Math.round((R * c) * 10) / 10;
+			}
 
 			// 사진 URL 생성
-			let imageUrl = '/traveling/warning/warning.png'; // 기본 이미지
+			let imageUrl = '/traveling/warning/warning.png';
 			if (place.photos && place.photos.length > 0) {
 				const photoName = place.photos[0].name;
 				imageUrl = `https://places.googleapis.com/v1/${photoName}/media?maxWidthPx=400&key=${GOOGLE_API_KEY}`;
@@ -106,7 +101,6 @@ export async function POST(req) {
 				} else if (place.displayName.text) {
 					placeName = place.displayName.text;
 				} else if (Array.isArray(place.displayName)) {
-					// 여러 언어가 있는 경우 한국어 우선 선택
 					const koreanName = place.displayName.find(
 						name => name.languageCode === 'ko'
 					);
@@ -133,12 +127,11 @@ export async function POST(req) {
 				id: place.id,
 				name: placeName,
 				category,
-				distance: Math.round(distance * 10) / 10, // 소수점 첫째 자리
+				distance,
 				rating: place.rating || 0,
-				userRatingCount: place.userRatingCount || 0, // 리뷰 개수
+				userRatingCount: place.userRatingCount || 0,
 				description: address,
 				image: imageUrl,
-				price: null,
 				location: {
 					latitude: place.location.latitude,
 					longitude: place.location.longitude
@@ -148,26 +141,11 @@ export async function POST(req) {
 
 		return NextResponse.json({ places });
 	} catch (error) {
-		console.error('주변 장소 검색 오류:', error);
+		console.error('장소 검색 오류:', error);
 		return NextResponse.json(
 			{ error: '서버 오류가 발생했습니다' },
 			{ status: 500 }
 		);
 	}
-}
-
-// 하버사인 공식으로 거리 계산 (km)
-function calculateDistance(lat1, lon1, lat2, lon2) {
-	const R = 6371; // 지구 반지름 (km)
-	const dLat = ((lat2 - lat1) * Math.PI) / 180;
-	const dLon = ((lon2 - lon1) * Math.PI) / 180;
-	const a =
-		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-		Math.cos((lat1 * Math.PI) / 180) *
-			Math.cos((lat2 * Math.PI) / 180) *
-			Math.sin(dLon / 2) *
-			Math.sin(dLon / 2);
-	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	return R * c;
 }
 
