@@ -43,7 +43,7 @@ export async function POST(req) {
 		// }
 
 		// Budget이 이미 있으면 업데이트, 없으면 생성
-		const existingBudget = await prisma.budget.findFirst({
+		const existingBudget = await prisma.budget.findUnique({
 			where: { scheduleId: scheduleId }
 		});
 

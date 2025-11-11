@@ -58,6 +58,7 @@ export default async function schedulePage({ params }) {
 							<GoReservation
 								title='항공권'
 								href={`/planning/schedule/${id}/airline`}
+								src='/airRes.svg'
 							/>
 						) : (
 							<CheckAirTicket />
@@ -68,6 +69,7 @@ export default async function schedulePage({ params }) {
 							<GoReservation
 								title='숙소'
 								href={`/planning/schedule/${id}/hotels`}
+								src='/hotelRes.svg'
 							/>
 						) : (
 							<CheckHotel airTicket={airTicket} />
@@ -78,6 +80,7 @@ export default async function schedulePage({ params }) {
 							<GoReservation
 								title='관광지'
 								href={`/planning/schedule/${id}/tours`}
+								src='/tourRes.svg'
 							/>
 						) : (
 							<CheckTour tour={tour} />
