@@ -43,3 +43,25 @@ export async function POST(req) {
 		);
 	}
 }
+
+export async function DELETE(req) {
+	try {
+		const body = await req.json();
+		const { scheduleId } = body;
+
+		await prisma.schedule.delete({
+			where: { id: scheduleId }
+		});
+
+		return NextResponse.json(
+			{ message: '스케줄이 삭제되었습니다' },
+			{ status: 204 }
+		);
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json(
+			{ error: '스케줄 삭제 실패 잠시 후 다시 히도해 주세요' },
+			{ status: 500 }
+		);
+	}
+}

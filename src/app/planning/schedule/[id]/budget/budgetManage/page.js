@@ -20,6 +20,7 @@ export default function BudgetAllocationPage() {
 	const [isAirfareReserved, setIsAirfareReserved] = useState(false); // 항공권 예약 여부
 	const [isAccommodationReserved, setIsAccommodationReserved] =
 		useState(false); // 숙박 예약 여부
+	const [budgetLoading, setBudjetLoading] = useState(false);
 	const params = useParams();
 	const { id } = params;
 	const scheduleId = id;
@@ -29,7 +30,9 @@ export default function BudgetAllocationPage() {
 		const fetchBudgetData = async () => {
 			try {
 				setIsLoading(true);
-				const response = await fetch('/api/budget-allocation');
+				const response = await fetch(
+					`/api/budget-allocation?scheduleId=${scheduleId}`
+				);
 
 				if (!response.ok) {
 					// API 응답에서 에러 메시지 가져오기
@@ -104,6 +107,7 @@ export default function BudgetAllocationPage() {
 
 	// 다음 버튼 클릭 핸들러 (예산 저장)
 	const handleNext = async () => {
+		setBudjetLoading(true);
 		try {
 			// 예약한 항목은 0으로 저장
 			const airTicketPlan = isAirfareReserved ? 0 : airfare;
@@ -130,7 +134,8 @@ export default function BudgetAllocationPage() {
 
 			// 저장 성공 시 다음 페이지로 이동
 			// TODO: 다음 단계 페이지 경로로 수정 필요
-			// router.push('/다음페이지경로');
+			setBudjetLoading(false);
+			router.push(`/planning/schedule/${scheduleId}`);
 		} catch (error) {
 			console.error('예산 저장 오류:', error);
 			alert(error.message || '예산 저장에 실패했습니다');
@@ -143,7 +148,7 @@ export default function BudgetAllocationPage() {
 	};
 
 	return (
-		<div className='min-h-screen bg-white'>
+		<div className='min-h-screen bg-white pb-[65px]'>
 			<Header>
 				<div className='flex items-center justify-between mb-1'>
 					<span className='text-sm text-gray-500'>단계 5/10</span>
@@ -447,7 +452,7 @@ export default function BudgetAllocationPage() {
 
 				{/* 하단 버튼 */}
 				<div className='fixed bottom-[65px] left-0 right-0 max-w-[700px] mx-auto bg-white border-t border-gray-200 p-4 flex gap-3'>
-					<button
+					{/* <button
 						onClick={handlePrevious}
 						className='flex-1 py-3 px-4 rounded-lg border-2 text-center font-medium transition-colors'
 						style={{
@@ -462,7 +467,7 @@ export default function BudgetAllocationPage() {
 							e.currentTarget.style.backgroundColor = 'white';
 						}}>
 						← 이전
-					</button>
+					</button> */}
 					<button
 						onClick={handleNext}
 						className='flex-1 py-3 px-4 rounded-lg text-center font-medium text-white transition-colors'
@@ -475,7 +480,7 @@ export default function BudgetAllocationPage() {
 						onMouseLeave={e => {
 							e.currentTarget.style.backgroundColor = '#50B4BE';
 						}}>
-						다음 →
+						{budgetLoading ? '저장 중입니다' : '예산 저장'}
 					</button>
 				</div>
 			</main>

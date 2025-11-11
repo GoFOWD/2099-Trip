@@ -134,7 +134,7 @@ model Budget {
   actualTourSpending      Int
   otherSpending           Int
   scheduleId              String
-  schedule                Schedule @relation(fields: [scheduleId], references: [id])
+  schedule                Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 }
 
 model Country {

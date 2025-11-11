@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { loadPack } from "../utils/loadPack";
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { loadPack } from '../utils/loadPack';
 
 /* =========================
    글로벌 스타일 (전역 주입)
@@ -103,250 +103,377 @@ body:has(.sospack.help-wrap){
 `;
 
 /* 카드 아이콘 이모지 */
-const KIND_EMOJI = { "대사관":"🏛️", "경찰서":"🚓", "병원":"🏥" };
+const KIND_EMOJI = { 대사관: '🏛️', 경찰서: '🚓', 병원: '🏥' };
 
 export default function HelpPage() {
-  const params = useSearchParams();
-  const country = (params.get("c") || "").toUpperCase();
-  const cityId  = params.get("city") || "";
-  const currentId = cityId || country;
+	const params = useSearchParams();
+	const country = (params.get('c') || '').toUpperCase();
+	const cityId = params.get('city') || '';
+	const currentId = cityId || country;
 
-  const [data, setData] = useState(null);
-  const [err, setErr]   = useState("");
-  const [tab, setTab]   = useState("contact");
-  const [phraseCat, setPhraseCat] = useState("sos");
+	const [data, setData] = useState(null);
+	const [err, setErr] = useState('');
+	const [tab, setTab] = useState('contact');
+	const [phraseCat, setPhraseCat] = useState('sos');
 
-  /* 파라미터 없으면 안내 후 복귀 버튼 제공 */
-  if (!country && !cityId) {
-    return (
-      <div className="sospack help-wrap">
-        <style jsx global>{helpStyles}</style>
-        <header className="help-header">
-          <div className="help-header-left">
-            <div className="help-emoji">🆘</div>
-            <div>
-              <div className="help-title">긴급 도움</div>
-              <div className="help-sub">Emergency Help</div>
-            </div>
-          </div>
-          <button
-            className="help-close"
-            onClick={() =>
-              window.history.length > 1 ? history.back() : (location.href = "/sos")
-            }
-            aria-label="닫기"
-          >
-            ✕
-          </button>
-        </header>
+	/* 파라미터 없으면 안내 후 복귀 버튼 제공 */
+	if (!country && !cityId) {
+		return (
+			<div className='sospack help-wrap'>
+				<style jsx global>
+					{helpStyles}
+				</style>
+				<header className='help-header'>
+					<div className='help-header-left'>
+						<div className='help-emoji'>🆘</div>
+						<div>
+							<div className='help-title'>긴급 도움</div>
+							<div className='help-sub'>Emergency Help</div>
+						</div>
+					</div>
+					<button
+						className='help-close'
+						onClick={() =>
+							window.history.length > 1
+								? history.back()
+								: (location.href = '/sos')
+						}
+						aria-label='닫기'>
+						✕
+					</button>
+				</header>
 
-        <div className="sos-empty">
-          국가/도시 정보가 없습니다. <br/>
-          <button className="help-btn outline" onClick={()=> (location.href="/sos")}>
-            처음으로
-          </button>
-        </div>
-      </div>
-    );
-  }
+				<div className='sos-empty'>
+					국가/도시 정보가 없습니다. <br />
+					<button
+						className='help-btn outline'
+						onClick={() => (location.href = '/sos')}>
+						처음으로
+					</button>
+				</div>
+			</div>
+		);
+	}
 
-  /* 데이터 로드 (loadPack은 인자 하나만; 두번째 arg 안 줌) */
-  useEffect(() => {
-    let alive = true;
-    setErr(""); setData(null);
-    loadPack(currentId)
-      .then(j => {
-        if (!alive) return;
-        setData(j);
-        const keys = Object.keys(j?.phrases || {});
-        const order = ["sos","travel","taxi","hotel","allergy"];
-        setPhraseCat(order.find(k=>keys.includes(k)) || keys[0] || "sos");
-      })
-      .catch(e => {
-        if (!alive) return;
-        setErr("데이터를 불러오지 못했습니다. (" + String(e) + ")");
-      });
-    return () => { alive = false; };
-  }, [currentId]);
+	/* 데이터 로드 (loadPack은 인자 하나만; 두번째 arg 안 줌) */
+	useEffect(() => {
+		let alive = true;
+		setErr('');
+		setData(null);
+		loadPack(currentId)
+			.then(j => {
+				if (!alive) return;
+				setData(j);
+				const keys = Object.keys(j?.phrases || {});
+				const order = ['sos', 'travel', 'taxi', 'hotel', 'allergy'];
+				setPhraseCat(
+					order.find(k => keys.includes(k)) || keys[0] || 'sos'
+				);
+			})
+			.catch(e => {
+				if (!alive) return;
+				setErr('데이터를 불러오지 못했습니다. (' + String(e) + ')');
+			});
+		return () => {
+			alive = false;
+		};
+	}, [currentId]);
 
-  /* 액션 */
-  const call = (num) => {
-    if (!num) return;
-    location.href = `tel:${String(num).replace(/\s+/g,"")}`;
-  };
-  const openMap = (name, addr) => {
-    const q = encodeURIComponent([name, addr].filter(Boolean).join(" "));
-    window.open(`https://maps.google.com/?q=${q}`, "_blank", "noopener,noreferrer");
-  };
-  const shareLocation = async () => {
-    try {
-      if (!navigator.geolocation) return alert("위치 권한을 허용해 주세요.");
-      const pos = await new Promise((res, rej)=>
-        navigator.geolocation.getCurrentPosition(res, rej, {enableHighAccuracy:true, timeout:8000})
-      );
-      const { latitude, longitude } = pos.coords;
-      const url = `https://maps.google.com/?q=${latitude},${longitude}`;
-      if (navigator.share) await navigator.share({title:"SOS 위치", text:"나의 현재 위치", url});
-      else { await navigator.clipboard.writeText(url); alert("링크 복사됨:\n"+url); }
-    } catch { alert("위치를 가져오지 못했습니다."); }
-  };
+	/* 액션 */
+	const call = num => {
+		if (!num) return;
+		location.href = `tel:${String(num).replace(/\s+/g, '')}`;
+	};
+	const openMap = (name, addr) => {
+		const q = encodeURIComponent([name, addr].filter(Boolean).join(' '));
+		window.open(
+			`https://maps.google.com/?q=${q}`,
+			'_blank',
+			'noopener,noreferrer'
+		);
+	};
+	const shareLocation = async () => {
+		try {
+			if (!navigator.geolocation)
+				return alert('위치 권한을 허용해 주세요.');
+			const pos = await new Promise((res, rej) =>
+				navigator.geolocation.getCurrentPosition(res, rej, {
+					enableHighAccuracy: true,
+					timeout: 8000
+				})
+			);
+			const { latitude, longitude } = pos.coords;
+			const url = `https://maps.google.com/?q=${latitude},${longitude}`;
+			if (navigator.share)
+				await navigator.share({
+					title: 'SOS 위치',
+					text: '나의 현재 위치',
+					url
+				});
+			else {
+				await navigator.clipboard.writeText(url);
+				alert('링크 복사됨:\n' + url);
+			}
+		} catch {
+			alert('위치를 가져오지 못했습니다.');
+		}
+	};
 
-  /* 카드 목록 */
-  const cards = useMemo(() => {
-    const arr = [];
-    if (data?.embassy_kr) {
-      const e = data.embassy_kr;
-      arr.push({
-        kind: "대사관",
-        name: e.name || "한국 대사관",
-        address: e.address,
-        phones: (e.phones||[]).map(p=>p.number),
-      });
-    }
-    if (country || cityId) {
-      const cityLabel = cityId ? cityId.split("-").pop() : country;
-      arr.push({
-        kind: "경찰서",
-        name: `${cityLabel} 경찰서`,
-        address: "",
-        phones: (data?.emergency?.police?.number ? [data.emergency.police.number] : []),
-      });
-      arr.push({
-        kind: "병원",
-        name: `${cityLabel} 병원`,
-        address: "",
-        phones: (data?.emergency?.ambulance?.number ? [data.emergency.ambulance.number] : []),
-      });
-    }
-    return arr;
-  }, [data, country, cityId]);
+	/* 카드 목록 */
+	const cards = useMemo(() => {
+		const arr = [];
+		if (data?.embassy_kr) {
+			const e = data.embassy_kr;
+			arr.push({
+				kind: '대사관',
+				name: e.name || '한국 대사관',
+				address: e.address,
+				phones: (e.phones || []).map(p => p.number)
+			});
+		}
+		if (country || cityId) {
+			const cityLabel = cityId ? cityId.split('-').pop() : country;
+			arr.push({
+				kind: '경찰서',
+				name: `${cityLabel} 경찰서`,
+				address: '',
+				phones: data?.emergency?.police?.number
+					? [data.emergency.police.number]
+					: []
+			});
+			arr.push({
+				kind: '병원',
+				name: `${cityLabel} 병원`,
+				address: '',
+				phones: data?.emergency?.ambulance?.number
+					? [data.emergency.ambulance.number]
+					: []
+			});
+		}
+		return arr;
+	}, [data, country, cityId]);
 
-  return (
-    <div className="sospack help-wrap">
-      <style jsx global>{helpStyles}</style>
+	return (
+		<div className='sospack help-wrap pb-[65px]'>
+			<style jsx global>
+				{helpStyles}
+			</style>
 
-      {/* 헤더 */}
-      <header className="help-header">
-        <div className="help-header-left">
-          <div className="help-emoji">🆘</div>
-          <div>
-            <div className="help-title">긴급 도움</div>
-            <div className="help-sub">Emergency Help</div>
-          </div>
-        </div>
-        <button
-          type="button"
-          className="help-close"
-          onClick={() =>
-            window.history.length > 1 ? history.back() : (location.href = "/sos")
-          }
-          aria-label="닫기"
-        >
-          ✕
-        </button>
-      </header>
+			{/* 헤더 */}
+			<header className='help-header'>
+				<div className='help-header-left'>
+					<div className='help-emoji'>🆘</div>
+					<div>
+						<div className='help-title'>긴급 도움</div>
+						<div className='help-sub'>Emergency Help</div>
+					</div>
+				</div>
+				<button
+					type='button'
+					className='help-close'
+					onClick={() =>
+						window.history.length > 1
+							? history.back()
+							: (location.href = '/sos')
+					}
+					aria-label='닫기'>
+					✕
+				</button>
+			</header>
 
-      {/* 탭 레일 */}
-      <div className="help-tabs-rail">
-              <div className="help-tabs">
-          <button className={`help-tab ${tab==="contact"?"on":""}`} onClick={()=>setTab("contact")}>연락처</button>
-          <button className={`help-tab ${tab==="phrases"?"on":""}`} onClick={()=>setTab("phrases")}>현지 표현</button>
-          <button className={`help-tab ${tab==="share"?"on":""}`} onClick={()=>setTab("share")}>위치 공유</button>
-        </div>
-      </div>
+			{/* 탭 레일 */}
+			<div className='help-tabs-rail'>
+				<div className='help-tabs'>
+					<button
+						className={`help-tab ${tab === 'contact' ? 'on' : ''}`}
+						onClick={() => setTab('contact')}>
+						연락처
+					</button>
+					<button
+						className={`help-tab ${tab === 'phrases' ? 'on' : ''}`}
+						onClick={() => setTab('phrases')}>
+						현지 표현
+					</button>
+					<button
+						className={`help-tab ${tab === 'share' ? 'on' : ''}`}
+						onClick={() => setTab('share')}>
+						위치 공유
+					</button>
+				</div>
+			</div>
 
-      {/* 연락처 섹션 안내 */}
-      {tab==="contact" && (
-        <>
-          <div className="help-section-title">긴급 연락처</div>
-          <p className="help-desc">응급 상황 시 연락할 수 있는 기관들입니다.</p>
-        </>
-      )}
+			{/* 연락처 섹션 안내 */}
+			{tab === 'contact' && (
+				<>
+					<div className='help-section-title'>긴급 연락처</div>
+					<p className='help-desc'>
+						응급 상황 시 연락할 수 있는 기관들입니다.
+					</p>
+				</>
+			)}
 
-      {/* 상태 */}
-      {err && <div className="sos-empty">{err}</div>}
-      {!data && !err && <div className="sos-loading">불러오는 중…</div>}
+			{/* 상태 */}
+			{err && <div className='sos-empty'>{err}</div>}
+			{!data && !err && <div className='sos-loading'>불러오는 중…</div>}
 
-      {/* 연락처 탭 */}
-      {data && tab==="contact" && (
-        <>
-          <div className="help-list">
-            {cards.map((c, idx)=>(
-              <section key={idx} className="help-card">
-                <div className="help-card-head">
-                  <div className="help-icon"><span className="help-icon-emoji">{KIND_EMOJI[c.kind] || "❗"}</span></div>
-                  <div className="help-card-titles"><div className="help-card-title">{c.kind}</div></div>
-                </div>
+			{/* 연락처 탭 */}
+			{data && tab === 'contact' && (
+				<>
+					<div className='help-list'>
+						{cards.map((c, idx) => (
+							<section key={idx} className='help-card'>
+								<div className='help-card-head'>
+									<div className='help-icon'>
+										<span className='help-icon-emoji'>
+											{KIND_EMOJI[c.kind] || '❗'}
+										</span>
+									</div>
+									<div className='help-card-titles'>
+										<div className='help-card-title'>
+											{c.kind}
+										</div>
+									</div>
+								</div>
 
-                <div className="help-card-name">{c.name}</div>
-                {c.address && <div className="help-card-addr">{c.address}</div>}
+								<div className='help-card-name'>{c.name}</div>
+								{c.address && (
+									<div className='help-card-addr'>
+										{c.address}
+									</div>
+								)}
 
-                <div className="help-actions">
-                  <button className="help-btn call" onClick={()=>call(c.phones?.[0])}>전화걸기</button>
-                  <button className="help-btn outline" onClick={()=>openMap(c.name, c.address)}>위치보기</button>
-                </div>
-              </section>
-            ))}
-          </div>
+								<div className='help-actions'>
+									<button
+										className='help-btn call'
+										onClick={() => call(c.phones?.[0])}>
+										전화걸기
+									</button>
+									<button
+										className='help-btn outline'
+										onClick={() =>
+											openMap(c.name, c.address)
+										}>
+										위치보기
+									</button>
+								</div>
+							</section>
+						))}
+					</div>
 
-          {/* 알아두세요 */}
-          <section className="help-info">
-            <div className="help-info-title">알아두세요</div>
-            {country === "JP" ? (
-              <ul className="help-info-list">
-                <li>일본 긴급전화: <b>경찰 110</b>, <b>소방/구급 119</b></li>
-                <li>한국 영사콜센터: <a href="tel:+82232100404">+82-2-3210-0404</a></li>
-                <li>관할 연락처: <a href="tel:+81334527787">+81-3-3452-7787 (24시간)</a></li>
-              </ul>
-            ) : (
-              <ul className="help-info-list">
-                <li>현지 긴급전화(경찰/소방/구급)는 위 연락처에서 확인하세요.</li>
-                <li><b>현재 위치 링크</b>를 함께 공유하면 대응이 빨라집니다.</li>
-                <li>여권 분실 시, 한국 대사관/영사관에 즉시 연락하세요.</li>
-              </ul>
-            )}
-          </section>
-        </>
-      )}
+					{/* 알아두세요 */}
+					<section className='help-info'>
+						<div className='help-info-title'>알아두세요</div>
+						{country === 'JP' ? (
+							<ul className='help-info-list'>
+								<li>
+									일본 긴급전화: <b>경찰 110</b>,{' '}
+									<b>소방/구급 119</b>
+								</li>
+								<li>
+									한국 영사콜센터:{' '}
+									<a href='tel:+82232100404'>
+										+82-2-3210-0404
+									</a>
+								</li>
+								<li>
+									관할 연락처:{' '}
+									<a href='tel:+81334527787'>
+										+81-3-3452-7787 (24시간)
+									</a>
+								</li>
+							</ul>
+						) : (
+							<ul className='help-info-list'>
+								<li>
+									현지 긴급전화(경찰/소방/구급)는 위
+									연락처에서 확인하세요.
+								</li>
+								<li>
+									<b>현재 위치 링크</b>를 함께 공유하면 대응이
+									빨라집니다.
+								</li>
+								<li>
+									여권 분실 시, 한국 대사관/영사관에 즉시
+									연락하세요.
+								</li>
+							</ul>
+						)}
+					</section>
+				</>
+			)}
 
-      {/* 현지 표현 탭 */}
-      {data && tab==="phrases" && (
-        <>
-          <div className="help-pills">
-            {Object.keys(data?.phrases || {}).map(k=>(
-              <button key={k} className={`help-pill ${k===phraseCat?"on":""}`} onClick={()=>setPhraseCat(k)}>
-                {k.toUpperCase()}
-              </button>
-            ))}
-          </div>
+			{/* 현지 표현 탭 */}
+			{data && tab === 'phrases' && (
+				<>
+					<div className='help-pills'>
+						{Object.keys(data?.phrases || {}).map(k => (
+							<button
+								key={k}
+								className={`help-pill ${
+									k === phraseCat ? 'on' : ''
+								}`}
+								onClick={() => setPhraseCat(k)}>
+								{k.toUpperCase()}
+							</button>
+						))}
+					</div>
 
-          <section className="help-card">
-            <div className="phrase-list">
-              {(data?.phrases?.[phraseCat] || []).map((row, i)=>(
-                <div className="phrase" key={i}>
-                  {row.title && <div className="ko" style={{marginBottom:4}}>{row.title}</div>}
-                  {row.ko && <div className="ko">{row.ko}</div>}
-                  {row.local && <div className="local">{row.local}</div>}
-                  {row.roma && <div className="roma">{row.roma}</div>}
-                  {row.en && <div className="en">{row.en}</div>}
-                </div>
-              ))}
-              {(!data?.phrases?.[phraseCat] || data.phrases[phraseCat].length===0) && (
-                <div className="sos-empty">이 카테고리에 문구가 없습니다.</div>
-              )}
-            </div>
-          </section>
-        </>
-      )}
+					<section className='help-card'>
+						<div className='phrase-list'>
+							{(data?.phrases?.[phraseCat] || []).map(
+								(row, i) => (
+									<div className='phrase' key={i}>
+										{row.title && (
+											<div
+												className='ko'
+												style={{ marginBottom: 4 }}>
+												{row.title}
+											</div>
+										)}
+										{row.ko && (
+											<div className='ko'>{row.ko}</div>
+										)}
+										{row.local && (
+											<div className='local'>
+												{row.local}
+											</div>
+										)}
+										{row.roma && (
+											<div className='roma'>
+												{row.roma}
+											</div>
+										)}
+										{row.en && (
+											<div className='en'>{row.en}</div>
+										)}
+									</div>
+								)
+							)}
+							{(!data?.phrases?.[phraseCat] ||
+								data.phrases[phraseCat].length === 0) && (
+								<div className='sos-empty'>
+									이 카테고리에 문구가 없습니다.
+								</div>
+							)}
+						</div>
+					</section>
+				</>
+			)}
 
-      {/* 위치 공유 탭 */}
-      {tab==="share" && (
-        <section className="help-card">
-          <div className="help-card-name" style={{marginBottom:8}}>내 위치 공유</div>
-          <p className="help-desc" style={{marginTop:0}}>현재 좌표를 지도 링크로 공유합니다.</p>
-          <button className="help-btn call" onClick={shareLocation}>현재 위치 보내기</button>
-        </section>
-      )}
-    </div>
-  );
+			{/* 위치 공유 탭 */}
+			{tab === 'share' && (
+				<section className='help-card'>
+					<div className='help-card-name' style={{ marginBottom: 8 }}>
+						내 위치 공유
+					</div>
+					<p className='help-desc' style={{ marginTop: 0 }}>
+						현재 좌표를 지도 링크로 공유합니다.
+					</p>
+					<button className='help-btn call' onClick={shareLocation}>
+						현재 위치 보내기
+					</button>
+				</section>
+			)}
+		</div>
+	);
 }

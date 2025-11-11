@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOption } from '../auth/[...nextauth]/route';
 import prisma from '@/share/lib/prisma';
 
-export async function GET() {
+export async function GET(req) {
 	try {
 		// 서버에서 세션 확인
 		const session = await getServerSession(authOption);
@@ -22,33 +22,34 @@ export async function GET() {
 			where: { email: userEmail }
 		});
 
-		// 사용자의 최근 Schedule 가져오기 (최신순)
-		const latestSchedule = await prisma.schedule.findFirst({
-			where: { userId: user.id },
-			orderBy: { startDate: 'desc' },
+		// 현재 스케줄Id 쿼리 스트링으로 받기
+		const { searchParams } = req.nextUrl;
+		const scheduleId = searchParams.get('scheduleId');
+
+		// Schedule 가져오기
+		const schedule = await prisma.schedule.findUnique({
+			where: { id: scheduleId },
+			// orderBy: { startDate: 'desc' },
 			include: {
 				budgets: true
 			}
 		});
 
-		if (!latestSchedule) {
-			return NextResponse.json(
-				{ error: '여행 일정을 찾을 수 없습니다' },
-				{ status: 404 }
-			);
-		}
+		// if (!latestSchedule) {
+		// 	return NextResponse.json(
+		// 		{ error: '여행 일정을 찾을 수 없습니다' },
+		// 		{ status: 404 }
+		// 	);
+		// }
 
 		// 여행일수 계산 (일 단위)
-		const startDate = new Date(latestSchedule.startDate);
-		const endDate = new Date(latestSchedule.endDate);
+		const startDate = new Date(schedule.startDate);
+		const endDate = new Date(schedule.endDate);
 		const travelDays =
 			Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
 		// Budget 정보 가져오기 (없으면 null)
-		const budget =
-			latestSchedule.budgets.length > 0
-				? latestSchedule.budgets[0]
-				: null;
+		const budget = schedule.budgets.length > 0 ? schedule.budgets[0] : null;
 
 		// 총 예산 (Budget에서 가져오거나, 없으면 기본값)
 		const totalBudget = budget
@@ -60,9 +61,9 @@ export async function GET() {
 		const minAccommodation = 1; // 만원 단위
 
 		return NextResponse.json({
-			scheduleId: latestSchedule.id,
-			startDate: latestSchedule.startDate,
-			endDate: latestSchedule.endDate,
+			scheduleId: schedule.id,
+			startDate: schedule.startDate,
+			endDate: schedule.endDate,
 			travelDays,
 			totalBudget,
 			minAirfare,

@@ -75,7 +75,7 @@ export default function ExchPage() {
 		: '0';
 
 	return (
-		<div className='min-h-screen bg-gray-50'>
+		<div className='min-h-screen bg-gray-50 pb-[65px]'>
 			<div className='bg-white shadow-lg p-3 md:p-6 mb-0 md:mb-6 md:rounded-lg md:mx-0'>
 				<h1 className='text-xl md:text-3xl font-bold text-gray-800 mb-3 md:mb-6'>
 					실시간 환율

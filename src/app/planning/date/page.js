@@ -18,7 +18,7 @@ export default async function Page({ searchParams }) {
 		.filter(Boolean);
 
 	return (
-		<div className='px-4 h-screen'>
+		<div className='px-4 h-screen pb-[65px]'>
 			<DateUI selectedCountries={ordered} />
 		</div>
 	);
