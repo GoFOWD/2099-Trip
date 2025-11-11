@@ -24,8 +24,9 @@ export default function TotalBudgetPage() {
 		async function load() {
 			const existBudget = await fetchBudget(scheduleId);
 			console.log('existBudget : ', existBudget);
-			if (!existBudget) {
+			if (!existBudget.budgets[0]) {
 				setBudget(0);
+				return;
 			}
 			const initialBudget = existBudget.budgets[0].totalBudget;
 			setBudget(initialBudget);
