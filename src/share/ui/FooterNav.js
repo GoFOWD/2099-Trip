@@ -57,9 +57,9 @@ const FooterNav = () => {
 					<div className='h-5'>
 						<img
 							src={clsx({
-								'/navIcon/trip.svg': pathname !== '/traveling',
+								'/navIcon/trip.svg': !pathname.startsWith('/traveling'),
 								'/navIcon/checkedTrip.svg':
-									pathname === '/traveling'
+									pathname.startsWith('/traveling')
 							})}
 							width={15}
 						/>
@@ -67,8 +67,8 @@ const FooterNav = () => {
 					<span
 						className={clsx({
 							'text-xs text-(--brandColor)':
-								pathname === '/traveling',
-							'text-xs': pathname !== '/traveling'
+								pathname.startsWith('/traveling'),
+							'text-xs': !pathname.startsWith('/traveling')
 						})}>
 						여행중
 					</span>
