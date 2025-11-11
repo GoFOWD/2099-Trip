@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
 					/>
 				</div>
 			</header>
-			<main>{children}</main>
+			<main className='pb-[65px]'>{children}</main>
 		</div>
 	);
 }

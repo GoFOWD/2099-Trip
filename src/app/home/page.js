@@ -27,7 +27,7 @@ export default async function homePage() {
 	}
 
 	return (
-		<div>
+		<div className='pb-[65px]'>
 			<div className='flex flex-col bg-white'>
 				<div className=' flex items-center h-[65px] border-b border-[#F3F4F6] px-4 mb-4'>
 					<span className='text-lg font-semibold'>트래블 가이드</span>

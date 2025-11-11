@@ -90,7 +90,7 @@ export default function TotalBudgetPage() {
 	};
 
 	return (
-		<div className='min-h-screen bg-white'>
+		<div className='min-h-screen bg-white pb-[65px]'>
 			<Header>
 				<div className='flex items-center justify-between mb-1'>
 					<span className='text-sm text-gray-500'>단계 4/10</span>

@@ -6,6 +6,14 @@ import { usePathname } from 'next/navigation';
 
 const FooterNav = () => {
 	const pathname = usePathname();
+	const hideNav = ['/onboarding', '/login', '/signup'];
+
+	const isHide = hideNav.includes(pathname);
+
+	if (isHide) {
+		return null;
+	}
+
 	return (
 		<nav className='h-[65px] fixed bottom-0 w-full max-w-[700px] border-t border-[#E5E7EB] bg-white'>
 			<div className='flex h-full items-center'>
@@ -57,7 +65,8 @@ const FooterNav = () => {
 					<div className='h-5'>
 						<img
 							src={clsx({
-								'/navIcon/trip.svg': !pathname.startsWith('/traveling'),
+								'/navIcon/trip.svg':
+									!pathname.startsWith('/traveling'),
 								'/navIcon/checkedTrip.svg':
 									pathname.startsWith('/traveling')
 							})}

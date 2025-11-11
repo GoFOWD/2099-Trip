@@ -33,7 +33,7 @@ export default async function schedulePage({ params }) {
 	console.log('budget :', budget);
 
 	return (
-		<div>
+		<div className='pb-[65px]'>
 			<div className='mb-4'>
 				<MainCard visitCountry={visitCountry} />
 			</div>

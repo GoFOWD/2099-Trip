@@ -1,6 +1,6 @@
 import './globals.css';
 import Providers from '../share/lib/providers';
-import FooterVisiable from '@/share/ui/FooterVisiable';
+import FooterNav from '@/share/ui/FooterNav';
 import { pretendard } from '@/share/ui/fonts';
 
 export const metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
 				<Providers>
 					<main className='bg-[#f3f4f6]'>{children}</main>
 					<footer>
-						<FooterVisiable />
+						<FooterNav />
 					</footer>
 				</Providers>
 			</body>

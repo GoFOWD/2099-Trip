@@ -233,7 +233,7 @@ export default function EmergencyWarningPage() {
 	}, [country]);
 
 	return (
-		<main className='min-h-screen bg-[#F5F7F9] text-slate-900'>
+		<main className='min-h-screen bg-[#F5F7F9] text-slate-900 pb-[65px]'>
 			{/* 헤더: 65px */}
 			<header
 				className='sticky top-0 z-20 w-full border-b border-slate-200 bg-white'
