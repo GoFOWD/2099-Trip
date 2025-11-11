@@ -18,6 +18,7 @@ model Schedule {
   Hotel        Hotel[]
   visitCountry VisitCountry[]
   Tour         Tour[]
+  ScheduleItem ScheduleItem[]
   userId       String
   User         User           @relation(fields: [userId], references: [id])
 }
@@ -183,4 +184,17 @@ model Caution {
   content   String
 
   @@index([countryId])
+}
+
+model ScheduleItem {
+  id         String   @id @default(cuid())
+  title      String
+  location   String?
+  datetime   DateTime
+  scheduleId String
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([scheduleId, datetime])
 }

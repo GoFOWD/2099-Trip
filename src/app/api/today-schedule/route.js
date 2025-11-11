@@ -40,7 +40,8 @@ export async function GET(req) {
 					}
 				},
 				Hotel: true,
-				Tour: true
+				Tour: true,
+				ScheduleItem: true
 			}
 		});
 
@@ -161,6 +162,23 @@ export async function GET(req) {
 			}
 		});
 
+		// 사용자가 추가한 일정 추가
+		schedule.ScheduleItem.forEach(item => {
+			const itemDate = new Date(item.datetime);
+			if (itemDate >= todayStart && itemDate <= todayEnd) {
+				todaySchedule.push({
+					id: `custom-${item.id}`,
+					type: 'custom',
+					time: itemDate.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }),
+					title: item.title,
+					location: item.location || '',
+					status: itemDate <= today ? 'completed' : 'upcoming',
+					hasNavigation: true,
+					datetime: itemDate.toISOString()
+				});
+			}
+		});
+
 		// 시간순으로 정렬
 		todaySchedule.sort((a, b) => {
 			return new Date(a.datetime) - new Date(b.datetime);
@@ -207,11 +225,31 @@ export async function POST(req) {
 			);
 		}
 
-		// 일단 클라이언트 측에서 관리하도록 하거나, 나중에 별도 모델 추가
-		// 현재는 성공 응답만 반환
+		// Schedule 존재 확인
+		const schedule = await prisma.schedule.findUnique({
+			where: { id: scheduleId }
+		});
+
+		if (!schedule) {
+			return NextResponse.json(
+				{ error: '일정을 찾을 수 없습니다' },
+				{ status: 404 }
+			);
+		}
+
+		// 데이터베이스에 일정 저장
+		const scheduleItem = await prisma.scheduleItem.create({
+			data: {
+				title,
+				location: location || null,
+				datetime: new Date(datetime),
+				scheduleId
+			}
+		});
+
 		return NextResponse.json({
 			success: true,
-			id: `custom-${Date.now()}`,
+			id: `custom-${scheduleItem.id}`,
 			time,
 			title,
 			location: location || '',

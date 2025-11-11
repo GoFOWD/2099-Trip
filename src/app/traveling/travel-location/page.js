@@ -1,13 +1,35 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { getWeather } from '@/share/util/getWeather';
 
 const TEAM_MINT = '#50B4BE';
 
+// 날짜 차이 계산 유틸 함수
+const calculateDayDifference = (startDate, today) => {
+	const startDateOnly = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+	const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+	const daysDiff = Math.ceil((todayOnly - startDateOnly) / (1000 * 60 * 60 * 24));
+	return daysDiff < 0 ? daysDiff : daysDiff + 1;
+};
+
+// 하버사인 공식으로 거리 계산 (km)
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+	const R = 6371;
+	const dLat = ((lat2 - lat1) * Math.PI) / 180;
+	const dLon = ((lon2 - lon1) * Math.PI) / 180;
+	const a =
+		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+		Math.cos((lat1 * Math.PI) / 180) *
+			Math.cos((lat2 * Math.PI) / 180) *
+			Math.sin(dLon / 2) *
+			Math.sin(dLon / 2);
+	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	return R * c;
+};
+
 export default function TravelLocationPage() {
-	const router = useRouter();
 	const [currentTab, setCurrentTab] = useState('nearby'); // nearby, schedule, route
 	const [selectedCategory, setSelectedCategory] = useState('전체');
 	const [currentLocation, setCurrentLocation] = useState({
@@ -46,7 +68,6 @@ export default function TravelLocationPage() {
 	const searchTimeoutRef = useRef(null); // 검색 디바운스용
 	const [showAddScheduleModal, setShowAddScheduleModal] = useState(false); // 일정 추가 모달 표시 여부
 	const [selectedPlaceForSchedule, setSelectedPlaceForSchedule] = useState(null); // 일정 추가할 장소
-	const [customSchedules, setCustomSchedules] = useState([]); // 사용자가 추가한 일정
 	const [currentScheduleId, setCurrentScheduleId] = useState(null); // 현재 스케줄 ID
 
 	// 카테고리 목록
@@ -54,23 +75,12 @@ export default function TravelLocationPage() {
 
 	// 날씨 정보 가져오기 함수
 	const fetchWeather = useCallback(async (latitude, longitude) => {
-		if (!latitude || !longitude) return;
-
-		try {
-			const response = await fetch(`/api/weather?lat=${latitude}&lon=${longitude}`);
-			
-			if (!response.ok) {
-				throw new Error('날씨 정보 가져오기 실패');
-			}
-
-			const data = await response.json();
+		const weatherData = await getWeather(latitude, longitude);
+		if (weatherData) {
 			setWeather({
-				temperature: data.temperature,
-				condition: data.condition
+				temperature: weatherData.temperature,
+				condition: weatherData.condition
 			});
-		} catch (error) {
-			console.error('날씨 정보 가져오기 오류:', error);
-			// 에러 시 기본값 유지
 		}
 	}, []);
 
@@ -110,6 +120,12 @@ export default function TravelLocationPage() {
 		[selectedCategory]
 	);
 
+	// 위치 업데이트 후 공통 작업 (주변 장소 검색 및 날씨 정보 가져오기)
+	const updateLocationAndFetchData = useCallback((latitude, longitude) => {
+		searchNearbyPlaces(latitude, longitude);
+		fetchWeather(latitude, longitude);
+	}, [searchNearbyPlaces, fetchWeather]);
+
 	// 기본 위치 가져오기 (여행 국가의 수도 공항)
 	useEffect(() => {
 		const fetchDefaultLocation = async () => {
@@ -134,16 +150,7 @@ export default function TravelLocationPage() {
 				if (data.startDate && data.endDate) {
 					const startDate = new Date(data.startDate);
 					const today = new Date();
-					
-					// 날짜만 비교 (시간 제거)
-					const startDateOnly = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-					const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-					
-					// 날짜 차이 계산 (일 단위)
-					const daysDiff = Math.ceil((todayOnly - startDateOnly) / (1000 * 60 * 60 * 24));
-					
-					// 여행 시작 전이면 음수, 여행 중이면 양수
-					let day = daysDiff < 0 ? daysDiff : daysDiff + 1;
+					const day = calculateDayDifference(startDate, today);
 					
 					setScheduleInfo({
 						startDate: data.startDate,
@@ -172,13 +179,10 @@ export default function TravelLocationPage() {
 							setCurrentLocation(prev => ({
 								...prev,
 								name: saved.name || defaultLocation.name,
-								address: saved.timestamp
-									? '현재 위치'
-									: '현재 위치'
+								address: '현재 위치'
 							}));
 							// 저장된 위치로 주변 장소 검색 및 날씨 정보 가져오기
-							searchNearbyPlaces(saved.latitude, saved.longitude);
-							fetchWeather(saved.latitude, saved.longitude);
+							updateLocationAndFetchData(saved.latitude, saved.longitude);
 							return;
 						}
 					} catch {
@@ -194,8 +198,7 @@ export default function TravelLocationPage() {
 					address: '현재 위치'
 				}));
 				// 기본 위치로 주변 장소 검색 및 날씨 정보 가져오기
-				searchNearbyPlaces(defaultLocation.latitude, defaultLocation.longitude);
-				fetchWeather(defaultLocation.latitude, defaultLocation.longitude);
+				updateLocationAndFetchData(defaultLocation.latitude, defaultLocation.longitude);
 			} catch (error) {
 				console.error('기본 위치 가져오기 오류:', error);
 				// 에러 시 기본값 (일본)
@@ -212,13 +215,12 @@ export default function TravelLocationPage() {
 					...prev,
 					name: defaultLocation.name
 				}));
-				searchNearbyPlaces(defaultLocation.latitude, defaultLocation.longitude);
-				fetchWeather(defaultLocation.latitude, defaultLocation.longitude);
+				updateLocationAndFetchData(defaultLocation.latitude, defaultLocation.longitude);
 			}
 		};
 
 		fetchDefaultLocation();
-	}, [searchNearbyPlaces, fetchWeather]);
+	}, [updateLocationAndFetchData]);
 
 	// 실시간 위치 추적
 	useEffect(() => {
@@ -246,22 +248,12 @@ export default function TravelLocationPage() {
 				// 위치 업데이트 (100m 이상 이동했을 때만 업데이트)
 				setLocation(prev => {
 					if (prev && prev.latitude && prev.longitude) {
-						// 하버사인 공식으로 거리 계산 (km)
-						const R = 6371;
-						const dLat =
-							((latitude - prev.latitude) * Math.PI) / 180;
-						const dLon =
-							((longitude - prev.longitude) * Math.PI) / 180;
-						const a =
-							Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-							Math.cos((prev.latitude * Math.PI) / 180) *
-								Math.cos((latitude * Math.PI) / 180) *
-								Math.sin(dLon / 2) *
-								Math.sin(dLon / 2);
-						const c =
-							2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-						const distance = R * c;
-
+						const distance = calculateDistance(
+							prev.latitude,
+							prev.longitude,
+							latitude,
+							longitude
+						);
 						// 100m 이상 이동했을 때만 업데이트
 						if (distance < 0.1) {
 							return prev;
@@ -285,8 +277,7 @@ export default function TravelLocationPage() {
 				);
 
 				// 주변 장소 검색 및 날씨 정보 가져오기
-				searchNearbyPlaces(latitude, longitude);
-				fetchWeather(latitude, longitude);
+				updateLocationAndFetchData(latitude, longitude);
 			},
 			error => {
 				console.error('위치 추적 오류:', error);
@@ -305,8 +296,7 @@ export default function TravelLocationPage() {
 						) {
 							// 타임스탬프가 있으면 실시간 위치였던 것
 							setLocation(saved);
-							searchNearbyPlaces(saved.latitude, saved.longitude);
-							fetchWeather(saved.latitude, saved.longitude);
+							updateLocationAndFetchData(saved.latitude, saved.longitude);
 							return;
 						}
 					} catch {
@@ -322,11 +312,7 @@ export default function TravelLocationPage() {
 						name: defaultLocationRef.current.name,
 						address: '현재 위치'
 					}));
-					searchNearbyPlaces(
-						defaultLocationRef.current.latitude,
-						defaultLocationRef.current.longitude
-					);
-					fetchWeather(
+					updateLocationAndFetchData(
 						defaultLocationRef.current.latitude,
 						defaultLocationRef.current.longitude
 					);
@@ -348,7 +334,7 @@ export default function TravelLocationPage() {
 				locationWatchIdRef.current = null;
 			}
 		};
-	}, [searchNearbyPlaces, fetchWeather]);
+	}, [updateLocationAndFetchData]);
 
 	// 위치 정보 최신화 함수
 	const updateLocation = useCallback(() => {
@@ -372,16 +358,7 @@ export default function TravelLocationPage() {
 					if (prev && prev.startDate) {
 						const startDate = new Date(prev.startDate);
 						const today = new Date();
-						
-						// 날짜만 비교 (시간 제거)
-						const startDateOnly = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-						const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-						
-						// 날짜 차이 계산 (일 단위)
-						const daysDiff = Math.ceil((todayOnly - startDateOnly) / (1000 * 60 * 60 * 24));
-						
-						// 여행 시작 전이면 음수, 여행 중이면 양수
-						let day = daysDiff < 0 ? daysDiff : daysDiff + 1;
+						const day = calculateDayDifference(startDate, today);
 						
 						// currentLocation의 day도 함께 업데이트
 						setCurrentLocation(currentPrev => ({
@@ -410,8 +387,7 @@ export default function TravelLocationPage() {
 				localStorage.setItem('travel-location', JSON.stringify(newLocation));
 
 				// 주변 장소 검색 및 날씨 정보 가져오기
-				searchNearbyPlaces(latitude, longitude);
-				fetchWeather(latitude, longitude);
+				updateLocationAndFetchData(latitude, longitude);
 			},
 			error => {
 				console.error('위치 업데이트 오류:', error);
@@ -422,8 +398,7 @@ export default function TravelLocationPage() {
 						const saved = JSON.parse(lastLocation);
 						if (saved.latitude && saved.longitude) {
 							setLocation(saved);
-							searchNearbyPlaces(saved.latitude, saved.longitude);
-							fetchWeather(saved.latitude, saved.longitude);
+							updateLocationAndFetchData(saved.latitude, saved.longitude);
 							return;
 						}
 					} catch {
@@ -434,11 +409,7 @@ export default function TravelLocationPage() {
 				// 기본 위치 사용
 				if (defaultLocationRef.current) {
 					setLocation(defaultLocationRef.current);
-					searchNearbyPlaces(
-						defaultLocationRef.current.latitude,
-						defaultLocationRef.current.longitude
-					);
-					fetchWeather(
+					updateLocationAndFetchData(
 						defaultLocationRef.current.latitude,
 						defaultLocationRef.current.longitude
 					);
@@ -450,7 +421,7 @@ export default function TravelLocationPage() {
 				maximumAge: 0 // 캐시 사용 안 함, 항상 최신 위치
 			}
 		);
-	}, [searchNearbyPlaces, fetchWeather]);
+	}, [updateLocationAndFetchData]);
 
 	// 페이지 포커스/가시성 변경 시 위치 업데이트
 	useEffect(() => {
@@ -666,8 +637,8 @@ export default function TravelLocationPage() {
 				}
 				const data = await response.json();
 				
-				// 사용자가 추가한 일정과 합치기
-				const allSchedules = [...(data.schedule || []), ...customSchedules];
+				// API에서 가져온 일정만 사용 (데이터베이스에 저장된 일정 포함)
+				const allSchedules = data.schedule || [];
 				
 				// datetime 기준으로 정렬
 				allSchedules.sort((a, b) => {
@@ -679,14 +650,14 @@ export default function TravelLocationPage() {
 				setTodaySchedule(allSchedules);
 			} catch (error) {
 				console.error('일정 가져오기 오류:', error);
-				setTodaySchedule(customSchedules);
+				setTodaySchedule([]);
 			} finally {
 				setScheduleLoading(false);
 			}
 		};
 
 		fetchTodaySchedule();
-	}, [currentTab, currentScheduleId, customSchedules]);
+	}, [currentTab, currentScheduleId]);
 
 	// 장소 검색 함수
 	const searchPlaces = useCallback(async (query) => {
@@ -769,16 +740,15 @@ export default function TravelLocationPage() {
 	}, [showSearchResults]);
 
 	// 주소 복사 함수
-	const handleCopyAddress = async (address) => {
+	const handleCopyAddress = useCallback(async (address) => {
 		try {
 			await navigator.clipboard.writeText(address);
-			// 복사 성공 피드백 (선택사항)
 			alert('주소가 복사되었습니다');
 		} catch (error) {
 			console.error('주소 복사 실패:', error);
 			alert('주소 복사에 실패했습니다');
 		}
-	};
+	}, []);
 
 	// 리뷰 보기 함수
 	const handleViewReviews = async place => {
@@ -1027,6 +997,7 @@ export default function TravelLocationPage() {
 									onFindRoute={handleFindRoute}
 									onAddToSchedule={handleAddToSchedule}
 									onViewReviews={handleViewReviews}
+									onCopyAddress={handleCopyAddress}
 								/>
 							))
 						) : filteredPlaces.length === 0 ? (
@@ -1041,6 +1012,7 @@ export default function TravelLocationPage() {
 									onFindRoute={handleFindRoute}
 									onAddToSchedule={handleAddToSchedule}
 									onViewReviews={handleViewReviews}
+									onCopyAddress={handleCopyAddress}
 								/>
 							))
 						)}
@@ -1298,10 +1270,48 @@ export default function TravelLocationPage() {
 						setShowAddScheduleModal(false);
 						setSelectedPlaceForSchedule(null);
 					}}
-					onAdd={(newSchedule) => {
-						setCustomSchedules(prev => [...prev, newSchedule]);
-						setShowAddScheduleModal(false);
-						setSelectedPlaceForSchedule(null);
+					onAdd={async (newSchedule) => {
+						try {
+							// API를 통해 데이터베이스에 저장
+							const response = await fetch('/api/today-schedule', {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify({
+									scheduleId: currentScheduleId,
+									time: newSchedule.time,
+									title: newSchedule.title,
+									location: newSchedule.location,
+									datetime: newSchedule.datetime
+								})
+							});
+
+							if (!response.ok) {
+								throw new Error('일정 저장 실패');
+							}
+
+							// 저장 성공 시 일정 목록 새로고침
+							if (currentTab === 'schedule' && currentScheduleId) {
+								const fetchResponse = await fetch(`/api/today-schedule?scheduleId=${currentScheduleId}`);
+								if (fetchResponse.ok) {
+									const data = await fetchResponse.json();
+									const allSchedules = data.schedule || [];
+									allSchedules.sort((a, b) => {
+										const dateA = a.datetime ? new Date(a.datetime) : new Date();
+										const dateB = b.datetime ? new Date(b.datetime) : new Date();
+										return dateA - dateB;
+									});
+									setTodaySchedule(allSchedules);
+								}
+							}
+
+							setShowAddScheduleModal(false);
+							setSelectedPlaceForSchedule(null);
+						} catch (error) {
+							console.error('일정 저장 오류:', error);
+							alert('일정 저장에 실패했습니다. 다시 시도해주세요.');
+						}
 					}}
 				/>
 			)}
@@ -1365,7 +1375,7 @@ export default function TravelLocationPage() {
 }
 
 // 장소 카드 컴포넌트
-function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews }) {
+function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews, onCopyAddress }) {
 	return (
 		<div className='bg-white rounded-xl border border-gray-200 overflow-hidden'>
 			<div className='flex'>
@@ -1417,7 +1427,7 @@ function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews }) {
 					</div>
 					<p 
 						className="text-xs text-gray-600 mb-3 underline cursor-pointer hover:text-gray-800 transition-colors"
-						onClick={() => place.description && handleCopyAddress(place.description)}
+						onClick={() => place.description && onCopyAddress?.(place.description)}
 						title="클릭하여 주소 복사">
 						{place.description || '주소 정보 없음'}
 					</p>
@@ -1460,22 +1470,26 @@ function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews }) {
 function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd }) {
 	const [title, setTitle] = useState(place?.name || '');
 	const [location, setLocation] = useState(place?.address || place?.vicinity || '');
-	const [time, setTime] = useState('');
+	const [hour, setHour] = useState('');
+	const [minute, setMinute] = useState('');
 	const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
 	const handleSubmit = () => {
-		if (!title || !time) {
+		if (!title || !hour || !minute) {
 			alert('제목과 시간을 입력해주세요');
 			return;
 		}
 
+		// 시와 분을 HH:MM 형식으로 변환
+		const timeString = `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`;
+		
 		// 날짜와 시간을 합쳐서 datetime 생성
-		const datetime = new Date(`${date}T${time}:00`);
+		const datetime = new Date(`${date}T${timeString}:00`);
 		
 		const newSchedule = {
 			id: `custom-${Date.now()}`,
 			type: 'custom',
-			time: time,
+			time: timeString,
 			title: title,
 			location: location,
 			status: datetime <= new Date() ? 'completed' : 'upcoming',
@@ -1524,20 +1538,6 @@ function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd
 						/>
 					</div>
 
-					{/* 위치 */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
-							위치
-						</label>
-						<input
-							type="text"
-							value={location}
-							onChange={(e) => setLocation(e.target.value)}
-							placeholder="위치를 입력하세요"
-							className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]"
-						/>
-					</div>
-
 					{/* 날짜 */}
 					<div>
 						<label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1556,12 +1556,42 @@ function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd
 						<label className="block text-sm font-medium text-gray-700 mb-2">
 							시간 *
 						</label>
-						<input
-							type="time"
-							value={time}
-							onChange={(e) => setTime(e.target.value)}
-							className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]"
-						/>
+						<div className="flex items-center gap-2">
+							<div className="flex-1 flex items-center gap-2">
+								<input
+									type="number"
+									min="0"
+									max="23"
+									value={hour}
+									onChange={(e) => {
+										const value = e.target.value;
+										if (value === '' || (parseInt(value) >= 0 && parseInt(value) <= 23)) {
+											setHour(value);
+										}
+									}}
+									placeholder="00"
+									className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE] text-center"
+								/>
+								<span className="text-sm text-gray-600">시</span>
+							</div>
+							<div className="flex-1 flex items-center gap-2">
+								<input
+									type="number"
+									min="0"
+									max="59"
+									value={minute}
+									onChange={(e) => {
+										const value = e.target.value;
+										if (value === '' || (parseInt(value) >= 0 && parseInt(value) <= 59)) {
+											setMinute(value);
+										}
+									}}
+									placeholder="00"
+									className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE] text-center"
+								/>
+								<span className="text-sm text-gray-600">분</span>
+							</div>
+						</div>
 					</div>
 
 					{/* 기존 일정 표시 (시간 선택 참고용) */}
