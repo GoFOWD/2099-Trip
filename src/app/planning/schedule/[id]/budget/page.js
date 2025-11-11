@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/share/ui/Header';
 import ProgressBar from '@/share/ui/ProgressBar';
@@ -8,10 +8,30 @@ import { useParams } from 'next/navigation';
 
 export default function TotalBudgetPage() {
 	const router = useRouter();
-	const [budget, setBudget] = useState(2000000); // 원 단위
+	const [budget, setBudget] = useState(0); // 원 단위
 	const params = useParams();
 	const { id } = params;
 	const scheduleId = id;
+
+	useEffect(() => {
+		async function fetchBudget(id) {
+			const res = await fetch(`/api/total-budget?scheduleId=${id}`);
+
+			const existBudget = await res.json();
+
+			return existBudget;
+		}
+		async function load() {
+			const existBudget = await fetchBudget(scheduleId);
+			console.log('existBudget : ', existBudget);
+			if (!existBudget) {
+				setBudget(0);
+			}
+			const initialBudget = existBudget.budgets[0].totalBudget;
+			setBudget(initialBudget);
+		}
+		load();
+	}, []);
 
 	// 숫자를 만원 단위로 포맷팅
 	const formatWon = value => {

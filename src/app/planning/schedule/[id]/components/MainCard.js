@@ -30,7 +30,7 @@ export default function MainCard({ visitCountry }) {
 				<p className='bg-[#508B91] px-3 py-2 flex items-center text-white text-sm w-fit rounded-full'>
 					{formattedDate}
 				</p>
-				<DeleteSchedule className='cursor-pointer' />
+				<DeleteSchedule />
 			</div>
 		</div>
 	);

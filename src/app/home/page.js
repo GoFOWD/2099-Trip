@@ -26,9 +26,6 @@ export default async function homePage() {
 		console.log(`스케줄이 ${userSchedules?.length}개 있습니다`);
 	}
 
-	// console.log(userSchedules);
-	console.log(userSchedules[0].startDate);
-
 	return (
 		<div>
 			<div className='flex flex-col bg-white'>

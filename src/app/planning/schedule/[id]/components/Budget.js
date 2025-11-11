@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import UdateBudgetBtn from './UpdateBudgetBtn';
 
 export function MakeBudget({ scheduleId }) {
 	return (
@@ -69,9 +70,12 @@ export function CheckBudget({ budget }) {
 					<p className='text-[#374151]'>{otherBudget} 원</p>
 				</div>
 			</div>
-			<div className='flex justify-between items-center'>
+			<div className='flex justify-between items-center mb-2'>
 				<p className='text-[#374151]'>총 예산</p>
 				<p className='text-[#374151]'>{totalBudget}</p>
+			</div>
+			<div className='flex justify-end'>
+				<UdateBudgetBtn />
 			</div>
 		</div>
 	);

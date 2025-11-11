@@ -3,6 +3,38 @@ import { getServerSession } from 'next-auth';
 import { authOption } from '../auth/[...nextauth]/route';
 import prisma from '@/share/lib/prisma';
 
+// get 요청
+// 해당 스케줄에 예산 정보가 있으면 그거 반환
+// 없으면 null 반환
+
+export async function GET(req) {
+	const { searchParams } = req.nextUrl;
+	const scheduleId = searchParams.get('scheduleId');
+	try {
+		const existBudget = await prisma.schedule.findUnique({
+			where: { id: scheduleId },
+			select: {
+				budgets: {
+					select: {
+						totalBudget: true
+					}
+				}
+			}
+		});
+
+		if (!existBudget) {
+			return NextResponse.json(null);
+		}
+
+		return NextResponse.json(existBudget);
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({
+			error: '예산 정보 조회 실패 잠시 후 다시 시도해 주세요'
+		});
+	}
+}
+
 export async function POST(req) {
 	try {
 		// 서버에서 세션 확인
@@ -43,8 +75,8 @@ export async function POST(req) {
 		// }
 
 		// Budget이 이미 있으면 업데이트, 없으면 생성
-		const existingBudget = await prisma.budget.findUnique({
-			where: { id: scheduleId }
+		const existingBudget = await prisma.budget.findFirst({
+			where: { scheduleId: scheduleId }
 		});
 
 		let budget;
