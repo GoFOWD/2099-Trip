@@ -60,7 +60,7 @@ const FooterNav = () => {
 					</span>
 				</Link>
 				<Link
-					href='/traveling'
+					href='/traveling/travel-location'
 					className='flex-1 h-full flex flex-col justify-center items-center'>
 					<div className='h-5'>
 						<img

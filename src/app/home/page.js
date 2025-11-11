@@ -20,11 +20,24 @@ export default async function homePage() {
 		}
 	});
 
-	if (userSchedules?.length === 0) {
-		console.log('스케줄이 없습니다');
-	} else {
-		console.log(`스케줄이 ${userSchedules?.length}개 있습니다`);
-	}
+	const schedules = await Promise.all(
+		userSchedules.map(async userSchedule => {
+			const visitCountry = userSchedule.visitCountry[0];
+			const countryName = visitCountry.nameKo;
+
+			// fetch 요청 후 JSON 파싱
+			const res = await fetch(
+				`http://localhost:3000/api/flag?country=${countryName}`
+			);
+			const data = await res.json();
+			const flagUrl = data.url; // API에서 반환하는 실제 URL 필드
+
+			// 기존 userSchedule에 countryName, flagUrl 추가
+			return { ...userSchedule, countryName, flagUrl };
+		})
+	);
+
+	console.log(schedules);
 
 	return (
 		<div className='pb-[65px]'>
@@ -68,14 +81,15 @@ export default async function homePage() {
 				</div>
 				<div className='mb-4'>
 					<h2 className='font-semibold text-lg mb-2'>내 일정</h2>
-					{userSchedules.map(schedule => (
+					{schedules.map(schedule => (
 						<Link
 							key={schedule.id}
 							href={`/planning/schedule/${schedule.id}`}>
 							<Schedule
 								startDay={schedule.startDate}
 								endDay={schedule.endDate}
-								country={schedule.visitCountry[0].nameKo}
+								country={schedule.countryName}
+								flagUrl={schedule.flagUrl}
 							/>
 						</Link>
 					))}
