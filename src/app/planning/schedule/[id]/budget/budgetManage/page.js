@@ -29,7 +29,9 @@ export default function BudgetAllocationPage() {
 		const fetchBudgetData = async () => {
 			try {
 				setIsLoading(true);
-				const response = await fetch('/api/budget-allocation');
+				const response = await fetch(
+					`/api/budget-allocation?scheduleId=${scheduleId}`
+				);
 
 				if (!response.ok) {
 					// API 응답에서 에러 메시지 가져오기

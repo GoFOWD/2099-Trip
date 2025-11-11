@@ -43,16 +43,13 @@ export async function GET(req) {
 		// }
 
 		// 여행일수 계산 (일 단위)
-		const startDate = new Date(latestSchedule.startDate);
-		const endDate = new Date(latestSchedule.endDate);
+		const startDate = new Date(schedule.startDate);
+		const endDate = new Date(schedule.endDate);
 		const travelDays =
 			Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
 		// Budget 정보 가져오기 (없으면 null)
-		const budget =
-			latestSchedule.budgets.length > 0
-				? latestSchedule.budgets[0]
-				: null;
+		const budget = schedule.budgets.length > 0 ? schedule.budgets[0] : null;
 
 		// 총 예산 (Budget에서 가져오거나, 없으면 기본값)
 		const totalBudget = budget
@@ -64,9 +61,9 @@ export async function GET(req) {
 		const minAccommodation = 1; // 만원 단위
 
 		return NextResponse.json({
-			scheduleId: latestSchedule.id,
-			startDate: latestSchedule.startDate,
-			endDate: latestSchedule.endDate,
+			scheduleId: schedule.id,
+			startDate: schedule.startDate,
+			endDate: schedule.endDate,
 			travelDays,
 			totalBudget,
 			minAirfare,
