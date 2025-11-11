@@ -2,13 +2,21 @@
 
 import Link from 'next/link';
 import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const FooterNav = () => {
 	const pathname = usePathname();
+	const router = useRouter();
 	const hideNav = ['/onboarding', '/login', '/signup'];
-
 	const isHide = hideNav.includes(pathname);
+	const isTravelingPage = pathname.startsWith('/traveling');
+
+	const handleTravelingClick = (e) => {
+		if (isTravelingPage) {
+			e.preventDefault();
+			router.refresh();
+		}
+	};
 
 	if (isHide) {
 		return null;
@@ -60,7 +68,8 @@ const FooterNav = () => {
 					</span>
 				</Link>
 				<Link
-					href='/traveling'
+					href='/traveling/travel-location'
+					onClick={handleTravelingClick}
 					className='flex-1 h-full flex flex-col justify-center items-center'>
 					<div className='h-5'>
 						<img
