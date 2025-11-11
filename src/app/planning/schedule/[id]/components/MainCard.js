@@ -1,3 +1,5 @@
+import DeleteSchedule from './DeleteSchedule';
+
 export default function MainCard({ visitCountry }) {
 	console.log(visitCountry);
 
@@ -24,9 +26,12 @@ export default function MainCard({ visitCountry }) {
 			<h1 className='text-2xl text-white font-bold mb-2'>
 				두근두근, 여행 D-{dDay}
 			</h1>
-			<p className='bg-[#508B91] px-3 py-2 text-white text-sm w-fit rounded-full'>
-				{formattedDate}
-			</p>
+			<div className='flex justify-between'>
+				<p className='bg-[#508B91] px-3 py-2 flex items-center text-white text-sm w-fit rounded-full'>
+					{formattedDate}
+				</p>
+				<DeleteSchedule className='cursor-pointer' />
+			</div>
 		</div>
 	);
 }

@@ -20,7 +20,7 @@ export default function DateUi({ selectedCountries }) {
 	};
 
 	const addSchedule = async req => {
-		const res = await fetch('/api/makeSchedule', {
+		const res = await fetch('/api/schedule', {
 			method: 'post',
 			body: JSON.stringify(req)
 		});
