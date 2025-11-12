@@ -123,7 +123,7 @@ export default async function DiaryPage() {
 		const landmarkImage = countryCode 
 			? await getLandmarkImage(countryCode, countryName)
 			: null;
-		const image = landmarkImage || scheduleDiaries[0]?.pic || '/placeholder-travel.jpg';
+		const image = landmarkImage || '/placeholder-travel.jpg';
 
 		return {
 			id: schedule.id,

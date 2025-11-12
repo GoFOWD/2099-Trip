@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { shareToSNS } from '@/share/util/shareToSNS';
 
 export default function DiaryDetailClient({
@@ -13,16 +12,11 @@ export default function DiaryDetailClient({
 	days,
 	photoCount,
 	diariesByDate,
-	diariesWithLocation,
 	teamMint
 }) {
 	const router = useRouter();
 	const [showShareModal, setShowShareModal] = useState(false);
 	const [showAddDiaryModal, setShowAddDiaryModal] = useState(false);
-	const [mapLoaded, setMapLoaded] = useState(false);
-	const mapRef = useRef(null);
-	const mapContainerRef = useRef(null);
-	const markersRef = useRef([]);
 
 	// SNS 공유 핸들러
 	const handleShare = async (platform) => {
@@ -70,98 +64,6 @@ export default function DiaryDetailClient({
 
 	// 날짜별로 정렬된 키 배열
 	const sortedDates = Object.keys(diariesByDate).sort();
-
-	// 구글 지도 초기화
-	useEffect(() => {
-		if (!mapContainerRef.current || diariesWithLocation.length === 0) return;
-
-		const loadGoogleMaps = () => {
-			// 이미 로드되어 있는지 확인
-			if (window.google && window.google.maps) {
-				initMap();
-				return;
-			}
-
-			// Google Maps API 스크립트 로드
-			const script = document.createElement('script');
-			script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&language=ko`;
-			script.async = true;
-			script.defer = true;
-			script.onload = () => {
-				initMap();
-			};
-			document.head.appendChild(script);
-		};
-
-		const initMap = () => {
-			if (!mapContainerRef.current) return;
-
-			// 기존 마커 제거
-			markersRef.current.forEach(marker => marker.setMap(null));
-			markersRef.current = [];
-
-			// 지도 생성
-			let map = mapRef.current;
-			if (!map) {
-				// 첫 번째 다이어리 위치를 중심으로 설정
-				const firstDiary = diariesWithLocation[0];
-				map = new window.google.maps.Map(mapContainerRef.current, {
-					zoom: 12,
-					center: { 
-						lat: firstDiary.latitude, 
-						lng: firstDiary.longitude 
-					},
-					mapTypeControl: false,
-					fullscreenControl: false,
-					streetViewControl: false
-				});
-				mapRef.current = map;
-			}
-
-			// 모든 다이어리 위치에 마커 추가
-			const bounds = new window.google.maps.LatLngBounds();
-			
-			diariesWithLocation.forEach(diary => {
-				// 커스텀 마커 아이콘 (사진 포함)
-				const markerIcon = {
-					url: diary.pic,
-					scaledSize: new window.google.maps.Size(60, 60),
-					anchor: new window.google.maps.Point(30, 30),
-					shape: {
-						type: 'circle',
-						coords: [30, 30, 30]
-					}
-				};
-
-				const marker = new window.google.maps.Marker({
-					map: map,
-					position: { lat: diary.latitude, lng: diary.longitude },
-					icon: markerIcon,
-					title: diary.title || diary.location || '기록',
-					optimized: false
-				});
-
-				// 마커 클릭 시 정보창 표시
-				const infoWindow = new window.google.maps.InfoWindow({
-					content: `<div style="padding: 8px;"><strong>${diary.title || diary.location || '기록'}</strong></div>`
-				});
-
-				marker.addListener('click', () => {
-					infoWindow.open(map, marker);
-				});
-
-				markersRef.current.push(marker);
-				bounds.extend({ lat: diary.latitude, lng: diary.longitude });
-			});
-
-			// 모든 마커가 보이도록 지도 범위 조정
-			if (diariesWithLocation.length > 0) {
-				map.fitBounds(bounds);
-			}
-		};
-
-		loadGoogleMaps();
-	}, [diariesWithLocation]);
 
 	// 날짜 포맷팅 함수 (12월 15일 형식)
 	const formatDate = (dateString) => {
@@ -252,17 +154,6 @@ export default function DiaryDetailClient({
 					</div>
 				</div>
 
-				{/* 구글 지도 */}
-				{diariesWithLocation && diariesWithLocation.length > 0 && (
-					<div className='mx-4 mt-4 mb-4'>
-						<div 
-							ref={mapContainerRef}
-							className='w-full h-64 rounded-xl overflow-hidden border border-gray-200'
-							style={{ minHeight: '256px' }}
-						/>
-					</div>
-				)}
-
 				{/* 날짜별 기록 목록 */}
 				{sortedDates.length === 0 ? (
 					<div className='flex items-center justify-center min-h-[60vh] text-gray-500'>
@@ -307,43 +198,6 @@ export default function DiaryDetailClient({
 													<div className='font-medium text-gray-900 mb-2'>
 														{place} {time && <span className='text-gray-600'>{time}</span>}
 													</div>
-
-													{/* 사진 */}
-													{diary.pic && (
-														<div className='mb-2'>
-															{diary.pic.includes(',') ? (
-																<div className='flex gap-2'>
-																	{diary.pic.split(',').slice(0, 2).map((pic, idx) => (
-																		<div key={idx} className='w-24 h-24 relative rounded-lg overflow-hidden'>
-																			<Image
-																				src={pic.trim()}
-																				alt={place}
-																				fill
-																				sizes='96px'
-																				className='object-cover'
-																				onError={(e) => {
-																					e.target.src = 'https://via.placeholder.com/96x96?text=Photo';
-																				}}
-																			/>
-																		</div>
-																	))}
-																</div>
-															) : (
-																<div className='w-24 h-24 relative rounded-lg overflow-hidden'>
-																	<Image
-																		src={diary.pic}
-																		alt={place}
-																		fill
-																		sizes='96px'
-																		className='object-cover'
-																		onError={(e) => {
-																			e.target.src = 'https://via.placeholder.com/96x96?text=Photo';
-																		}}
-																	/>
-																</div>
-															)}
-														</div>
-													)}
 
 													{/* 설명 */}
 													{diary.content && (
@@ -509,157 +363,21 @@ export default function DiaryDetailClient({
 function AddDiaryModal({ scheduleId, onClose, onAdd, teamMint }) {
 	const [content, setContent] = useState('');
 	const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-	const [photo, setPhoto] = useState(null);
-	const [photoPreview, setPhotoPreview] = useState(null);
-	const [photoSource, setPhotoSource] = useState(null); // 'camera'
-	const [location, setLocation] = useState('');
-	const [currentLocation, setCurrentLocation] = useState(null);
-	const cameraInputRef = useRef(null);
-
-	// 현재 위치 가져오기
-	const getCurrentLocation = () => {
-		if (!navigator.geolocation) {
-			alert('위치 서비스를 사용할 수 없습니다');
-			return;
-		}
-
-		navigator.geolocation.getCurrentPosition(
-			position => {
-				setCurrentLocation({
-					latitude: position.coords.latitude,
-					longitude: position.coords.longitude
-				});
-			},
-			error => {
-				console.error('위치 가져오기 실패:', error);
-				alert('위치를 가져올 수 없습니다');
-			}
-		);
-	};
-
-	// 카메라로 사진 촬영
-	const handleCameraClick = () => {
-		setPhotoSource('camera');
-		cameraInputRef.current?.click();
-	};
-
-
-	// 카메라 사진 선택 핸들러
-	const handleCameraPhotoChange = (e) => {
-		const file = e.target.files?.[0];
-		if (!file) return;
-
-		setPhotoSource('camera');
-		// 카메라로 촬영한 경우 현재 위치 가져오기
-		getCurrentLocation();
-
-		// 미리보기 생성
-		const reader = new FileReader();
-		reader.onloadend = () => {
-			setPhotoPreview(reader.result);
-			setPhoto(file);
-		};
-		reader.readAsDataURL(file);
-	};
-
-
-	// 장소 검색 (Google Places API)
-	const searchLocation = async (query) => {
-		if (!query || query.trim().length === 0) return null;
-
-		try {
-			const response = await fetch('/api/places/search', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					query: query.trim(),
-					latitude: currentLocation?.latitude,
-					longitude: currentLocation?.longitude
-				})
-			});
-
-			if (!response.ok) return null;
-
-			const data = await response.json();
-			if (data.places && data.places.length > 0) {
-				const place = data.places[0];
-				return {
-					latitude: place.location?.latitude,
-					longitude: place.location?.longitude,
-					name: place.name
-				};
-			}
-			return null;
-		} catch (error) {
-			console.error('장소 검색 오류:', error);
-			return null;
-		}
-	};
+	const [title, setTitle] = useState('');
 
 	// 제출 핸들러
 	const handleSubmit = async () => {
-		if (!photo) {
-			alert('사진을 입력해주세요');
-			return;
-		}
-
-		// 장소 검색
-		let locationData = currentLocation;
-		let locationName = location;
-
-		// 카메라로 찍은 경우에도 장소명이 입력되면 검색
-		if (photoSource === 'camera' && location.trim()) {
-			const placeData = await searchLocation(location);
-			if (placeData) {
-				locationData = {
-					latitude: placeData.latitude,
-					longitude: placeData.longitude
-				};
-				locationName = placeData.name;
-			}
-		}
-
-		// 현재 시간 자동 저장 (카메라로 찍은 경우)
-		const now = new Date();
-		const timeString = photoSource === 'camera' 
-			? `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
-			: '';
-		// 제목은 시간 정보만 사용 (또는 빈 문자열)
-		const titleWithTime = timeString || '';
-
 		try {
-			// 1. 파일을 서버에 업로드
-			const formData = new FormData();
-			formData.append('file', photo);
-
-			const uploadResponse = await fetch('/api/upload', {
-				method: 'POST',
-				body: formData
-			});
-
-			if (!uploadResponse.ok) {
-				throw new Error('파일 업로드 실패');
-			}
-
-			const uploadData = await uploadResponse.json();
-			const photoUrl = uploadData.url;
-
-			// 2. 다이어리 생성 (URL 저장)
+			// 다이어리 생성
 			const response = await fetch('/api/diary', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					title: titleWithTime || '기록',
+					title: title || '기록',
 					content: content,
-					date: date,
-					pic: photoUrl,
-					latitude: locationData?.latitude || null,
-					longitude: locationData?.longitude || null,
-					location: locationName || null
+					date: date
 				})
 			});
 
@@ -699,6 +417,20 @@ function AddDiaryModal({ scheduleId, onClose, onAdd, teamMint }) {
 
 				{/* 모달 내용 */}
 				<div className='flex-1 overflow-y-auto p-4 space-y-4'>
+					{/* 제목 */}
+					<div>
+						<label className='block text-sm font-medium text-gray-700 mb-2'>
+							제목
+						</label>
+						<input
+							type='text'
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							placeholder='제목을 입력하세요'
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]'
+						/>
+					</div>
+
 					{/* 날짜 */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700 mb-2'>
@@ -710,65 +442,6 @@ function AddDiaryModal({ scheduleId, onClose, onAdd, teamMint }) {
 							onChange={(e) => setDate(e.target.value)}
 							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]'
 						/>
-					</div>
-
-					{/* 사진 추가 */}
-					<div>
-						<label className='block text-sm font-medium text-gray-700 mb-2'>
-							사진 *
-						</label>
-						<button
-							type='button'
-							onClick={handleCameraClick}
-							className='w-full py-3 rounded-lg text-sm font-medium border border-gray-300 flex items-center justify-center gap-2'>
-							<svg
-								width='20'
-								height='20'
-								viewBox='0 0 24 24'
-								fill='none'
-								stroke='currentColor'
-								strokeWidth='2'>
-								<path d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z' />
-								<circle cx='12' cy='13' r='4' />
-							</svg>
-							카메라
-						</button>
-						<input
-							ref={cameraInputRef}
-							type='file'
-							accept='image/*'
-							capture='environment'
-							onChange={handleCameraPhotoChange}
-							className='hidden'
-						/>
-						{photoPreview && (
-							<div className='mt-3'>
-								<Image
-									src={photoPreview}
-									alt='미리보기'
-									width={200}
-									height={200}
-									className='rounded-lg object-cover'
-								/>
-							</div>
-						)}
-					</div>
-
-					{/* 장소 입력 */}
-					<div>
-						<label className='block text-sm font-medium text-gray-700 mb-2'>
-							장소
-						</label>
-						<input
-							type='text'
-							value={location}
-							onChange={(e) => setLocation(e.target.value)}
-							placeholder='예: 도쿄 타워, 센소지 절'
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]'
-						/>
-						<p className='text-xs text-gray-500 mt-1'>
-							장소를 입력하면 지도에 마커가 표시됩니다 (선택사항)
-						</p>
 					</div>
 
 					{/* 메모 */}
