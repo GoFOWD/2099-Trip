@@ -97,6 +97,9 @@ model Diary {
   content   String
   date      String
   pic       String
+  latitude  Float?
+  longitude Float?
+  location  String?  // 장소 이름
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id])
