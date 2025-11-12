@@ -1,7 +1,7 @@
 // app/api/amadeus/flights/route.js
 import { NextResponse } from "next/server";
-import getToken from "../../lib/getToken";
-import { getApi } from "../../lib/getApi";
+import getToken from "@/lib/airline/getToken";
+import { getApi } from "@/lib/airline/getApi";
 
 const AMADEUS_FLIGHTS_URL =
   "https://test.api.amadeus.com/v2/shopping/flight-offers";
