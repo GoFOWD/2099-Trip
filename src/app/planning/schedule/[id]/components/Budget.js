@@ -12,7 +12,7 @@ export function MakeBudget({ scheduleId }) {
 			<Link
 				href={`/planning/schedule/${scheduleId}/budget`}
 				className='font-semibold text-[#F97316]'>
-				예산 설정 하러 가기
+				예산 등록 하기
 			</Link>
 		</div>
 	);

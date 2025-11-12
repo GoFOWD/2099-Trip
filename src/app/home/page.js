@@ -18,7 +18,9 @@ export default async function homePage() {
 			<div>
 				<div className='flex flex-col bg-white'>
 					<div className=' flex items-center h-[65px] border-b border-[#F3F4F6] px-4 mb-4'>
-						<span className='text-lg font-semibold'>트래블 가이드</span>
+						<span className='text-lg font-semibold'>
+							트래블 가이드
+						</span>
 					</div>
 				</div>
 			</div>
@@ -50,8 +52,6 @@ export default async function homePage() {
 			return { ...userSchedule, countryName, flagUrl };
 		})
 	);
-
-	console.log(schedules);
 
 	return (
 		<div className='pb-[65px]'>

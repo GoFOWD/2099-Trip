@@ -8,9 +8,19 @@ const TEAM_MINT = '#50B4BE';
 
 // 날짜 차이 계산 유틸 함수
 const calculateDayDifference = (startDate, today) => {
-	const startDateOnly = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-	const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-	const daysDiff = Math.ceil((todayOnly - startDateOnly) / (1000 * 60 * 60 * 24));
+	const startDateOnly = new Date(
+		startDate.getFullYear(),
+		startDate.getMonth(),
+		startDate.getDate()
+	);
+	const todayOnly = new Date(
+		today.getFullYear(),
+		today.getMonth(),
+		today.getDate()
+	);
+	const daysDiff = Math.ceil(
+		(todayOnly - startDateOnly) / (1000 * 60 * 60 * 24)
+	);
 	return daysDiff < 0 ? daysDiff : daysDiff + 1;
 };
 
@@ -67,7 +77,8 @@ export default function TravelLocationPage() {
 	const [showSearchResults, setShowSearchResults] = useState(false); // 검색 결과 표시 여부
 	const searchTimeoutRef = useRef(null); // 검색 디바운스용
 	const [showAddScheduleModal, setShowAddScheduleModal] = useState(false); // 일정 추가 모달 표시 여부
-	const [selectedPlaceForSchedule, setSelectedPlaceForSchedule] = useState(null); // 일정 추가할 장소
+	const [selectedPlaceForSchedule, setSelectedPlaceForSchedule] =
+		useState(null); // 일정 추가할 장소
 	const [currentScheduleId, setCurrentScheduleId] = useState(null); // 현재 스케줄 ID
 
 	// 카테고리 목록
@@ -121,10 +132,13 @@ export default function TravelLocationPage() {
 	);
 
 	// 위치 업데이트 후 공통 작업 (주변 장소 검색 및 날씨 정보 가져오기)
-	const updateLocationAndFetchData = useCallback((latitude, longitude) => {
-		searchNearbyPlaces(latitude, longitude);
-		fetchWeather(latitude, longitude);
-	}, [searchNearbyPlaces, fetchWeather]);
+	const updateLocationAndFetchData = useCallback(
+		(latitude, longitude) => {
+			searchNearbyPlaces(latitude, longitude);
+			fetchWeather(latitude, longitude);
+		},
+		[searchNearbyPlaces, fetchWeather]
+	);
 
 	// 기본 위치 가져오기 (여행 국가의 수도 공항)
 	useEffect(() => {
@@ -151,7 +165,7 @@ export default function TravelLocationPage() {
 					const startDate = new Date(data.startDate);
 					const today = new Date();
 					const day = calculateDayDifference(startDate, today);
-					
+
 					setScheduleInfo({
 						startDate: data.startDate,
 						endDate: data.endDate,
@@ -162,7 +176,7 @@ export default function TravelLocationPage() {
 						day: day,
 						countryName: data.countryName
 					}));
-					
+
 					// scheduleId 저장
 					if (data.scheduleId) {
 						setCurrentScheduleId(data.scheduleId);
@@ -182,7 +196,10 @@ export default function TravelLocationPage() {
 								address: '현재 위치'
 							}));
 							// 저장된 위치로 주변 장소 검색 및 날씨 정보 가져오기
-							updateLocationAndFetchData(saved.latitude, saved.longitude);
+							updateLocationAndFetchData(
+								saved.latitude,
+								saved.longitude
+							);
 							return;
 						}
 					} catch {
@@ -198,7 +215,10 @@ export default function TravelLocationPage() {
 					address: '현재 위치'
 				}));
 				// 기본 위치로 주변 장소 검색 및 날씨 정보 가져오기
-				updateLocationAndFetchData(defaultLocation.latitude, defaultLocation.longitude);
+				updateLocationAndFetchData(
+					defaultLocation.latitude,
+					defaultLocation.longitude
+				);
 			} catch (error) {
 				console.error('기본 위치 가져오기 오류:', error);
 				// 에러 시 기본값 (일본)
@@ -215,7 +235,10 @@ export default function TravelLocationPage() {
 					...prev,
 					name: defaultLocation.name
 				}));
-				updateLocationAndFetchData(defaultLocation.latitude, defaultLocation.longitude);
+				updateLocationAndFetchData(
+					defaultLocation.latitude,
+					defaultLocation.longitude
+				);
 			}
 		};
 
@@ -296,7 +319,10 @@ export default function TravelLocationPage() {
 						) {
 							// 타임스탬프가 있으면 실시간 위치였던 것
 							setLocation(saved);
-							updateLocationAndFetchData(saved.latitude, saved.longitude);
+							updateLocationAndFetchData(
+								saved.latitude,
+								saved.longitude
+							);
 							return;
 						}
 					} catch {
@@ -352,14 +378,14 @@ export default function TravelLocationPage() {
 
 				setLocation(newLocation);
 				setIsRealTimeLocation(true);
-				
+
 				// day 재계산 (페이지 포커스 시 날짜가 바뀌었을 수 있음)
 				setScheduleInfo(prev => {
 					if (prev && prev.startDate) {
 						const startDate = new Date(prev.startDate);
 						const today = new Date();
 						const day = calculateDayDifference(startDate, today);
-						
+
 						// currentLocation의 day도 함께 업데이트
 						setCurrentLocation(currentPrev => ({
 							...currentPrev,
@@ -367,7 +393,7 @@ export default function TravelLocationPage() {
 							address: '현재 위치',
 							day: day
 						}));
-						
+
 						return {
 							...prev,
 							day: day
@@ -384,7 +410,10 @@ export default function TravelLocationPage() {
 				});
 
 				// localStorage에 저장
-				localStorage.setItem('travel-location', JSON.stringify(newLocation));
+				localStorage.setItem(
+					'travel-location',
+					JSON.stringify(newLocation)
+				);
 
 				// 주변 장소 검색 및 날씨 정보 가져오기
 				updateLocationAndFetchData(latitude, longitude);
@@ -398,7 +427,10 @@ export default function TravelLocationPage() {
 						const saved = JSON.parse(lastLocation);
 						if (saved.latitude && saved.longitude) {
 							setLocation(saved);
-							updateLocationAndFetchData(saved.latitude, saved.longitude);
+							updateLocationAndFetchData(
+								saved.latitude,
+								saved.longitude
+							);
 							return;
 						}
 					} catch {
@@ -442,7 +474,10 @@ export default function TravelLocationPage() {
 		window.addEventListener('focus', handleFocus);
 
 		return () => {
-			document.removeEventListener('visibilitychange', handleVisibilityChange);
+			document.removeEventListener(
+				'visibilitychange',
+				handleVisibilityChange
+			);
 			window.removeEventListener('focus', handleFocus);
 		};
 	}, [updateLocation]);
@@ -452,9 +487,10 @@ export default function TravelLocationPage() {
 		if (places.length === 0) return [];
 
 		// 여행 전인지 여행 중인지 판단
-		const isBeforeTrip = scheduleInfo && scheduleInfo.startDate
-			? new Date() < new Date(scheduleInfo.startDate)
-			: true; // 일정 정보가 없으면 여행 전으로 간주
+		const isBeforeTrip =
+			scheduleInfo && scheduleInfo.startDate
+				? new Date() < new Date(scheduleInfo.startDate)
+				: true; // 일정 정보가 없으면 여행 전으로 간주
 
 		if (isBeforeTrip) {
 			// 여행 전: 평점이 높고 리뷰가 많은 순으로 정렬
@@ -484,7 +520,12 @@ export default function TravelLocationPage() {
 
 	// Google Maps API 로드 및 지도 초기화
 	useEffect(() => {
-		if (!showMapModal || !selectedPlace || !selectedPlace.location || !location) {
+		if (
+			!showMapModal ||
+			!selectedPlace ||
+			!selectedPlace.location ||
+			!location
+		) {
 			return;
 		}
 
@@ -631,22 +672,28 @@ export default function TravelLocationPage() {
 		const fetchTodaySchedule = async () => {
 			setScheduleLoading(true);
 			try {
-				const response = await fetch(`/api/today-schedule?scheduleId=${currentScheduleId}`);
+				const response = await fetch(
+					`/api/today-schedule?scheduleId=${currentScheduleId}`
+				);
 				if (!response.ok) {
 					throw new Error('일정 가져오기 실패');
 				}
 				const data = await response.json();
-				
+
 				// API에서 가져온 일정만 사용 (데이터베이스에 저장된 일정 포함)
 				const allSchedules = data.schedule || [];
-				
+
 				// datetime 기준으로 정렬
 				allSchedules.sort((a, b) => {
-					const dateA = a.datetime ? new Date(a.datetime) : new Date();
-					const dateB = b.datetime ? new Date(b.datetime) : new Date();
+					const dateA = a.datetime
+						? new Date(a.datetime)
+						: new Date();
+					const dateB = b.datetime
+						? new Date(b.datetime)
+						: new Date();
 					return dateA - dateB;
 				});
-				
+
 				setTodaySchedule(allSchedules);
 			} catch (error) {
 				console.error('일정 가져오기 오류:', error);
@@ -660,65 +707,71 @@ export default function TravelLocationPage() {
 	}, [currentTab, currentScheduleId]);
 
 	// 장소 검색 함수
-	const searchPlaces = useCallback(async (query) => {
-		if (!query || query.trim().length === 0) {
-			setSearchResults([]);
-			setShowSearchResults(false);
-			return;
-		}
-
-		setIsSearching(true);
-		try {
-			const response = await fetch('/api/places/search', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					query: query.trim(),
-					latitude: location?.latitude,
-					longitude: location?.longitude
-				})
-			});
-
-			if (!response.ok) {
-				throw new Error('장소 검색 실패');
+	const searchPlaces = useCallback(
+		async query => {
+			if (!query || query.trim().length === 0) {
+				setSearchResults([]);
+				setShowSearchResults(false);
+				return;
 			}
 
-			const data = await response.json();
-			setSearchResults(data.places || []);
-			setShowSearchResults(true);
-		} catch (error) {
-			console.error('장소 검색 오류:', error);
-			setSearchResults([]);
-		} finally {
-			setIsSearching(false);
-		}
-	}, [location]);
+			setIsSearching(true);
+			try {
+				const response = await fetch('/api/places/search', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						query: query.trim(),
+						latitude: location?.latitude,
+						longitude: location?.longitude
+					})
+				});
+
+				if (!response.ok) {
+					throw new Error('장소 검색 실패');
+				}
+
+				const data = await response.json();
+				setSearchResults(data.places || []);
+				setShowSearchResults(true);
+			} catch (error) {
+				console.error('장소 검색 오류:', error);
+				setSearchResults([]);
+			} finally {
+				setIsSearching(false);
+			}
+		},
+		[location]
+	);
 
 	// 검색어 입력 핸들러 (디바운스 적용)
-	const handleSearchChange = useCallback((value) => {
-		setSearchQuery(value);
-		setShowSearchResults(false);
+	const handleSearchChange = useCallback(
+		value => {
+			setSearchQuery(value);
+			setShowSearchResults(false);
 
-		// 기존 타이머 취소
-		if (searchTimeoutRef.current) {
-			clearTimeout(searchTimeoutRef.current);
-		}
+			// 기존 타이머 취소
+			if (searchTimeoutRef.current) {
+				clearTimeout(searchTimeoutRef.current);
+			}
 
-		// 300ms 후 검색 실행 (디바운스)
-		if (value.trim().length > 0) {
-			searchTimeoutRef.current = setTimeout(() => {
-				searchPlaces(value);
-			}, 300);
-		} else {
-			// 검색어를 지우면 검색 결과 초기화하고 주변 장소로 돌아가기
-			setSearchResults([]);
-		}
-	}, [searchPlaces]);
+			// 300ms 후 검색 실행 (디바운스)
+			if (value.trim().length > 0) {
+				searchTimeoutRef.current = setTimeout(() => {
+					searchPlaces(value);
+				}, 300);
+			} else {
+				// 검색어를 지우면 검색 결과 초기화하고 주변 장소로 돌아가기
+				setSearchResults([]);
+			}
+		},
+		[searchPlaces]
+	);
 
 	// 검색 결과 선택 시
-	const handleSelectSearchResult = useCallback((place) => {
+	const handleSelectSearchResult = useCallback(place => {
 		setSearchQuery(place.name);
 		setShowSearchResults(false);
 		// 검색 결과를 places에 설정
@@ -727,8 +780,11 @@ export default function TravelLocationPage() {
 
 	// 외부 클릭 시 자동완성 목록 닫기
 	useEffect(() => {
-		const handleClickOutside = (event) => {
-			if (showSearchResults && !event.target.closest('.search-container')) {
+		const handleClickOutside = event => {
+			if (
+				showSearchResults &&
+				!event.target.closest('.search-container')
+			) {
 				setShowSearchResults(false);
 			}
 		};
@@ -740,7 +796,7 @@ export default function TravelLocationPage() {
 	}, [showSearchResults]);
 
 	// 주소 복사 함수
-	const handleCopyAddress = useCallback(async (address) => {
+	const handleCopyAddress = useCallback(async address => {
 		try {
 			await navigator.clipboard.writeText(address);
 			alert('주소가 복사되었습니다');
@@ -761,12 +817,14 @@ export default function TravelLocationPage() {
 
 		try {
 			// place.id에서 실제 place ID 추출 (places/로 시작하는 경우)
-			const placeId = place.id.startsWith('places/') 
-				? place.id 
+			const placeId = place.id.startsWith('places/')
+				? place.id
 				: `places/${place.id}`;
 
-			const response = await fetch(`/api/places/reviews?placeId=${encodeURIComponent(placeId)}`);
-			
+			const response = await fetch(
+				`/api/places/reviews?placeId=${encodeURIComponent(placeId)}`
+			);
+
 			if (!response.ok) {
 				throw new Error('리뷰를 가져오는데 실패했습니다');
 			}
@@ -791,7 +849,10 @@ export default function TravelLocationPage() {
 				<div className='max-w-[700px] mx-auto px-4 py-3'>
 					<div className='flex items-center justify-between mb-2'>
 						<h1 className='text-lg font-semibold'>
-							{scheduleInfo && scheduleInfo.day !== null && scheduleInfo.day !== undefined && scheduleInfo.day < 0
+							{scheduleInfo &&
+							scheduleInfo.day !== null &&
+							scheduleInfo.day !== undefined &&
+							scheduleInfo.day < 0
 								? '여행 전'
 								: '여행 중'}
 						</h1>
@@ -839,13 +900,17 @@ export default function TravelLocationPage() {
 							<h2 className='text-xl font-bold mb-1'>
 								{currentLocation.name || '위치 정보 없음'}
 							</h2>
-							{scheduleInfo && scheduleInfo.day !== null && scheduleInfo.day !== undefined && (
-								<p className='text-sm opacity-90'>
-									{scheduleInfo.day < 0 
-										? `여행 ${Math.abs(scheduleInfo.day)}일전` 
-										: `여행 ${scheduleInfo.day}일차`}
-								</p>
-							)}
+							{scheduleInfo &&
+								scheduleInfo.day !== null &&
+								scheduleInfo.day !== undefined && (
+									<p className='text-sm opacity-90'>
+										{scheduleInfo.day < 0
+											? `여행 ${Math.abs(
+													scheduleInfo.day
+											  )}일전`
+											: `여행 ${scheduleInfo.day}일차`}
+									</p>
+								)}
 						</div>
 						<div className='text-right'>
 							<div className='text-3xl font-bold'>
@@ -906,7 +971,7 @@ export default function TravelLocationPage() {
 									setSearchResults([]);
 									setShowSearchResults(false);
 								}}
-								className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+								className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
 									selectedCategory === category
 										? 'bg-[#50B4BE] text-white'
 										: 'bg-gray-100 text-gray-700'
@@ -917,63 +982,71 @@ export default function TravelLocationPage() {
 					</div>
 
 					{/* 검색 입력창 */}
-					<div className="px-4 pb-4 relative search-container">
-						<div className="relative">
+					<div className='px-4 pb-4 relative search-container'>
+						<div className='relative'>
 							<input
-								type="text"
+								type='text'
 								value={searchQuery}
-								onChange={(e) => handleSearchChange(e.target.value)}
-								placeholder="장소를 검색하세요..."
-								className="w-full px-4 py-3 pl-10 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#50B4BE] focus:border-transparent"
+								onChange={e =>
+									handleSearchChange(e.target.value)
+								}
+								placeholder='장소를 검색하세요...'
+								className='w-full px-4 py-3 pl-10 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#50B4BE] focus:border-transparent'
 							/>
 							<svg
-								className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2">
-								<circle cx="11" cy="11" r="8" />
-								<path d="m21 21-4.35-4.35" />
+								className='absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400'
+								viewBox='0 0 24 24'
+								fill='none'
+								stroke='currentColor'
+								strokeWidth='2'>
+								<circle cx='11' cy='11' r='8' />
+								<path d='m21 21-4.35-4.35' />
 							</svg>
 							{isSearching && (
-								<div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-									<div className="w-5 h-5 border-2 border-[#50B4BE] border-t-transparent rounded-full animate-spin" />
+								<div className='absolute right-3 top-1/2 transform -translate-y-1/2'>
+									<div className='w-5 h-5 border-2 border-[#50B4BE] border-t-transparent rounded-full animate-spin' />
 								</div>
 							)}
 						</div>
 
 						{/* 검색 결과 자동완성 목록 */}
 						{showSearchResults && searchResults.length > 0 && (
-							<div className="absolute top-full left-4 right-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-64 overflow-y-auto z-10">
-								{searchResults.map((place) => (
+							<div className='absolute top-full left-4 right-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-64 overflow-y-auto z-10'>
+								{searchResults.map(place => (
 									<button
 										key={place.id}
-										onClick={() => handleSelectSearchResult(place)}
-										className="w-full px-4 py-3 text-left hover:bg-gray-50 border-b border-gray-100 last:border-b-0 flex items-center gap-3">
-										<div className="flex-1">
-											<div className="font-medium text-gray-900">{place.name}</div>
+										onClick={() =>
+											handleSelectSearchResult(place)
+										}
+										className='w-full px-4 py-3 text-left hover:bg-gray-50 border-b border-gray-100 last:border-b-0 flex items-center gap-3'>
+										<div className='flex-1'>
+											<div className='font-medium text-gray-900'>
+												{place.name}
+											</div>
 											{place.description && (
-												<div className="text-xs text-gray-500 mt-1">
+												<div className='text-xs text-gray-500 mt-1'>
 													{place.description}
 												</div>
 											)}
 											{place.distance !== null && (
-												<div className="text-xs text-gray-400 mt-1">
+												<div className='text-xs text-gray-400 mt-1'>
 													약 {place.distance}km
 												</div>
 											)}
 										</div>
 										{place.rating > 0 && (
-											<div className="flex items-center gap-1">
+											<div className='flex items-center gap-1'>
 												<svg
-													width="12"
-													height="12"
-													viewBox="0 0 24 24"
-													fill="#FCD34D"
-													stroke="#FCD34D">
-													<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+													width='12'
+													height='12'
+													viewBox='0 0 24 24'
+													fill='#FCD34D'
+													stroke='#FCD34D'>
+													<path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
 												</svg>
-												<span className="text-xs text-gray-600">{place.rating}</span>
+												<span className='text-xs text-gray-600'>
+													{place.rating}
+												</span>
 											</div>
 										)}
 									</button>
@@ -988,7 +1061,8 @@ export default function TravelLocationPage() {
 							<div className='text-center py-8 text-gray-500'>
 								로딩 중...
 							</div>
-						) : (searchQuery.trim().length > 0 && searchResults.length > 0) ? (
+						) : searchQuery.trim().length > 0 &&
+						  searchResults.length > 0 ? (
 							// 검색어가 있고 검색 결과가 있으면 검색 결과 표시
 							searchResults.map(place => (
 								<PlaceCard
@@ -1022,116 +1096,147 @@ export default function TravelLocationPage() {
 
 			{/* 오늘 일정 탭 */}
 			{currentTab === 'schedule' && (
-				<div className="max-w-[700px] mx-auto px-4 py-6 pb-20">
+				<div className='max-w-[700px] mx-auto px-4 py-6 pb-20'>
 					{scheduleLoading ? (
-						<div className="text-center py-8 text-gray-500">
+						<div className='text-center py-8 text-gray-500'>
 							일정을 불러오는 중...
 						</div>
 					) : todaySchedule.length === 0 ? (
-						<div className="text-center py-8 text-gray-500">
+						<div className='text-center py-8 text-gray-500'>
 							오늘 일정이 없습니다
 						</div>
 					) : (
-						<div className="relative">
+						<div className='relative'>
 							{/* 타임라인 */}
-							<div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200" />
-							
+							<div className='absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200' />
+
 							{/* 일정 목록 */}
-							<div className="space-y-4">
+							<div className='space-y-4'>
 								{todaySchedule.map((item, index) => (
-									<div key={item.id} className="relative flex items-start gap-4">
+									<div
+										key={item.id}
+										className='relative flex items-start gap-4'>
 										{/* 상태 아이콘 */}
-										<div className="relative z-10 flex-shrink-0">
+										<div className='relative z-10 shrink-0'>
 											{item.status === 'completed' && (
-												<div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#D1FAE5' }}>
+												<div
+													className='w-12 h-12 rounded-full flex items-center justify-center'
+													style={{
+														backgroundColor:
+															'#D1FAE5'
+													}}>
 													<svg
-														width="20"
-														height="20"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="white"
-														strokeWidth="3">
-														<polyline points="20 6 9 17 4 12" />
+														width='20'
+														height='20'
+														viewBox='0 0 24 24'
+														fill='none'
+														stroke='white'
+														strokeWidth='3'>
+														<polyline points='20 6 9 17 4 12' />
 													</svg>
 												</div>
 											)}
 											{item.status === 'in-progress' && (
-												<div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#DBEAFE' }}>
+												<div
+													className='w-12 h-12 rounded-full flex items-center justify-center'
+													style={{
+														backgroundColor:
+															'#DBEAFE'
+													}}>
 													<svg
-														width="20"
-														height="20"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="white"
-														strokeWidth="2">
-														<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-														<circle cx="12" cy="10" r="3" />
+														width='20'
+														height='20'
+														viewBox='0 0 24 24'
+														fill='none'
+														stroke='white'
+														strokeWidth='2'>
+														<path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z' />
+														<circle
+															cx='12'
+															cy='10'
+															r='3'
+														/>
 													</svg>
 												</div>
 											)}
 											{item.status === 'upcoming' && (
-												<div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+												<div className='w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center'>
 													<svg
-														width="20"
-														height="20"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="white"
-														strokeWidth="2">
-														<circle cx="12" cy="12" r="10" />
-														<polyline points="12 6 12 12 16 14" />
+														width='20'
+														height='20'
+														viewBox='0 0 24 24'
+														fill='none'
+														stroke='white'
+														strokeWidth='2'>
+														<circle
+															cx='12'
+															cy='12'
+															r='10'
+														/>
+														<polyline points='12 6 12 12 16 14' />
 													</svg>
 												</div>
 											)}
 										</div>
 
 										{/* 일정 카드 */}
-										<div className="flex-1 bg-white rounded-xl border border-gray-200 p-4">
-											<div className="flex items-start justify-between">
-												<div className="flex-1">
-													<div className="flex items-center gap-2 mb-2">
-														<span className="text-sm font-medium text-gray-700">
+										<div className='flex-1 bg-white rounded-xl border border-gray-200 p-4'>
+											<div className='flex items-start justify-between'>
+												<div className='flex-1'>
+													<div className='flex items-center gap-2 mb-2'>
+														<span className='text-sm font-medium text-gray-700'>
 															{item.time}
 														</span>
-														{item.status === 'in-progress' && (
-															<span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
+														{item.status ===
+															'in-progress' && (
+															<span className='px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700'>
 																진행 중
 															</span>
 														)}
 													</div>
-													<h3 className="font-semibold text-gray-900 mb-1">
+													<h3 className='font-semibold text-gray-900 mb-1'>
 														{item.title}
 													</h3>
-													<p className="text-sm text-gray-600 mb-2">
+													<p className='text-sm text-gray-600 mb-2'>
 														{item.location}
 													</p>
 													{item.additionalInfo && (
-														<div className="flex items-center gap-1 text-xs text-orange-600">
+														<div className='flex items-center gap-1 text-xs text-orange-600'>
 															<svg
-																width="14"
-																height="14"
-																viewBox="0 0 24 24"
-																fill="currentColor">
-																<path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+																width='14'
+																height='14'
+																viewBox='0 0 24 24'
+																fill='currentColor'>
+																<path d='M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z' />
 															</svg>
-															<span>{item.additionalInfo.text}</span>
+															<span>
+																{
+																	item
+																		.additionalInfo
+																		.text
+																}
+															</span>
 														</div>
 													)}
 												</div>
 
 												{/* 액션 버튼 */}
 												{item.hasNavigation && (
-													<div className="flex items-center gap-2 ml-4">
-														<button className="p-2 hover:bg-gray-100 rounded-full">
+													<div className='flex items-center gap-2 ml-4'>
+														<button className='p-2 hover:bg-gray-100 rounded-full'>
 															<svg
-																width="20"
-																height="20"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																strokeWidth="2">
-																<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-																<circle cx="12" cy="10" r="3" />
+																width='20'
+																height='20'
+																viewBox='0 0 24 24'
+																fill='none'
+																stroke='currentColor'
+																strokeWidth='2'>
+																<path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z' />
+																<circle
+																	cx='12'
+																	cy='10'
+																	r='3'
+																/>
 															</svg>
 														</button>
 													</div>
@@ -1141,25 +1246,25 @@ export default function TravelLocationPage() {
 									</div>
 								))}
 							</div>
-							
+
 							{/* 일정추가하기 버튼 */}
-							<div className="mt-6 pb-4">
+							<div className='mt-6 pb-4'>
 								<button
 									onClick={() => {
 										setSelectedPlaceForSchedule(null);
 										setShowAddScheduleModal(true);
 									}}
-									className="w-full py-3 rounded-lg text-sm font-medium text-white flex items-center justify-center gap-2"
+									className='w-full py-3 rounded-lg text-sm font-medium text-white flex items-center justify-center gap-2'
 									style={{ backgroundColor: TEAM_MINT }}>
 									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										strokeWidth="2">
-										<line x1="12" y1="5" x2="12" y2="19" />
-										<line x1="5" y1="12" x2="19" y2="12" />
+										width='20'
+										height='20'
+										viewBox='0 0 24 24'
+										fill='none'
+										stroke='currentColor'
+										strokeWidth='2'>
+										<line x1='12' y1='5' x2='12' y2='19' />
+										<line x1='5' y1='12' x2='19' y2='12' />
 									</svg>
 									일정추가하기
 								</button>
@@ -1180,75 +1285,79 @@ export default function TravelLocationPage() {
 
 			{/* 리뷰 모달 */}
 			{showReviewsModal && (
-				<div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-					<div className="bg-white rounded-t-2xl w-full max-w-[700px] h-[80vh] flex flex-col">
+				<div className='fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center'>
+					<div className='bg-white rounded-t-2xl w-full max-w-[700px] h-[80vh] flex flex-col'>
 						{/* 모달 헤더 */}
-						<div className="flex items-center justify-between p-4 border-b">
-							<h2 className="text-lg font-semibold">{reviewsPlaceName} 리뷰</h2>
+						<div className='flex items-center justify-between p-4 border-b'>
+							<h2 className='text-lg font-semibold'>
+								{reviewsPlaceName} 리뷰
+							</h2>
 							<button
 								onClick={() => {
 									setShowReviewsModal(false);
 									setReviews([]);
 									setReviewsPlaceName('');
 								}}
-								className="p-2 hover:bg-gray-100 rounded-full">
+								className='p-2 hover:bg-gray-100 rounded-full'>
 								<svg
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2">
-									<line x1="18" y1="6" x2="6" y2="18" />
-									<line x1="6" y1="6" x2="18" y2="18" />
+									width='24'
+									height='24'
+									viewBox='0 0 24 24'
+									fill='none'
+									stroke='currentColor'
+									strokeWidth='2'>
+									<line x1='18' y1='6' x2='6' y2='18' />
+									<line x1='6' y1='6' x2='18' y2='18' />
 								</svg>
 							</button>
 						</div>
 
 						{/* 리뷰 목록 */}
-						<div className="flex-1 overflow-y-auto p-4">
+						<div className='flex-1 overflow-y-auto p-4'>
 							{reviewsLoading ? (
-								<div className="text-center py-8 text-gray-500">
+								<div className='text-center py-8 text-gray-500'>
 									리뷰를 불러오는 중...
 								</div>
 							) : reviews.length === 0 ? (
-								<div className="text-center py-8 text-gray-500">
+								<div className='text-center py-8 text-gray-500'>
 									리뷰가 없습니다
 								</div>
 							) : (
-								<div className="space-y-4">
+								<div className='space-y-4'>
 									{reviews.map((review, index) => (
 										<div
 											key={index}
-											className="border-b border-gray-200 pb-4 last:border-b-0">
-											<div className="flex items-start justify-between mb-2">
-												<div className="flex-1">
-													<div className="flex items-center gap-2 mb-1">
-														<span className="font-semibold text-gray-900">
+											className='border-b border-gray-200 pb-4 last:border-b-0'>
+											<div className='flex items-start justify-between mb-2'>
+												<div className='flex-1'>
+													<div className='flex items-center gap-2 mb-1'>
+														<span className='font-semibold text-gray-900'>
 															{review.authorName}
 														</span>
-														<div className="flex items-center gap-1">
+														<div className='flex items-center gap-1'>
 															<svg
-																width="12"
-																height="12"
-																viewBox="0 0 24 24"
-																fill="#FCD34D"
-																stroke="#FCD34D">
-																<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+																width='12'
+																height='12'
+																viewBox='0 0 24 24'
+																fill='#FCD34D'
+																stroke='#FCD34D'>
+																<path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
 															</svg>
-															<span className="text-xs text-gray-700">
+															<span className='text-xs text-gray-700'>
 																{review.rating}
 															</span>
 														</div>
 													</div>
 													{review.relativePublishTimeDescription && (
-														<span className="text-xs text-gray-500">
-															{review.relativePublishTimeDescription}
+														<span className='text-xs text-gray-500'>
+															{
+																review.relativePublishTimeDescription
+															}
 														</span>
 													)}
 												</div>
 											</div>
-											<p className="text-sm text-gray-700 mt-2 leading-relaxed">
+											<p className='text-sm text-gray-700 mt-2 leading-relaxed'>
 												{review.text}
 											</p>
 										</div>
@@ -1270,36 +1379,48 @@ export default function TravelLocationPage() {
 						setShowAddScheduleModal(false);
 						setSelectedPlaceForSchedule(null);
 					}}
-					onAdd={async (newSchedule) => {
+					onAdd={async newSchedule => {
 						try {
 							// API를 통해 데이터베이스에 저장
-							const response = await fetch('/api/today-schedule', {
-								method: 'POST',
-								headers: {
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify({
-									scheduleId: currentScheduleId,
-									time: newSchedule.time,
-									title: newSchedule.title,
-									location: newSchedule.location,
-									datetime: newSchedule.datetime
-								})
-							});
+							const response = await fetch(
+								'/api/today-schedule',
+								{
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									body: JSON.stringify({
+										scheduleId: currentScheduleId,
+										time: newSchedule.time,
+										title: newSchedule.title,
+										location: newSchedule.location,
+										datetime: newSchedule.datetime
+									})
+								}
+							);
 
 							if (!response.ok) {
 								throw new Error('일정 저장 실패');
 							}
 
 							// 저장 성공 시 일정 목록 새로고침
-							if (currentTab === 'schedule' && currentScheduleId) {
-								const fetchResponse = await fetch(`/api/today-schedule?scheduleId=${currentScheduleId}`);
+							if (
+								currentTab === 'schedule' &&
+								currentScheduleId
+							) {
+								const fetchResponse = await fetch(
+									`/api/today-schedule?scheduleId=${currentScheduleId}`
+								);
 								if (fetchResponse.ok) {
 									const data = await fetchResponse.json();
 									const allSchedules = data.schedule || [];
 									allSchedules.sort((a, b) => {
-										const dateA = a.datetime ? new Date(a.datetime) : new Date();
-										const dateB = b.datetime ? new Date(b.datetime) : new Date();
+										const dateA = a.datetime
+											? new Date(a.datetime)
+											: new Date();
+										const dateB = b.datetime
+											? new Date(b.datetime)
+											: new Date();
 										return dateA - dateB;
 									});
 									setTodaySchedule(allSchedules);
@@ -1310,7 +1431,9 @@ export default function TravelLocationPage() {
 							setSelectedPlaceForSchedule(null);
 						} catch (error) {
 							console.error('일정 저장 오류:', error);
-							alert('일정 저장에 실패했습니다. 다시 시도해주세요.');
+							alert(
+								'일정 저장에 실패했습니다. 다시 시도해주세요.'
+							);
 						}
 					}}
 				/>
@@ -1318,51 +1441,60 @@ export default function TravelLocationPage() {
 
 			{/* 지도 모달 */}
 			{showMapModal && selectedPlace && (
-				<div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-					<div className="bg-white rounded-t-2xl w-full max-w-[700px] h-[80vh] flex flex-col">
+				<div className='fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center'>
+					<div className='bg-white rounded-t-2xl w-full max-w-[700px] h-[80vh] flex flex-col'>
 						{/* 모달 헤더 */}
-						<div className="flex items-center justify-between p-4 border-b">
-							<h2 className="text-lg font-semibold">{selectedPlace.name}</h2>
+						<div className='flex items-center justify-between p-4 border-b'>
+							<h2 className='text-lg font-semibold'>
+								{selectedPlace.name}
+							</h2>
 							<button
 								onClick={() => {
 									setShowMapModal(false);
 									setSelectedPlace(null);
 								}}
-								className="p-2 hover:bg-gray-100 rounded-full">
+								className='p-2 hover:bg-gray-100 rounded-full'>
 								<svg
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2">
-									<line x1="18" y1="6" x2="6" y2="18" />
-									<line x1="6" y1="6" x2="18" y2="18" />
+									width='24'
+									height='24'
+									viewBox='0 0 24 24'
+									fill='none'
+									stroke='currentColor'
+									strokeWidth='2'>
+									<line x1='18' y1='6' x2='6' y2='18' />
+									<line x1='6' y1='6' x2='18' y2='18' />
 								</svg>
 							</button>
 						</div>
 
 						{/* 지도 컨테이너 */}
-						<div className="flex-1 relative" ref={mapContainerRef} />
+						<div
+							className='flex-1 relative'
+							ref={mapContainerRef}
+						/>
 
 						{/* 하단 정보 */}
-						<div className="p-4 border-t bg-gray-50">
-							<div className="flex items-center gap-4">
-								<div className="flex items-center gap-2">
+						<div className='p-4 border-t bg-gray-50'>
+							<div className='flex items-center gap-4'>
+								<div className='flex items-center gap-2'>
 									<div
-										className="w-4 h-4 rounded-full"
+										className='w-4 h-4 rounded-full'
 										style={{ backgroundColor: '#50B4BE' }}
 									/>
-									<span className="text-sm text-gray-700">현재 위치</span>
+									<span className='text-sm text-gray-700'>
+										현재 위치
+									</span>
 								</div>
-								<div className="flex items-center gap-2">
+								<div className='flex items-center gap-2'>
 									<div
-										className="w-4 h-4 rounded-full"
+										className='w-4 h-4 rounded-full'
 										style={{ backgroundColor: '#FF6B6B' }}
 									/>
-									<span className="text-sm text-gray-700">목적지</span>
+									<span className='text-sm text-gray-700'>
+										목적지
+									</span>
 								</div>
-								<div className="ml-auto text-sm text-gray-500">
+								<div className='ml-auto text-sm text-gray-500'>
 									약 {selectedPlace.distance}km
 								</div>
 							</div>
@@ -1375,7 +1507,13 @@ export default function TravelLocationPage() {
 }
 
 // 장소 카드 컴포넌트
-function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews, onCopyAddress }) {
+function PlaceCard({
+	place,
+	onFindRoute,
+	onAddToSchedule,
+	onViewReviews,
+	onCopyAddress
+}) {
 	return (
 		<div className='bg-white rounded-xl border border-gray-200 overflow-hidden'>
 			<div className='flex'>
@@ -1386,6 +1524,7 @@ function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews, onCopyA
 						alt={place.name}
 						fill
 						className='object-cover'
+						sizes='96px'
 					/>
 				</div>
 
@@ -1406,9 +1545,11 @@ function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews, onCopyA
 						<span className='text-xs text-gray-500'>
 							{place.distance}km
 						</span>
-						<div 
-							className="flex items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity"
-							onClick={() => onViewReviews && onViewReviews(place)}>
+						<div
+							className='flex items-center gap-1 cursor-pointer hover:opacity-80 transition-opacity'
+							onClick={() =>
+								onViewReviews && onViewReviews(place)
+							}>
 							<svg
 								width='12'
 								height='12'
@@ -1417,18 +1558,24 @@ function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews, onCopyA
 								stroke='#FCD34D'>
 								<path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
 							</svg>
-							<span className="text-xs text-gray-700">{place.rating}</span>
+							<span className='text-xs text-gray-700'>
+								{place.rating}
+							</span>
 							{place.userRatingCount > 0 && (
-								<span className="text-xs text-gray-500 ml-1">
-									리뷰 {place.userRatingCount.toLocaleString()}개
+								<span className='text-xs text-gray-500 ml-1'>
+									리뷰{' '}
+									{place.userRatingCount.toLocaleString()}개
 								</span>
 							)}
 						</div>
 					</div>
-					<p 
-						className="text-xs text-gray-600 mb-3 underline cursor-pointer hover:text-gray-800 transition-colors"
-						onClick={() => place.description && onCopyAddress?.(place.description)}
-						title="클릭하여 주소 복사">
+					<p
+						className='text-xs text-gray-600 mb-3 underline cursor-pointer hover:text-gray-800 transition-colors'
+						onClick={() =>
+							place.description &&
+							onCopyAddress?.(place.description)
+						}
+						title='클릭하여 주소 복사'>
 						{place.description || '주소 정보 없음'}
 					</p>
 
@@ -1467,9 +1614,17 @@ function PlaceCard({ place, onFindRoute, onAddToSchedule, onViewReviews, onCopyA
 }
 
 // 일정추가 모달 컴포넌트
-function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd }) {
+function AddScheduleModal({
+	place,
+	scheduleId,
+	existingSchedules,
+	onClose,
+	onAdd
+}) {
 	const [title, setTitle] = useState(place?.name || '');
-	const [location, setLocation] = useState(place?.address || place?.vicinity || '');
+	const [location, setLocation] = useState(
+		place?.address || place?.vicinity || ''
+	);
 	const [hour, setHour] = useState('');
 	const [minute, setMinute] = useState('');
 	const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
@@ -1481,11 +1636,14 @@ function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd
 		}
 
 		// 시와 분을 HH:MM 형식으로 변환
-		const timeString = `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`;
-		
+		const timeString = `${hour.padStart(2, '0')}:${minute.padStart(
+			2,
+			'0'
+		)}`;
+
 		// 날짜와 시간을 합쳐서 datetime 생성
 		const datetime = new Date(`${date}T${timeString}:00`);
-		
+
 		const newSchedule = {
 			id: `custom-${Date.now()}`,
 			type: 'custom',
@@ -1501,95 +1659,107 @@ function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd
 	};
 
 	return (
-		<div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-			<div className="bg-white rounded-t-2xl w-full max-w-[700px] max-h-[80vh] flex flex-col">
+		<div className='fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center'>
+			<div className='bg-white rounded-t-2xl w-full max-w-[700px] max-h-[80vh] flex flex-col'>
 				{/* 모달 헤더 */}
-				<div className="flex items-center justify-between p-4 border-b">
-					<h2 className="text-lg font-semibold">일정 추가</h2>
+				<div className='flex items-center justify-between p-4 border-b'>
+					<h2 className='text-lg font-semibold'>일정 추가</h2>
 					<button
 						onClick={onClose}
-						className="p-2 hover:bg-gray-100 rounded-full">
+						className='p-2 hover:bg-gray-100 rounded-full'>
 						<svg
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2">
-							<line x1="18" y1="6" x2="6" y2="18" />
-							<line x1="6" y1="6" x2="18" y2="18" />
+							width='24'
+							height='24'
+							viewBox='0 0 24 24'
+							fill='none'
+							stroke='currentColor'
+							strokeWidth='2'>
+							<line x1='18' y1='6' x2='6' y2='18' />
+							<line x1='6' y1='6' x2='18' y2='18' />
 						</svg>
 					</button>
 				</div>
 
 				{/* 모달 내용 */}
-				<div className="flex-1 overflow-y-auto p-4 space-y-4">
+				<div className='flex-1 overflow-y-auto p-4 space-y-4'>
 					{/* 제목 */}
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className='block text-sm font-medium text-gray-700 mb-2'>
 							제목 *
 						</label>
 						<input
-							type="text"
+							type='text'
 							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-							placeholder="일정 제목을 입력하세요"
-							className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]"
+							onChange={e => setTitle(e.target.value)}
+							placeholder='일정 제목을 입력하세요'
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]'
 						/>
 					</div>
 
 					{/* 날짜 */}
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className='block text-sm font-medium text-gray-700 mb-2'>
 							날짜
 						</label>
 						<input
-							type="date"
+							type='date'
 							value={date}
-							onChange={(e) => setDate(e.target.value)}
-							className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]"
+							onChange={e => setDate(e.target.value)}
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE]'
 						/>
 					</div>
 
 					{/* 시간 */}
 					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
+						<label className='block text-sm font-medium text-gray-700 mb-2'>
 							시간 *
 						</label>
-						<div className="flex items-center gap-2">
-							<div className="flex-1 flex items-center gap-2">
+						<div className='flex items-center gap-2'>
+							<div className='flex-1 flex items-center gap-2'>
 								<input
-									type="number"
-									min="0"
-									max="23"
+									type='number'
+									min='0'
+									max='23'
 									value={hour}
-									onChange={(e) => {
+									onChange={e => {
 										const value = e.target.value;
-										if (value === '' || (parseInt(value) >= 0 && parseInt(value) <= 23)) {
+										if (
+											value === '' ||
+											(parseInt(value) >= 0 &&
+												parseInt(value) <= 23)
+										) {
 											setHour(value);
 										}
 									}}
-									placeholder="00"
-									className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE] text-center"
+									placeholder='00'
+									className='flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE] text-center'
 								/>
-								<span className="text-sm text-gray-600">시</span>
+								<span className='text-sm text-gray-600'>
+									시
+								</span>
 							</div>
-							<div className="flex-1 flex items-center gap-2">
+							<div className='flex-1 flex items-center gap-2'>
 								<input
-									type="number"
-									min="0"
-									max="59"
+									type='number'
+									min='0'
+									max='59'
 									value={minute}
-									onChange={(e) => {
+									onChange={e => {
 										const value = e.target.value;
-										if (value === '' || (parseInt(value) >= 0 && parseInt(value) <= 59)) {
+										if (
+											value === '' ||
+											(parseInt(value) >= 0 &&
+												parseInt(value) <= 59)
+										) {
 											setMinute(value);
 										}
 									}}
-									placeholder="00"
-									className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE] text-center"
+									placeholder='00'
+									className='flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#50B4BE] text-center'
 								/>
-								<span className="text-sm text-gray-600">분</span>
+								<span className='text-sm text-gray-600'>
+									분
+								</span>
 							</div>
 						</div>
 					</div>
@@ -1597,15 +1767,17 @@ function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd
 					{/* 기존 일정 표시 (시간 선택 참고용) */}
 					{existingSchedules.length > 0 && (
 						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className='block text-sm font-medium text-gray-700 mb-2'>
 								기존 일정
 							</label>
-							<div className="space-y-2 max-h-40 overflow-y-auto">
-								{existingSchedules.map((schedule) => (
+							<div className='space-y-2 max-h-40 overflow-y-auto'>
+								{existingSchedules.map(schedule => (
 									<div
 										key={schedule.id}
-										className="px-3 py-2 bg-gray-50 rounded-lg text-sm">
-										<span className="font-medium">{schedule.time}</span>{' '}
+										className='px-3 py-2 bg-gray-50 rounded-lg text-sm'>
+										<span className='font-medium'>
+											{schedule.time}
+										</span>{' '}
 										{schedule.title}
 									</div>
 								))}
@@ -1615,15 +1787,15 @@ function AddScheduleModal({ place, scheduleId, existingSchedules, onClose, onAdd
 				</div>
 
 				{/* 모달 하단 버튼 */}
-				<div className="p-4 border-t flex gap-2">
+				<div className='p-4 border-t flex gap-2'>
 					<button
 						onClick={onClose}
-						className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50">
+						className='flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50'>
 						취소
 					</button>
 					<button
 						onClick={handleSubmit}
-						className="flex-1 px-4 py-2 rounded-lg text-sm font-medium text-white"
+						className='flex-1 px-4 py-2 rounded-lg text-sm font-medium text-white'
 						style={{ backgroundColor: TEAM_MINT }}>
 						추가하기
 					</button>
