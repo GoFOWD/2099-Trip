@@ -21,6 +21,7 @@ model Schedule {
   ScheduleItem ScheduleItem[]
   userId       String
   User         User           @relation(fields: [userId], references: [id])
+  city         City?
 }
 
 model VisitCountry {
@@ -31,6 +32,14 @@ model VisitCountry {
   endDate     DateTime
 
   scheduleId String
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+}
+
+model City {
+  id         String   @id @default(cuid())
+  cityName   String
+  cityCode   String
+  scheduleId String   @unique
   schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 }
 
@@ -96,6 +105,10 @@ model Diary {
   title     String
   content   String
   date      String
+  pic       String
+  latitude  Float?
+  longitude Float?
+  location  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id])
