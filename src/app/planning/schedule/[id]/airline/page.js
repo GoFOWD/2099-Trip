@@ -10,7 +10,7 @@ import SortOptions from "./components/SortOptions";
 import FlightCard from "./components/FlightCard";
 import FlightDetailModal from "./modals/FlightDetailModal";
 
-import { normalizeFlightList } from "./lib/normalizeFlight";
+import { normalizeFlightList } from "@/lib/airline/normalizeFlight";
 
 /* 유틸: yyyy-mm-dd */
 function fmt(d = new Date()) {
@@ -40,7 +40,7 @@ export default function AirlinePage() {
     if (!scid) return; // 없으면 기본값 유지
     (async () => {
       try {
-        const res = await fetch(`/planning/airline/api/schedule?scid=${scid}`, {
+        const res = await fetch(`/api/schedule?scid=${scid}`, {
           cache: "no-store",
         });
         const json = await res.json();
@@ -97,7 +97,7 @@ export default function AirlinePage() {
           })),
         };
 
-        const res = await fetch("/planning/airline/api/flights", {
+        const res = await fetch("/api/airline", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
@@ -119,7 +119,7 @@ export default function AirlinePage() {
           params.set("returnDate", returnDate);
         }
 
-        const url = `/planning/airline/api/flights?${params.toString()}`;
+        const url = `/api/airline?${params.toString()}`;
         const res = await fetch(url);
         json = await res.json();
       }
