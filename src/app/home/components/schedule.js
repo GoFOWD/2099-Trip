@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
-export default function Schedule({ startDay, endDay, country }) {
+export default function Schedule({ startDay, endDay, country, flagUrl }) {
 	const waapiRef = useRef(null);
 
 	useEffect(() => {
@@ -53,14 +54,27 @@ export default function Schedule({ startDay, endDay, country }) {
 				<div className='swatch-container'>
 					<div className='swatch waapi' ref={waapiRef}>
 						<div className='px-4 py-3'>
-							<p className='text-white text-sm font-semibold mb-1'>
-								{country} 여행
-							</p>
-							<p className='text-white text-sm'>
-								D-{dDay}{' '}
-								<span className='text-gray-300'>|</span>{' '}
-								{startDayFormatted} - {endDayFormatted}
-							</p>
+							<div className='flex gap-3 items-center'>
+								<div className='w-10 h-10 relative'>
+									<Image
+										src={flagUrl}
+										fill
+										className='object-contain'
+										sizes='40px'
+										alt={`${country} 국기`}
+									/>
+								</div>
+								<div>
+									<p className='text-white text-sm font-semibold mb-1'>
+										{country} 여행
+									</p>
+									<p className='text-white text-sm'>
+										D-{dDay}{' '}
+										<span className='text-gray-300'>|</span>{' '}
+										{startDayFormatted} - {endDayFormatted}
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
