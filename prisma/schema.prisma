@@ -12,27 +12,26 @@ model Schedule {
   id           String         @id @default(cuid())
   startDate    DateTime
   endDate      DateTime
-  companion    Int?
-  budgets      Budget[]
-  AirTicket    AirTicket[]
-  Hotel        Hotel[]
-  visitCountry VisitCountry[]
-  Tour         Tour[]
-  ScheduleItem ScheduleItem[]
   userId       String
-  User         User           @relation(fields: [userId], references: [id])
+  companion    Int?
+  AirTicket    AirTicket[]
+  budgets      Budget[]
   city         City?
+  Hotel        Hotel[]
+  User         User           @relation(fields: [userId], references: [id])
+  ScheduleItem ScheduleItem[]
+  Tour         Tour[]
+  visitCountry VisitCountry[]
 }
 
 model VisitCountry {
   id          String   @id @default(cuid())
   countryCode String
-  nameKo      String?
   startDate   DateTime
   endDate     DateTime
-
-  scheduleId String
-  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  scheduleId  String
+  nameKo      String?
+  schedule    Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 }
 
 model City {
@@ -43,21 +42,16 @@ model City {
   schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 }
 
-enum TripType {
-  ONE_WAY
-  ROUND_TRIP
-}
-
 model AirTicket {
   id         String          @id @default(cuid())
   price      Int
   airline    String
   tripType   TripType
-  segments   flightSegment[]
   scheduleId String
   countryId  String
-  Schedule   Schedule        @relation(fields: [scheduleId], references: [id])
   Country    Country         @relation(fields: [countryId], references: [id])
+  Schedule   Schedule        @relation(fields: [scheduleId], references: [id])
+  segments   flightSegment[]
 }
 
 model flightSegment {
@@ -78,13 +72,13 @@ model User {
   email                String     @unique
   password             String
   name                 String?
-  createdAt            DateTime   @default(now())
   haveReservedAirLine  Boolean    @default(false)
   haveReservedionHotel Boolean    @default(false)
   haveReservedTour     Boolean    @default(false)
-  schedules            Schedule[]
-  diaries              Diary[]
+  createdAt            DateTime   @default(now())
   countries            Country[]
+  diaries              Diary[]
+  schedules            Schedule[]
 }
 
 model Tour {
@@ -93,11 +87,10 @@ model Tour {
   location   String
   rating     Float?
   price      String
-
   scheduleId String
-  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   countryId  String
   country    Country  @relation(fields: [countryId], references: [id])
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 }
 
 model Diary {
@@ -106,35 +99,34 @@ model Diary {
   content   String
   date      String
   pic       String
-  latitude  Float?
-  longitude Float?
-  location  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+  latitude  Float?
+  location  String?
+  longitude Float?
+  author    User     @relation(fields: [authorId], references: [id])
 }
 
 model Hotel {
-  id        String    @id @default(cuid())
-  name      String
-  price     Float?
-  rating    Float?
-  checkIn   String?
-  checkOut  String?
-  location  String
-  countryId String?
-  scheduled String?
-  amenities Amenity[]
-
-  schedules  Schedule @relation(fields: [scheduleId], references: [id])
+  id         String    @id @default(cuid())
+  name       String
+  price      Float?
+  rating     Float?
+  checkIn    String?
+  checkOut   String?
+  location   String
+  countryId  String?
+  scheduled  String?
   scheduleId String
+  schedules  Schedule  @relation(fields: [scheduleId], references: [id])
+  amenities  Amenity[] @relation("AmenityToHotel")
 }
 
 model Amenity {
   id          String  @id @default(cuid())
   Amenityname String
-  hotels      Hotel[]
+  hotels      Hotel[] @relation("AmenityToHotel")
 }
 
 model Budget {
@@ -151,19 +143,19 @@ model Budget {
 }
 
 model Country {
-  id              String  @id @default(cuid())
-  countryCode     String  @unique
+  id              String            @id @default(cuid())
+  countryCode     String            @unique
   name            String
   nameKo          String?
+  description     String?
   embassyLocation String?
   emergencyNumber String?
-
-  cautions   Caution[]
-  languages  CountryLanguage[]
-  tours      Tour[]
-  airTickets AirTicket[]
-  User       User?             @relation(fields: [userId], references: [id])
-  userId     String?
+  userId          String?
+  airTickets      AirTicket[]
+  cautions        Caution[]
+  User            User?             @relation(fields: [userId], references: [id])
+  languages       CountryLanguage[]
+  tours           Tour[]
 
   @@index([name])
   @@index([nameKo])
@@ -179,10 +171,10 @@ model Language {
 model CountryLanguage {
   countryId  String
   languageId String
-  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
-  language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
   isOfficial Boolean  @default(false)
   notes      String?
+  country    Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
 
   @@id([countryId, languageId])
   @@index([languageId])
@@ -191,9 +183,9 @@ model CountryLanguage {
 model Caution {
   id        String  @id @default(cuid())
   countryId String
-  country   Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
   title     String
   content   String
+  country   Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
 
   @@index([countryId])
 }
@@ -204,9 +196,14 @@ model ScheduleItem {
   location   String?
   datetime   DateTime
   scheduleId String
-  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 
   @@index([scheduleId, datetime])
+}
+
+enum TripType {
+  ONE_WAY
+  ROUND_TRIP
 }
