@@ -60,11 +60,6 @@ export default async function DiaryDetailPage({ params }) {
 		return diaryDate >= startDate && diaryDate <= endDate;
 	});
 
-	// 위치 정보가 있는 다이어리만 필터링 (지도 표시용)
-	const diariesWithLocation = diaries.filter(diary => 
-		diary.latitude !== null && diary.longitude !== null
-	);
-
 	// 날짜별로 그룹화
 	const diariesByDate = {};
 	diaries.forEach(diary => {
@@ -91,7 +86,6 @@ export default async function DiaryDetailPage({ params }) {
 			days={days}
 			photoCount={photoCount}
 			diariesByDate={diariesByDate}
-			diariesWithLocation={diariesWithLocation}
 			teamMint={TEAM_MINT}
 		/>
 	);

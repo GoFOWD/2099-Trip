@@ -27,11 +27,11 @@ export async function POST(req) {
 		}
 
 		const body = await req.json();
-		const { title, content, date, pic, latitude, longitude, location } = body;
+		const { title, content, date } = body;
 
-		if (!title || !date || !pic) {
+		if (!title || !date) {
 			return NextResponse.json(
-				{ error: '제목, 날짜, 사진은 필수입니다' },
+				{ error: '제목, 날짜는 필수입니다' },
 				{ status: 400 }
 			);
 		}
@@ -42,10 +42,6 @@ export async function POST(req) {
 				title,
 				content: content || '',
 				date,
-				pic,
-				latitude: latitude || null,
-				longitude: longitude || null,
-				location: location || null,
 				authorId: user.id
 			}
 		});
@@ -56,11 +52,7 @@ export async function POST(req) {
 				id: diary.id,
 				title: diary.title,
 				content: diary.content,
-				date: diary.date,
-				pic: diary.pic,
-				latitude: diary.latitude,
-				longitude: diary.longitude,
-				location: diary.location
+				date: diary.date
 			}
 		});
 	} catch (error) {
