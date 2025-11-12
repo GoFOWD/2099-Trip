@@ -84,6 +84,7 @@ export default function DiaryClient({ totalTrips, totalPhotos, totalCountries, t
 											src={trip.image}
 											alt={trip.title}
 											fill
+											sizes='96px'
 											className='object-cover'
 											onError={(e) => {
 												e.target.src = 'https://via.placeholder.com/96x96?text=Travel';
