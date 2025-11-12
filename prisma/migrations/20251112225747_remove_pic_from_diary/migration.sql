@@ -1,6 +1,0 @@
--- AlterTable
-ALTER TABLE "Diary" DROP COLUMN IF EXISTS "pic";
-ALTER TABLE "Diary" DROP COLUMN IF EXISTS "latitude";
-ALTER TABLE "Diary" DROP COLUMN IF EXISTS "longitude";
-ALTER TABLE "Diary" DROP COLUMN IF EXISTS "location";
-
