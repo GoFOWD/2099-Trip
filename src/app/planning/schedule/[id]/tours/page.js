@@ -1,15 +1,9 @@
-import { tourCity } from '@/share/lib/cities';
-import getPlaceDetails from '@/share/util/getPlaceDetails';
+// import { tourCity } from '@/share/lib/cities';
+import getPlaceId from '@/share/util/placeDetails/getPlaceId';
+import getPlaceDetails from '@/share/util/placeDetails/getPlaceDetails';
 import Image from 'next/image';
 
 export default async function tourPage({ params }) {
-	// 1. 구글 맵스 api로 투어의 세부 정보 받기 (지리 좌표, 사진, 리뷰)
-	// 2. 아마데우스 엑세스 토큰 발급 받기
-	// 3. 구글 맵스를 통해 받은 지리 좌표 활용하기
-	// 4. 아마데우스 /shopping/activities 엔드포인트로 GET 요청 보내기
-	// headers: {
-	//   Authorization: 'Bearer YOUR_ACCESS_TOKEN'
-	// }
 	const { id } = await params;
 	const scheduleId = id;
 
@@ -18,28 +12,30 @@ export default async function tourPage({ params }) {
 		select: {
 			visitCountry: {
 				select: {
-					countryCode: true
+					countryCode: true,
+					nameKo: true
+				}
+			},
+			city: {
+				select: {
+					cityName: true,
+					cityCode: true
 				}
 			}
 		}
 	});
 
 	const countryCode = schedule.visitCountry[0].countryCode;
+	const countryName = schedule.visitCountry[0].nameKo;
 
-	const places = tourCity[countryCode];
+	const cityCode = schedule.city.cityCode;
+	const cityName = schedule.city.cityName;
 
-	const cityPlaces = await Promise.all(
-		places.map(async place => {
-			const placeDetail = await getPlaceDetails(`${place} 관광 액티비티`);
-			const city = place;
-			return { city, places: placeDetail };
-		})
-	);
-
-	console.log(cityPlaces);
+	const places = await getPlaceId(`${cityName} 관광`);
 
 	// 도시 이름 : cityPlaces.city
 	// 장소 이름 : cityPlaces.places[i].displayname.text
+	// 사진 URL : photos[i].name
 	// 요일별 운영 시간 : cityPlaces.places[i].currentOpeningHours.weekdayDescriptions[] 배열
 	// 한줄 소개 : cityPlaces.places[i].editorialSummary.text
 	// 주소 : cityPlaces.places[i].formattedAddress
@@ -60,14 +56,13 @@ export default async function tourPage({ params }) {
 
 	// console.log(details);
 	return (
-		<div className='w-50 h-60 relative'>
-			{/* <Image
-				src={ImageUrl}
-				fill
-				sizes='200px'
-				className='object-cover'
-				alt='이미지'
-			/> */}
+		<div className='pb-[65px]'>
+			<div>
+				<h1 className='font-bold text-2xl'>구경할 곳을 골라봐요 📷</h1>
+				<p className='text-[#4B5563] text-sm'>
+					{cityName}에서 즐길 수 있는 다양한 관광지를 골라보세요
+				</p>
+			</div>
 		</div>
 	);
 }
