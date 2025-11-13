@@ -27,7 +27,7 @@ export async function POST(req) {
 		}
 
 		const body = await req.json();
-		const { title, content, date } = body;
+		const { title, content, date, pic } = body;
 
 		if (!title || !date) {
 			return NextResponse.json(
@@ -42,6 +42,7 @@ export async function POST(req) {
 				title,
 				content: content || '',
 				date,
+				pic: pic || null,
 				authorId: user.id
 			}
 		});
@@ -52,7 +53,8 @@ export async function POST(req) {
 				id: diary.id,
 				title: diary.title,
 				content: diary.content,
-				date: diary.date
+				date: diary.date,
+				pic: diary.pic
 			}
 		});
 	} catch (error) {

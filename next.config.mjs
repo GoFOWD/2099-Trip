@@ -11,6 +11,11 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'opendata.mofa.go.kr',
 				pathname: '/fileDownload/images/**'
+			},
+			{
+				protocol: 'https',
+				hostname: 'rpesksupoluwocnkeijx.supabase.co',
+				pathname: '/storage/v1/object/public/**'
 			}
 		]
 	}
