@@ -8,7 +8,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 	// 국가별 랜드마크 매핑
 	const landmarkMap = {
 		US: 'Statue of Liberty New York',
-		JP: 'Tokyo Tower',
+		JP: 'Osaka Castle',
 		KR: 'Gyeongbokgung Palace Seoul',
 		CN: 'Great Wall of China',
 		GB: 'Big Ben London',
@@ -69,12 +69,12 @@ export async function getLandmarkImage(countryCode, countryName) {
 		PK: 'Badshahi Mosque Lahore',
 		LK: 'Sigiriya',
 		NP: 'Mount Everest',
-		BT: 'Tiger\'s Nest Monastery',
+		BT: "Tiger's Nest Monastery",
 		AF: 'Buddhas of Bamiyan',
 		IR: 'Persepolis',
 		IQ: 'Babylon',
 		SY: 'Palmyra',
-		YE: 'Old City of Sana\'a',
+		YE: "Old City of Sana'a",
 		OM: 'Sultan Qaboos Grand Mosque',
 		QA: 'Museum of Islamic Art Doha',
 		KW: 'Kuwait Towers',
@@ -95,17 +95,17 @@ export async function getLandmarkImage(countryCode, countryName) {
 		HN: 'Copan Ruins',
 		GT: 'Tikal',
 		BZ: 'Great Blue Hole',
-		JM: 'Dunn\'s River Falls',
+		JM: "Dunn's River Falls",
 		CU: 'Old Havana',
 		DO: 'Punta Cana',
 		HT: 'Citadelle Laferriere',
 		PR: 'El Yunque National Forest',
 		TT: 'Maracas Bay',
-		BB: 'Harrison\'s Cave',
+		BB: "Harrison's Cave",
 		GD: 'Grand Anse Beach',
 		LC: 'Pitons',
 		VC: 'Botanical Gardens',
-		AG: 'Nelson\'s Dockyard',
+		AG: "Nelson's Dockyard",
 		DM: 'Morne Trois Pitons',
 		KN: 'Brimstone Hill Fortress',
 		BS: 'Pink Sand Beach',
@@ -114,7 +114,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 		KY: 'Seven Mile Beach',
 		BM: 'Horseshoe Bay',
 		FK: 'Stanley',
-		GF: 'Devil\'s Island',
+		GF: "Devil's Island",
 		SR: 'Paramaribo',
 		GY: 'Kaieteur Falls',
 		BR: 'Amazon Rainforest',
@@ -129,7 +129,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 		NC: 'Lifou',
 		PF: 'Bora Bora',
 		WS: 'To Sua Ocean Trench',
-		TO: 'Ha\'apai',
+		TO: "Ha'apai",
 		TV: 'Funafuti',
 		KI: 'Christmas Island',
 		NR: 'Anibare Bay',
@@ -180,10 +180,10 @@ export async function getLandmarkImage(countryCode, countryName) {
 		TC: 'Cockburn Town',
 		BS: 'Nassau',
 		BB: 'Bridgetown',
-		GD: 'St. George\'s',
+		GD: "St. George's",
 		LC: 'Castries',
 		VC: 'Kingstown',
-		AG: 'St. John\'s',
+		AG: "St. John's",
 		DM: 'Roseau',
 		KN: 'Basseterre',
 		TT: 'Port of Spain',
@@ -295,7 +295,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 		IL: 'Jerusalem',
 		PS: 'Ramallah',
 		SA: 'Riyadh',
-		YE: 'Sana\'a',
+		YE: "Sana'a",
 		OM: 'Muscat',
 		AE: 'Abu Dhabi',
 		QA: 'Doha',
@@ -323,7 +323,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 		BJ: 'Porto-Novo',
 		NG: 'Abuja',
 		NE: 'Niamey',
-		TD: 'N\'Djamena',
+		TD: "N'Djamena",
 		CM: 'Yaoundé',
 		CF: 'Bangui',
 		CG: 'Brazzaville',
@@ -376,7 +376,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 		BJ: 'Porto-Novo',
 		NG: 'Abuja',
 		NE: 'Niamey',
-		TD: 'N\'Djamena',
+		TD: "N'Djamena",
 		CM: 'Yaoundé',
 		CF: 'Bangui',
 		CG: 'Brazzaville',
@@ -413,7 +413,7 @@ export async function getLandmarkImage(countryCode, countryName) {
 
 	// 국가 코드로 랜드마크 찾기
 	const landmarkName = landmarkMap[countryCode?.toUpperCase()];
-	
+
 	if (!landmarkName) {
 		// 국가 코드가 없으면 국가 이름으로 기본 이미지 반환
 		return null;
@@ -451,7 +451,9 @@ export async function getLandmarkImage(countryCode, countryName) {
 		const searchData = await searchRes.json();
 
 		if (!searchData.places || searchData.places.length === 0) {
-			console.log(`[랜드마크 검색 실패] '${landmarkName}'에 대한 검색 결과가 없습니다.`);
+			console.log(
+				`[랜드마크 검색 실패] '${landmarkName}'에 대한 검색 결과가 없습니다.`
+			);
 			return null;
 		}
 
@@ -459,7 +461,9 @@ export async function getLandmarkImage(countryCode, countryName) {
 		const photoName = place.photos?.[0]?.name;
 
 		if (!photoName) {
-			console.log(`[랜드마크 검색 실패] '${place.displayName}' 장소는 찾았지만, 연관된 사진이 없습니다.`);
+			console.log(
+				`[랜드마크 검색 실패] '${place.displayName}' 장소는 찾았지만, 연관된 사진이 없습니다.`
+			);
 			return null;
 		}
 
@@ -471,4 +475,3 @@ export async function getLandmarkImage(countryCode, countryName) {
 		return null;
 	}
 }
-

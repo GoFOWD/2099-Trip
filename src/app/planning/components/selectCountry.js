@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import CountrySearch from './countrySearch';
 import CountryCard from './countryCard';
@@ -8,8 +8,6 @@ import CountryCard from './countryCard';
 export default function SelectCountry({ results }) {
 	const router = useRouter();
 	const [selectedCountries, setSelectedCountries] = useState([]);
-
-	console.log(selectedCountries);
 
 	const toggleCountry = country => {
 		const exists = selectedCountries.includes(country.countryCode);
@@ -24,7 +22,7 @@ export default function SelectCountry({ results }) {
 	};
 
 	return (
-		<div>
+		<div className='h-full pb-[65px]'>
 			<div className='mb-4'>
 				<h1 className='font-bold text-xl mb-2'>
 					이번 여행은 어디로 가시나요
@@ -44,23 +42,25 @@ export default function SelectCountry({ results }) {
 						검색 결과가 없습니다
 					</p>
 				) : (
-					results.map(result => (
-						<div key={result.id}>
-							<CountryCard
-								country={result}
-								isActive={selectedCountries.includes(
-									result.countryCode
-								)}
-								onToggle={() => toggleCountry(result)}
-							/>
-						</div>
-					))
+					results.map(result => {
+						return (
+							<div key={result.id}>
+								<CountryCard
+									country={result}
+									isActive={selectedCountries.includes(
+										result.countryCode
+									)}
+									onToggle={() => toggleCountry(result)}
+								/>
+							</div>
+						);
+					})
 				)}
 			</div>
 			<button
 				onClick={() =>
 					router.push(
-						`/planning/date?countries=${selectedCountries.join(
+						`/planning/city?countries=${selectedCountries.join(
 							'&countries='
 						)}`
 					)
