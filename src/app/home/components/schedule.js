@@ -3,7 +3,13 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function Schedule({ startDay, endDay, country, flagUrl }) {
+export default function Schedule({
+	startDay,
+	endDay,
+	country,
+	flagUrl,
+	cityName
+}) {
 	const waapiRef = useRef(null);
 
 	useEffect(() => {
@@ -67,7 +73,7 @@ export default function Schedule({ startDay, endDay, country, flagUrl }) {
 									</div>
 									<div>
 										<p className='text-white text-sm font-semibold mb-1'>
-											{country} 여행
+											{cityName}, {country} 여행
 										</p>
 										<p className='text-white text-sm'>
 											D-{dDay}{' '}

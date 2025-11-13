@@ -5,7 +5,8 @@ import { authOption } from '../auth/[...nextauth]/route';
 export async function POST(req) {
 	try {
 		const body = await req.json();
-		const { countryCode, nameKo, startDay, endDay } = body;
+		const { countryCode, nameKo, startDay, endDay, cityName, cityCode } =
+			body;
 		const session = await getServerSession(authOption);
 		const userEmail = session.user.email;
 
@@ -27,11 +28,17 @@ export async function POST(req) {
 						}
 					]
 				},
+				city: {
+					create: {
+						cityName: cityName, // 프론트에서 전달받은 도시 이름
+						cityCode: cityCode // cityCode 맵에서 가져온 코드
+					}
+				},
 				User: {
 					connect: { id: user.id }
 				}
 			},
-			include: { visitCountry: true }
+			include: { visitCountry: true, city: true }
 		});
 		console.log(newSchedule);
 		return NextResponse.json(newSchedule, { status: 201 });

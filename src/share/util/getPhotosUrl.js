@@ -5,7 +5,7 @@ export async function getPhotosUrl(placeName) {
 	if (!GOOGLE_API_KEY)
 		throw new Error('Google API 키가 설정되지 않았습니다.');
 
-	// 1. 호텔 검색 (Text Search)
+	// 1. 장소 검색 (Text Search)
 	const searchUrl = 'https://places.googleapis.com/v1/places:searchText';
 	const searchBody = JSON.stringify({
 		textQuery: placeName
@@ -21,7 +21,7 @@ export async function getPhotosUrl(placeName) {
 		body: searchBody
 	});
 
-	if (!searchRes.ok) throw new Error('호텔 검색 실패');
+	if (!searchRes.ok) throw new Error('장소 검색 실패');
 
 	const searchData = await searchRes.json();
 
@@ -45,6 +45,5 @@ export async function getPhotosUrl(placeName) {
 	// 2. 사진 URL 생성
 	const photoUrl = `https://places.googleapis.com/v1/${photoName}/media?maxWidthPx=800&key=${GOOGLE_API_KEY}`;
 
-	console.log('[사진 검색 성공] 생성된 URL:', photoUrl);
 	return photoUrl;
 }

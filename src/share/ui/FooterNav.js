@@ -11,7 +11,7 @@ const FooterNav = () => {
 	const isHide = hideNav.includes(pathname);
 	const isTravelingPage = pathname.startsWith('/traveling');
 
-	const handleTravelingClick = (e) => {
+	const handleTravelingClick = e => {
 		if (isTravelingPage) {
 			e.preventDefault();
 			router.refresh();

@@ -9,7 +9,6 @@ import CountryInfo from './components/CountryInfo';
 
 export default async function schedulePage({ params }) {
 	const { id } = await params;
-	console.log('id: ', id);
 
 	const schedule = await prisma.schedule.findUnique({
 		where: { id },
@@ -18,24 +17,23 @@ export default async function schedulePage({ params }) {
 			AirTicket: true,
 			Hotel: true,
 			Tour: true,
-			visitCountry: true
+			visitCountry: true,
+			city: true
 		}
 	});
 
 	const scheduleId = id;
 	const visitCountry = schedule.visitCountry;
+	const city = schedule.city;
 	const budget = schedule.budgets;
 	const airTicket = schedule.AirTicket;
 	const hotel = schedule.Hotel;
 	const tour = schedule.Tour;
 
-	console.log('schedule :', schedule);
-	console.log('budget :', budget);
-
 	return (
 		<div className='pb-[65px]'>
 			<div className='mb-4'>
-				<MainCard visitCountry={visitCountry} />
+				<MainCard visitCountry={visitCountry} city={city} />
 			</div>
 			<div className='px-4 mb-4'>
 				<div className='mb-4'>
