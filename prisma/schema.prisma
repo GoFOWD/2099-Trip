@@ -43,23 +43,25 @@ model City {
 }
 
 model AirTicket {
-  id         String          @id @default(cuid())
+  id         String   @id @default(cuid())
   price      Int
   airline    String
   tripType   TripType
   scheduleId String
-  countryId  String
-  Country    Country         @relation(fields: [countryId], references: [id])
-  Schedule   Schedule        @relation(fields: [scheduleId], references: [id])
-  segments   flightSegment[]
+
+  Schedule Schedule        @relation(fields: [scheduleId], references: [id])
+  segments flightSegment[]
 }
 
 model flightSegment {
   id               String    @id @default(cuid())
   departurePort    String
+  airportName      String
   arrivalPort      String
   departureCountry String
+  departureCity    String
   arrivalCountry   String
+  arrivalCity      String
   departureDate    DateTime
   arrivalDate      DateTime
   flightNumber     String
@@ -143,19 +145,19 @@ model Budget {
 }
 
 model Country {
-  id              String            @id @default(cuid())
-  countryCode     String            @unique
+  id              String  @id @default(cuid())
+  countryCode     String  @unique
   name            String
   nameKo          String?
   description     String?
   embassyLocation String?
   emergencyNumber String?
   userId          String?
-  airTickets      AirTicket[]
-  cautions        Caution[]
-  User            User?             @relation(fields: [userId], references: [id])
-  languages       CountryLanguage[]
-  tours           Tour[]
+
+  cautions  Caution[]
+  User      User?             @relation(fields: [userId], references: [id])
+  languages CountryLanguage[]
+  tours     Tour[]
 
   @@index([name])
   @@index([nameKo])
