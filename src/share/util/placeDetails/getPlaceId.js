@@ -23,9 +23,9 @@ export default async function getPlaceId(placeName) {
 
 		if (!searchRes.ok) throw new Error('장소 검색 실패');
 
-		const placeId = await searchRes.json();
+		const places = await searchRes.json();
 
-		return placeId;
+		return places.places;
 	} catch (error) {
 		console.error(error);
 		throw new Error('네트워크 오류');

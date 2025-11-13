@@ -47,6 +47,7 @@ export default async function homePage() {
 			const res = await fetch(
 				`http://localhost:3000/api/flag?country=${countryName}`
 			);
+
 			const data = await res.json();
 			const flagUrl = data.url; // API에서 반환하는 실제 URL 필드
 

@@ -28,6 +28,6 @@ export async function GET(req) {
 		);
 	} catch (error) {
 		console.error(error);
-		return NextResponse({ error }, { status: 500 });
+		return NextResponse.json({ error }, { status: 500 });
 	}
 }
