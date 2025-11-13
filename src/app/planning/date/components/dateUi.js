@@ -1,14 +1,14 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { cityCode } from '@/share/lib/cityCode';
 
-export default function DateUi({ selectedCountries }) {
+export default function DateUi({ selectedCountries, city }) {
 	const [date, setDate] = useState([]);
 	const [isActive, setIsActive] = useState(false);
 	const router = useRouter();
 
-	console.log('selectedCountries : ', selectedCountries);
-	console.log('date : ', date);
+	const selectedCityCode = cityCode[selectedCountries[0].countryCode][city];
 
 	const getDiffDay = () => {
 		const startDay = new Date(date[0].startDay);
@@ -50,7 +50,7 @@ export default function DateUi({ selectedCountries }) {
 				{selectedCountries.map((country, i) => (
 					<div key={country.countryCode} className='mb-4'>
 						<h2 className='font-semibold text-xl mb-2'>
-							{country.nameKo}
+							{city}, {country.nameKo}
 						</h2>
 						<label
 							htmlFor={`${country.countryCode}-start`}
@@ -166,7 +166,9 @@ export default function DateUi({ selectedCountries }) {
 							countryCode: date[0].countryCode,
 							nameKo: date[0].nameKo,
 							startDay: date[0].startDay,
-							endDay: date[0].endDay
+							endDay: date[0].endDay,
+							cityName: city,
+							cityCode: selectedCityCode
 						})
 					}>
 					다음

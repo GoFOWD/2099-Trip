@@ -3,7 +3,7 @@
  * @param {number} latitude - 위도
  * @param {number} longitude - 경도
  * @returns {Promise<Object|null>} 날씨 정보 객체 또는 null (에러 시)
- * 
+ *
  * @example
  * const weather = await getWeather(37.5665, 126.9780);
  * if (weather) {
@@ -18,14 +18,17 @@ export async function getWeather(latitude, longitude) {
 	}
 
 	try {
-		const response = await fetch(`/api/weather?lat=${latitude}&lon=${longitude}`);
-		
+		const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+		const response = await fetch(
+			`${baseUrl}/api/weather?lat=${latitude}&lon=${longitude}`
+		);
+
 		if (!response.ok) {
 			throw new Error(`날씨 정보 가져오기 실패: ${response.status}`);
 		}
 
 		const data = await response.json();
-		
+
 		// 에러 응답인 경우
 		if (data.error) {
 			console.error('날씨 API 오류:', data.error);
@@ -46,4 +49,3 @@ export async function getWeather(latitude, longitude) {
 		return null;
 	}
 }
-

@@ -3,6 +3,7 @@ import DateUI from './components/dateUi';
 
 export default async function Page({ searchParams }) {
 	const countriesParams = (await searchParams).countries;
+	const cityParams = (await searchParams).city;
 	const codes = Array.isArray(countriesParams)
 		? countriesParams
 		: [countriesParams];
@@ -19,7 +20,7 @@ export default async function Page({ searchParams }) {
 
 	return (
 		<div className='px-4 h-screen pb-[65px]'>
-			<DateUI selectedCountries={ordered} />
+			<DateUI selectedCountries={ordered} city={cityParams} />
 		</div>
 	);
 }

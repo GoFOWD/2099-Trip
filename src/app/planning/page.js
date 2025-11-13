@@ -12,7 +12,6 @@ export default async function planningPage({ searchParams }) {
 		}
 	});
 
-	console.log(results);
 	return (
 		<div className='h-screen pb-[65px]'>
 			<div className='px-4 h-[65px] bg-white flex items-center mb-4'>

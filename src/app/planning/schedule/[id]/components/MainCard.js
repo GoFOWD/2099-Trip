@@ -1,6 +1,6 @@
 import DeleteSchedule from './DeleteSchedule';
 
-export default function MainCard({ visitCountry }) {
+export default function MainCard({ visitCountry, city }) {
 	console.log(visitCountry);
 
 	const countryName = visitCountry[0].nameKo;
@@ -12,6 +12,7 @@ export default function MainCard({ visitCountry }) {
 	const endYear = endDay.getFullYear();
 	const endMonth = endDay.getMonth() + 1;
 	const endD = endDay.getDate();
+	const cityName = city.cityName;
 
 	const today = new Date();
 	const dDay = Math.ceil((startDay - today) / (1000 * 60 * 60 * 24));
@@ -21,7 +22,7 @@ export default function MainCard({ visitCountry }) {
 	return (
 		<div className='w-full h-40 bg-(--brandColor) px-4 py-4 flex flex-col justify-center'>
 			<p className='text-sm text-white font-semibold mb-2'>
-				{countryName} 여행
+				{cityName}, {countryName} 여행
 			</p>
 			<h1 className='text-2xl text-white font-bold mb-2'>
 				두근두근, 여행 D-{dDay}
