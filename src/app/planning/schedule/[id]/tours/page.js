@@ -1,5 +1,5 @@
-import { getPhotosUrl } from '@/share/lib/getPhotosUrl';
-import { tourCity } from '@/lib/cities';
+import { getPhotosUrl } from '@/share/util/getPhotosUrl';
+import { tourCity } from '@/share/lib/cities';
 import getPlaceDetails from '@/share/util/getPlaceDetails';
 import Image from 'next/image';
 
