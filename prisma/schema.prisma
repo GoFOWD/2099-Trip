@@ -87,8 +87,8 @@ model Tour {
   id         String   @id @default(cuid())
   reservedAt DateTime
   location   String
-  latitude   Int
-  longitude  Int
+  latitude   Float
+  longitude  Float
   rating     Float?
   price      String?
   scheduleId String
