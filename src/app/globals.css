@@ -27,6 +27,11 @@
 	animation: spin 1s linear infinite;
 }
 
+.scrollbar-none {
+	-ms-overflow-style: none; /* IE/Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
