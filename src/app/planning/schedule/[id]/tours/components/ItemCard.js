@@ -1,48 +1,39 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { keywordMap } from '../lib/keywordMap';
-import DateSelectModal from './DateSelectModal ';
+import DateSelectModal from './DateSelectModal';
 
 export default function ItemCard({ item, onClick, setSelectedTour }) {
 	const [openDateModal, setOpenDateModal] = useState(false);
 	const [isSelect, setIsSelect] = useState(false);
+	const [schedule, setSchedule] = useState(null);
 	const { id } = useParams();
-	const router = useRouter();
 
 	const keywords = item.keword;
-
 	const keywordKo = keywords.map(keyword => {
 		const keywordKo = keywordMap[keyword];
 		return keywordKo;
 	});
-
 	const deletUndefined = keywordKo.filter(k => k !== undefined);
-
 	const formattedKeword = deletUndefined.map(k => `#${k}`);
 
-	// let userSchedules;
-	// let schedule;
-	// let startDate;
-	// let endDate;
+	useEffect(() => {
+		const userSchedules = JSON.parse(localStorage.getItem('schedules'));
+		if (userSchedules) {
+			const foundSchedule = userSchedules.find(e => e.id === id);
+			setSchedule(foundSchedule);
+		}
+	}, [id]);
 
-	const userSchedules = JSON.parse(localStorage.getItem('schedules'));
-	const schedule = userSchedules.find(e => e.id === id);
+	if (!schedule) return <p>로딩 중...</p>;
 	const sd = new Date(schedule.startDate);
 	const ed = new Date(schedule.endDate);
-
 	const startDate = sd.toISOString().split('T')[0];
 	const endDate = ed.toISOString().split('T')[0];
-	// useEffect(() => {
-	// }, []);
 
-	// 저장해야할 내용
-	// 장소 이름
-	// 날짜
-	// 위도
-	// 경도
 	const latitude = item.Geo.latitude;
 	const longitude = item.Geo.longitude;
 
@@ -56,8 +47,7 @@ export default function ItemCard({ item, onClick, setSelectedTour }) {
 			longitude
 		};
 		setIsSelect(true);
-		setSelectedTour(prev => [...prev, tourInfo]); // 클릭된 tour만 배열로 저장
-		router.push(`/planning/schedule/${schedule.id}`);
+		setSelectedTour(prev => [...prev, tourInfo]);
 	};
 
 	const deleteTour = () => {
@@ -101,7 +91,7 @@ export default function ItemCard({ item, onClick, setSelectedTour }) {
 									/>
 								</div>
 								<span className='text-[#374151] text-sm'>
-									{item.rating} {`(${item.reviewCount})`}
+									{item.rating} ({item.reviewCount})
 								</span>
 							</div>
 						</div>
@@ -127,7 +117,7 @@ export default function ItemCard({ item, onClick, setSelectedTour }) {
 						{isSelect ? (
 							<button
 								className='flex-1 bg-white text-red-500 rounded-br-lg'
-								onClick={() => deleteTour()}>
+								onClick={deleteTour}>
 								일정 취소
 							</button>
 						) : (
@@ -143,7 +133,7 @@ export default function ItemCard({ item, onClick, setSelectedTour }) {
 			{openDateModal && (
 				<DateSelectModal
 					onClose={() => setOpenDateModal(false)}
-					onSelect={date => handleSelectTour(date)}
+					onSelect={handleSelectTour}
 					minDate={startDate}
 					maxDate={endDate}
 					setSelectedTour={setSelectedTour}

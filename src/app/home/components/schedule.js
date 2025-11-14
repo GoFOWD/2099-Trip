@@ -64,7 +64,7 @@ export default function Schedule({
 								<div className='flex gap-3 items-center'>
 									<div className='w-10 h-10 relative'>
 										<Image
-											src={flagUrl}
+											src={flagUrl || '/noImage.jpg'}
 											fill
 											className='object-contain'
 											sizes='40px'
