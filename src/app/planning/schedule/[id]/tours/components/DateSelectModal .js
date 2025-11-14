@@ -9,7 +9,9 @@ export default function DateSelectModal({
 	item
 }) {
 	// 저장해야할 내용
-	//
+	// 날짜
+	// 위도
+	// 경도
 	console.log(item);
 
 	return (
