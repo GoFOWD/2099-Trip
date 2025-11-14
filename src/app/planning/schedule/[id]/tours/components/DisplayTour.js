@@ -8,7 +8,6 @@ import SortOptions from './Sort';
 export default function DisplayTour({ details }) {
 	const [sortedDetails, setSortedDetails] = useState([...details]);
 	const [selectedTour, setSelectedTour] = useState([]);
-	const [selectedTour, setSelectedTour] = useState([]);
 	const [sortBy, setSortBy] = useState('rating'); // 정렬 기준
 	const { id } = useParams();
 
