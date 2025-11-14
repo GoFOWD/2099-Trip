@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function ReviewPagination({ reviews }) {
 	const [currentPage, setCurrentPage] = useState(1);
@@ -36,15 +37,31 @@ export default function ReviewPagination({ reviews }) {
 					const displayText = expanded
 						? text
 						: text.slice(0, maxLength);
-					console.log(review.rating);
 					return (
 						<li
 							key={idx}
-							className='p-4 border rounded-lg shadow-sm bg-white'>
-							<p className='font-semibold'>
-								{review.authorAttribution.displayName}
-							</p>
-							<p className='font-semibold'>{review.rating}</p>
+							className='p-4 border-y border-y-[#E2E1E1] bg-white mb-0'>
+							<div className='flex justify-between'>
+								<p className='font-semibold text-sm'>
+									작성자 :{' '}
+									{review.authorAttribution.displayName}
+								</p>
+								<p className='text-gray-700 text-sm'>
+									{review.relativePublishTimeDescription}
+								</p>
+							</div>
+							<div className='flex gap-0.5 items-center mb-1'>
+								<div className='w-3 h-3 relative flex items-center'>
+									<Image
+										src='/star.svg'
+										fill
+										sizes='12px'
+										alt='평점'
+										className='object-contain'
+									/>
+								</div>
+								<p className='text-sm'>{review.rating}</p>
+							</div>
 							<div className='text-sm leading-relaxed'>
 								<span>{displayText}</span>
 								{/* 글이 길면 ...더보기 / 접기 버튼 표시 */}
@@ -58,9 +75,6 @@ export default function ReviewPagination({ reviews }) {
 									</button>
 								)}
 							</div>
-							<p className='text-gray-700'>
-								{review.relativePublishTimeDescription}
-							</p>
 						</li>
 					);
 				})}

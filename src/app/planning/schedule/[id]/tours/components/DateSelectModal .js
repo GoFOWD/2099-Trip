@@ -8,6 +8,8 @@ export default function DateSelectModal({
 	setSelectedTour,
 	item
 }) {
+	// 저장해야할 내용
+	//
 	console.log(item);
 
 	return (

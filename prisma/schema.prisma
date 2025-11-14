@@ -87,11 +87,13 @@ model Tour {
   id         String   @id @default(cuid())
   reservedAt DateTime
   location   String
+  latitude   Int
+  longitude  Int
   rating     Float?
-  price      String
+  price      String?
   scheduleId String
-  countryId  String
-  country    Country  @relation(fields: [countryId], references: [id])
+  countryId  String?
+  country    Country? @relation(fields: [countryId], references: [id])
   schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
 }
 
