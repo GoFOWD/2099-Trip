@@ -2,10 +2,10 @@ import getPlaceId from './getPlaceId.js';
 
 export default async function getPlaceGeo(placeName) {
 	try {
-		const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+		const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 		const places = await getPlaceId(placeName);
 
-		if (places.length === 0) {
+		if (!places.places || places.places.length === 0) {
 			throw new Error('해당 장소에 대한 정보가 없습니다');
 		}
 
@@ -22,8 +22,10 @@ export default async function getPlaceGeo(placeName) {
 		});
 
 		if (!res.ok) {
+			const errorText = await res.text();
+			console.error('API 호출 실패:', res.status, errorText);
 			throw new Error(
-				'장소는 검색 됐지만 위치 정보를 불러 올 수 없습니다'
+				`장소는 검색 됐지만 위치 정보를 불러 올 수 없습니다 (${res.status})`
 			);
 		}
 
@@ -31,7 +33,7 @@ export default async function getPlaceGeo(placeName) {
 
 		return placeGeo;
 	} catch (error) {
-		console.error(error);
-		throw new Error('네트워크 오류');
+		console.error('getPlaceGeo 오류:', error);
+		throw error;
 	}
 }
