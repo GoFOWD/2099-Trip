@@ -90,7 +90,7 @@ model Tour {
   latitude   Int
   longitude  Int
   rating     Float?
-  price      String
+  price      String?
   scheduleId String
   countryId  String?
   country    Country? @relation(fields: [countryId], references: [id])
