@@ -14,7 +14,7 @@ export default async function getPlaceDetails(placeId) {
 				'Content-Type': 'application/json',
 				'X-Goog-Api-Key': API_KEY,
 				'X-Goog-FieldMask':
-					'id,displayName,formattedAddress,location,types,rating,userRatingCount,reviews,websiteUri,currentOpeningHours,regularOpeningHours,editorialSummary,generativeSummary,photos'
+					'id,displayName,formattedAddress,location,types,rating,userRatingCount,reviews,websiteUri,currentOpeningHours,regularOpeningHours,editorialSummary,generativeSummary,photos,'
 			}
 		});
 
