@@ -1,6 +1,6 @@
 import prisma from '@/share/lib/prisma';
 import { MakeBudget, CheckBudget } from './components/Budget';
-// import CheckAirTicket from './Components/AirTicket';
+import CheckAirTicket from './Components/CheckAirTicket';
 import CheckHotel from './components/Hotel';
 import CheckTour from './components/Tour';
 import GoReservation from './components/GoReservation';

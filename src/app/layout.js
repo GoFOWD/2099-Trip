@@ -1,5 +1,5 @@
 import './globals.css';
-import Providers from '../share/lib/providers';
+// import Providers from '../share/lib/providers';
 import FooterNav from '@/share/ui/FooterNav';
 import { pretendard } from '@/share/ui/fonts';
 
@@ -19,14 +19,12 @@ export default function RootLayout({ children }) {
 			</head>
 			<body
 				className={`max-w-[700px] mx-auto bg-[#ffffff] ${pretendard.className} antialiased flex flex-col`}>
-				<Providers>
-					<main className='bg-[#f3f4f6] h-full flex-1'>
-						{children}
-					</main>
-					<footer>
-						<FooterNav />
-					</footer>
-				</Providers>
+				{/* <Providers> */}
+				<main className='bg-[#f3f4f6] h-full flex-1'>{children}</main>
+				<footer>
+					<FooterNav />
+				</footer>
+				{/* </Providers> */}
 			</body>
 		</html>
 	);

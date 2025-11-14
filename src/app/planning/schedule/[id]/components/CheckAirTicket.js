@@ -1,3 +1,3 @@
 export default function CheckAirTicket() {
-	return '투어 정보';
+	return '항공권 정보';
 }
