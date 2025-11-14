@@ -1,8 +1,6 @@
 import DeleteSchedule from './DeleteSchedule';
 
 export default function MainCard({ visitCountry, city }) {
-	console.log(visitCountry);
-
 	const countryName = visitCountry[0].nameKo;
 	const startDay = visitCountry[0].startDate;
 	const startYear = startDay.getFullYear();

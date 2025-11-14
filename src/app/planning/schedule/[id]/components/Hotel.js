@@ -1,3 +1,3 @@
-export default function CheckAirTicket() {
+export default function CheckHotel() {
 	return '숙소 정보';
 }
