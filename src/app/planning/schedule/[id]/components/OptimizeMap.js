@@ -39,7 +39,6 @@ export default async function OptimizeMap({ tours, airTicket, hotel }) {
 		longitude: airportGeo?.location?.longitude || null
 	};
 
-	console.log(tours);
 	const tourInfo = tours.map(tour => ({
 		date: tour.reservedAt || null,
 		latitude: tour.latitude || null,
@@ -52,6 +51,8 @@ export default async function OptimizeMap({ tours, airTicket, hotel }) {
 		lat: spot.latitude,
 		lng: spot.longitude
 	}));
+
+	console.log(tourInfo);
 
 	const optimizedroute = await getOptimizedRoute(geoSpots);
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import CardList from './CardList';
 import SortOptions from './Sort';
 
@@ -10,6 +10,7 @@ export default function DisplayTour({ details }) {
 	const [selectedTour, setSelectedTour] = useState([]);
 	const [sortBy, setSortBy] = useState('rating'); // 정렬 기준
 	const { id } = useParams();
+	const router = useRouter();
 
 	// details가 바뀌거나 sortBy가 바뀌면 정렬
 	useEffect(() => {
@@ -35,12 +36,13 @@ export default function DisplayTour({ details }) {
 			});
 
 			if (!res.ok) throw new Error('일정 저장 실패');
+			router.push(`/planning/schedule/${id}`);
 		} catch (error) {
 			if (error instanceof TypeError) {
 				console.error('[네트워크 오류]', error.message);
 				alert('네트워크 오류가 발생했습니다. 연결을 확인해주세요.');
 			} else {
-				console.error('[서버 오류]', error.message);
+				console.error('[서버 오류]', error);
 				alert(error.message);
 			}
 		}
