@@ -6,6 +6,7 @@ import SortOptions from './Sort';
 
 export default function DisplayTour({ details }) {
 	const [sortedDetails, setSortedDetails] = useState([...details]);
+	const [selectedTour, setSelectedTour] = useState([]);
 	const [sortBy, setSortBy] = useState('rating'); // 정렬 기준
 
 	// details가 바뀌거나 sortBy가 바뀌면 정렬
@@ -27,7 +28,10 @@ export default function DisplayTour({ details }) {
 				</h2>
 				<SortOptions sortBy={sortBy} setSortBy={setSortBy} />
 			</div>
-			<CardList sortedDetails={sortedDetails} />
+			<CardList
+				sortedDetails={sortedDetails}
+				setSelectedTour={setSelectedTour}
+			/>
 		</div>
 	);
 }
