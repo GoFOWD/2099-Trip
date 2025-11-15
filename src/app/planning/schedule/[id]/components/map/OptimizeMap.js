@@ -1,4 +1,4 @@
-import { apicodeToName } from '../airline/data/airports';
+import { apicodeToName } from '../../airline/data/airports';
 import getPlaceGeo from '@/share/util/placeDetails/getPlaceGeo';
 import MapUi from './MapUi';
 
@@ -51,10 +51,16 @@ export default async function OptimizeMap({ tours, airTicket, hotel }) {
 		lat: spot.latitude,
 		lng: spot.longitude
 	}));
+	const deletedNull = geoSpots.filter(geo => geo.lat !== null);
 
-	console.log(tourInfo);
+	const avgLat =
+		deletedNull.reduce((sum, s) => sum + s.lat, 0) / deletedNull.length;
+	const avgLng =
+		deletedNull.reduce((sum, s) => sum + s.lng, 0) / deletedNull.length;
 
-	const optimizedroute = await getOptimizedRoute(geoSpots);
+	const center = { lat: avgLat, lng: avgLng };
+
+	const optimizedroute = await getOptimizedRoute(deletedNull);
 
 	// const tourInfo = {
 	// 	date: tour.reservedAt || null,
@@ -62,5 +68,5 @@ export default async function OptimizeMap({ tours, airTicket, hotel }) {
 	// 	longitude: tour.longitude || null
 	// };
 
-	return <MapUi optimizedroute={optimizedroute} />;
+	return <MapUi optimizedroute={optimizedroute} center={center} />;
 }

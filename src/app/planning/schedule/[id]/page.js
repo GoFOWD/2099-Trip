@@ -2,13 +2,14 @@ import prisma from '@/share/lib/prisma';
 import { MakeBudget, CheckBudget } from './components/Budget';
 import CheckAirTicket from './components/CheckAirTicket';
 import CheckHotel from './components/Hotel';
-import OptimizeMap from './components/OptimizeMap';
+import CheckTour from './components/CheckTour';
 import GoReservation from './components/GoReservation';
 import MainCard from './components/MainCard';
 import CountryInfo from './components/CountryInfo';
 
 export default async function schedulePage({ params }) {
 	const { id } = await params;
+	console.log(id);
 
 	const schedule = await prisma.schedule.findUnique({
 		where: { id },
@@ -81,11 +82,7 @@ export default async function schedulePage({ params }) {
 								src='/tourRes.svg'
 							/>
 						) : (
-							<OptimizeMap
-								tours={tours}
-								airTicket={airTicket}
-								hotel={hotel}
-							/>
+							<CheckTour tours={tours} id={id} />
 						)}
 					</div>
 				</div>

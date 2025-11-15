@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 export default function CountryInfo({ visitCountry }) {
-	console.log('countryInfo 렌더링');
 	return (
 		<Link
 			href={`/traveling/warning`}
