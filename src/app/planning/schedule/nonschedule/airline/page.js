@@ -3,11 +3,12 @@
 import AirlineClient from "./AirlineClient";
 
 export default async function Page({ params }) {
+  let scheduleId = "";
   if (!params) {
-    const scheduleId = "nonschedule";
+    scheduleId = "nonschedule";
   } else {
     const { id } = await params; // 🔹 Next.js 15 방식
-    const scheduleId = id;
+    scheduleId = id;
   }
 
   return <AirlineClient scheduleId={scheduleId} />;
