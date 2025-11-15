@@ -1,9 +1,17 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BaseModal from "@/share/ui/BaseModal";
 
-export default function FlightDetailModal({ flight, scheduleId, onClose }) {
+export default function FlightDetailModal({
+  flight,
+  scheduleId,
+  userId,
+  startDate,
+  endDate,
+  onClose,
+}) {
   const router = useRouter();
   const [selectedSeat, setSelectedSeat] = useState(null);
 
@@ -15,7 +23,7 @@ export default function FlightDetailModal({ flight, scheduleId, onClose }) {
 
   const handlePayment = async () => {
     if (!selectedSeat) return alert("좌석 등급을 선택하세요!");
-    if (!scheduleId) return alert("scheduleId 누락 - URL 오류!");
+    if (!userId) return alert("로그인이 필요합니다!");
 
     try {
       const res = await fetch("/api/airline/ticket", {
@@ -24,27 +32,31 @@ export default function FlightDetailModal({ flight, scheduleId, onClose }) {
         body: JSON.stringify({
           price: selectedSeat.price,
           airline: flight.airline,
-          tripType: flight.tripType || "ROUND_TRIP",
-          scheduleId,
-          segments: flight.segments || [],
+          tripType: flight.tripType,
+          scheduleId, // 없으면 백엔드에서 새 스케줄 생성
+          userId,
+          startDate,
+          endDate,
+          segments: flight.segments,
         }),
       });
 
       const json = await res.json();
 
       if (!res.ok) {
-        console.error("❌ API ERROR:", json);
-        throw new Error(json.error || "티켓 생성 실패");
+        console.error("⛔ Ticket API ERROR:", json);
+        return alert("티켓 저장 실패");
       }
 
-      console.log("🎉 AirTicket 생성 완료:", json.ticket);
+      const finalScheduleId = json.scheduleId;
+      const ticketId = json.ticket.id;
 
       router.push(
-        `/planning/schedule/${scheduleId}/airline/payment?flightId=${json.ticket.id}&seat=${selectedSeat.type}&price=${selectedSeat.price}`
+        `/planning/schedule/${finalScheduleId}/airline/payment?flightId=${ticketId}&seat=${selectedSeat.type}&price=${selectedSeat.price}`
       );
     } catch (err) {
       console.error("❌ handlePayment Error:", err);
-      alert("항공권 정보를 저장하는 중 오류가 발생했습니다.");
+      alert("결제 준비 중 오류 발생");
     }
   };
 
@@ -63,7 +75,7 @@ export default function FlightDetailModal({ flight, scheduleId, onClose }) {
 
         {flight.segments?.map((seg, idx) => (
           <div
-            key={seg.id || idx}
+            key={idx}
             className="border rounded-lg p-3 bg-slate-50 space-y-1"
           >
             <div className="font-semibold text-[var(--brandColor)]">
@@ -77,15 +89,11 @@ export default function FlightDetailModal({ flight, scheduleId, onClose }) {
             </div>
 
             <div className="text-xs text-slate-600">
-              출발: {seg.departureDate} {seg.departureTime}
-              <br />
-              공항: {seg.departurePort}
+              출발: {seg.departurePort} {seg.departureTime}
             </div>
 
             <div className="text-xs text-slate-600">
-              도착: {seg.arrivalDate} {seg.arrivalTime}
-              <br />
-              공항: {seg.arrivalPort}
+              도착: {seg.arrivalPort} {seg.arrivalTime}
             </div>
           </div>
         ))}
@@ -93,6 +101,7 @@ export default function FlightDetailModal({ flight, scheduleId, onClose }) {
         <hr className="my-3" />
       </div>
 
+      {/* 좌석 선택 */}
       <div className="space-y-2">
         <h3 className="text-sm font-semibold text-slate-700 mb-1">좌석 선택</h3>
 

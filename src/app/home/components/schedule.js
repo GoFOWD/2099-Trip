@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function Schedule({
-	startDay,
-	endDay,
-	country,
-	flagUrl,
-	cityName
+  startDay,
+  endDay,
+  country,
+  flagUrl,
+  cityName,
 }) {
 	const waapiRef = useRef(null);
 
@@ -100,9 +100,9 @@ export default function Schedule({
 
 // 애니메이션 스타일 라이브러리 (frame-motion) 사용
 function Stylesheet() {
-	return (
-		<style>
-			{`
+  return (
+    <style>
+      {`
                 .container {
                     display: flex;
                     position: relative;
@@ -128,6 +128,6 @@ function Stylesheet() {
                 }
 
             `}
-		</style>
-	);
+    </style>
+  );
 }
