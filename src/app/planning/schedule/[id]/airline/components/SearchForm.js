@@ -1,7 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PassengerSelector from './PassengerSelector';
 import { AIRPORTS } from '../data/airports';
+import { useParams } from 'next/navigation';
 
 /**
  * props:
@@ -16,6 +17,9 @@ export default function SearchForm({
 	initialDepartureDate = '',
 	initialReturnDate = ''
 }) {
+	const params = useParams();
+	const scheduleId = params?.id || null;
+
 	// 검색 타입
 	const [tripType, setTripType] = useState(initialTripType); // "ONE_WAY" | "ROUND_TRIP" | "MULTI"
 
@@ -39,6 +43,23 @@ export default function SearchForm({
 	// 자동완성
 	const [suggestions, setSuggestions] = useState([]);
 	const [activeField, setActiveField] = useState(null); // "from" | "to" | `seg-${i}-origin|destination`
+
+	// ✅ localStorage에서 스케줄 불러오기 (id가 있을 때만)
+	useEffect(() => {
+		if (!scheduleId) return;
+
+		const schedules = JSON.parse(localStorage.getItem('schedules') || '[]');
+		const matchedSchedule = schedules.find(s => s.id === scheduleId);
+		if (!matchedSchedule) return;
+
+		// 기본값 세팅
+		if (matchedSchedule.city?.cityCode)
+			setTo(matchedSchedule.city.cityCode); // 도착 도시
+		if (matchedSchedule.startDate)
+			setDepartureDate(matchedSchedule.startDate.slice(0, 10)); // yyyy-mm-dd
+		if (matchedSchedule.endDate)
+			setReturnDate(matchedSchedule.endDate.slice(0, 10)); // yyyy-mm-dd
+	}, [scheduleId]);
 
 	// ✅ 도시명/공항명 검색 → 공항 리스트 반환
 	const searchAirports = keyword => {
@@ -73,7 +94,6 @@ export default function SearchForm({
 
 	// ✅ 입력 시 자동완성 검색
 	const handleInput = (field, value) => {
-		// field는 "from"|"to" 또는 "seg-0-origin" 같은 형태
 		if (field === 'from') setFrom(value);
 		else if (field === 'to') setTo(value);
 		else if (field.startsWith('seg-')) {
@@ -135,7 +155,6 @@ export default function SearchForm({
 			return;
 		}
 
-		// ONE_WAY / ROUND_TRIP
 		if (!from || !to) {
 			alert('출발지와 도착지를 입력해주세요.');
 			return;
