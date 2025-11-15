@@ -36,7 +36,12 @@ export default function DisplayTour({ details }) {
 			});
 
 			if (!res.ok) throw new Error('일정 저장 실패');
-			router.push(`/planning/schedule/${id}`);
+			const placeNames = selectedTour.map(tour => tour.placeName);
+			const query = placeNames
+				.map(name => `placeName=${encodeURIComponent(name)}`)
+				.join('&');
+			const url = `/planning/schedule/${id}/tours/routeCheck?${query}`;
+			router.push(url);
 		} catch (error) {
 			if (error instanceof TypeError) {
 				console.error('[네트워크 오류]', error.message);
