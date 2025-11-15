@@ -1,14 +1,15 @@
 import prisma from '@/share/lib/prisma';
 import { MakeBudget, CheckBudget } from './components/Budget';
-// import CheckAirTicket from './Components/AirTicket';
+import CheckAirTicket from './components/CheckAirTicket';
 import CheckHotel from './components/Hotel';
-import CheckTour from './components/Tour';
+import CheckTour from './components/CheckTour';
 import GoReservation from './components/GoReservation';
 import MainCard from './components/MainCard';
 import CountryInfo from './components/CountryInfo';
 
 export default async function schedulePage({ params }) {
 	const { id } = await params;
+	console.log(id);
 
 	const schedule = await prisma.schedule.findUnique({
 		where: { id },
@@ -28,7 +29,7 @@ export default async function schedulePage({ params }) {
 	const budget = schedule.budgets;
 	const airTicket = schedule.AirTicket;
 	const hotel = schedule.Hotel;
-	const tour = schedule.Tour;
+	const tours = schedule.Tour;
 
 	return (
 		<div className='pb-[65px]'>
@@ -74,14 +75,14 @@ export default async function schedulePage({ params }) {
 						)}
 					</div>
 					<div className='mb-4'>
-						{tour.length === 0 ? (
+						{tours.length === 0 ? (
 							<GoReservation
 								title='관광지'
 								href={`/planning/schedule/${id}/tours`}
 								src='/tourRes.svg'
 							/>
 						) : (
-							<CheckTour tour={tour} />
+							<CheckTour tours={tours} id={id} />
 						)}
 					</div>
 				</div>

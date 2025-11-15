@@ -1,37 +1,70 @@
+'use client';
+
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { keywordMap } from '../lib/keywordMap';
-import DateSelectModal from './DateSelectModal ';
+import DateSelectModal from './DateSelectModal';
 
 export default function ItemCard({ item, onClick, setSelectedTour }) {
 	const [openDateModal, setOpenDateModal] = useState(false);
+	const [isSelect, setIsSelect] = useState(false);
+	const [schedule, setSchedule] = useState(null);
 	const { id } = useParams();
 
 	const keywords = item.keword;
-
 	const keywordKo = keywords.map(keyword => {
 		const keywordKo = keywordMap[keyword];
 		return keywordKo;
 	});
-
 	const deletUndefined = keywordKo.filter(k => k !== undefined);
-
 	const formattedKeword = deletUndefined.map(k => `#${k}`);
 
-	const userSchedules = JSON.parse(localStorage.getItem('schedules'));
+	useEffect(() => {
+		const userSchedules = JSON.parse(localStorage.getItem('schedules'));
+		if (userSchedules) {
+			const foundSchedule = userSchedules.find(e => e.id === id);
+			setSchedule(foundSchedule);
+		}
+	}, [id]);
 
-	const schedule = userSchedules.find(e => e.id === id);
-
+	if (!schedule) return <p>로딩 중...</p>;
 	const sd = new Date(schedule.startDate);
 	const ed = new Date(schedule.endDate);
-
 	const startDate = sd.toISOString().split('T')[0];
 	const endDate = ed.toISOString().split('T')[0];
 
+	const latitude = item.Geo.latitude;
+	const longitude = item.Geo.longitude;
+
+	const handleSelectTour = date => {
+		const tourInfo = {
+			id: item.placeId,
+			placeName: item.placeName,
+			reservedAt: new Date(date),
+			location: item.addressKo,
+			latitude,
+			longitude
+		};
+		setIsSelect(true);
+		setSelectedTour(prev => [...prev, tourInfo]);
+	};
+
+	const deleteTour = () => {
+		setIsSelect(false);
+		setSelectedTour(prev =>
+			[...prev].filter(tour => tour.id !== item.placeId)
+		);
+	};
+
 	return (
 		<>
-			<div className='cursor-pointer border border-[#F3F4F6] rounded-lg shadow-md'>
+			<div
+				className={
+					isSelect
+						? 'border-3 border-(--brandColor) rounded-lg shadow-md'
+						: 'border border-[#F3F4F6] rounded-lg shadow-md'
+				}>
 				<div className='w-full h-48 relative'>
 					<Image
 						src={item.photoUrl[0]}
@@ -58,7 +91,7 @@ export default function ItemCard({ item, onClick, setSelectedTour }) {
 									/>
 								</div>
 								<span className='text-[#374151] text-sm'>
-									{item.rating} {`(${item.reviewCount})`}
+									{item.rating} ({item.reviewCount})
 								</span>
 							</div>
 						</div>
@@ -81,18 +114,26 @@ export default function ItemCard({ item, onClick, setSelectedTour }) {
 							onClick={onClick}>
 							상세 보기
 						</button>
-						<button
-							className='flex-1 bg-(--brandColor) text-white rounded-br-lg'
-							onClick={() => setOpenDateModal(true)}>
-							일정 선택
-						</button>
+						{isSelect ? (
+							<button
+								className='flex-1 bg-white text-red-500 rounded-br-lg'
+								onClick={deleteTour}>
+								일정 취소
+							</button>
+						) : (
+							<button
+								className='flex-1 bg-(--brandColor) text-white rounded-br-lg'
+								onClick={() => setOpenDateModal(true)}>
+								일정 선택
+							</button>
+						)}
 					</div>
 				</div>
 			</div>
 			{openDateModal && (
 				<DateSelectModal
 					onClose={() => setOpenDateModal(false)}
-					onSelect={date => console.log('선택한 날짜:', date)}
+					onSelect={handleSelectTour}
 					minDate={startDate}
 					maxDate={endDate}
 					setSelectedTour={setSelectedTour}

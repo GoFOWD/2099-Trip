@@ -24,6 +24,7 @@ export const config = {
 		'/exch/:path*',
 		'/mypage/:path*',
 		'/planning/:path*',
-		'/traveling/:path*'
+		'/traveling/:path*',
+		'/diary/:path*'
 	]
 };

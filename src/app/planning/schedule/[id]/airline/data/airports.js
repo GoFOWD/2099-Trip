@@ -941,3 +941,12 @@ export const AIRPORTS = [
 		]
 	}
 ];
+
+export const apicodeToName = AIRPORTS.flatMap(countryData =>
+	countryData.cities.flatMap(cityData =>
+		cityData.airports.map(airport => ({
+			code: airport.code, // IATA 공항 코드
+			name: airport.name // 한글 공항 이름
+		}))
+	)
+);

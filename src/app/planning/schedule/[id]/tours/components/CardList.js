@@ -4,7 +4,11 @@ import { useState } from 'react';
 import DetailModal from './DetailModal';
 import ItemCard from './ItemCard';
 
-export default function CardList({ sortedDetails, setSelectedTour }) {
+export default function CardList({
+	sortedDetails,
+	setSelectedTour,
+	selectedTour
+}) {
 	const [selected, setSelected] = useState(null);
 
 	return (
@@ -17,6 +21,7 @@ export default function CardList({ sortedDetails, setSelectedTour }) {
 							item={detail}
 							onClick={() => setSelected(detail)}
 							setSelectedTour={setSelectedTour}
+							selectedTour={selectedTour}
 						/>
 					);
 				})}
