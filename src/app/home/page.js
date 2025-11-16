@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth';
 import { authOption } from '../api/auth/[...nextauth]/route';
 import { Suspense } from 'react';
 import Schedules from './serverComponents/Schedules';
-import Skeleton from './serverComponents/Skeleton';
+import Skeleton from '../../share/ui/Skeleton';
 
 export default async function homePage() {
 	const userSession = await getServerSession(authOption);
@@ -13,20 +13,6 @@ export default async function homePage() {
 	const user = await prisma.user.findUnique({
 		where: { email: userSession.user.email }
 	});
-
-	if (!user) {
-		return (
-			<div>
-				<div className='flex flex-col bg-white'>
-					<div className=' flex items-center h-[65px] border-b border-[#F3F4F6] px-4 mb-4'>
-						<span className='text-lg font-semibold'>
-							트래블 가이드
-						</span>
-					</div>
-				</div>
-			</div>
-		);
-	}
 
 	// const userSchedules = await prisma.schedule.findMany({
 	// 	where: {

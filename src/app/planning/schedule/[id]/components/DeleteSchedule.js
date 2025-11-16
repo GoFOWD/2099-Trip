@@ -15,14 +15,18 @@ export default function DeleteSchedule() {
 
 	const deleteSchedule = async () => {
 		setIsLoading(true);
-		await fetch('/api/schedule', {
+		await fetch(`/api/schedule/${scheduleId}`, {
 			method: 'delete',
-			body: JSON.stringify({
-				scheduleId
-			})
+			headers: {
+				'Content-Type': 'application/json'
+			}
 		});
+		const schedules = JSON.parse(localStorage.getItem('schedules') || '[]');
+		const updatedSchedules = schedules.filter(
+			schedule => schedule.id !== scheduleId
+		);
+		localStorage.setItem('schedules', JSON.stringify(updatedSchedules));
 		router.push('/');
-		setIsLoading(false);
 	};
 
 	return (

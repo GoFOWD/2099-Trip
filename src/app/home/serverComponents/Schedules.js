@@ -12,6 +12,8 @@ export default async function Schedules({ user }) {
 		}
 	});
 
+	console.log(userSchedules);
+
 	const schedules = await Promise.all(
 		userSchedules.map(async userSchedule => {
 			const visitCountry = userSchedule.visitCountry[0];

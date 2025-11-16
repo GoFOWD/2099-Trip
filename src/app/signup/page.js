@@ -81,7 +81,6 @@ export default function signupPage() {
 	}, [emailInput, passwordInput, passwordCheck]);
 
 	const handleSubmit = async e => {
-		console.log('회원가입 버튼 클릭');
 		e.preventDefault();
 		setIsLoading(true);
 
@@ -219,7 +218,7 @@ export default function signupPage() {
 							type='submit'
 							disabled={btnDisable}
 							className={clsx({
-								'px-4 py-3 w-full h-12 flex justify-center bg-(--brandColor) rounded-xl text-white cursor-pointer':
+								'px-4 py-3 w-full h-12 flex justify-center items-center bg-(--brandColor) rounded-xl text-white cursor-pointer':
 									btnDisable === false,
 								'px-4 py-3 w-full h-12 text-center bg-(--brandColor) rounded-xl text-gray-300 opacity-50':
 									btnDisable === true

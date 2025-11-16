@@ -11,7 +11,7 @@ export default function Schedule({
 	cityName
 }) {
 	const waapiRef = useRef(null);
-	console.time('스케줄 목록 컴포넌트');
+
 	useEffect(() => {
 		const waapiElement = waapiRef.current;
 
@@ -53,7 +53,6 @@ export default function Schedule({
 
 	const startDayFormatted = `${startMonth}.${Sday}(${SdayOfWeek})`;
 	const endDayFormatted = `${endMonth}.${Eday}(${EdayOfWeek})`;
-	console.timeEnd('스케줄 목록 컴포넌트');
 
 	return (
 		<>
