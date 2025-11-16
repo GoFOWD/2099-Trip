@@ -21,7 +21,7 @@ export default function CountrySearch() {
 
 				router.push(`/planning?${params.toString()}`);
 			}
-		}, 500);
+		}, 300);
 		return () => clearTimeout(timer);
 	}, [userInput, router, searchParams]);
 

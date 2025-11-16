@@ -19,6 +19,7 @@ export default function signupPage() {
 	const [passwordCheckError, setPasswrodCheckError] = useState('');
 	const [fetchError, setFetchError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [signupLoading, setSignupLoading] = useState(false);
 
 	const emailSchema = signupSchema.pick({ email: true });
 	const passwordSchema = signupSchema.pick({ password: true });
@@ -83,6 +84,7 @@ export default function signupPage() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		setIsLoading(true);
+		setSignupLoading(true);
 
 		try {
 			const result = await fetch('/api/auth/signup', {
@@ -105,9 +107,20 @@ export default function signupPage() {
 			setIsLoading(false);
 			router.push('/login');
 		} catch (error) {
+			setSignupLoading(false);
 			setFetchError('네트워크 오류가 발생했습니다. 연결을 확인해주세요.');
 		}
 	};
+
+	if (signupLoading) {
+		return (
+			<div className='h-screen flex items-center justify-center bg-white'>
+				<h1 className='text-2xl font-bold tracking-in-contract-bck text-(--brandColor)'>
+					즐거운 여행의 시작
+				</h1>
+			</div>
+		);
+	}
 
 	return (
 		<div>

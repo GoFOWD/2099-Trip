@@ -7,17 +7,16 @@ import { getLandmarkImage } from '@/share/util/getLandmarkImage';
 
 export default function CountryCard({ country, isActive, onToggle }) {
 	const [countryImage, setCountryImage] = useState('/');
+	const [imageLoading, setImageLoading] = useState(true);
 
 	useEffect(() => {
+		setImageLoading(true);
 		const placeName = country.countryCode;
 
 		async function getImageUrl(placeName) {
 			const url = await getLandmarkImage(placeName);
-			if (!url) {
-				setCountryImage('/noImage.jpg');
-				return;
-			}
-			setCountryImage(url);
+			setCountryImage(url || '/noImage.jpg');
+			setImageLoading(false);
 		}
 
 		getImageUrl(placeName);
@@ -33,13 +32,18 @@ export default function CountryCard({ country, isActive, onToggle }) {
 			}`}>
 			<div>
 				<div className='relative w-full h-40 mb-2 rounded-t-lg'>
-					<Image
-						src={countryImage}
-						alt={`${country.nameKo} 대표 사진`}
-						fill
-						sizes='340px'
-						className='object-cover rounded-t-lg'
-					/>
+					{imageLoading ? (
+						<div className='skeleton skeleton-text h-full!'></div>
+					) : (
+						<Image
+							src={countryImage}
+							alt={`${country.nameKo} 대표 사진`}
+							fill
+							sizes='340px'
+							priority
+							className='object-cover rounded-t-lg'
+						/>
+					)}
 				</div>
 				<div className='flex flex-col items-start px-4'>
 					<h2 className='font-semibold text-lg'>{country.nameKo}</h2>

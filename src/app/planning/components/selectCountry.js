@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import CountrySearch from './countrySearch';
 import CountryCard from './countryCard';
@@ -23,18 +23,9 @@ export default function SelectCountry({ results }) {
 
 	return (
 		<div className='h-full pb-[65px]'>
-			<div className='mb-4'>
-				<h1 className='font-bold text-xl mb-2'>
-					이번 여행은 어디로 가시나요
-				</h1>
-				<p className='text-[#4B5563] text-sm'>
-					하나의 국가 또는 여러개의 국가를 선택 해 주세요
-				</p>
-			</div>
 			<div className='mb-2'>
 				<CountrySearch />
 			</div>
-			<div className='mb-8'>선택된 국가들</div>
 			<div className='mb-4'>
 				{results.length === 0 ? (
 					<p className='text-[#4B5563] text-sm'>

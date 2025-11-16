@@ -19,6 +19,14 @@ export default async function planningPage({ searchParams }) {
 			</div>
 			<div className='px-4'>
 				<div className='mb-4'>
+					<h1 className='font-bold text-xl mb-2'>
+						이번 여행은 어디로 가시나요
+					</h1>
+					<p className='text-[#4B5563] text-sm'>
+						하나의 국가 또는 여러개의 국가를 선택 해 주세요
+					</p>
+				</div>
+				<div className='mb-4'>
 					<SelectCountry results={results} />
 				</div>
 			</div>

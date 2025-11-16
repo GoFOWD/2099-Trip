@@ -270,7 +270,6 @@ export async function getLandmarkImage(countryCode, countryName) {
 		MO: 'Macau',
 		KP: 'Pyongyang',
 		KR: 'Seoul',
-		JP: 'Tokyo',
 		PH: 'Manila',
 		VN: 'Hanoi',
 		LA: 'Vientiane',

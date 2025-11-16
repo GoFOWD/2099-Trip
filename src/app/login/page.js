@@ -12,6 +12,7 @@ export default function loginPage() {
 	const [passwordInput, setPasswordInput] = useState('');
 	const [loginError, setLoginError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [loginLoading, setLoginLoading] = useState(false);
 
 	const router = useRouter();
 
@@ -23,6 +24,7 @@ export default function loginPage() {
 				return;
 			}
 			setIsLoading(true);
+			setLoginLoading(true);
 
 			const result = await signIn('credentials', {
 				email: emailInput,
@@ -39,9 +41,20 @@ export default function loginPage() {
 
 			router.push('/');
 		} catch (error) {
+			setLoginLoading(false);
 			setLoginError('오류가 발생했습니다 잠시 후 다시 시도해 주세요');
 		}
 	};
+
+	if (loginLoading) {
+		return (
+			<div className='h-screen flex items-center justify-center bg-white'>
+				<h1 className='text-2xl font-bold tracking-in-contract-bck text-(--brandColor)'>
+					즐거운 여행의 시작
+				</h1>
+			</div>
+		);
+	}
 	return (
 		<div className='h-screen'>
 			<div className='w-full h-[92px] bg-white flex justify-center items-center relative mb-8'>
