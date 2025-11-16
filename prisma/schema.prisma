@@ -117,8 +117,8 @@ model Hotel {
   name       String
   price      Float?
   rating     Float?
-  checkIn    String?
-  checkOut   String?
+  checkIn    DateTime?
+  checkOut   DateTime?
   location   String
   countryId  String?
   scheduled  String?
