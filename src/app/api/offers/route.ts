@@ -26,7 +26,6 @@ export async function GET(request: Request) {
     `${process.env.AMADEUS_API_URL}/v3/shopping/hotel-offers?hotelIds=${hotelIds}&amenities=${amenities}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${adults}`,
     { headers: { Authorization: `Bearer ${tokenData.access_token}` } }
   );
-  console.log(offerRes);
   const data = await offerRes.json();
   return Response.json(data);
 }

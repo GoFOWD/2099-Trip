@@ -114,10 +114,34 @@ export default function HotelDetailPage() {
       });
 
       const result = await res.json();
+      if (!res.ok || !result?.data?.data?.id) {
+        alert("예약 실패: " + (result.error || "알 수 없는 오류"));
+        return;
+      }
+
+      // -------------------------------------------------------
+      // 2) 예약 성공 → 여기에만 DB 저장 코드 실행
+      // -------------------------------------------------------
+      await fetch("/api/order/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          hotelId: hotel.hotelId,
+          hotelName: hotel.name,
+          offerId: offer.id,
+          room: offer.room?.description?.text,
+          price: offer.price?.total,
+          currency: offer.price?.currency,
+          checkIn: offer.checkInDate,
+          checkOut: offer.checkOutDate,
+        }),
+      });
+
+      // 3) UI에 예약 결과 업데이트
       setBookingResult(result);
       alert("예약 완료!");
     } catch (err) {
-      alert("예약 실패: " + err);
+      alert("예약 오류: " + err);
     } finally {
       setLoading(false);
     }

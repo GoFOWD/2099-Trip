@@ -300,6 +300,21 @@ export default function HotelBooking() {
         return;
       }
 
+      // 2) 우리 DB에 예약 저장
+      await fetch("/api/order/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          hotelId: selectedHotel.hotelId,
+          hotelName: selectedHotel.name,
+          offerId: selectedOffer.id,
+          room: selectedOffer.room?.description?.text,
+          price: selectedOffer.price?.total,
+          currency: selectedOffer.price?.currency,
+          checkIn: selectedOffer.checkInDate,
+          checkOut: selectedOffer.checkOutDate,
+        }),
+      });
       setIsRoomModalOpen(false);
 
       setBookingResult({
