@@ -49,7 +49,7 @@ model AirTicket {
   tripType   TripType
   scheduleId String
 
-  Schedule Schedule        @relation(fields: [scheduleId], references: [id])
+  Schedule Schedule        @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   segments flightSegment[]
 }
 
@@ -66,7 +66,7 @@ model flightSegment {
   arrivalDate      DateTime
   flightNumber     String
   airTicketId      String
-  airTicket        AirTicket @relation(fields: [airTicketId], references: [id])
+  airTicket        AirTicket @relation(fields: [airTicketId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -123,7 +123,7 @@ model Hotel {
   countryId  String?
   scheduled  String?
   scheduleId String
-  schedules  Schedule  @relation(fields: [scheduleId], references: [id])
+  schedules  Schedule  @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   amenities  Amenity[] @relation("AmenityToHotel")
 }
 
