@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function Schedule({
-  startDay,
-  endDay,
-  country,
-  flagUrl,
-  cityName,
+	startDay,
+	endDay,
+	country,
+	flagUrl,
+	cityName
 }) {
 	const waapiRef = useRef(null);
-
+	console.time('스케줄 목록 컴포넌트');
 	useEffect(() => {
 		const waapiElement = waapiRef.current;
 
@@ -53,6 +53,7 @@ export default function Schedule({
 
 	const startDayFormatted = `${startMonth}.${Sday}(${SdayOfWeek})`;
 	const endDayFormatted = `${endMonth}.${Eday}(${EdayOfWeek})`;
+	console.timeEnd('스케줄 목록 컴포넌트');
 
 	return (
 		<>
@@ -100,9 +101,9 @@ export default function Schedule({
 
 // 애니메이션 스타일 라이브러리 (frame-motion) 사용
 function Stylesheet() {
-  return (
-    <style>
-      {`
+	return (
+		<style>
+			{`
                 .container {
                     display: flex;
                     position: relative;
@@ -128,6 +129,6 @@ function Stylesheet() {
                 }
 
             `}
-    </style>
-  );
+		</style>
+	);
 }
