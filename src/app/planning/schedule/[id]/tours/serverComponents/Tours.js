@@ -7,6 +7,7 @@ import getAddressKo from '../lib/getAdderessko';
 export default async function Tours({ cityName }) {
 	const places = await getPlaceId(`${cityName} 관광`);
 
+	console.time('장소 세부 내용 조회');
 	const allPlaceDetails = await Promise.all(
 		places.map(async place => {
 			const placeDetails = await getPlaceDetails(place.id);
@@ -46,6 +47,6 @@ export default async function Tours({ cityName }) {
 			return details;
 		})
 	);
-
+	console.timeEnd('장소 세부 내용 조회');
 	return <DisplayTour details={allPlaceDetails} />;
 }

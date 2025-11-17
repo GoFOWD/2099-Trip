@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function CheckTour({ tours, id }) {
-	console.log(id);
 	return (
 		<div className='p-[17px] flex justify-between items-center border-2 border-green-600 rounded-lg bg-white'>
 			<div className='flex items-center gap-2.5'>

@@ -19,7 +19,7 @@ export default async function AirInfo({ id }) {
 					src='/airRes.svg'
 				/>
 			) : (
-				<CheckAirTicket />
+				<CheckAirTicket id={id} />
 			)}
 		</div>
 	);

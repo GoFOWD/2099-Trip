@@ -253,19 +253,6 @@ export default function signupPage() {
 						</p>
 					</div>
 				</form>
-				<div>
-					<div className='h-5 relative flex items-center justify-center'>
-						<p className='absolute text-[#6B7280] z-30 px-2 h-full flex items-center bg-[#F3F4F6]'>
-							또는
-						</p>
-						<hr className='border-[#6B7280] w-full' />
-					</div>
-					<div>
-						<div>구글</div>
-						<div>네이버</div>
-						<div>카카오</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	);
