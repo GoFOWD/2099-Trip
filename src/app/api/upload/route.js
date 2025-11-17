@@ -35,7 +35,7 @@ export async function POST(req) {
 
 		// Supabase 클라이언트 생성
 		const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-		// 서비스 역할 키가 있으면 사용 (RLS 우회), 없으면 anon key 사용
+		// 서비스 역할 키 우선 사용 (RLS 우회), 없으면 anon key 사용
 		const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 		if (!supabaseUrl || !supabaseKey) {
@@ -54,6 +54,14 @@ export async function POST(req) {
 				{ status: 500 }
 			);
 		}
+
+		// 서비스 역할 키 사용 여부 확인
+		const isServiceKey = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
+		console.log('Supabase 클라이언트 생성:', {
+			url: supabaseUrl,
+			usingServiceKey: isServiceKey,
+			keyLength: supabaseKey.length
+		});
 
 		// 서비스 역할 키를 사용하는 경우 RLS 우회 설정
 		const supabase = createClient(supabaseUrl, supabaseKey, {
