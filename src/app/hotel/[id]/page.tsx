@@ -54,7 +54,7 @@ export default function HotelDetailPage() {
   }, [id]);
 
   // -----------------------------
-  //  오퍼 상세 불러오기 API 호출
+  // 📌 오퍼 상세 불러오기 API 호출
   // -----------------------------
   const loadOfferDetail = async (offerId: string) => {
     setLoading(true);
@@ -67,7 +67,7 @@ export default function HotelDetailPage() {
   };
 
   // -----------------------------
-  // 예약하기 API 호출
+  // 📌 예약하기 API 호출
   // -----------------------------
   const bookOffer = async (offer: any) => {
     try {
@@ -114,34 +114,10 @@ export default function HotelDetailPage() {
       });
 
       const result = await res.json();
-      if (!res.ok || !result?.data?.data?.id) {
-        alert("예약 실패: " + (result.error || "알 수 없는 오류"));
-        return;
-      }
-
-      // -------------------------------------------------------
-      // 2) 예약 성공 → 여기에만 DB 저장 코드 실행
-      // -------------------------------------------------------
-      await fetch("/api/order/save", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          hotelId: hotel.hotelId,
-          hotelName: hotel.name,
-          offerId: offer.id,
-          room: offer.room?.description?.text,
-          price: offer.price?.total,
-          currency: offer.price?.currency,
-          checkIn: offer.checkInDate,
-          checkOut: offer.checkOutDate,
-        }),
-      });
-
-      // 3) UI에 예약 결과 업데이트
       setBookingResult(result);
       alert("예약 완료!");
     } catch (err) {
-      alert("예약 오류: " + err);
+      alert("예약 실패: " + err);
     } finally {
       setLoading(false);
     }
@@ -157,7 +133,7 @@ export default function HotelDetailPage() {
       <p>호텔 ID: {hotel.hotelId}</p>
 
       {/* ---------------------------------------- */}
-      {/* 기본 오퍼 목록 */}
+      {/* ⭐ 기본 오퍼 목록 */}
       {/* ---------------------------------------- */}
       <h2>객실 오퍼</h2>
 
@@ -203,7 +179,7 @@ export default function HotelDetailPage() {
       ))}
 
       {/* ---------------------------------------- */}
-      {/* 선택한 오퍼 상세 정보 표시 */}
+      {/* ⭐ 선택한 오퍼 상세 정보 표시 */}
       {/* ---------------------------------------- */}
       {selectedOfferDetail && (
         <div
@@ -273,3 +249,20 @@ export default function HotelDetailPage() {
     </div>
   );
 }
+<style jsx global>{`
+  /* 모든 버튼 공통 효과 */
+  button {
+    transition: background-color 0.15s ease, transform 0.1s ease;
+  }
+
+  /* 마우스 올렸을 때 (hover) - 살짝 어두워짐 */
+  button:hover {
+    filter: brightness(0.92);
+  }
+
+  /* 클릭 순간 (active) - 더 눌린 느낌 */
+  button:active {
+    filter: brightness(0.75);
+    transform: scale(0.98);
+  }
+`}</style>;

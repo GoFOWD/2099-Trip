@@ -561,6 +561,7 @@ export default function HotelBooking() {
               overflow: "hidden",
               position: "relative",
               display: "flex",
+              flexDirection: "column",
             }}
           >
             {/* 닫기 버튼 */}
