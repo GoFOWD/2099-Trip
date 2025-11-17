@@ -4,6 +4,7 @@ import pLimit from "p-limit";
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import HotelMap from "@/components/HotelMap";
+import { useParams } from "next/navigation";
 
 // ----------------------
 // 인터페이스
