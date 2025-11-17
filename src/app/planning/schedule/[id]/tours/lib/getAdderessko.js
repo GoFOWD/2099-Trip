@@ -3,7 +3,7 @@ export default async function getAddressKo(lat, lng) {
 
 	const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&language=ko&key=${API_KEY}`;
 
-	const res = await fetch(url);
+	const res = await fetch(url, { next: { revalidate: 60 * 60 * 24 * 7 } });
 	const data = await res.json();
 
 	const components = data.results[0].address_components;

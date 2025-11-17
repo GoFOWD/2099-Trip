@@ -2,7 +2,6 @@ export default async function getPlaceDetails(placeId) {
 	try {
 		if (!placeId) {
 			throw new Error('[장소 ID가 없습니다]');
-			return null;
 		}
 
 		const API_KEY = process.env.GOOGLE_API_KEY;
@@ -15,11 +14,12 @@ export default async function getPlaceDetails(placeId) {
 				'X-Goog-Api-Key': API_KEY,
 				'X-Goog-FieldMask':
 					'id,displayName,formattedAddress,location,types,rating,userRatingCount,reviews,websiteUri,currentOpeningHours,regularOpeningHours,editorialSummary,generativeSummary,photos,'
-			}
+			},
+			next: { revalidate: 60 * 60 * 24 * 7 }
 		});
 
 		const placeDetails = await res.json();
-
+		console.log('api 호출');
 		return placeDetails;
 	} catch (error) {
 		console.error(error);
