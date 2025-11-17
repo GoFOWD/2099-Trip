@@ -251,7 +251,7 @@ export default function HotelBooking() {
 
     try {
       setLoading(true);
-      // 데이터베이스에서 갑을 가져와야함
+
       const bookingBody = {
         data: {
           type: "hotel-order",
@@ -299,21 +299,6 @@ export default function HotelBooking() {
         return;
       }
 
-      //  우리 DB에 예약 저장
-      await fetch("/api/order/save", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          hotelId: selectedHotel.hotelId,
-          hotelName: selectedHotel.name,
-          offerId: selectedOffer.id,
-          room: selectedOffer.room?.description?.text,
-          price: selectedOffer.price?.total,
-          currency: selectedOffer.price?.currency,
-          checkIn: selectedOffer.checkInDate,
-          checkOut: selectedOffer.checkOutDate,
-        }),
-      });
       setIsRoomModalOpen(false);
 
       setBookingResult({
@@ -358,11 +343,10 @@ export default function HotelBooking() {
         style={{
           position: "sticky",
           top: 0,
-          background: "#fff",
+          borderRadius: "16px",
+          background: "#259e37ff",
           zIndex: 20,
-          paddingBottom: 12,
-          paddingTop: 8,
-          borderBottom: "1px solid #eee",
+          padding: 20,
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -370,6 +354,7 @@ export default function HotelBooking() {
           <div>
             <div
               style={{
+                color: "#ffffffff",
                 fontSize: 18,
                 fontWeight: 700,
                 marginBottom: 4,
@@ -378,24 +363,28 @@ export default function HotelBooking() {
               {cityCode}
             </div>
 
-            <div style={{ fontSize: 13, color: "#555" }}>{nights}박 숙박</div>
+            <div style={{ fontSize: 13, color: "#ffffffff" }}>
+              {nights}박 숙박
+            </div>
           </div>
 
           {/* 예산 카드 */}
           <div
             style={{
-              background: "#f5f7ff",
+              background: "#259e37ff",
               padding: "10px 14px",
               borderRadius: 12,
               textAlign: "right",
               minWidth: 130,
             }}
           >
-            <div style={{ fontSize: 12, color: "#666" }}>숙박 예산</div>
-            <div style={{ fontSize: 16, fontWeight: 700 }}>
+            <div style={{ fontSize: 12, color: "#ffffffff" }}>숙박 예산</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#ffffffff" }}>
               {budget.toLocaleString()}원
             </div>
-            <div style={{ fontSize: 12, color: "#666" }}>총 {nights}박</div>
+            <div style={{ fontSize: 12, color: "#ffffffff" }}>
+              총 {nights}박
+            </div>
           </div>
         </div>
       </div>
@@ -406,11 +395,10 @@ export default function HotelBooking() {
       <div
         style={{
           position: "sticky",
-          top: 78,
+          top: 110,
           background: "#fff",
           zIndex: 19,
           padding: "8px 0",
-          borderBottom: "1px solid #eee",
           display: "flex",
           gap: 8,
           justifyContent: "space-between",
@@ -422,9 +410,11 @@ export default function HotelBooking() {
           }
           style={{
             flex: 1,
-            padding: "8px 0",
+            padding: "12px 0",
             borderRadius: 8,
-            background: "#f1f1f1",
+            background: "#50B4BE",
+
+            border: "none",
           }}
         >
           가격순 {sortBy === "priceLow" ? "⬇" : "⬆"}
@@ -434,9 +424,10 @@ export default function HotelBooking() {
           onClick={() => setBudgetModalOpen(true)}
           style={{
             flex: 1,
-            padding: "8px 0",
+            padding: "12px 0",
             borderRadius: 8,
-            background: "#f1f1f1",
+            background: "#50B4BE",
+            border: "none",
           }}
         >
           필터
@@ -446,9 +437,10 @@ export default function HotelBooking() {
           onClick={() => setShowMap(true)}
           style={{
             flex: 1,
-            padding: "8px 0",
+            padding: "12px 0",
             borderRadius: 8,
-            background: "#eef7ff",
+            background: "#50B4BE",
+            border: "none",
           }}
         >
           지도
@@ -465,7 +457,6 @@ export default function HotelBooking() {
           style={{
             padding: 20,
             textAlign: "center",
-            border: "1px solid #eee",
             borderRadius: 10,
             marginTop: 12,
           }}
@@ -495,7 +486,7 @@ export default function HotelBooking() {
               padding: 14,
               border:
                 selectedHotel?.hotelId === hotel.hotelId
-                  ? "2px solid #1f6feb"
+                  ? "2px solid #50B4BE"
                   : "1px solid #ddd",
               borderRadius: 12,
               marginBottom: 12,
@@ -532,7 +523,8 @@ export default function HotelBooking() {
                   marginTop: 10,
                   padding: "10px 0",
                   borderRadius: 8,
-                  background: "#1f6feb",
+                  background: "#50B4BE",
+                  border: "none",
                   color: "white",
                 }}
               >
@@ -604,7 +596,6 @@ export default function HotelBooking() {
             <div
               style={{
                 flex: 1,
-                borderLeft: "1px solid #eee",
                 padding: 10,
                 overflowY: "auto",
               }}
@@ -628,7 +619,7 @@ export default function HotelBooking() {
                       borderRadius: 8,
                       border:
                         selectedHotel?.hotelId === hotel.hotelId
-                          ? "2px solid #1f6feb"
+                          ? "2px solid #50B4BE"
                           : "1px solid #ccc",
                       cursor: "pointer",
                     }}
@@ -656,7 +647,7 @@ export default function HotelBooking() {
       <div
         style={{
           position: "fixed",
-          bottom: 20,
+          bottom: 85,
           left: "50%",
           transform: "translateX(-50%)",
           width: "90%",
@@ -677,7 +668,7 @@ export default function HotelBooking() {
               color: "white",
             }}
           >
-            <h2>✅ 예약 완료</h2>
+            <h2> 예약 완료</h2>
             <p>호텔명: {bookingResult.hotelName}</p>
             <p>객실: {bookingResult.room}</p>
             <p>
@@ -696,7 +687,8 @@ export default function HotelBooking() {
             style={{
               flex: 1,
               padding: 12,
-              background: "#ccc",
+              background: "#50B4BE",
+              border: "none",
               borderRadius: 8,
             }}
           >
@@ -704,11 +696,12 @@ export default function HotelBooking() {
           </button>
 
           <button
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/hotel")}
             style={{
               flex: 1,
-              padding: 12,
-              background: "#1f6feb",
+              padding: 16,
+              background: "#50B4BE",
+              border: "none",
               color: "#fff",
               borderRadius: 8,
             }}
@@ -722,10 +715,11 @@ export default function HotelBooking() {
           onClick={goToSelectedHotelDetail}
           style={{
             width: "100%",
-            background: "#1f6feb",
+            background: "#50B4BE",
+            border: "none",
             color: "#fff",
             borderRadius: 10,
-            padding: "14px 0",
+            padding: "20px 0",
             fontWeight: 600,
           }}
         >
@@ -745,7 +739,7 @@ export default function HotelBooking() {
             left: 0,
 
             height: "100vh",
-            background: "#000",
+            background: "#ffffffff",
             boxShadow: "-4px 0 20px rgba(0,0,0,0.2)",
             zIndex: 3000,
             padding: 20,
@@ -760,7 +754,8 @@ export default function HotelBooking() {
               marginBottom: 12,
               padding: "8px 12px",
               borderRadius: 8,
-              background: "#000",
+              background: "gray",
+              border: "none",
               color: "white",
             }}
           >
@@ -800,7 +795,8 @@ export default function HotelBooking() {
                 style={{
                   marginTop: 10,
                   width: "100%",
-                  background: "#1f6feb",
+                  background: "#50B4BE",
+                  border: "none",
                   color: "white",
                   padding: "8px 0",
                   borderRadius: 6,
@@ -812,6 +808,23 @@ export default function HotelBooking() {
           ))}
         </div>
       )}
+      <style jsx global>{`
+        /* 모든 버튼 공통 효과 */
+        button {
+          transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        /* 마우스 올렸을 때 (hover) - 살짝 어두워짐 */
+        button:hover {
+          filter: brightness(0.92);
+        }
+
+        /* 클릭 순간 (active) - 더 눌린 느낌 */
+        button:active {
+          filter: brightness(0.75);
+          transform: scale(0.98);
+        }
+      `}</style>
 
       <style jsx>{`
         @keyframes slideIn {
@@ -958,7 +971,7 @@ export default function HotelBooking() {
                       padding: "6px 10px",
                       borderRadius: 20,
                       border: "1px solid #ccc",
-                      background: amenities.includes(a) ? "#1f6feb" : "#fff",
+                      background: amenities.includes(a) ? "#50B4BE" : "#fff",
                       color: amenities.includes(a) ? "#fff" : "#000",
                     }}
                   >
@@ -976,6 +989,7 @@ export default function HotelBooking() {
                   flex: 1,
                   padding: 12,
                   background: "#ccc",
+                  border: "none",
                   borderRadius: 8,
                 }}
               >
@@ -991,7 +1005,8 @@ export default function HotelBooking() {
                 style={{
                   flex: 1,
                   padding: 12,
-                  background: "#1f6feb",
+                  background: "#50B4BE",
+                  border: "none",
                   color: "#fff",
                   borderRadius: 8,
                 }}
